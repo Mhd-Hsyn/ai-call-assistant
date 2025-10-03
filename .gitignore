@@ -1,0 +1,60 @@
+# Byte-compiled / optimized / DLL files
+db.sqlite3
+__pycache__/
+*.py[cod]
+*$py.class
+
+redisdata/
+
+# C extensions
+*.so
+
+# Virtual environment
+env/
+venv/
+ENV/
+*.env
+
+# macOS files
+.DS_Store
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+*.py,cover
+
+# Test result files
+nosetests.xml
+coverage.xml
+*.test_results
+
+# MyPy
+.mypy_cache/
+
+# PEP 582; used by e.g. pdm
+__pypackages__/
+
+# Profiling data
+*.prof
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pip file
+pip-log.txt
+
+# Build files
+build/
+dist/
+*.egg-info/
+.eggs/
