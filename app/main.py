@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.core.database import init_db
+from app.config.database import init_db
 # from app.routes import user
 
 app = FastAPI()
