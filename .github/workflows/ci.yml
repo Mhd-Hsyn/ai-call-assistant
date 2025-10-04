@@ -1,0 +1,31 @@
+name: CI Pipeline
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Create .env file
+      run: |
+        sudo sh -c 'echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > .env'
+        sudo sh -c 'echo "USER_JWT_TOKEN_KEY=${{ secrets.USER_JWT_TOKEN_KEY }}" >> .env'
+        sudo sh -c 'echo "ADMIN_JWT_TOKEN_KEY=${{ secrets.ADMIN_JWT_TOKEN_KEY }}" >> .env'
+        sudo sh -c 'echo "DEBUG=${{ secrets.DEBUG }}" >> .env'
+
+        # Database
+        sudo sh -c 'echo "MONGO_USER=${{ secrets.MONGO_USER }}" >> .env'
+        sudo sh -c 'echo "MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}" >> .env'
+        sudo sh -c 'echo "MONGO_DB=${{ secrets.MONGO_DB }}" >> .env'
+        sudo sh -c 'echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env'
+
+    - name: Build and Run Docker compose
+      run: |
+        sudo docker compose down
+        sudo docker compose up --build -d
