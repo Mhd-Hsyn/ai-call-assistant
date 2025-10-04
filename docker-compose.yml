@@ -5,7 +5,7 @@ services:
     build: .
     container_name: ai_call_assistant
     ports:
-      - "8007:8000"
+      - "8010:8000"
     volumes:
       - .:/app
     depends_on:
