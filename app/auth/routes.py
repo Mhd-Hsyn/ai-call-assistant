@@ -15,7 +15,10 @@ async def register_as_client(request: Request, payload: ClientSignupSchema):
 
     # Check existing email
     if await UserModel.find_one(UserModel.email == payload.email):
-        raise HTTPException(status_code=400, detail="Email already exists")
+        raise HTTPException(
+            detail={"status": False, "message": "Email already exists"},
+            status_code=400
+        )
 
     user = UserModel(
         first_name=payload.first_name,

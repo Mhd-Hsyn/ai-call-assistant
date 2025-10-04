@@ -1,4 +1,5 @@
 from beanie import init_beanie
+from bson.codec_options import CodecOptions, UuidRepresentation
 import motor.motor_asyncio
 
 # import all models
@@ -10,7 +11,14 @@ from app.config.settings import settings
 
 
 async def init_db():
-    client = motor.motor_asyncio.AsyncIOMotorClient(settings.mongo_uri)
+    client = motor.motor_asyncio.AsyncIOMotorClient(
+        settings.mongo_uri,
+        uuidRepresentation="standard",
+    )
+
+    database = client.get_database(settings.mongo_db).with_options(
+        codec_options=CodecOptions(uuid_representation=UuidRepresentation.STANDARD)
+    )
     database = client[settings.mongo_db]
 
     # IMPORTANT: list all models here
