@@ -1,4 +1,5 @@
 from passlib.hash import pbkdf2_sha256
+from beanie import before_event, Insert
 from app.core.constants.choices import (
     UserRoleChoices, 
     UserAccountStatusChoices
@@ -12,6 +13,10 @@ class PasswordMixin:
 
     def check_password(self, raw_password: str) -> bool:
         return pbkdf2_sha256.verify(raw_password, self.password)
+
+    @before_event(Insert)
+    async def hash_password(self):
+        self.password = pbkdf2_sha256.hash(self.password)
 
 class UserModelMixin:
     @property

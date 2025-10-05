@@ -1,9 +1,11 @@
 from fastapi import APIRouter, Request, HTTPException
+from fastapi.responses import JSONResponse
+from fastapi import status
 from .schemas import ClientSignupSchema
 from .models import UserModel
 from app.auth.services.auth_service import AuthService
 from app.config.settings import settings
-from fastapi.responses import JSONResponse
+from app.core.exceptions.base import AppException
 
 auth_router = APIRouter(prefix="/user", tags=["User"])
 
@@ -15,10 +17,7 @@ async def register_as_client(request: Request, payload: ClientSignupSchema):
 
     # Check existing email
     if await UserModel.find_one(UserModel.email == payload.email):
-        raise HTTPException(
-            detail={"status": False, "message": "Email already exists"},
-            status_code=400
-        )
+        raise AppException("Email already exists", status_code=status.HTTP_400_BAD_REQUEST)
 
     user = UserModel(
         first_name=payload.first_name,
@@ -44,5 +43,5 @@ async def register_as_client(request: Request, payload: ClientSignupSchema):
                 "role": user.role_name,
             },
         },
-        status_code=201,
+        status_code=status.HTTP_201_CREATED,
     )

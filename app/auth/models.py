@@ -27,7 +27,6 @@ class UserModel(BaseDocument, PasswordMixin, UserModelMixin):
 
     class Settings:
         name = "users"
-        use_state_management = True
 
 
 class UserWhitelistTokenModel(BaseDocument):

@@ -10,6 +10,7 @@ class BaseDocument(Document):
 
     class Settings:
         use_state_management = True
+        json_encoders = {uuid.UUID: str}
 
     class Config:
         json_encoders = {uuid.UUID: str}
