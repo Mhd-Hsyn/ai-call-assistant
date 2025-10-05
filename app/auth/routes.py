@@ -12,9 +12,6 @@ from .schemas import (
     ClientSignupSchema,
     UserProfileResponse
 )
-from .serializers import (
-    serialize_user
-)
 
 auth_router = APIRouter(prefix="/user", tags=["User"])
 
