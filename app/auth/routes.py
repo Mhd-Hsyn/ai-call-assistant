@@ -1,17 +1,26 @@
-from fastapi import APIRouter, Request, HTTPException
+from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 from fastapi import status
-from .schemas import ClientSignupSchema
-from .models import UserModel
 from app.auth.services.auth_service import AuthService
 from app.config.settings import settings
 from app.core.exceptions.base import AppException
+from .models import (
+    UserModel
+)
+from .schemas import (
+    ClientSignupSchema,
+    UserProfileResponse
+)
+from .serializers import (
+    serialize_user
+)
 
 auth_router = APIRouter(prefix="/user", tags=["User"])
 
 auth_service = AuthService(jwt_key=settings.user_jwt_token_key)
 
-@auth_router.post("/register_as_client")
+@auth_router.post("/register_as_client", response_model=UserProfileResponse)
 async def register_as_client(request: Request, payload: ClientSignupSchema):
     payload.validate_passwords()
 
@@ -31,17 +40,14 @@ async def register_as_client(request: Request, payload: ClientSignupSchema):
 
     token_data = await auth_service.generate_jwt_payload(user, request)
 
+    user_data = UserProfileResponse.model_validate(user)
     return JSONResponse(
-        {
+        content=jsonable_encoder({
             "status": True,
             "message": "Account created successfully",
             "access_token": token_data["access_token"],
             "refresh_token": token_data["refresh_token"],
-            "data": {
-                "first_name": user.first_name,
-                "email": user.email,
-                "role": user.role_name,
-            },
-        },
+            "data": user_data,
+        }),
         status_code=status.HTTP_201_CREATED,
     )

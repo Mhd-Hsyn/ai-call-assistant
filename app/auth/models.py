@@ -23,6 +23,7 @@ class UserModel(BaseDocument, PasswordMixin, UserModelMixin):
     account_status: UserAccountStatusChoices = UserAccountStatusChoices.PENDING
     is_active: bool = True
     is_staff: bool = False
+    is_email_verified: bool = False
     password: str
 
     class Settings:
