@@ -1,15 +1,20 @@
+from fastapi import status
 from fastapi import APIRouter, Request
+from fastapi import Form, File, UploadFile, Depends
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
-from fastapi import status
-from app.auth.services.auth_service import AuthService
 from app.config.settings import settings
 from app.core.exceptions.base import AppException
+from app.auth.services.auth_service import AuthService
 from .models import (
     UserModel
 )
+from app.core.utils.save_images import (
+    save_profile_image
+)
 from .schemas import (
     ClientSignupSchema,
+    client_signup_form,
     UserProfileResponse
 )
 
@@ -18,20 +23,28 @@ auth_router = APIRouter(prefix="/user", tags=["User"])
 auth_service = AuthService(jwt_key=settings.user_jwt_token_key)
 
 @auth_router.post("/register_as_client", response_model=UserProfileResponse)
-async def register_as_client(request: Request, payload: ClientSignupSchema):
-    payload.validate_passwords()
+async def register_as_client(
+    request: Request,
+    data: tuple[ClientSignupSchema, UploadFile | None] = Depends(client_signup_form)
+):
+    schema, profile_image = data
+    schema.validate_passwords()
 
     # Check existing email
-    if await UserModel.find_one(UserModel.email == payload.email):
+    if await UserModel.find_one(UserModel.email == schema.email):
         raise AppException("Email already exists", status_code=status.HTTP_400_BAD_REQUEST)
 
+    # Save profile image if provided
+    image_path = await save_profile_image(schema.email, profile_image)
+
     user = UserModel(
-        first_name=payload.first_name,
-        middle_name=payload.middle_name,
-        last_name=payload.last_name,
-        email=payload.email.lower(),
-        password=payload.password,
-        mobile_number=payload.mobile_number,
+        first_name=schema.first_name,
+        middle_name=schema.middle_name,
+        last_name=schema.last_name,
+        email=schema.email.lower(),
+        password=schema.password,
+        mobile_number=schema.mobile_number,
+        profile_image=image_path,
     )
     await user.insert()
 

@@ -1,9 +1,11 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from app.config.database import init_db
+from app.config.settings import MEDIA_DIR
 from app.auth.routes import auth_router
 from app.core.exceptions.base import AppException
 from app.core.exceptions.handlers import (
@@ -29,6 +31,10 @@ app.add_exception_handler(AppException, app_exception_handler)
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
 app.add_exception_handler(StarletteHTTPException, http_exception_handler)
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
+
+# media
+app.mount("/media", StaticFiles(directory=MEDIA_DIR), name="media")
+
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

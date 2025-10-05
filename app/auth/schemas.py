@@ -1,6 +1,7 @@
 import re
 from datetime import datetime
 from typing import Optional
+from fastapi import Form, File, UploadFile
 from pydantic import BaseModel, EmailStr, Field, field_validator
 from uuid import UUID
 
@@ -12,6 +13,8 @@ class ClientSignupSchema(BaseModel):
     password: str = Field(min_length=8, max_length=16)
     confirm_password: str
     mobile_number: str
+    profile_image: UploadFile | None = File(None)
+
 
     @field_validator("password")
     @classmethod
@@ -33,6 +36,31 @@ class ClientSignupSchema(BaseModel):
     def validate_passwords(self):
         if self.password != self.confirm_password:
             raise ValueError("Passwords do not match")
+
+
+
+def client_signup_form(
+    first_name: str = Form(...),
+    middle_name: Optional[str] = Form(None),
+    last_name: str = Form(...),
+    email: EmailStr = Form(...),
+    password: str = Form(...),
+    confirm_password: str = Form(...),
+    mobile_number: str = Form(...),
+    profile_image: UploadFile | None = File(None),
+):
+    schema = ClientSignupSchema(
+        first_name=first_name,
+        middle_name=middle_name,
+        last_name=last_name,
+        email=email,
+        password=password,
+        confirm_password=confirm_password,
+        mobile_number=mobile_number,
+    )
+    return schema, profile_image
+
+
 
 
 class UserProfileResponse(BaseModel):

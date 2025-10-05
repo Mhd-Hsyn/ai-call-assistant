@@ -1,3 +1,4 @@
+import os
 from pydantic_settings import BaseSettings
 
 
@@ -16,3 +17,12 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+MEDIA_DIR = os.path.join(BASE_DIR, "..", "media")
+MEDIA_URL = "/media/"
+
+# Ensure the folder exists
+os.makedirs(MEDIA_DIR, exist_ok=True)
