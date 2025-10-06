@@ -4,6 +4,7 @@ from fastapi.encoders import jsonable_encoder
 from app.config.settings import settings
 from app.core.exceptions.base import AppException
 from app.auth.services.auth_service import AuthService
+from app.auth.dependencies import get_current_user, is_email_verified, is_profile_active
 from app.core.constants.choices import (
     UserAccountStatusChoices
 )
@@ -127,6 +128,11 @@ async def login(
         status_code=status.HTTP_200_OK
     )
 
+@auth_router.get("/profile")
+async def get_profile(
+    user = Depends(is_profile_active),
+):
+    return {"status": True, "data": UserProfileResponse.model_validate(user)}
 
 
 
