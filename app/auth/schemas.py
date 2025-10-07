@@ -1,8 +1,22 @@
 import re
 from datetime import datetime
-from typing import Optional
-from fastapi import Form, File, UploadFile
-from pydantic import BaseModel, EmailStr, Field, field_validator
+from typing import Optional, Any
+from fastapi import (
+    Form, 
+    File, 
+    UploadFile, 
+    status
+)
+from pydantic import (
+    BaseModel, 
+    EmailStr, 
+    ValidationError,
+    Field, 
+    field_validator, 
+)
+from app.core.exceptions.base import (
+    AppException,
+)
 from uuid import UUID
 
 class ClientSignupSchema(BaseModel):
@@ -35,7 +49,7 @@ class ClientSignupSchema(BaseModel):
 
     def validate_passwords(self):
         if self.password != self.confirm_password:
-            raise ValueError("Passwords do not match")
+            raise AppException("Passwords do not match")
 
 
 
@@ -49,17 +63,16 @@ def client_signup_form(
     mobile_number: str = Form(...),
     profile_image: UploadFile | None = File(None),
 ):
-    schema = ClientSignupSchema(
-        first_name=first_name,
-        middle_name=middle_name,
-        last_name=last_name,
-        email=email,
-        password=password,
-        confirm_password=confirm_password,
-        mobile_number=mobile_number,
-    )
-    return schema, profile_image
-
+        schema = ClientSignupSchema(
+            first_name=first_name,
+            middle_name=middle_name,
+            last_name=last_name,
+            email=email,
+            password=password,
+            confirm_password=confirm_password,
+            mobile_number=mobile_number,
+        )
+        return schema, profile_image    
 
 
 
@@ -84,6 +97,19 @@ class UserProfileResponse(BaseModel):
 
     class Config:
         from_attributes = True  # Allow Pydantic to read from ORM-like objects
+
+
+
+class APIBaseResponse(BaseModel):
+    status: bool
+    message: str
+    data: Any | None = None
+
+
+class AuthResponseData(APIBaseResponse):
+    access_token: str
+    refresh_token: str
+    data: UserProfileResponse
 
 
 

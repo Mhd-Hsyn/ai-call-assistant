@@ -1,4 +1,5 @@
 import uvicorn
+from pydantic import ValidationError
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
@@ -28,9 +29,9 @@ app.include_router(auth_router, prefix="/api/auth", tags=["Auth"])
 
 # Exception Handlers
 app.add_exception_handler(AppException, app_exception_handler)
-app.add_exception_handler(RequestValidationError, validation_exception_handler)
 app.add_exception_handler(StarletteHTTPException, http_exception_handler)
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
+app.add_exception_handler(ValidationError, validation_exception_handler)
 
 # media
 app.mount("/media", StaticFiles(directory=MEDIA_DIR), name="media")

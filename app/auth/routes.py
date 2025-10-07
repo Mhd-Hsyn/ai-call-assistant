@@ -2,15 +2,17 @@ from fastapi import APIRouter, Request, status, Body, UploadFile, Depends
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from app.config.settings import settings
-from app.core.exceptions.base import AppException
 from app.auth.services.auth_service import AuthService
+from app.core.exceptions.base import (
+    AppException,
+    InternalServerErrorException
+)
 from app.core.dependencies.authentication import (
     JWTAuthentication
 )
 from app.core.dependencies.authorization import (
     EmailVerified, 
-    ProfileActive, 
-    SuperAdmin
+    ProfileActive
 )
 from app.core.constants.choices import (
     UserAccountStatusChoices
@@ -25,14 +27,20 @@ from .schemas import (
     ClientSignupSchema,
     client_signup_form,
     UserProfileResponse,
-    UserLoginSchema
+    AuthResponseData,
+    UserLoginSchema,
+    APIBaseResponse
 )
 
 auth_router = APIRouter(prefix="/user", tags=["User"])
 
 auth_service = AuthService(jwt_key=settings.user_jwt_token_key)
 
-@auth_router.post("/register_as_client", response_model=UserProfileResponse)
+@auth_router.post(
+    "/register_as_client", 
+    response_model=AuthResponseData,
+    status_code=status.HTTP_201_CREATED
+)
 async def register_as_client(
     request: Request,
     data: tuple[ClientSignupSchema, UploadFile | None] = Depends(client_signup_form)
@@ -62,19 +70,20 @@ async def register_as_client(
     token_data = await auth_service.generate_jwt_payload(user, request)
 
     user_data = UserProfileResponse.model_validate(user)
-    return JSONResponse(
-        content=jsonable_encoder({
-            "status": True,
-            "message": "Account created successfully",
-            "access_token": token_data["access_token"],
-            "refresh_token": token_data["refresh_token"],
-            "data": user_data,
-        }),
-        status_code=status.HTTP_201_CREATED,
-    )
+    return {
+        "status": True,
+        "message": "Account created successfully",
+        "access_token": token_data["access_token"],
+        "refresh_token": token_data["refresh_token"],
+        "data": user_data,
+    }
 
 
-@auth_router.post(path="/login")
+@auth_router.post(
+    path="/login",
+    response_model=AuthResponseData,
+    status_code=status.HTTP_200_OK
+)
 async def login(
     request: Request, 
     payload: UserLoginSchema = Body(...)
@@ -85,24 +94,15 @@ async def login(
     # Fetch user from DB
     user_instance = await UserModel.find_one(UserModel.email == email)
     if not user_instance:
-        return JSONResponse(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            content={"status": False, "message": "User with this email does not exist"}
-        )
+        raise AppException("User with this email does not exist")
 
     # Verify password
     if not user_instance.check_password(password):
-        return JSONResponse(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            content={"status": False, "message": "Incorrect password"}
-        )
+        raise AppException("Incorrect password")
 
     # Check if user is active
     if user_instance.account_status != UserAccountStatusChoices.ACTIVE:
-        return JSONResponse(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            content={"status": False, "message": "This account is disabled. Please contact support"}
-        )
+        raise AppException("This account is disabled. Please contact support")
 
     # Generate JWT tokens
     token_data = await auth_service.generate_jwt_payload(
@@ -113,30 +113,28 @@ async def login(
     )
 
     if not token_data["status"]:
-        return JSONResponse(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            content={
-                "status": False,
-                "message": token_data["message"],
-                "details": token_data.get("details")
-            }
-        )
+        raise InternalServerErrorException(token_data["message"])
+
     # Serialize user data
     user_data = UserProfileResponse.model_validate(user_instance)
 
+    return {
+        "status": True,
+        "message": "Login Successfully",
+        "access_token": token_data["access_token"],
+        "refresh_token": token_data["refresh_token"],
+        "data": user_data
+    }
+
+
+@auth_router.get("/profile", response_model=APIBaseResponse)
+async def get_profile(user=Depends(ProfileActive())):
     return JSONResponse(
         content=jsonable_encoder({
             "status": True,
-            "message": "Login Successfully",
-            "access_token": token_data["access_token"],
-            "refresh_token": token_data["refresh_token"],
-            "data": user_data
+            "message": "Profile fetched successfully",
+            "data": UserProfileResponse.model_validate(user).model_dump()
         }),
         status_code=status.HTTP_200_OK
     )
-
-
-@auth_router.get("/profile")
-async def get_profile(user=Depends(ProfileActive())):
-    return {"status": True, "data": UserProfileResponse.model_validate(user)}
 

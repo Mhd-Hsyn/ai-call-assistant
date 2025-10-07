@@ -23,3 +23,10 @@ class ForbiddenException(AppException):
     """403 Forbidden error."""
     def __init__(self, message="Forbidden"):
         super().__init__(message, status.HTTP_403_FORBIDDEN)
+
+
+class InternalServerErrorException(AppException):
+    """500 Internal Server Error."""
+    def __init__(self, message="Internal server error"):
+        super().__init__(message, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
