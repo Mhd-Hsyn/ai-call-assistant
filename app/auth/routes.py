@@ -1,6 +1,12 @@
-from fastapi import APIRouter, Request, status, Body, UploadFile, Depends
-from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
+from fastapi import (
+    APIRouter, 
+    Request, 
+    status, 
+    UploadFile, 
+    Body, 
+    Depends, 
+)
 from app.config.settings import settings
 from app.auth.services.auth_service import AuthService
 from app.core.exceptions.base import (
