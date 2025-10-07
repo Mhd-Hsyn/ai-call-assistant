@@ -14,12 +14,15 @@ from pydantic import (
     Field, 
     field_validator,
     computed_field,
+    validator
 )
 from app.core.exceptions.base import (
     AppException,
 )
 from uuid import UUID
-
+from app.core.utils.helpers import (
+    check_password_requirements
+)
 
 ############  Signup  ############
 
@@ -153,5 +156,27 @@ def user_profile_update_form(
         "profile_image": profile_image
     }
 
+
+
+############  Change Password  ############
+
+class ChangePasswordRequest(BaseModel):
+    old_password: str = Field(..., min_length=8, max_length=128)
+    new_password: str = Field(..., min_length=8, max_length=128)
+    confirm_new_password: str = Field(..., min_length=8, max_length=128)
+
+    @validator("new_password")
+    def validate_new_password(cls, v):
+        err = check_password_requirements(v)
+        if err:
+            raise ValueError(err)
+        return v
+
+    @validator("confirm_new_password")
+    def passwords_match(cls, v, values):
+        new_password = values.get("new_password")
+        if new_password and v != new_password:
+            raise ValueError("New passwords do not match")
+        return v
 
 

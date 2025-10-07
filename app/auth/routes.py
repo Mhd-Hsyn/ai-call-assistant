@@ -42,6 +42,7 @@ from .schemas import (
     UserLoginSchema,
     APIBaseResponse,
     user_profile_update_form,
+    ChangePasswordRequest,
 
 )
 
@@ -145,7 +146,7 @@ async def login(
     response_model=APIBaseResponse,
     status_code=status.HTTP_200_OK
 )
-async def get_profile(user=Depends(ProfileActive())):
+async def get_profile(user:UserModel=Depends(ProfileActive())):
     user_data = UserProfileResponse.model_validate(user)
 
     return APIBaseResponse(
@@ -163,7 +164,7 @@ async def get_profile(user=Depends(ProfileActive())):
 )
 async def update_profile(
     data: dict = Depends(user_profile_update_form),
-    user=Depends(ProfileActive())
+    user:UserModel=Depends(ProfileActive())
 ):
     update_data = {k: v for k, v in data.items() if v is not None}
 
@@ -215,5 +216,29 @@ async def logout_user(request: Request):
     )
 
 
+
+
+@auth_router.put(
+    "/change-password",
+    status_code=status.HTTP_200_OK
+)
+async def change_password(
+    payload: ChangePasswordRequest,
+    user:UserModel = Depends(ProfileActive())
+):
+    # 1️⃣ Verify old password
+    if not user.check_password(payload.old_password):
+        raise AppException("Old password is incorrect.", status_code=status.HTTP_400_BAD_REQUEST)
+
+    # 2️⃣ Set new password
+    user.set_password(payload.new_password)
+
+    # 3️⃣ Save user
+    await user.save()
+
+    return {
+        "status": True,
+        "message": "Password changed successfully"
+    }
 
 
