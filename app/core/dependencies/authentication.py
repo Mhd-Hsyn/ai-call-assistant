@@ -21,5 +21,9 @@ class JWTAuthentication:
 
         token_instance = await auth_utils.get_whitelisted_token(user_id, token_fingerprint)
         user = await token_instance.user.fetch()
+        print("user _______________ ", user)
+        if not user:
+            raise UnauthorizedException("User not found")
+
         return user
 

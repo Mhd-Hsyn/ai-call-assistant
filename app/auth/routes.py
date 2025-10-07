@@ -70,13 +70,13 @@ async def register_as_client(
     token_data = await auth_service.generate_jwt_payload(user, request)
 
     user_data = UserProfileResponse.model_validate(user)
-    return {
-        "status": True,
-        "message": "Account created successfully",
-        "access_token": token_data["access_token"],
-        "refresh_token": token_data["refresh_token"],
-        "data": user_data,
-    }
+    return AuthResponseData(
+        status=True,
+        message="Login Successfully",
+        access_token=token_data["access_token"],
+        refresh_token=token_data["refresh_token"],
+        data=user_data
+    )
 
 
 @auth_router.post(
@@ -118,23 +118,25 @@ async def login(
     # Serialize user data
     user_data = UserProfileResponse.model_validate(user_instance)
 
-    return {
-        "status": True,
-        "message": "Login Successfully",
-        "access_token": token_data["access_token"],
-        "refresh_token": token_data["refresh_token"],
-        "data": user_data
-    }
-
-
-@auth_router.get("/profile", response_model=APIBaseResponse)
-async def get_profile(user=Depends(ProfileActive())):
-    return JSONResponse(
-        content=jsonable_encoder({
-            "status": True,
-            "message": "Profile fetched successfully",
-            "data": UserProfileResponse.model_validate(user).model_dump()
-        }),
-        status_code=status.HTTP_200_OK
+    return AuthResponseData(
+        status=True,
+        message="Login Successfully",
+        access_token=token_data["access_token"],
+        refresh_token=token_data["refresh_token"],
+        data=user_data
     )
 
+
+@auth_router.get(
+    "/profile", 
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def get_profile(user=Depends(ProfileActive())):
+    user_data = UserProfileResponse.model_validate(user)
+
+    return APIBaseResponse(
+        status=True,
+        message="Profile fetched successfully",
+        data=user_data
+    )
