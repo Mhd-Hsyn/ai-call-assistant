@@ -23,8 +23,13 @@ from app.core.dependencies.authorization import (
 from app.core.constants.choices import (
     UserAccountStatusChoices
 )
+from app.core.utils.helpers import (
+    generate_fingerprint
+)
+from .utils.auth_utils import AuthUtils
 from .models import (
-    UserModel
+    UserModel,
+    UserWhitelistTokenModel
 )
 from app.core.utils.save_images import (
     save_profile_image
@@ -176,6 +181,39 @@ async def update_profile(
         message="Profile updated successfully",
         data=updated_user
     )
+
+
+
+
+@auth_router.post(
+    "/logout",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def logout_user(request: Request):
+
+    auth_utils = AuthUtils()
+    # Extract bearer token
+    token = auth_utils.extract_bearer_token(request)
+    if not token:
+        raise AppException("Bearer token missing")
+
+    # Generate fingerprint
+    fingerprint = generate_fingerprint(token)
+
+    # Find and delete the token instance
+    token_instance = await UserWhitelistTokenModel.find_one(
+        UserWhitelistTokenModel.access_token_fingerprint == fingerprint,
+    )
+
+    if token_instance:
+        await token_instance.delete()  # Delete token to invalidate JWT
+
+    return APIBaseResponse(
+        status=True,
+        message="Logout successful. Token invalidated."
+    )
+
 
 
 

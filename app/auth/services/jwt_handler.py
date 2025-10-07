@@ -8,7 +8,6 @@ class JWTHandler:
         self.jwt_key = jwt_key or settings.user_jwt_token_key
 
     def generate_token(self, user_id, email, role, duration: dict):
-        print("jwt_key ______________________________ ", self.jwt_key)
         payload = {
             "id": str(user_id),
             "email": email,
