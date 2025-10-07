@@ -1,4 +1,5 @@
 import uvicorn
+import redis
 from pydantic import ValidationError
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
@@ -14,13 +15,21 @@ from app.core.exceptions.handlers import (
     validation_exception_handler,
     http_exception_handler
 )
+from app.core.redis_utils.otp_handler.config import otp_client
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # --- Startup ---
+    try:
+        otp_client.ping()
+        print("✅ Redis connected")
+    except redis.ConnectionError:
+        print("❌ Redis connection failed")
+
     await init_db()
     yield
     # --- Shutdown ---
+    otp_client.close()
     print("App shutting down...")
 
 

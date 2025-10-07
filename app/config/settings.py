@@ -11,6 +11,13 @@ class Settings(BaseSettings):
     user_jwt_token_key: str
     admin_jwt_token_key: str
     debug: bool
+    # Redis
+    redis_host: str
+    redis_port: int            # <-- integer
+    redis_password: str
+    redis_otp_db: int          # <-- integer
+    redis_rate_limit_db: int   # <-- integer
+
 
     class Config:
         env_file = ".env"
