@@ -12,7 +12,8 @@ from pydantic import (
     EmailStr, 
     ValidationError,
     Field, 
-    field_validator, 
+    field_validator,
+    computed_field,
 )
 from app.core.exceptions.base import (
     AppException,
@@ -97,6 +98,16 @@ class UserProfileResponse(BaseModel):
 
     class Config:
         from_attributes = True  # Allow Pydantic to read from ORM-like objects
+
+    @computed_field  # 👈 auto adds to response
+    @property
+    def created_at_human(self) -> str:
+        return self.created_at.strftime("%b %d, %Y %I:%M %p")
+
+    @computed_field
+    @property
+    def updated_at_human(self) -> str:
+        return self.updated_at.strftime("%b %d, %Y %I:%M %p")
 
 
 
