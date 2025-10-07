@@ -19,12 +19,9 @@ class JWTHandler:
         return jwt.encode(payload, self.jwt_key, algorithm="HS256")
 
     def decode_token(self, token: str):
-        print("jwt_key ______________________________ ", self.jwt_key)
         try:
             return jwt.decode(token, self.jwt_key, algorithms=["HS256"])
         except jwt.ExpiredSignatureError:
-            # raise ValueError("Token expired.")
             raise UnauthorizedException("Token expired.")
         except jwt.InvalidTokenError:
-            # raise ValueError("Invalid token.")
             raise UnauthorizedException("Invalid token.")

@@ -1,4 +1,6 @@
 from fastapi import Request, HTTPException, status, Depends
+from beanie.odm.fields import Link
+from beanie.exceptions import DocumentNotFound
 from app.auth.services.jwt_handler import JWTHandler
 from app.auth.utils.auth_utils import AuthUtils
 from app.core.utils.helpers import generate_fingerprint
@@ -20,10 +22,13 @@ class JWTAuthentication:
         token_fingerprint = generate_fingerprint(token)
 
         token_instance = await auth_utils.get_whitelisted_token(user_id, token_fingerprint)
-        user = await token_instance.user.fetch()
-        print("user _______________ ", user)
-        if not user:
-            raise UnauthorizedException("User not found")
+    
+        user = token_instance.user
+        
+        # 5️⃣ Extra guard: handle when fetch silently returns Link object
+        if not user or isinstance(user, Link):
+            raise UnauthorizedException("Linked user reference broken or missing")
 
         return user
+
 

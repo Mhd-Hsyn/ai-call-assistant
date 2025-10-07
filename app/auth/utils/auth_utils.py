@@ -30,6 +30,7 @@ class AuthUtils:
         token_instance = await UserWhitelistTokenModel.find_one(
             UserWhitelistTokenModel.user.id == user_uuid,
             UserWhitelistTokenModel.access_token_fingerprint == token_fingerprint,
+            fetch_links=True
         )
 
         if not token_instance:
