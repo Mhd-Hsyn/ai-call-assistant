@@ -29,7 +29,9 @@ from .schemas import (
     UserProfileResponse,
     AuthResponseData,
     UserLoginSchema,
-    APIBaseResponse
+    APIBaseResponse,
+    user_profile_update_form,
+
 )
 
 auth_router = APIRouter(prefix="/user", tags=["User"])
@@ -140,3 +142,34 @@ async def get_profile(user=Depends(ProfileActive())):
         message="Profile fetched successfully",
         data=user_data
     )
+
+
+
+@auth_router.patch(
+    "/profile",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def update_profile(
+    data: dict = Depends(user_profile_update_form),
+    user=Depends(ProfileActive())
+):
+    update_data = {k: v for k, v in data.items() if v is not None}
+
+    if "profile_image" in update_data:
+        update_data["profile_image"] = await save_profile_image(user.email, update_data["profile_image"])
+
+    if not update_data:
+        raise AppException("No valid fields provided for update.")
+
+    await user.set(update_data)
+    updated_user = UserProfileResponse.model_validate(user)
+
+    return APIBaseResponse(
+        status=True,
+        message="Profile updated successfully",
+        data=updated_user
+    )
+
+
+

@@ -20,6 +20,9 @@ from app.core.exceptions.base import (
 )
 from uuid import UUID
 
+
+############  Signup  ############
+
 class ClientSignupSchema(BaseModel):
     first_name: str
     middle_name: Optional[str] = None
@@ -76,6 +79,7 @@ def client_signup_form(
         return schema, profile_image    
 
 
+############  User Profile  ############
 
 class UserProfileResponse(BaseModel):
     id: UUID
@@ -110,6 +114,7 @@ class UserProfileResponse(BaseModel):
         return self.updated_at.strftime("%b %d, %Y %I:%M %p")
 
 
+############  Response Scheema  ############
 
 class APIBaseResponse(BaseModel):
     status: bool
@@ -123,11 +128,30 @@ class AuthResponseData(APIBaseResponse):
     data: UserProfileResponse
 
 
+############  Login Scheema  ############
 
 class UserLoginSchema(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8, max_length=16)
 
+
+
+############  Update Profile  ############
+
+def user_profile_update_form(
+    first_name: str = Form(None),
+    middle_name: str = Form(None),
+    last_name: str = Form(None),
+    mobile_number: str = Form(None),
+    profile_image: UploadFile | None = File(None),
+):
+    return {
+        "first_name": first_name,
+        "middle_name": middle_name,
+        "last_name": last_name,
+        "mobile_number": mobile_number,
+        "profile_image": profile_image
+    }
 
 
 
