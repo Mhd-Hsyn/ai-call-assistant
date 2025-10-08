@@ -6,7 +6,7 @@ from app.core.utils.helpers import (
 from .helpers import (
     generate_otp, store_otp, get_otp, delete_otp, store_otp_timestamp,
     get_otp_request_count, store_otp_failed_attempts, get_otp_failed_attempts,
-    store_otp_verified, get_last_otp_timestamp
+    store_otp_verified, get_last_otp_timestamp, delete_otp_failed_attempts, is_otp_verified
 )
 from app.core.constants.choices import OTPScenarioChoices
 
@@ -30,7 +30,7 @@ async def generate_reset_pass_otp(user_id: str):
         time_diff = datetime.utcnow() - last_request_time
         elapsed_seconds = time_diff.total_seconds()
 
-        if elapsed_seconds < 60:
+        if elapsed_seconds < 10:
             wait_seconds = max(0, int(60 - elapsed_seconds))
             return {
                 "status": False,
@@ -79,11 +79,13 @@ async def compare_reset_pass_otp(user_id: str, otp_input: str):
     failed_attempts = await get_otp_failed_attempts(user_id, SCENARIO)
     if failed_attempts >= 3:
         await delete_otp(user_id, SCENARIO)
+        await delete_otp_failed_attempts(user_id= user_id, scenario=SCENARIO)
         return {"status": False, "message": "Too many failed attempts. OTP expired."}
 
     if verify_hash(raw_value=otp_input, hashed_value=str(stored_otp)):
         await store_otp_verified(user_id, SCENARIO)
         await delete_otp(user_id, SCENARIO)
+        print(await is_otp_verified(user_id, SCENARIO))
         return {"status": True, "message": "OTP verified successfully. Kindly change password within 5 minutes."}
 
     await store_otp_failed_attempts(user_id, failed_attempts + 1, SCENARIO)

@@ -51,6 +51,11 @@ async def get_otp_failed_attempts(user_id: str, scenario: str):
     return int(attempts) if attempts else 0
 
 
+async def delete_otp_failed_attempts(user_id, scenario):
+    # Delete the OTP verification status from Redis
+    await otp_client.delete(f'otp_attempts:{scenario}:{str(user_id)}')
+
+
 async def store_otp_verified(user_id: str, scenario: str):
     await otp_client.setex(f'otp_verified:{scenario}:{user_id}', timedelta(minutes=10), "True")
 
@@ -58,3 +63,9 @@ async def store_otp_verified(user_id: str, scenario: str):
 async def is_otp_verified(user_id: str, scenario: str):
     verified = await otp_client.get(f'otp_verified:{scenario}:{user_id}')
     return verified == "True"
+
+async def delete_otp_verified(user_id, scenario):
+    # Delete the OTP verification status from Redis
+    await otp_client.delete(f'otp_verified:{scenario}:{str(user_id)}')
+
+

@@ -23,7 +23,8 @@ from app.core.dependencies.authorization import (
     ProfileActive
 )
 from app.core.constants.choices import (
-    UserAccountStatusChoices
+    UserAccountStatusChoices,
+    OTPScenarioChoices
 )
 from app.core.utils.helpers import (
     generate_fingerprint
@@ -46,13 +47,19 @@ from .schemas import (
     user_profile_update_form,
     ChangePasswordRequest,
     RequestOTPSchema,
-    VerifyOtpSchema
+    VerifyOtpSchema,
+    ResetPasswordSchema,
 
 )
 from app.core.redis_utils.otp_handler.reset_password import (
     generate_reset_pass_otp,
     compare_reset_pass_otp
 )
+from app.core.redis_utils.otp_handler.helpers import (
+    is_otp_verified,
+    delete_otp_verified
+)
+
 
 auth_router = APIRouter(prefix="/user", tags=["User"])
 
@@ -325,6 +332,49 @@ async def request_otp(payload: VerifyOtpSchema):
 
 
 
+
+@auth_router.post(
+    "/forget-password/reset-password",
+    status_code=status.HTTP_200_OK,
+    response_model=APIBaseResponse,
+)
+async def reset_password(payload: ResetPasswordSchema):
+    """
+    ✅ Reset password after successful OTP verification.
+    Requirements:
+    - OTP must be verified in Redis.
+    - New password must pass strength checks.
+    """
+
+    email = payload.email.lower()
+    new_password = payload.new_password
+
+    # 1️⃣ Find user
+    user = await UserModel.find_one(UserModel.email == email)
+    if not user:
+        raise NotFoundException("User not found with this email address")
+
+    # 2️⃣ Check OTP verification in Redis
+    otp_verified = await is_otp_verified(str(user.id), OTPScenarioChoices.RESET_USER_PASSWORD)
+    if not otp_verified:
+        raise AppException("First verify your OTP before resetting password")
+
+    # # 3️⃣ Prevent reusing old password
+    if user.check_password(raw_password=new_password):
+        raise AppException("New password cannot be same as old password")
+
+    user.set_password(raw_password=new_password)
+    await user.save()
+
+    # 6️⃣ Delete OTP verification from Redis
+    await delete_otp_verified(str(user.id), OTPScenarioChoices.RESET_USER_PASSWORD)
+
+    # ✅ Final response
+    return APIBaseResponse(
+        status=True,
+        message="Password reset successfully.",
+        data={"email": email},
+    )
 
 
 

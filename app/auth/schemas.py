@@ -11,6 +11,7 @@ from pydantic import (
     BaseModel, 
     EmailStr, 
     ValidationError,
+    constr,
     Field, 
     field_validator,
     computed_field,
@@ -180,13 +181,23 @@ class ChangePasswordRequest(BaseModel):
         return v
 
 
+############  Reset Password  ############
+
 class RequestOTPSchema(BaseModel):
     email: EmailStr
-
 
 class VerifyOtpSchema(BaseModel):
     email: EmailStr
     otp: str
 
+class ResetPasswordSchema(BaseModel):
+    email: EmailStr
+    new_password: str = Field(..., min_length=8, max_length=128)
 
+    @field_validator("new_password")
+    def validate_new_password(cls, v):
+        err = check_password_requirements(v)
+        if err:
+            raise ValueError(err)
+        return v
 
