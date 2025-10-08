@@ -49,6 +49,7 @@ from .schemas import (
     RequestOTPSchema,
     VerifyOtpSchema,
     ResetPasswordSchema,
+    EmailVerificationOtpSchema
 
 )
 from app.core.redis_utils.otp_handler.reset_password import (
@@ -385,7 +386,7 @@ async def reset_password(payload: ResetPasswordSchema):
 
 
 @auth_router.post("/email-verification/request-otp", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
-async def request_otp(payload: RequestOTPSchema):
+async def request_otp(user_instance:UserModel=Depends(ProfileActive())):
     """
     🔐 Request OTP for Reset Password
     Rules:
@@ -394,10 +395,7 @@ async def request_otp(payload: RequestOTPSchema):
     """
 
     # 1️⃣ Validate user existence
-    email = payload.email.lower()
-    user_instance = await UserModel.find_one(UserModel.email == email.lower())
-    if not user_instance:
-        raise NotFoundException("User not found with email address")
+    email = user_instance.email.lower()
 
     if user_instance.is_email_verified:
         raise AppException("Your email is already verified")
@@ -438,32 +436,24 @@ async def request_otp(payload: RequestOTPSchema):
 
 
 @auth_router.post("/email-verification/verify-otp", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
-async def verify_otp(payload: VerifyOtpSchema):
-    email = payload.email.lower()
+async def verify_otp(payload: EmailVerificationOtpSchema, user_instance:UserModel=Depends(ProfileActive())):
     otp = payload.otp
 
-    user = await UserModel.find_one(UserModel.email == email)
-    if not user:
-        raise NotFoundException(message="Email not found")
-    
-    if user.is_email_verified:
+    if user_instance.is_email_verified:
         raise AppException("Your email is already verified")
 
-    compare_otp_response = await compare_verify_email_otp(user_id= user.id, otp_input=otp)
+    compare_otp_response = await compare_verify_email_otp(user_id= user_instance.id, otp_input=otp)
     compare_otp_status = compare_otp_response.get('status')
     message = compare_otp_response.get('message')
     if not compare_otp_status:
         raise AppException(message)
 
     if compare_otp_status:
-        user.is_email_verified = True
-        await user.save()
+        user_instance.is_email_verified = True
+        await user_instance.save()
         return APIBaseResponse(
             status=True,
-            message="Your email verified successfully",
-            data= {
-                'email': email
-            }
+            message="Your email verified successfully"
     )
 
 

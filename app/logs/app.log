@@ -1,0 +1,12 @@
+2025-10-08 20:21:09 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/login
+2025-10-08 20:21:10 | INFO | ✅ Request completed: POST /api/auth/user/login Status: 200 | Time: 59.83ms
+2025-10-08 20:21:13 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/login
+2025-10-08 20:21:13 | INFO | ✅ Request completed: POST /api/auth/user/login Status: 200 | Time: 38.79ms
+2025-10-08 20:22:36 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/login
+2025-10-08 20:22:36 | INFO | ✅ Request completed: POST /api/auth/user/login Status: 200 | Time: 43.43ms
+2025-10-08 20:22:38 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/login
+2025-10-08 20:22:38 | INFO | ✅ Request completed: POST /api/auth/user/login Status: 200 | Time: 36.87ms
+2025-10-08 15:28:36 | INFO | ➡️  Request started: POST http://localhost:8010/api/auth/user/login
+2025-10-08 15:28:36 | INFO | ✅ Request completed: POST /api/auth/user/login Status: 200 | Time: 75.54ms
+2025-10-08 15:28:41 | INFO | ➡️  Request started: POST http://localhost:8010/api/auth/user/login
+2025-10-08 15:28:41 | INFO | ✅ Request completed: POST /api/auth/user/login Status: 200 | Time: 43.34ms

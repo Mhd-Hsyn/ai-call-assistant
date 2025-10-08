@@ -201,3 +201,6 @@ class ResetPasswordSchema(BaseModel):
             raise ValueError(err)
         return v
 
+class EmailVerificationOtpSchema(BaseModel):
+    otp: str
+
