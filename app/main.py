@@ -1,7 +1,7 @@
 import uvicorn
-import redis
+import time
 from pydantic import ValidationError
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
 from fastapi.exceptions import RequestValidationError
@@ -16,6 +16,9 @@ from app.core.exceptions.handlers import (
     http_exception_handler
 )
 from app.core.redis_utils.otp_handler.config import otp_client
+from app.config.logger_config import get_logger
+
+logger = get_logger("main")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -44,6 +47,28 @@ app.add_exception_handler(ValidationError, validation_exception_handler)
 
 # media
 app.mount("/media", StaticFiles(directory=MEDIA_DIR), name="media")
+
+
+
+
+# ---------------- Middleware for Logging ----------------
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    """Middleware to log each request and its response time."""
+    start_time = time.time()
+    logger.info(f"➡️  Request started: {request.method} {request.url}")
+
+    response = await call_next(request)
+
+    process_time = (time.time() - start_time) * 1000
+    formatted_time = f"{process_time:.2f}ms"
+
+    logger.info(
+        f"✅ Request completed: {request.method} {request.url.path} "
+        f"Status: {response.status_code} | Time: {formatted_time}"
+    )
+    return response
+
 
 
 if __name__ == "__main__":
