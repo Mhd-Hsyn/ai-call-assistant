@@ -37,7 +37,6 @@ class ClientSignupSchema(BaseModel):
     mobile_number: str
     profile_image: UploadFile | None = File(None)
 
-
     @field_validator("password")
     @classmethod
     def validate_password_strength(cls, v):
