@@ -10,12 +10,12 @@ from .helpers import (
 )
 from app.core.constants.choices import OTPScenarioChoices
 
-SCENARIO = OTPScenarioChoices.RESET_USER_PASSWORD
+SCENARIO = OTPScenarioChoices.VERIFY_USER_EMAIL
 
 
-async def generate_reset_pass_otp(user_id: str):
+async def generate_verify_email_otp(user_id: str):
     """
-    Generate an OTP for password reset with hybrid rate-limiting:
+    Generate an OTP for email verification with hybrid rate-limiting:
     - Max 5 requests within 2 hours.
     - Minimum 1-minute cooldown between consecutive requests.
     """
@@ -68,7 +68,7 @@ async def generate_reset_pass_otp(user_id: str):
 
 
 
-async def compare_reset_pass_otp(user_id: str, otp_input: str):
+async def compare_verify_email_otp(user_id: str, otp_input: str):
     stored_otp = await get_otp(user_id, SCENARIO)
     if not stored_otp:
         return {"status": False, "message": "OTP has expired or does not exist."}
@@ -83,7 +83,7 @@ async def compare_reset_pass_otp(user_id: str, otp_input: str):
         await store_otp_verified(user_id, SCENARIO)
         await delete_otp(user_id, SCENARIO)
         print(await is_otp_verified(user_id, SCENARIO))
-        return {"status": True, "message": "OTP verified successfully. Kindly change password within 5 minutes."}
+        return {"status": True, "message": "OTP verified successfully"}
 
     await store_otp_failed_attempts(user_id, failed_attempts + 1, SCENARIO)
     return {

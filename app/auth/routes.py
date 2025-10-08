@@ -55,6 +55,11 @@ from app.core.redis_utils.otp_handler.reset_password import (
     generate_reset_pass_otp,
     compare_reset_pass_otp
 )
+from app.core.redis_utils.otp_handler.email_verification import (
+    generate_verify_email_otp,
+    compare_verify_email_otp    
+)
+
 from app.core.redis_utils.otp_handler.helpers import (
     is_otp_verified,
     delete_otp_verified
@@ -308,7 +313,7 @@ async def request_otp(payload: RequestOTPSchema):
 
 
 @auth_router.post("/forget-password/verify-otp", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
-async def request_otp(payload: VerifyOtpSchema):
+async def verify_otp(payload: VerifyOtpSchema):
     email = payload.email.lower()
     otp = payload.otp
 
@@ -376,5 +381,89 @@ async def reset_password(payload: ResetPasswordSchema):
         data={"email": email},
     )
 
+
+
+
+@auth_router.post("/email-verification/request-otp", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
+async def request_otp(payload: RequestOTPSchema):
+    """
+    🔐 Request OTP for Reset Password
+    Rules:
+      - Max 5 OTP requests in 2 hours
+      - 1-minute cooldown between consecutive requests
+    """
+
+    # 1️⃣ Validate user existence
+    email = payload.email.lower()
+    user_instance = await UserModel.find_one(UserModel.email == email.lower())
+    if not user_instance:
+        raise NotFoundException("User not found with email address")
+
+    if user_instance.is_email_verified:
+        raise AppException("Your email is already verified")
+
+    # 2️⃣ Generate OTP (rate-limited)
+    otp_response = await generate_verify_email_otp(str(user_instance.id))
+    otp_status = otp_response.get("status", False)
+
+    if not otp_status:
+        raise ToManyRequestExeption(otp_response.get("message", "Failed to send OTP"))
+
+    # 3️⃣ Send OTP email asynchronously (only if success)
+    # background_tasks.add_task(
+    #     get_email_publisher,
+    #     publisher_payload_data={
+    #         "user_email": user_instance.email,
+    #         "user_fullname": f"{user_instance.first_name} {user_instance.last_name}",
+    #         "otp_reason": "Reset Password",
+    #         "otp_expiry_time": "5 minutes",
+    #         "new_otp_request_time": "2 hours",
+    #         "otp_request_at": datetime.now(pytz_timezone("Asia/Karachi")).strftime(
+    #             "%d-%b-%Y %I:%M %p"
+    #         ),
+    #         "otp": otp_response["data"]["otp"],  # ⚠️ hide in prod
+    #     },
+    #     email_type="user_otp_request",
+    # )
+
+    data = otp_response.get("data", {})
+    data['user_email'] = email
+
+    # 4️⃣ Final API response
+    return APIBaseResponse(
+        status=True,
+        message= otp_response.get("message"),
+        data = data,
+    )
+
+
+@auth_router.post("/email-verification/verify-otp", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
+async def verify_otp(payload: VerifyOtpSchema):
+    email = payload.email.lower()
+    otp = payload.otp
+
+    user = await UserModel.find_one(UserModel.email == email)
+    if not user:
+        raise NotFoundException(message="Email not found")
+    
+    if user.is_email_verified:
+        raise AppException("Your email is already verified")
+
+    compare_otp_response = await compare_verify_email_otp(user_id= user.id, otp_input=otp)
+    compare_otp_status = compare_otp_response.get('status')
+    message = compare_otp_response.get('message')
+    if not compare_otp_status:
+        raise AppException(message)
+
+    if compare_otp_status:
+        user.is_email_verified = True
+        await user.save()
+        return APIBaseResponse(
+            status=True,
+            message="Your email verified successfully",
+            data= {
+                'email': email
+            }
+    )
 
 
