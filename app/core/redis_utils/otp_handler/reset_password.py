@@ -23,7 +23,7 @@ async def generate_reset_pass_otp(user_id: str):
     - Minimum 1-minute cooldown between consecutive requests.
     """
 
-    # ---- STEP 1: Check cooldown ----
+    # # ---- STEP 1: Check cooldown ----
     last_timestamp = await get_last_otp_timestamp(user_id, SCENARIO)
     if last_timestamp:
         last_request_time = datetime.utcfromtimestamp(float(last_timestamp))
@@ -39,7 +39,7 @@ async def generate_reset_pass_otp(user_id: str):
 
     # ---- STEP 2: Check max requests ----
     request_count = await get_otp_request_count(user_id, SCENARIO)
-    max_limit = 5
+    max_limit = 200
     if request_count >= max_limit:
         return {
             "status": False,
@@ -81,7 +81,7 @@ async def compare_reset_pass_otp(user_id: str, otp_input: str):
         await delete_otp(user_id, SCENARIO)
         return {"status": False, "message": "Too many failed attempts. OTP expired."}
 
-    if verify_hash(raw_value=otp_input, hashed_value=stored_otp):
+    if verify_hash(raw_value=otp_input, hashed_value=str(stored_otp)):
         await store_otp_verified(user_id, SCENARIO)
         await delete_otp(user_id, SCENARIO)
         return {"status": True, "message": "OTP verified successfully. Kindly change password within 5 minutes."}

@@ -13,6 +13,7 @@ from app.core.exceptions.base import (
     AppException,
     InternalServerErrorException,
     ToManyRequestExeption,
+    NotFoundException,
 )
 from app.core.dependencies.authentication import (
     JWTAuthentication
@@ -44,11 +45,13 @@ from .schemas import (
     APIBaseResponse,
     user_profile_update_form,
     ChangePasswordRequest,
-    RequestOTPModel,
+    RequestOTPSchema,
+    VerifyOtpSchema
 
 )
 from app.core.redis_utils.otp_handler.reset_password import (
-    generate_reset_pass_otp
+    generate_reset_pass_otp,
+    compare_reset_pass_otp
 )
 
 auth_router = APIRouter(prefix="/user", tags=["User"])
@@ -248,7 +251,7 @@ async def change_password(
 
 
 @auth_router.post("/forget-password/request-otp", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
-async def request_otp(payload: RequestOTPModel):
+async def request_otp(payload: RequestOTPSchema):
     """
     🔐 Request OTP for Reset Password
     Rules:
@@ -260,7 +263,7 @@ async def request_otp(payload: RequestOTPModel):
     email = payload.email.lower()
     user_instance = await UserModel.find_one(UserModel.email == email.lower())
     if not user_instance:
-        raise AppException("User not found with email address")
+        raise NotFoundException("User not found with email address")
 
     # 2️⃣ Generate OTP (rate-limited)
     otp_response = await generate_reset_pass_otp(str(user_instance.id))
@@ -294,6 +297,30 @@ async def request_otp(payload: RequestOTPModel):
         status=True,
         message= otp_response.get("message"),
         data = data,
+    )
+
+
+@auth_router.post("/forget-password/verify-otp", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
+async def request_otp(payload: VerifyOtpSchema):
+    email = payload.email.lower()
+    otp = payload.otp
+
+    user = await UserModel.find_one(UserModel.email == email)
+    if not user:
+        raise NotFoundException(message="Email not found")
+
+    compare_otp_response = await compare_reset_pass_otp(user_id= user.id, otp_input=otp)
+    compare_otp_status = compare_otp_response.get('status')
+    message = compare_otp_response.get('message')
+    if not compare_otp_status:
+        raise AppException(message)
+    
+    return APIBaseResponse(
+        status=True,
+        message=message,
+        data= {
+            'email': email
+        }
     )
 
 
