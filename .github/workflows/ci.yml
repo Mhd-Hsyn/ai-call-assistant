@@ -19,11 +19,17 @@ jobs:
         sudo sh -c 'echo "ADMIN_JWT_TOKEN_KEY=${{ secrets.ADMIN_JWT_TOKEN_KEY }}" >> .env'
         sudo sh -c 'echo "DEBUG=${{ secrets.DEBUG }}" >> .env'
 
-        # Database
         sudo sh -c 'echo "MONGO_USER=${{ secrets.MONGO_USER }}" >> .env'
         sudo sh -c 'echo "MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}" >> .env'
         sudo sh -c 'echo "MONGO_DB=${{ secrets.MONGO_DB }}" >> .env'
         sudo sh -c 'echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env'
+
+        sudo sh -c 'echo "REDIS_HOST=${{ secrets.REDIS_HOST }}" >> .env'
+        sudo sh -c 'echo "REDIS_PORT=${{ secrets.REDIS_PORT }}" >> .env'
+        sudo sh -c 'echo "REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}" >> .env'
+        sudo sh -c 'echo "REDIS_OTP_DB=${{ secrets.REDIS_OTP_DB }}" >> .env'
+        sudo sh -c 'echo "REDIS_RATE_LIMIT_DB=${{ secrets.REDIS_RATE_LIMIT_DB }}" >> .env'
+
 
     - name: Build and Run Docker compose
       run: |
