@@ -13,9 +13,6 @@ from app.core.constants.choices import OTPScenarioChoices
 SCENARIO = OTPScenarioChoices.RESET_USER_PASSWORD
 
 
-
-
-
 async def generate_reset_pass_otp(user_id: str):
     """
     Generate an OTP for password reset with hybrid rate-limiting:
