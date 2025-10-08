@@ -242,3 +242,44 @@ async def change_password(
     }
 
 
+@auth_router.post("/request-otp", status_code=status.HTTP_200_OK)
+async def request_otp(email: str = Form(...)):
+    """
+    Request OTP for reset password
+    """
+    # 1️⃣ Validate user exists
+    user_instance = await UserModel.find_one(UserModel.email == email.lower())
+    if not user_instance:
+        raise AppException("User not found with email address")
+
+    # 2️⃣ Generate OTP using Redis
+    otp_request_instance = await generate_reset_pass_otp(user_id=str(user_instance.id))
+    otp_request_status = otp_request_instance.get('status', False)
+
+    # 3️⃣ Send OTP email if generated
+    # if otp_request_status:
+    #     get_email_publisher(
+    #         publisher_payload_data={
+    #             "user_email": user_instance.email,
+    #             "user_fullname": f"{user_instance.first_name} {user_instance.last_name}",
+    #             "otp_reason": "Reset Password",
+    #             "otp_expiry_time": "5 minutes",
+    #             "new_otp_request_time": "2 hours",
+    #             "otp_request_at": datetime.now(pytz_timezone("Asia/Karachi")).strftime("%d-%b-%Y %I:%M %p"),
+    #             "otp": otp_request_instance.get("otp")
+    #         },
+    #         email_type="user_otp_request"
+    #     )
+
+    api_status = status.HTTP_200_OK if otp_request_status else status.HTTP_404_NOT_FOUND
+    return JSONResponse(
+        status_code=api_status,
+        content={
+            "status": otp_request_status,
+            "email": email,
+            "message": otp_request_instance.get("message", "Failed to send OTP")
+        }
+    )
+
+
+

@@ -11,3 +11,10 @@ class UserAccountStatusChoices(IntEnum):
     SUSPENDED = 3
     PENDING = 4
     DELETED = 5
+
+
+class OTPScenarioChoices(IntEnum):
+    RESET_USER_PASSWORD = 1
+    VERIFY_USER_EMAIL = 2
+
+
