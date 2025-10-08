@@ -11,7 +11,8 @@ from app.config.settings import settings
 from app.auth.services.auth_service import AuthService
 from app.core.exceptions.base import (
     AppException,
-    InternalServerErrorException
+    InternalServerErrorException,
+    ToManyRequestExeption,
 )
 from app.core.dependencies.authentication import (
     JWTAuthentication
@@ -43,7 +44,11 @@ from .schemas import (
     APIBaseResponse,
     user_profile_update_form,
     ChangePasswordRequest,
+    RequestOTPModel,
 
+)
+from app.core.redis_utils.otp_handler.reset_password import (
+    generate_reset_pass_otp
 )
 
 auth_router = APIRouter(prefix="/user", tags=["User"])
@@ -242,44 +247,57 @@ async def change_password(
     }
 
 
-@auth_router.post("/request-otp", status_code=status.HTTP_200_OK)
-async def request_otp(email: str = Form(...)):
+@auth_router.post("/forget-password/request-otp", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
+async def request_otp(payload: RequestOTPModel):
     """
-    Request OTP for reset password
+    🔐 Request OTP for Reset Password
+    Rules:
+      - Max 5 OTP requests in 2 hours
+      - 1-minute cooldown between consecutive requests
     """
-    # 1️⃣ Validate user exists
+
+    # 1️⃣ Validate user existence
+    email = payload.email.lower()
     user_instance = await UserModel.find_one(UserModel.email == email.lower())
     if not user_instance:
         raise AppException("User not found with email address")
 
-    # 2️⃣ Generate OTP using Redis
-    otp_request_instance = await generate_reset_pass_otp(user_id=str(user_instance.id))
-    otp_request_status = otp_request_instance.get('status', False)
+    # 2️⃣ Generate OTP (rate-limited)
+    otp_response = await generate_reset_pass_otp(str(user_instance.id))
+    otp_status = otp_response.get("status", False)
 
-    # 3️⃣ Send OTP email if generated
-    # if otp_request_status:
-    #     get_email_publisher(
-    #         publisher_payload_data={
-    #             "user_email": user_instance.email,
-    #             "user_fullname": f"{user_instance.first_name} {user_instance.last_name}",
-    #             "otp_reason": "Reset Password",
-    #             "otp_expiry_time": "5 minutes",
-    #             "new_otp_request_time": "2 hours",
-    #             "otp_request_at": datetime.now(pytz_timezone("Asia/Karachi")).strftime("%d-%b-%Y %I:%M %p"),
-    #             "otp": otp_request_instance.get("otp")
-    #         },
-    #         email_type="user_otp_request"
-    #     )
+    if not otp_status:
+        raise ToManyRequestExeption(otp_response.get("message", "Failed to send OTP"))
 
-    api_status = status.HTTP_200_OK if otp_request_status else status.HTTP_404_NOT_FOUND
-    return JSONResponse(
-        status_code=api_status,
-        content={
-            "status": otp_request_status,
-            "email": email,
-            "message": otp_request_instance.get("message", "Failed to send OTP")
-        }
+    # 3️⃣ Send OTP email asynchronously (only if success)
+    # background_tasks.add_task(
+    #     get_email_publisher,
+    #     publisher_payload_data={
+    #         "user_email": user_instance.email,
+    #         "user_fullname": f"{user_instance.first_name} {user_instance.last_name}",
+    #         "otp_reason": "Reset Password",
+    #         "otp_expiry_time": "5 minutes",
+    #         "new_otp_request_time": "2 hours",
+    #         "otp_request_at": datetime.now(pytz_timezone("Asia/Karachi")).strftime(
+    #             "%d-%b-%Y %I:%M %p"
+    #         ),
+    #         "otp": otp_response["data"]["otp"],  # ⚠️ hide in prod
+    #     },
+    #     email_type="user_otp_request",
+    # )
+
+    data = otp_response.get("data", {})
+    data['user_email'] = email
+
+    # 4️⃣ Final API response
+    return APIBaseResponse(
+        status=True,
+        message= otp_response.get("message"),
+        data = data,
     )
+
+
+
 
 
 

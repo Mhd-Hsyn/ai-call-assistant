@@ -8,7 +8,7 @@ from .helpers import (
     get_otp_request_count, store_otp_failed_attempts, get_otp_failed_attempts,
     store_otp_verified, get_last_otp_timestamp
 )
-from core.constants.choices import OTPScenarioChoices
+from app.core.constants.choices import OTPScenarioChoices
 
 SCENARIO = OTPScenarioChoices.RESET_USER_PASSWORD
 
@@ -23,19 +23,21 @@ async def generate_reset_pass_otp(user_id: str):
     - Minimum 1-minute cooldown between consecutive requests.
     """
 
-    # ---- STEP 1: Check cooldown (1-minute delay between OTPs) ----
+    # ---- STEP 1: Check cooldown ----
     last_timestamp = await get_last_otp_timestamp(user_id, SCENARIO)
     if last_timestamp:
-        last_request_time = datetime.fromtimestamp(float(last_timestamp))
+        last_request_time = datetime.utcfromtimestamp(float(last_timestamp))
         time_diff = datetime.utcnow() - last_request_time
-        if time_diff < timedelta(minutes=1):
-            wait_seconds = int(60 - time_diff.total_seconds())
+        elapsed_seconds = time_diff.total_seconds()
+
+        if elapsed_seconds < 60:
+            wait_seconds = max(0, int(60 - elapsed_seconds))
             return {
                 "status": False,
                 "message": f"Please wait {wait_seconds} seconds before requesting another OTP."
             }
 
-    # ---- STEP 2: Check max request limit (5 OTPs per 2 hours) ----
+    # ---- STEP 2: Check max requests ----
     request_count = await get_otp_request_count(user_id, SCENARIO)
     max_limit = 5
     if request_count >= max_limit:
@@ -48,24 +50,25 @@ async def generate_reset_pass_otp(user_id: str):
             }
         }
 
-    # ---- STEP 3: Generate and securely hash OTP ----
-    otp = generate_otp()  # e.g., "849372"
-    hashed_otp = hash_value(otp)  # your pbkdf2_sha256.hash(otp)
+    # ---- STEP 3: Generate OTP ----
+    otp = generate_otp()
+    hashed_otp = hash_value(otp)
 
-    # ---- STEP 4: Store OTP and update Redis timestamps/counters ----
+    # ---- STEP 4: Store OTP + timestamp ----
     await store_otp(user_id, hashed_otp, SCENARIO)
-    await store_otp_timestamp(user_id, SCENARIO)  # updates both timestamp + counter
+    await store_otp_timestamp(user_id, SCENARIO)
 
-    # ---- STEP 5: Return response (mask OTP in production) ----
+    # ---- STEP 5: Return ----
     return {
         "status": True,
         "message": "OTP sent successfully.",
         "data": {
-            "otp": otp,  # ⚠️ Only include in dev/testing — omit in prod!
+            "otp": otp,
             "requests_made": request_count + 1,
             "requests_remaining": max_limit - (request_count + 1)
         }
     }
+
 
 
 async def compare_reset_pass_otp(user_id: str, otp_input: str):

@@ -1,8 +1,8 @@
-import redis
+from redis import asyncio as aioredis
 from app.config.settings import settings
 
 # Separate pools for OTP generation and rate-limiting
-otp_pool = redis.asyncio.ConnectionPool(
+otp_pool = aioredis.ConnectionPool(
     host=settings.redis_host,
     port=int(settings.redis_port),
     db=int(settings.redis_otp_db),
@@ -11,4 +11,4 @@ otp_pool = redis.asyncio.ConnectionPool(
     max_connections=100,
 )
 
-otp_client = redis.Redis(connection_pool=otp_pool)
+otp_client = aioredis.Redis(connection_pool=otp_pool)

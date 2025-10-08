@@ -180,3 +180,7 @@ class ChangePasswordRequest(BaseModel):
         return v
 
 
+class RequestOTPModel(BaseModel):
+    email: EmailStr
+
+

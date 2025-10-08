@@ -7,6 +7,12 @@ class AppException(Exception):
         self.status_code = status_code
 
 
+class ToManyRequestExeption(AppException):
+    def __init__(self, message: str, status_code: int = status.HTTP_429_TOO_MANY_REQUESTS):
+        self.message = message
+        self.status_code = status_code
+
+
 class NotFoundException(AppException):
     """404 Not Found error."""
     def __init__(self, message="Resource not found"):

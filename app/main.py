@@ -23,8 +23,8 @@ async def lifespan(app: FastAPI):
     try:
         otp_client.ping()
         print("✅ Redis connected")
-    except redis.ConnectionError:
-        print("❌ Redis connection failed")
+    except Exception as e:
+        print(f"❌ Redis connection failed: __________ {e}")
 
     await init_db()
     yield
