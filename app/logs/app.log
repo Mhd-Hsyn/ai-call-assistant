@@ -41,3 +41,63 @@
 2025-10-10 00:38:26 | INFO | connection closed
 2025-10-10 00:38:26 | SUCCESS | ✅ Email publish successful | event=user_otp_request
 2025-10-10 00:38:26 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp Status: 200 | Time: 86.88ms
+2025-10-10 00:58:40 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp/
+2025-10-10 00:58:40 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp/ Status: 307 | Time: 2.03ms
+2025-10-10 00:58:40 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp
+2025-10-10 00:58:40 | INFO | 🚀 Starting email publish process | event=user_otp_request
+2025-10-10 00:58:40 | INFO | connection established
+2025-10-10 00:58:40 | DEBUG | 📦 Prepared publisher payload: {"event": "user_otp_request", "data": {"user_email": "developer.hsyn@gmail.com", "user_fullname": "Developer Hussain", "otp_reason": "Reset Password", "otp_expiry_time": "5 minutes", "new_otp_request_time": "2 hours", "otp_request_at": "10-Oct-2025 12:58 AM", "otp": "gAAAAABo6BPwjP4ARRdEOCB_laxvYHD5WHpz9sc9gm9Oll3_dIIoHLBeyqd51M0B5Ksf7DEvS7SiB45pzXYepQC_Fkh7428HYw=="}}
+2025-10-10 00:58:40 | INFO | Message sent successfully
+2025-10-10 00:58:40 | INFO | connection closed
+2025-10-10 00:58:40 | SUCCESS | ✅ Email publish successful | event=user_otp_request
+2025-10-10 00:58:40 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp Status: 200 | Time: 92.47ms
+2025-10-10 01:02:19 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp/
+2025-10-10 01:02:19 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp/ Status: 307 | Time: 1.12ms
+2025-10-10 01:02:19 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp
+2025-10-10 01:02:19 | INFO | 🚀 Starting email publish process | event=user_otp_request
+2025-10-10 01:02:19 | INFO | connection established
+2025-10-10 01:02:19 | DEBUG | 📦 Prepared publisher payload: {"event": "user_otp_request", "data": {"user_email": "developer.hsyn@gmail.com", "user_fullname": "Developer Hussain", "otp_reason": "Reset Password", "otp_expiry_time": "5 minutes", "new_otp_request_time": "2 hours", "otp_request_at": "10-Oct-2025 01:02 AM", "otp": "gAAAAABo6BTL84uYasLgpcanIf7mLQ58aSZXK7_QlY2pJvemBeAKHjBeFvAj7ktKk1ZpRAgXZYIPs5NVr-hMbEFjVRyIrqHLpg=="}}
+2025-10-10 01:02:19 | INFO | Message sent successfully
+2025-10-10 01:02:19 | INFO | connection closed
+2025-10-10 01:02:19 | SUCCESS | ✅ Email publish successful | event=user_otp_request
+2025-10-10 01:02:19 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp Status: 200 | Time: 56.39ms
+2025-10-10 01:28:37 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp/
+2025-10-10 01:28:37 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp/ Status: 307 | Time: 1.59ms
+2025-10-10 01:28:37 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp
+2025-10-10 01:28:37 | INFO | 🚀 Starting email publish process | event=user_otp_request
+2025-10-10 01:28:37 | INFO | connection established
+2025-10-10 01:28:37 | DEBUG | 📦 Prepared publisher payload: {"event": "user_otp_request", "data": {"user_email": "developer.hsyn@gmail.com", "user_fullname": "Developer Hussain", "otp_reason": "Reset Password", "otp_expiry_time": "5 minutes", "new_otp_request_time": "2 hours", "otp_request_at": "10-Oct-2025 01:28 AM", "otp": "gAAAAABo6Br1WtaGmWNb-VQxawAAYV4xX6efgBbLLb4yLsCDEkd1pCI8MG1sXJGcMwt2OgpJQEbf3OVbHVWJmCuK7TzteVOTOg==", "dynamic_info_1": "This OTP can be used only once.", "dynamic_info_2": "If you didn\u2019t request this, please ignore this email."}}
+2025-10-10 01:28:37 | INFO | Message sent successfully
+2025-10-10 01:28:37 | INFO | connection closed
+2025-10-10 01:28:37 | SUCCESS | ✅ Email publish successful | event=user_otp_request
+2025-10-10 01:28:37 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp Status: 200 | Time: 70.56ms
+2025-10-10 01:31:41 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp/
+2025-10-10 01:31:41 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp/ Status: 307 | Time: 0.81ms
+2025-10-10 01:31:41 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp
+2025-10-10 01:31:41 | INFO | 🚀 Starting email publish process | event=user_otp_request
+2025-10-10 01:31:41 | INFO | connection established
+2025-10-10 01:31:41 | DEBUG | 📦 Prepared publisher payload: {"event": "user_otp_request", "data": {"user_email": "developer.hsyn@gmail.com", "user_fullname": "Developer Hussain", "otp_reason": "Reset Password", "otp_expiry_time": "5 minutes", "new_otp_request_time": "2 hours", "otp_request_at": "10-Oct-2025 01:31 AM", "otp": "gAAAAABo6Butb8pjTPD7hY1-qJBU6XflcI2kEG576tLmb4husjh11eDgSyUcpSb5LNiBmXcQgL4_a443ovRdFoanE68RYNRQoQ==", "dynamic_info_1": "This OTP can be used only once.", "dynamic_info_2": "If you didn\u2019t request this, please ignore this email."}}
+2025-10-10 01:31:41 | INFO | Message sent successfully
+2025-10-10 01:31:41 | INFO | connection closed
+2025-10-10 01:31:41 | SUCCESS | ✅ Email publish successful | event=user_otp_request
+2025-10-10 01:31:41 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp Status: 200 | Time: 46.11ms
+2025-10-10 01:39:23 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp/
+2025-10-10 01:39:23 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp/ Status: 307 | Time: 0.86ms
+2025-10-10 01:39:23 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp
+2025-10-10 01:39:23 | INFO | 🚀 Starting email publish process | event=user_otp_request
+2025-10-10 01:39:23 | INFO | connection established
+2025-10-10 01:39:23 | DEBUG | 📦 Prepared publisher payload: {"event": "user_otp_request", "data": {"user_email": "developer.hsyn@gmail.com", "user_fullname": "Developer Hussain", "otp_reason": "Reset Password", "otp_expiry_time": "5 minutes", "new_otp_request_time": "2 hours", "otp_request_at": "10-Oct-2025 01:39 AM", "otp": "gAAAAABo6B17Lq9d4rWW06GXkRsrbQh6XpgifhsR2NKlvptdYkg8AgT1V4CgB8kQXAD6qEhQaULcoMjI4LcJxj-qycNavLAeWQ==", "dynamic_info_1": "This OTP can be used only once.", "dynamic_info_2": "If you didn\u2019t request this, please ignore this email."}}
+2025-10-10 01:39:23 | INFO | Message sent successfully
+2025-10-10 01:39:23 | INFO | connection closed
+2025-10-10 01:39:23 | SUCCESS | ✅ Email publish successful | event=user_otp_request
+2025-10-10 01:39:23 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp Status: 200 | Time: 61.47ms
+2025-10-10 01:44:31 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp/
+2025-10-10 01:44:31 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp/ Status: 307 | Time: 1.39ms
+2025-10-10 01:44:31 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/forget-password/request-otp
+2025-10-10 01:44:31 | INFO | 🚀 Starting email publish process | event=user_otp_request
+2025-10-10 01:44:31 | INFO | connection established
+2025-10-10 01:44:31 | DEBUG | 📦 Prepared publisher payload: {"event": "user_otp_request", "data": {"user_email": "developer.hsyn@gmail.com", "user_fullname": "Developer Hussain", "otp_reason": "Reset Password", "otp_expiry_time": "5 minutes", "new_otp_request_time": "2 hours", "otp_request_at": "10-Oct-2025 01:44 AM", "otp": "gAAAAABo6B6vbrs1JZtldU2N_H1yKPtlGcf_ud2iUiaW411fTy_czb_cvrIKbaWM5ZSutTiGS76FrqJspTM2jrFR9bJAT_KCsg==", "dynamic_info_1": "This OTP can be used only once.", "dynamic_info_2": "If you didn\u2019t request this, please ignore this email."}}
+2025-10-10 01:44:31 | INFO | Message sent successfully
+2025-10-10 01:44:31 | INFO | connection closed
+2025-10-10 01:44:31 | SUCCESS | ✅ Email publish successful | event=user_otp_request
+2025-10-10 01:44:31 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp Status: 200 | Time: 63.06ms

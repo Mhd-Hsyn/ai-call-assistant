@@ -65,6 +65,7 @@ from app.core.utils.helpers import (
     generate_fingerprint,
     get_email_publisher
 )
+from .utils.encryption_utils import encrypt_data
 
 auth_router = APIRouter(prefix="/user", tags=["User"])
 
@@ -295,7 +296,9 @@ async def request_otp(payload: RequestOTPSchema):
             "otp_request_at": datetime.now().strftime(
                 "%d-%b-%Y %I:%M %p"
             ),
-            "otp": otp_response["data"]["otp"],
+            "otp": encrypt_data(otp_response["data"]["otp"]),
+            "dynamic_info_1": "This OTP can be used only once.",
+            "dynamic_info_2": "If you didn’t request this, please ignore this email.",
         },
         event="user_otp_request",
     )
