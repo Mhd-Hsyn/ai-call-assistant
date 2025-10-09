@@ -3,7 +3,7 @@ version: "3.8"
 services:
   web:
     build: .
-    container_name: ai_call_assistant
+    container_name: ai_call_assistant_api
     ports:
       - "8010:8000"
     volumes:
