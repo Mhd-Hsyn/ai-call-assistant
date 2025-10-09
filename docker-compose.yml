@@ -12,7 +12,7 @@ services:
       - .env
     depends_on:
       - mongo
-      - redis
+      - redis-server
       - rabbitmq
     restart: always
     networks:
