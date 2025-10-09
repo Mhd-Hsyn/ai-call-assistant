@@ -101,3 +101,15 @@
 2025-10-10 01:44:31 | INFO | connection closed
 2025-10-10 01:44:31 | SUCCESS | ✅ Email publish successful | event=user_otp_request
 2025-10-10 01:44:31 | INFO | ✅ Request completed: POST /api/auth/user/forget-password/request-otp Status: 200 | Time: 63.06ms
+2025-10-10 01:47:43 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/email-verification/request-otp
+2025-10-10 01:47:43 | INFO | 🚀 Starting email publish process | event=user_otp_request
+2025-10-10 01:47:43 | INFO | connection established
+2025-10-10 01:47:43 | DEBUG | 📦 Prepared publisher payload: {"event": "user_otp_request", "data": {"user_email": "developer.hsyn@gmail.com", "user_fullname": "Developer Hussain", "otp_reason": "Email Verification", "otp_expiry_time": "5 minutes", "new_otp_request_time": "2 hours", "otp_request_at": "10-Oct-2025 01:47 AM", "otp": "gAAAAABo6B9v8sJPq-NASe_RAqS94AVrHs7ujU-8GaI-oMQiWvLWEpbnda1wgN2pRjaX4CVdcK4N_HUyQ5q1cP_GLQdCtPDYfQ==", "dynamic_info_1": "This OTP can be used only once.", "dynamic_info_2": "If you didn\u2019t request this, please ignore this email."}}
+2025-10-10 01:47:43 | INFO | Message sent successfully
+2025-10-10 01:47:43 | INFO | connection closed
+2025-10-10 01:47:43 | SUCCESS | ✅ Email publish successful | event=user_otp_request
+2025-10-10 01:47:43 | INFO | ✅ Request completed: POST /api/auth/user/email-verification/request-otp Status: 200 | Time: 89.68ms
+2025-10-10 01:48:22 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/email-verification/verify-otp
+2025-10-10 01:48:22 | INFO | ✅ Request completed: POST /api/auth/user/email-verification/verify-otp Status: 200 | Time: 33.69ms
+2025-10-10 01:48:31 | INFO | ➡️  Request started: GET http://localhost:8000/api/auth/user/profile
+2025-10-10 01:48:31 | INFO | ✅ Request completed: GET /api/auth/user/profile Status: 200 | Time: 5.18ms
