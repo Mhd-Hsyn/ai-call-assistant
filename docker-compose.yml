@@ -33,7 +33,7 @@ services:
     networks:
       - ai_call_assistant_saas_backend_network
 
-  redis:
+  redis-server:
     image: redis:latest
     container_name: redis_ai_call_assistant
     ports:
