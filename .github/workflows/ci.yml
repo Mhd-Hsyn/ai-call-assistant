@@ -30,6 +30,13 @@ jobs:
         sudo sh -c 'echo "REDIS_OTP_DB=${{ secrets.REDIS_OTP_DB }}" >> .env'
         sudo sh -c 'echo "REDIS_RATE_LIMIT_DB=${{ secrets.REDIS_RATE_LIMIT_DB }}" >> .env'
 
+        sudo sh -c 'echo "RABBITMQ_HOST=${{ secrets.RABBITMQ_HOST }}" >> .env'
+        sudo sh -c 'echo "RABBITMQ_PORT=${{ secrets.RABBITMQ_PORT }}" >> .env'
+        sudo sh -c 'echo "RABBITMQ_USER=${{ secrets.RABBITMQ_USER }}" >> .env'
+        sudo sh -c 'echo "RABBITMQ_PASSWORD=${{ secrets.RABBITMQ_PASSWORD }}" >> .env'
+        sudo sh -c 'echo "RABBITMQ_EMAIL_SENDING_QUEUE=${{ secrets.RABBITMQ_EMAIL_SENDING_QUEUE }}" >> .env'
+        sudo sh -c 'echo "RABBITMQ_EMAIL_SENDING_EXCHANGE=${{ secrets.RABBITMQ_EMAIL_SENDING_EXCHANGE }}" >> .env'
+        sudo sh -c 'echo "RABBITMQ_EMAIL_SENDING_ROUTING_KEY=${{ secrets.RABBITMQ_EMAIL_SENDING_ROUTING_KEY }}" >> .env'
 
     - name: Build and Run Docker compose
       run: |
