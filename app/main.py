@@ -17,6 +17,7 @@ from app.core.exceptions.handlers import (
 )
 from app.core.redis_utils.otp_handler.config import otp_client
 from app.config.logger_config import get_logger
+from fastapi.middleware.cors import CORSMiddleware
 
 logger = get_logger("main")
 
@@ -48,6 +49,23 @@ app.add_exception_handler(ValidationError, validation_exception_handler)
 # media
 app.mount("/media", StaticFiles(directory=MEDIA_DIR), name="media")
 
+
+
+# Allowed origins
+origins = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,          # Kon kon se origins allowed hain
+    allow_credentials=True,         # Cookies, Authorization headers allow karne ke liye
+    allow_methods=["*"],            # GET, POST, PUT, DELETE sab allow
+    allow_headers=["*"],            # All headers allow
+)
 
 
 
