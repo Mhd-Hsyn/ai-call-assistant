@@ -50,12 +50,11 @@ class UUIDEncoder(json.JSONEncoder):
 
 def get_email_publisher(
     publisher_payload_data,
-    email_type,
-    event: str = "ai_call_assistant_saas_send_mail",
+    event: str,
 ):
     """Send email task via RabbitMQ publisher."""
     
-    logger.info(f"🚀 Starting email publish process | event={event}, email_type={email_type}")
+    logger.info(f"🚀 Starting email publish process | event={event}")
 
     # Initialize RabbitMQ Publisher
     rabbit_mq_email_publisher = get_rabbit_mq_email_send_publisher()
@@ -69,7 +68,6 @@ def get_email_publisher(
     # Prepare payload
     publisher_payload = {
         "event": event,
-        "email_type": email_type,
         "data": publisher_payload_data,
     }
 
@@ -88,5 +86,5 @@ def get_email_publisher(
         )
         return {"status": False, "message": "Failed to send email, please try again later"}
 
-    logger.success(f"✅ Email publish successful | event={event} | email_type={email_type}")
+    logger.success(f"✅ Email publish successful | event={event}")
     return {"status": True, "message": "Email sent successfully"}
