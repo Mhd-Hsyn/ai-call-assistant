@@ -113,3 +113,9 @@
 2025-10-10 01:48:22 | INFO | ✅ Request completed: POST /api/auth/user/email-verification/verify-otp Status: 200 | Time: 33.69ms
 2025-10-10 01:48:31 | INFO | ➡️  Request started: GET http://localhost:8000/api/auth/user/profile
 2025-10-10 01:48:31 | INFO | ✅ Request completed: GET /api/auth/user/profile Status: 200 | Time: 5.18ms
+2025-10-10 19:00:39 | INFO | ➡️  Request started: GET http://localhost:8000/docs/
+2025-10-10 19:00:39 | INFO | ✅ Request completed: GET /docs/ Status: 307 | Time: 1.86ms
+2025-10-10 19:00:39 | INFO | ➡️  Request started: GET http://localhost:8000/docs
+2025-10-10 19:00:39 | INFO | ✅ Request completed: GET /docs Status: 200 | Time: 1.07ms
+2025-10-10 19:00:40 | INFO | ➡️  Request started: GET http://localhost:8000/openapi.json
+2025-10-10 19:00:40 | INFO | ✅ Request completed: GET /openapi.json Status: 200 | Time: 18.00ms

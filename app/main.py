@@ -9,6 +9,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from app.config.database import init_db
 from app.config.settings import MEDIA_DIR
 from app.auth.routes import auth_router
+from app.client.routes import client_router
 from app.core.exceptions.base import AppException
 from app.core.exceptions.handlers import (
     app_exception_handler,
@@ -39,6 +40,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 app.include_router(auth_router, prefix="/api/auth", tags=["Auth"])
+app.include_router(client_router, prefix="/api/clientside", tags=["Client Side APIs"])
 
 # Exception Handlers
 app.add_exception_handler(AppException, app_exception_handler)
