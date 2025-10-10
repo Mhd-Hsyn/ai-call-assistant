@@ -1,6 +1,7 @@
 from beanie import Link
 from pydantic import Field
 from app.core.models.base import BaseDocument
+from app.auth.models import UserModel
 from app.core.constants.choices import (
     KnowledgeBaseStatusChoices,
     KnowledgeBaseSourceTypeChoices,
@@ -9,6 +10,7 @@ from app.core.constants.choices import (
 
 
 class KnowledgeBaseModel(BaseDocument):
+    user: Link[UserModel]
     knowledge_base_id: str = Field(..., index=True, unique=True)
     name: str
     status: KnowledgeBaseStatusChoices = KnowledgeBaseStatusChoices.IN_PROGRESS

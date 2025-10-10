@@ -1,11 +1,13 @@
 from beanie import init_beanie
 from bson.codec_options import CodecOptions, UuidRepresentation
 import motor.motor_asyncio
-
-# import all models
 from app.auth.models import (
     UserModel,
     UserWhitelistTokenModel
+)
+from app.client.models import (
+    KnowledgeBaseModel,
+    KnowledgeBaseSourceModel
 )
 from app.config.settings import settings
 
@@ -26,6 +28,8 @@ async def init_db():
         database,
         document_models=[
             UserModel,
-            UserWhitelistTokenModel
+            UserWhitelistTokenModel,
+            KnowledgeBaseModel,
+            KnowledgeBaseSourceModel
         ]
     )
