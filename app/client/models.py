@@ -15,7 +15,7 @@ class KnowledgeBaseModel(BaseDocument):
     name: str
     status: KnowledgeBaseStatusChoices = KnowledgeBaseStatusChoices.IN_PROGRESS
 
-    class Collection:
+    class Settings:
         name = "knowledge_bases"
 
 
@@ -26,7 +26,7 @@ class KnowledgeBaseSourceModel(BaseDocument):
     title : str | None = None
     url : str
 
-    class Collection:
+    class Settings:
         name = "knowledge_base_sources"
 
 
