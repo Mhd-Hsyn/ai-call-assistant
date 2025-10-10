@@ -1,7 +1,5 @@
-from beanie import Document, Link
+from beanie import Link
 from pydantic import EmailStr, Field
-from datetime import datetime
-from enum import IntEnum
 from app.core.models.base import BaseDocument
 from app.core.constants.choices import (
     UserRoleChoices, 
