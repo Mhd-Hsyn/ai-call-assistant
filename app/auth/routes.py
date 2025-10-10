@@ -1,4 +1,4 @@
-from fastapi.encoders import jsonable_encoder
+from datetime import datetime
 from fastapi import (
     APIRouter, 
     Request, 
@@ -26,16 +26,10 @@ from app.core.constants.choices import (
     UserAccountStatusChoices,
     OTPScenarioChoices
 )
-from app.core.utils.helpers import (
-    generate_fingerprint
-)
 from .utils.auth_utils import AuthUtils
 from .models import (
     UserModel,
     UserWhitelistTokenModel
-)
-from app.core.utils.save_images import (
-    save_profile_image
 )
 from .schemas import (
     ClientSignupSchema,
@@ -60,12 +54,18 @@ from app.core.redis_utils.otp_handler.email_verification import (
     generate_verify_email_otp,
     compare_verify_email_otp    
 )
-
 from app.core.redis_utils.otp_handler.helpers import (
     is_otp_verified,
     delete_otp_verified
 )
-
+from app.core.utils.save_images import (
+    save_profile_image
+)
+from app.core.utils.helpers import (
+    generate_fingerprint,
+    get_email_publisher
+)
+from .utils.encryption_utils import encrypt_data
 
 auth_router = APIRouter(prefix="/user", tags=["User"])
 
@@ -286,21 +286,22 @@ async def request_otp(payload: RequestOTPSchema):
         raise ToManyRequestExeption(otp_response.get("message", "Failed to send OTP"))
 
     # 3️⃣ Send OTP email asynchronously (only if success)
-    # background_tasks.add_task(
-    #     get_email_publisher,
-    #     publisher_payload_data={
-    #         "user_email": user_instance.email,
-    #         "user_fullname": f"{user_instance.first_name} {user_instance.last_name}",
-    #         "otp_reason": "Reset Password",
-    #         "otp_expiry_time": "5 minutes",
-    #         "new_otp_request_time": "2 hours",
-    #         "otp_request_at": datetime.now(pytz_timezone("Asia/Karachi")).strftime(
-    #             "%d-%b-%Y %I:%M %p"
-    #         ),
-    #         "otp": otp_response["data"]["otp"],  # ⚠️ hide in prod
-    #     },
-    #     email_type="user_otp_request",
-    # )
+    get_email_publisher(
+        publisher_payload_data={
+            "user_email": user_instance.email,
+            "user_fullname": f"{user_instance.first_name} {user_instance.last_name}",
+            "otp_reason": "Reset Password",
+            "otp_expiry_time": "5 minutes",
+            "new_otp_request_time": "2 hours",
+            "otp_request_at": datetime.now().strftime(
+                "%d-%b-%Y %I:%M %p"
+            ),
+            "otp": encrypt_data(otp_response["data"]["otp"]),
+            "dynamic_info_1": "This OTP can be used only once.",
+            "dynamic_info_2": "If you didn’t request this, please ignore this email.",
+        },
+        event="user_otp_request",
+    )
 
     data = otp_response.get("data", {})
     data['user_email'] = email
@@ -408,21 +409,22 @@ async def request_otp(user_instance:UserModel=Depends(ProfileActive())):
         raise ToManyRequestExeption(otp_response.get("message", "Failed to send OTP"))
 
     # 3️⃣ Send OTP email asynchronously (only if success)
-    # background_tasks.add_task(
-    #     get_email_publisher,
-    #     publisher_payload_data={
-    #         "user_email": user_instance.email,
-    #         "user_fullname": f"{user_instance.first_name} {user_instance.last_name}",
-    #         "otp_reason": "Reset Password",
-    #         "otp_expiry_time": "5 minutes",
-    #         "new_otp_request_time": "2 hours",
-    #         "otp_request_at": datetime.now(pytz_timezone("Asia/Karachi")).strftime(
-    #             "%d-%b-%Y %I:%M %p"
-    #         ),
-    #         "otp": otp_response["data"]["otp"],  # ⚠️ hide in prod
-    #     },
-    #     email_type="user_otp_request",
-    # )
+    get_email_publisher(
+        publisher_payload_data={
+            "user_email": user_instance.email,
+            "user_fullname": f"{user_instance.first_name} {user_instance.last_name}",
+            "otp_reason": "Email Verification",
+            "otp_expiry_time": "5 minutes",
+            "new_otp_request_time": "2 hours",
+            "otp_request_at": datetime.now().strftime(
+                "%d-%b-%Y %I:%M %p"
+            ),
+            "otp": encrypt_data(otp_response["data"]["otp"]),
+            "dynamic_info_1": "This OTP can be used only once.",
+            "dynamic_info_2": "If you didn’t request this, please ignore this email.",
+        },
+        event="user_otp_request",
+    )
 
     data = otp_response.get("data", {})
     data['user_email'] = email

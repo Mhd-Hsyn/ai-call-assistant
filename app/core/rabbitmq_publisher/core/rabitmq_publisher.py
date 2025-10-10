@@ -1,6 +1,5 @@
 """This module defines a message queue client class for RabbitMQ"""
 
-import logging
 import socket
 import time
 from abc import ABC, abstractmethod

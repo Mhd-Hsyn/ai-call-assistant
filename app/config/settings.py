@@ -31,6 +31,9 @@ class Settings(BaseSettings):
     rabbitmq_email_sending_exchange: str
     rabbitmq_email_sending_routing_key: str
 
+    # Encryption
+    otp_fernet_key: str
+
     class Config:
         env_file = ".env"
 
