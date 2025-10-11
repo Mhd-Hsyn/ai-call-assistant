@@ -38,14 +38,35 @@ from .schemas import (
     APIBaseResponse,
     KnowledgeBaseCreateForm,
     KnowledgeBaseResponse,
+    SitemapRequest,
 
 )
 from .service import (
-    RetellKnowledgeBaseService
+    RetellKnowledgeBaseService,
+    RetellService,
+
 )
 
 
 knowledge_base_router = APIRouter()
+
+
+@knowledge_base_router.post(
+    "/list-sitemap", 
+    response_model=APIBaseResponse, 
+    status_code=status.HTTP_200_OK
+)
+async def list_sitemap(payload: SitemapRequest):
+    """
+    🌐 Fetch sitemap links from Retell AI API (via service layer).
+    """
+    sitemap_data = await RetellService.list_sitemap(payload.website_url)
+
+    return APIBaseResponse(
+        status=True,
+        message="Sitemap fetched successfully",
+        data=sitemap_data
+    )
 
 
 

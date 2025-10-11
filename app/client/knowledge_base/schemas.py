@@ -2,12 +2,19 @@ import json
 import uuid
 from datetime import datetime
 from fastapi import Form, File, UploadFile
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, HttpUrl
 from typing import List, Optional, Any
 from app.core.exceptions.handlers import AppException
 from app.core.constants.choices import (
     KnowledgeBaseStatusChoices
 )
+
+
+
+class SitemapRequest(BaseModel):
+    website_url: HttpUrl
+
+
 
 class KnowledgeBaseText(BaseModel):
     text: str = Field(..., description="Knowledge text content")
