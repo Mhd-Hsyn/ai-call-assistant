@@ -40,6 +40,9 @@ from .service import (
     RetellService,
 
 )
+from .sync_service import (
+    RetellSyncService
+)
 from .schemas import (
     APIBaseResponse,
     KnowledgeBaseCreateForm,
@@ -161,5 +164,24 @@ async def get_knowledge_base(
         message="Knowledge base fetched successfully",
         data=kb_response,
     )
+
+
+
+@knowledge_base_router.post("/retell/sync-all", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
+async def sync_knowledge_bases_from_retell():
+    """
+    🔁 Sync all IN_PROGRESS knowledge bases with Retell API.
+    - Fetches latest data
+    - Adds missing sources
+    - Updates KB status if changed
+    """
+    result = await RetellSyncService.sync_in_progress_knowledge_bases()
+
+    return APIBaseResponse(
+        status=True,
+        message="Knowledge bases synced successfully",
+        data=result,
+    )
+
 
 

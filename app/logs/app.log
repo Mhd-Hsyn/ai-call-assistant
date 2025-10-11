@@ -199,3 +199,17 @@
 2025-10-11 19:27:12 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
 2025-10-11 19:27:25 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
 2025-10-11 19:27:25 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 17.09ms
+2025-10-11 19:47:47 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/retell/sync-all
+2025-10-11 19:47:47 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/retell/sync-all Status: 405 | Time: 1.43ms
+2025-10-11 19:47:55 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/retell/sync-all
+2025-10-11 19:47:55 | INFO | 🔄 Syncing KB: knowledge_base_bfc4603a54a09b94
+2025-10-11 19:47:56 | INFO | ✅ Synced sources for KB: knowledge_base_bfc4603a54a09b94
+2025-10-11 19:47:56 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/retell/sync-all Status: 200 | Time: 1205.86ms
+2025-10-11 19:50:51 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/retell/sync-all
+2025-10-11 19:50:51 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/retell/sync-all Status: 200 | Time: 4.21ms
+2025-10-11 19:51:04 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/retell/sync-all
+2025-10-11 19:51:04 | INFO | 🔄 Syncing KB: knowledge_base_bfc4603a54a09b94
+2025-10-11 19:51:05 | INFO | ✅ Synced sources for KB: knowledge_base_bfc4603a54a09b94
+2025-10-11 19:51:05 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/retell/sync-all Status: 200 | Time: 1057.16ms
+2025-10-11 19:51:54 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:51:54 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 22.09ms
