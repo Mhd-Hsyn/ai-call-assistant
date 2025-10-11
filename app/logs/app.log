@@ -213,3 +213,5 @@
 2025-10-11 19:51:05 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/retell/sync-all Status: 200 | Time: 1057.16ms
 2025-10-11 19:51:54 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
 2025-10-11 19:51:54 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 22.09ms
+2025-10-11 19:56:57 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:56:57 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 22.40ms

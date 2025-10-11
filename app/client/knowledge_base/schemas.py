@@ -130,6 +130,9 @@ class KnowledgeBaseSourceResponse(BaseModel):
     type: KnowledgeBaseSourceTypeChoices
     title: Optional[str] = None
     url: str
+    created_at: datetime
+    updated_at: datetime
+
 
     class Config:
         from_attributes = True
