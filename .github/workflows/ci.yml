@@ -39,6 +39,7 @@ jobs:
         sudo sh -c 'echo "RABBITMQ_EMAIL_SENDING_ROUTING_KEY=${{ secrets.RABBITMQ_EMAIL_SENDING_ROUTING_KEY }}" >> .env'
 
         sudo sh -c 'echo "OTP_FERNET_KEY=${{ secrets.OTP_FERNET_KEY }}" >> .env'
+        sudo sh -c 'echo "RETELL_API_KEY=${{ secrets.RETELL_API_KEY }}" >> .env'
 
     - name: Build and Run Docker compose
       run: |

@@ -123,3 +123,35 @@
 2025-10-10 20:16:18 | INFO | ✅ Request completed: GET /docs Status: 200 | Time: 15.16ms
 2025-10-10 20:16:18 | INFO | ➡️  Request started: GET http://localhost:8000/openapi.json
 2025-10-10 20:16:19 | INFO | ✅ Request completed: GET /openapi.json Status: 200 | Time: 50.36ms
+2025-10-11 17:10:47 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/
+2025-10-11 17:10:47 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/ Status: 404 | Time: 1.67ms
+2025-10-11 17:10:56 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:10:56 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 400 | Time: 5.80ms
+2025-10-11 17:11:06 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:11:06 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 400 | Time: 3.74ms
+2025-10-11 17:11:41 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:11:41 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 400 | Time: 3.77ms
+2025-10-11 17:13:58 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:14:28 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:27:35 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:27:35 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 401 | Time: 16.15ms
+2025-10-11 17:27:46 | INFO | ➡️  Request started: POST http://localhost:8000/api/auth/user/login
+2025-10-11 17:27:46 | INFO | ✅ Request completed: POST /api/auth/user/login Status: 200 | Time: 64.25ms
+2025-10-11 17:27:57 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:27:57 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 401 | Time: 5.73ms
+2025-10-11 17:27:58 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:27:59 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 201 | Time: 1013.70ms
+2025-10-11 17:38:56 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:38:57 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 201 | Time: 1601.38ms
+2025-10-11 17:41:01 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:41:01 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 400 | Time: 2.83ms
+2025-10-11 17:51:33 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:51:35 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 201 | Time: 1814.66ms
+2025-10-11 17:52:34 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:52:35 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 201 | Time: 1626.16ms
+2025-10-11 17:52:59 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:53:00 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 422 | Time: 1608.65ms
+2025-10-11 17:54:28 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:54:29 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 422 | Time: 1596.21ms
+2025-10-11 17:57:59 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 17:58:01 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 201 | Time: 2423.49ms
