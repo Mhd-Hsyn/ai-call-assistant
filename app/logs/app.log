@@ -161,3 +161,41 @@
 2025-10-11 18:08:04 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/list-sitemap
 2025-10-11 18:09:08 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/list-sitemap
 2025-10-11 18:09:21 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/list-sitemap Status: 200 | Time: 12955.39ms
+2025-10-11 18:18:44 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/create
+2025-10-11 18:18:46 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/create Status: 201 | Time: 1927.27ms
+2025-10-11 19:18:20 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:18:20 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 404 | Time: 4.77ms
+2025-10-11 19:18:38 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/knowledge_base_bfc4603a54a09b94
+2025-10-11 19:18:38 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/knowledge_base_bfc4603a54a09b94 Status: 200 | Time: 6.75ms
+2025-10-11 19:19:39 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:19:39 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 401 | Time: 2.25ms
+2025-10-11 19:19:40 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:19:40 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 401 | Time: 1.20ms
+2025-10-11 19:19:52 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:19:52 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 404 | Time: 21.66ms
+2025-10-11 19:19:53 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:19:53 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 404 | Time: 5.95ms
+2025-10-11 19:19:54 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:19:54 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 404 | Time: 12.17ms
+2025-10-11 19:20:00 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:20:00 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 404 | Time: 26.45ms
+2025-10-11 19:20:01 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:20:01 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 404 | Time: 6.13ms
+2025-10-11 19:20:03 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:20:03 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 404 | Time: 7.32ms
+2025-10-11 19:20:10 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:20:10 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 404 | Time: 15.13ms
+2025-10-11 19:20:12 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:20:12 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 404 | Time: 6.79ms
+2025-10-11 19:24:50 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:24:50 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 17.18ms
+2025-10-11 19:24:51 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:24:51 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 7.57ms
+2025-10-11 19:24:52 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:24:52 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 8.15ms
+2025-10-11 19:27:02 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173as
+2025-10-11 19:27:02 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173as Status: 422 | Time: 14.53ms
+2025-10-11 19:27:11 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:27:12 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:27:25 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-11 19:27:25 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 17.09ms

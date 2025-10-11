@@ -1,3 +1,4 @@
+from uuid import UUID
 from fastapi import (
     APIRouter, 
     Request, 
@@ -34,16 +35,18 @@ from app.auth.models import (
 from app.core.utils.save_images import (
     save_profile_image
 )
+from .service import (
+    RetellKnowledgeBaseService,
+    RetellService,
+
+)
 from .schemas import (
     APIBaseResponse,
     KnowledgeBaseCreateForm,
     KnowledgeBaseResponse,
     SitemapRequest,
-
-)
-from .service import (
-    RetellKnowledgeBaseService,
-    RetellService,
+    KnowledgeBaseDetailResponse,
+    KnowledgeBaseSourceResponse
 
 )
 
@@ -111,4 +114,52 @@ async def create_knowledge_base(
         message="Knowledge base created successfully",
         data= data
     )
+
+
+
+@knowledge_base_router.get(
+    "/{knowledge_base_uuid}",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def get_knowledge_base(
+    knowledge_base_uuid: UUID,
+    user: UserModel = Depends(ProfileActive()),
+):
+    """
+    📚 Get a Knowledge Base and its associated Sources.
+    Only accessible to the owner (authenticated user).
+    """
+
+    # ✅ Fetch knowledge base for this user
+    kb = await KnowledgeBaseModel.find_one(
+        KnowledgeBaseModel.id == knowledge_base_uuid,
+        KnowledgeBaseModel.user.id == user.id,
+    )
+
+    if not kb:
+        raise NotFoundException("Knowledge base not found")
+
+    # ✅ Fetch all related sources
+    sources = await KnowledgeBaseSourceModel.find(
+        KnowledgeBaseSourceModel.knowledge_base.id == kb.id
+    ).to_list()
+
+    # ✅ Serialize sources
+    source_responses = [
+        KnowledgeBaseSourceResponse.model_validate(s) for s in sources
+    ]
+
+    # ✅ Build final knowledge base response
+    kb_response = KnowledgeBaseDetailResponse(
+        **kb.model_dump(),
+        sources=source_responses,
+    )
+
+    return APIBaseResponse(
+        status=True,
+        message="Knowledge base fetched successfully",
+        data=kb_response,
+    )
+
 
