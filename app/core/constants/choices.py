@@ -1,4 +1,5 @@
-from enum import IntEnum, Enum
+from enum import IntEnum
+from enum_tools import StrEnum
 
 class UserRoleChoices(IntEnum):
     SUPER_ADMIN = 1
@@ -21,13 +22,13 @@ class OTPScenarioChoices(IntEnum):
 
 #### Retail Model ####
 
-class KnowledgeBaseStatusChoices(Enum):
+class KnowledgeBaseStatusChoices(StrEnum):
     IN_PROGRESS = "in_progress"
     COMPLETE = "complete"
     ERROR = "error"
 
 
-class KnowledgeBaseSourceTypeChoices(Enum):
+class KnowledgeBaseSourceTypeChoices(StrEnum):
     DOCUMENT = "document"
     TEXT = "text"
     URL = "url"
