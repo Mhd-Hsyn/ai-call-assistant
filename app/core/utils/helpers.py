@@ -5,7 +5,7 @@ from passlib.hash import pbkdf2_sha256
 from app.core.rabbitmq_publisher.core.rabitmq_publisher import (
     get_rabbit_mq_email_send_publisher
 )
-from app.config.logger_config import get_logger
+from app.config.logger import get_logger
 
 logger = get_logger("helper")
 

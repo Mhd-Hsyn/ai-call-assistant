@@ -14,7 +14,7 @@ from app.core.rabbitmq_publisher.core.config import (
     rabbitmq_email_sending_exchange,
     rabbitmq_email_sending_routing_key,
 )
-from app.config.logger_config import get_logger
+from app.config.logger import get_logger
 
 logger = get_logger("ai_call_assistant_saas_rabbitmq_logger")
 

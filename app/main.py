@@ -17,7 +17,7 @@ from app.core.exceptions.handlers import (
     http_exception_handler
 )
 from app.core.redis_utils.otp_handler.config import otp_client
-from app.config.logger_config import get_logger
+from app.config.logger import get_logger
 from fastapi.middleware.cors import CORSMiddleware
 
 logger = get_logger("main")

@@ -4,7 +4,7 @@ from beanie.operators import And
 from app.config.settings import settings
 from app.client.models import KnowledgeBaseModel, KnowledgeBaseSourceModel
 from app.core.constants.choices import KnowledgeBaseSourceTypeChoices, KnowledgeBaseStatusChoices
-from app.config.logger_config import get_logger
+from app.config.logger import get_logger
 from app.auth.models import UserModel
 
 logger = get_logger("Retell Sync KnowledgeBase Service")
