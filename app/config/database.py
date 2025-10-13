@@ -7,7 +7,9 @@ from app.auth.models import (
 )
 from app.client.models import (
     KnowledgeBaseModel,
-    KnowledgeBaseSourceModel
+    KnowledgeBaseSourceModel,
+    ResponseEngineModel,
+    AgentModel,
 )
 from app.config.settings import settings
 
@@ -30,6 +32,8 @@ async def init_db():
             UserModel,
             UserWhitelistTokenModel,
             KnowledgeBaseModel,
-            KnowledgeBaseSourceModel
+            KnowledgeBaseSourceModel,
+            ResponseEngineModel,
+            AgentModel
         ]
     )
