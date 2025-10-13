@@ -545,3 +545,49 @@ status
 2025-10-13 16:32:59 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/ Status: 200 | Time: 9.64ms
 2025-10-13 16:38:23 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/
 2025-10-13 16:38:23 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/ Status: 200 | Time: 23.90ms
+2025-10-13 16:47:29 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources?knowledge_base_uuid=60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-13 16:47:29 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 200 | Time: 34.77ms
+2025-10-13 16:47:34 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources
+2025-10-13 16:47:34 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 200 | Time: 10.00ms
+2025-10-13 16:47:36 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources
+2025-10-13 16:47:36 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 200 | Time: 8.69ms
+2025-10-13 16:47:44 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources?knowledge_base_uuid=60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-13 16:47:44 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 200 | Time: 9.36ms
+2025-10-13 16:47:50 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources
+2025-10-13 16:47:50 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 200 | Time: 9.44ms
+2025-10-13 16:47:51 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources
+2025-10-13 16:47:51 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 200 | Time: 10.00ms
+2025-10-13 16:48:00 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources?knowledge_base_uuid=
+2025-10-13 16:48:00 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 200 | Time: 11.06ms
+2025-10-13 16:48:02 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources?knowledge_base_uuid=
+2025-10-13 16:48:02 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 200 | Time: 10.69ms
+2025-10-13 16:48:29 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/list-with-sources
+2025-10-13 16:48:29 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/list-with-sources Status: 200 | Time: 29.01ms
+2025-10-13 16:48:47 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources?knowledge_base_uuid=60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-13 16:48:47 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 200 | Time: 11.78ms
+2025-10-13 16:48:54 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources
+2025-10-13 16:48:54 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 422 | Time: 5.15ms
+2025-10-13 16:49:01 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/with-sources?knowledge_base_uuid=60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-13 16:49:01 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/with-sources Status: 200 | Time: 11.50ms
+2025-10-13 16:49:22 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/by-id-with-sources?knowledge_base_uuid=60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-13 16:49:22 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/by-id-with-sources Status: 200 | Time: 24.16ms
+2025-10-13 16:49:49 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/list-info
+2025-10-13 16:49:49 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/list-info Status: 200 | Time: 29.22ms
+2025-10-13 16:56:28 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/retrieve-by-id?knowledge_base_uuid=60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-13 16:56:28 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/retrieve-by-id Status: 200 | Time: 29.54ms
+2025-10-13 16:56:43 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/retrieve-detail?knowledge_base_uuid=60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-13 16:56:43 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/retrieve-detail Status: 200 | Time: 30.82ms
+2025-10-13 16:57:11 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/list-detail
+2025-10-13 16:57:11 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/list-detail Status: 200 | Time: 22.81ms
+2025-10-13 16:57:56 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/list-info
+2025-10-13 16:57:56 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/list-info Status: 200 | Time: 24.75ms
+2025-10-13 17:00:27 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/summary
+2025-10-13 17:00:27 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/summary Status: 404 | Time: 0.92ms
+2025-10-13 17:00:44 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/list-info
+2025-10-13 17:00:44 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/list-info Status: 200 | Time: 9.55ms
+2025-10-13 17:04:42 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/list-info
+2025-10-13 17:04:42 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/list-info Status: 200 | Time: 17.37ms
+2025-10-13 17:04:45 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/retrieve-detail?knowledge_base_uuid=60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-13 17:04:45 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/retrieve-detail Status: 200 | Time: 15.99ms
+2025-10-13 17:04:50 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/list-detail
+2025-10-13 17:04:50 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/list-detail Status: 200 | Time: 12.13ms

@@ -2,10 +2,8 @@ from uuid import UUID
 from typing import List
 from fastapi import (
     APIRouter, 
-    Request, 
     status, 
-    UploadFile, 
-    Body, 
+    Query,
     Depends, 
 )
 from beanie.operators import In
@@ -124,7 +122,7 @@ async def create_knowledge_base(
 
 
 
-@knowledge_base_router.get("/with-sources")
+@knowledge_base_router.get("/list-detail")
 async def list_user_knowledge_bases(user: UserModel = Depends(ProfileActive())):
     knowledge_bases = await KnowledgeBaseModel.find(
         KnowledgeBaseModel.user.id == user.id
@@ -161,20 +159,20 @@ async def list_user_knowledge_bases(user: UserModel = Depends(ProfileActive())):
 
 
 @knowledge_base_router.get(
-    "/{knowledge_base_uuid}/with-sources",
+    "/retrieve-detail",
     response_model=APIBaseResponse,
     status_code=status.HTTP_200_OK,
 )
-async def get_knowledge_base(
-    knowledge_base_uuid: UUID,
+async def get_knowledge_base_with_sources(
+    knowledge_base_uuid: UUID = Query(..., description="Knowledge base UUID"),
     user: UserModel = Depends(ProfileActive()),
 ):
     """
-    📚 Get a Knowledge Base and its associated Sources.
-    Only accessible to the owner (authenticated user).
+    📚 Get a single Knowledge Base and its associated Sources.
+    Accessible only to the authenticated owner.
     """
 
-    # ✅ Fetch knowledge base for this user
+    # ✅ Fetch KB for this user
     kb = await KnowledgeBaseModel.find_one(
         KnowledgeBaseModel.id == knowledge_base_uuid,
         KnowledgeBaseModel.user.id == user.id,
@@ -193,7 +191,7 @@ async def get_knowledge_base(
         KnowledgeBaseSourceResponse.model_validate(s) for s in sources
     ]
 
-    # ✅ Build final knowledge base response
+    # ✅ Build final KB response
     kb_response = KnowledgeBaseDetailResponse(
         **kb.model_dump(),
         sources=source_responses,
@@ -201,7 +199,7 @@ async def get_knowledge_base(
 
     return APIBaseResponse(
         status=True,
-        message="Knowledge base fetched successfully",
+        message="Knowledge base fetched successfully (with sources)",
         data=kb_response,
     )
 
@@ -209,7 +207,7 @@ async def get_knowledge_base(
 
 
 @knowledge_base_router.get(
-    "/",
+    "/list-info",
     response_model=APIBaseResponse,
     status_code=status.HTTP_200_OK,
 )
