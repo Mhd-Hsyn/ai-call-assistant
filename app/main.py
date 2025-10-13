@@ -18,7 +18,7 @@ logger = get_logger("main")
 
 # Create FastAPI instance
 app = FastAPI(
-    title=" AI Backend",
+    title="AI Call Assistant Backend",
     description="API backend for Call Assitant AI platform",
     version="1.0.0",
     lifespan=lifespan,

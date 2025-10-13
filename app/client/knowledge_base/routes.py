@@ -89,36 +89,31 @@ async def create_knowledge_base(
     user: UserModel = Depends(ProfileActive())
 ):
     """
-    🧠 Create Knowledge Base
+    Create a Knowledge Base (Texts + URLs + Files)
     """
-
-    # Upload file bytes if available
-    file_bytes = [await f.read() for f in (payload.files or [])] if payload.files else None
-
-    # Create on Retell
-    knowledge_base_response = RetellKnowledgeBaseService.create_knowledge_base(
+    response = await RetellKnowledgeBaseService.create_knowledge_base(
         name=payload.name,
         texts=payload.texts,
         urls=payload.urls,
-        files=file_bytes,
+        files=payload.files,
     )
 
-    # Save to DB
+    # Save locally
     kb = KnowledgeBaseModel(
         user=user,
-        knowledge_base_id=knowledge_base_response.knowledge_base_id,
+        knowledge_base_id=response.knowledge_base_id,
         name=payload.name,
         status=KnowledgeBaseStatusChoices.IN_PROGRESS,
     )
     await kb.insert()
 
     data = KnowledgeBaseResponse.model_validate(kb)
-
     return APIBaseResponse(
         status=True,
         message="Knowledge base created successfully",
-        data= data
+        data=data
     )
+
 
 
 

@@ -97,3 +97,414 @@
 2025-10-13 20:01:02 | INFO | ✅ MongoDB initialized
 2025-10-13 20:01:02 | INFO | ➡️  GET /api/clientside/knowledge-base/list-detail
 2025-10-13 20:01:02 | INFO | ✅ GET /api/clientside/knowledge-base/list-detail → 200 | 29.37ms
+2025-10-13 20:05:27 | INFO | 🛑 Application shutting down...
+2025-10-13 20:05:30 | INFO | ✅ Redis connected successfully
+2025-10-13 20:05:30 | INFO | ✅ MongoDB initialized
+2025-10-13 20:05:38 | INFO | 🛑 Application shutting down...
+2025-10-13 20:05:41 | INFO | ✅ Redis connected successfully
+2025-10-13 20:05:41 | INFO | ✅ MongoDB initialized
+2025-10-13 20:05:57 | INFO | ✅ Redis connected successfully
+2025-10-13 20:05:57 | INFO | ✅ MongoDB initialized
+2025-10-13 20:17:17 | INFO | ➡️  POST /api/clientside/knowledge-base/create
+2025-10-13 20:17:19 | INFO | ✅ POST /api/clientside/knowledge-base/create → 201 | 1628.04ms
+2025-10-13 20:17:27 | INFO | ➡️  POST /api/clientside/knowledge-base/retell/sync-user
+2025-10-13 20:17:27 | INFO | (USER: developer.hsyn@gmail.com) 🔄 Syncing KB: knowledge_base_b0fb37dd812fa5e0
+2025-10-13 20:17:28 | ERROR | (USER: developer.hsyn@gmail.com) ❌ Failed to sync knowledge_base_b0fb37dd812fa5e0: 'NoneType' object is not iterable
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 3
+               │     └ 10
+               └ <function _main at 0x7d64120e5bc0>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 3
+           │    └ <function BaseProcess._bootstrap at 0x7d64121bfec0>
+           └ <SpawnProcess name='SpawnProcess-17' parent=163853 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x7d64121bf420>
+    └ <SpawnProcess name='SpawnProcess-17' parent=163853 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x7d640dab2ed0>, 'target': <bound method Server.run of <uvicorn.server.Server obj...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-17' parent=163853 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-17' parent=163853 started>
+    │    └ <function subprocess_started at 0x7d64113051c0>
+    └ <SpawnProcess name='SpawnProcess-17' parent=163853 started>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=6, family=2, type=1, proto=0, laddr=('0.0.0.0', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x7d640dab3680>>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x7d6411490180>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x7d640dab2ed0>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x7d640dab3680>
+           │           │    │             └ [<socket.socket fd=6, family=2, type=1, proto=0, laddr=('0.0.0.0', 8000)>]
+           │           │    └ <function Server.serve at 0x7d6411304540>
+           │           └ <uvicorn.server.Server object at 0x7d640dab3680>
+           └ <function run at 0x7d6412ac8680>
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x7d64121484a0>
+           │      └ <function Runner.run at 0x7d64116691c0>
+           └ <asyncio.runners.Runner object at 0x7d640dab3170>
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at /home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x7d6411666de0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x7d640dab3170>
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 674, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7d6411666d40>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 641, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7d6411668b80>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 1987, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7d64117ab060>
+    └ <Handle Task.task_wakeup(<Future finis...est 2', ...}]>)>
+  File "/usr/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finis...est 2', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finis...est 2', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finis...est 2', ...}]>)>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+          │    │   │      │                      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x7d640d966840>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d9668e0>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x7d640e2e41a0>
+          └ <starlette.middleware.base.BaseHTTPMiddleware object at 0x7d640db0ab10>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x7d640d966840>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d9668e0>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x7d640da9bdd0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x7d640e2e41a0>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x7d640d966840>
+          │                            │    │    │     │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d9668e0>
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x7d640d901f40>
+          │                            │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7d640dab3620>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x7d640da9bdd0>
+          └ <function wrap_app_handling_exceptions at 0x7d64107439c0>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d640d966a20>
+          │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d9668e0>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7d640dab3620>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d640d966a20>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d9668e0>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.routing.APIRouter object at 0x7d640daca300>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7d640dab3620>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d640d966a20>
+          │    │                │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d9668e0>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x7d640daca300>>
+          └ <fastapi.routing.APIRouter object at 0x7d640daca300>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d640d966a20>
+          │     │      │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d9668e0>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x7d6410778fe0>
+          └ APIRoute(path='/api/clientside/knowledge-base/retell/sync-user', name='sync_user_knowledge_bases_from_retell', methods=['POST'])
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d640d966a20>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d9668e0>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x7d640dadbe20>
+          └ APIRoute(path='/api/clientside/knowledge-base/retell/sync-user', name='sync_user_knowledge_bases_from_retell', methods=['POST'])
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/fastapi/routing.py", line 123, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d640d966a20>
+          │                            │    │        │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d9668e0>
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x7d640d9002c0>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x7d640d966ca0>
+          └ <function wrap_app_handling_exceptions at 0x7d64107439c0>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d640d966b60>
+          │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d9668e0>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x7d640d966ca0>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/fastapi/routing.py", line 109, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x7d640d9002c0>
+                     └ <function get_request_handler.<locals>.app at 0x7d640dadbd80>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/fastapi/routing.py", line 387, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x7d641077ade0>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/fastapi/routing.py", line 288, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'user': UserModel(id=UUID('c98bec12-a85a-4444-a201-9afe667cc806'), revision_id=None, created_at=datetime.datetime(2025, 10, ...
+                 │         └ <function sync_user_knowledge_bases_from_retell at 0x7d640dc31c60>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[], dependencies=[Dependant(path_p...
+
+  File "/home/admin12/Documents/Call-Assistant/ai-call-assistant/app/client/knowledge_base/routes.py", line 262, in sync_user_knowledge_bases_from_retell
+    result = await RetellSyncService.sync_user_knowledge_bases(user)
+                   │                 │                         └ UserModel(id=UUID('c98bec12-a85a-4444-a201-9afe667cc806'), revision_id=None, created_at=datetime.datetime(2025, 10, 8, 13, 32...
+                   │                 └ <staticmethod(<function RetellSyncService.sync_user_knowledge_bases at 0x7d640dc1fec0>)>
+                   └ <class 'app.client.knowledge_base.sync_service.RetellSyncService'>
+
+  File "/home/admin12/Documents/Call-Assistant/ai-call-assistant/app/client/knowledge_base/sync_service.py", line 33, in sync_user_knowledge_bases
+    return await RetellSyncService._sync_kbs(
+                 │                 └ <staticmethod(<function RetellSyncService._sync_kbs at 0x7d640dc1ff60>)>
+                 └ <class 'app.client.knowledge_base.sync_service.RetellSyncService'>
+
+> File "/home/admin12/Documents/Call-Assistant/ai-call-assistant/app/client/knowledge_base/sync_service.py", line 69, in _sync_kbs
+    await RetellSyncService._sync_sources(kb, json_dict.get("knowledge_base_sources", []))
+          │                 │             │   │         └ <method 'get' of 'dict' objects>
+          │                 │             │   └ {'knowledge_base_id': 'knowledge_base_b0fb37dd812fa5e0', 'knowledge_base_name': 'Hussain Test 2', 'status': 'in_progress', 'e...
+          │                 │             └ KnowledgeBaseModel(id=UUID('89c50229-f75f-461d-bee9-564f27d2cfdb'), revision_id=None, created_at=datetime.datetime(2025, 10, ...
+          │                 └ <staticmethod(<function RetellSyncService._sync_sources at 0x7d640dc30040>)>
+          └ <class 'app.client.knowledge_base.sync_service.RetellSyncService'>
+
+  File "/home/admin12/Documents/Call-Assistant/ai-call-assistant/app/client/knowledge_base/sync_service.py", line 88, in _sync_sources
+    for src in sources:
+               └ None
+
+TypeError: 'NoneType' object is not iterable
+2025-10-13 20:17:28 | INFO | ✅ POST /api/clientside/knowledge-base/retell/sync-user → 200 | 886.83ms
+2025-10-13 20:17:30 | INFO | ➡️  POST /api/clientside/knowledge-base/retell/sync-user
+2025-10-13 20:17:30 | INFO | (USER: developer.hsyn@gmail.com) 🔄 Syncing KB: knowledge_base_b0fb37dd812fa5e0
+2025-10-13 20:17:30 | ERROR | (USER: developer.hsyn@gmail.com) ❌ Failed to sync knowledge_base_b0fb37dd812fa5e0: 'NoneType' object is not iterable
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 3
+               │     └ 10
+               └ <function _main at 0x7d64120e5bc0>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 3
+           │    └ <function BaseProcess._bootstrap at 0x7d64121bfec0>
+           └ <SpawnProcess name='SpawnProcess-17' parent=163853 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x7d64121bf420>
+    └ <SpawnProcess name='SpawnProcess-17' parent=163853 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x7d640dab2ed0>, 'target': <bound method Server.run of <uvicorn.server.Server obj...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-17' parent=163853 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-17' parent=163853 started>
+    │    └ <function subprocess_started at 0x7d64113051c0>
+    └ <SpawnProcess name='SpawnProcess-17' parent=163853 started>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=6, family=2, type=1, proto=0, laddr=('0.0.0.0', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x7d640dab3680>>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x7d6411490180>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x7d640dab2ed0>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x7d640dab3680>
+           │           │    │             └ [<socket.socket fd=6, family=2, type=1, proto=0, laddr=('0.0.0.0', 8000)>]
+           │           │    └ <function Server.serve at 0x7d6411304540>
+           │           └ <uvicorn.server.Server object at 0x7d640dab3680>
+           └ <function run at 0x7d6412ac8680>
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x7d64121484a0>
+           │      └ <function Runner.run at 0x7d64116691c0>
+           └ <asyncio.runners.Runner object at 0x7d640dab3170>
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at /home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x7d6411666de0>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x7d640dab3170>
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 674, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7d6411666d40>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 641, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7d6411668b80>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 1987, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7d64117ab060>
+    └ <Handle Task.task_wakeup(<Future finis...est 2', ...}]>)>
+  File "/usr/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finis...est 2', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finis...est 2', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finis...est 2', ...}]>)>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+          │    │   │      │                      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x7d640d904400>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d904720>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x7d640e2e41a0>
+          └ <starlette.middleware.base.BaseHTTPMiddleware object at 0x7d640db0ab10>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x7d640d904400>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d904720>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x7d640da9bdd0>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x7d640e2e41a0>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x7d640d904400>
+          │                            │    │    │     │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d904720>
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x7d63fee50590>
+          │                            │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7d640dab3620>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x7d640da9bdd0>
+          └ <function wrap_app_handling_exceptions at 0x7d64107439c0>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d63feffb100>
+          │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d904720>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7d640dab3620>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d63feffb100>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d904720>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.routing.APIRouter object at 0x7d640daca300>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7d640dab3620>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d63feffb100>
+          │    │                │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d904720>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x7d640daca300>>
+          └ <fastapi.routing.APIRouter object at 0x7d640daca300>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d63feffb100>
+          │     │      │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d904720>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x7d6410778fe0>
+          └ APIRoute(path='/api/clientside/knowledge-base/retell/sync-user', name='sync_user_knowledge_bases_from_retell', methods=['POST'])
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d63feffb100>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d904720>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x7d640dadbe20>
+          └ APIRoute(path='/api/clientside/knowledge-base/retell/sync-user', name='sync_user_knowledge_bases_from_retell', methods=['POST'])
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/fastapi/routing.py", line 123, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d63feffb100>
+          │                            │    │        │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d904720>
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x7d63fee51520>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x7d63feffb240>
+          └ <function wrap_app_handling_exceptions at 0x7d64107439c0>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7d63feffb4c0>
+          │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x7d640d904720>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x7d63feffb240>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/fastapi/routing.py", line 109, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x7d63fee51520>
+                     └ <function get_request_handler.<locals>.app at 0x7d640dadbd80>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/fastapi/routing.py", line 387, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x7d641077ade0>
+  File "/home/admin12/.virtualenvs/ai-call-assistant/lib/python3.12/site-packages/fastapi/routing.py", line 288, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'user': UserModel(id=UUID('c98bec12-a85a-4444-a201-9afe667cc806'), revision_id=None, created_at=datetime.datetime(2025, 10, ...
+                 │         └ <function sync_user_knowledge_bases_from_retell at 0x7d640dc31c60>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[], dependencies=[Dependant(path_p...
+
+  File "/home/admin12/Documents/Call-Assistant/ai-call-assistant/app/client/knowledge_base/routes.py", line 262, in sync_user_knowledge_bases_from_retell
+    result = await RetellSyncService.sync_user_knowledge_bases(user)
+                   │                 │                         └ UserModel(id=UUID('c98bec12-a85a-4444-a201-9afe667cc806'), revision_id=None, created_at=datetime.datetime(2025, 10, 8, 13, 32...
+                   │                 └ <staticmethod(<function RetellSyncService.sync_user_knowledge_bases at 0x7d640dc1fec0>)>
+                   └ <class 'app.client.knowledge_base.sync_service.RetellSyncService'>
+
+  File "/home/admin12/Documents/Call-Assistant/ai-call-assistant/app/client/knowledge_base/sync_service.py", line 33, in sync_user_knowledge_bases
+    return await RetellSyncService._sync_kbs(
+                 │                 └ <staticmethod(<function RetellSyncService._sync_kbs at 0x7d640dc1ff60>)>
+                 └ <class 'app.client.knowledge_base.sync_service.RetellSyncService'>
+
+> File "/home/admin12/Documents/Call-Assistant/ai-call-assistant/app/client/knowledge_base/sync_service.py", line 69, in _sync_kbs
+    await RetellSyncService._sync_sources(kb, json_dict.get("knowledge_base_sources", []))
+          │                 │             │   │         └ <method 'get' of 'dict' objects>
+          │                 │             │   └ {'knowledge_base_id': 'knowledge_base_b0fb37dd812fa5e0', 'knowledge_base_name': 'Hussain Test 2', 'status': 'in_progress', 'e...
+          │                 │             └ KnowledgeBaseModel(id=UUID('89c50229-f75f-461d-bee9-564f27d2cfdb'), revision_id=None, created_at=datetime.datetime(2025, 10, ...
+          │                 └ <staticmethod(<function RetellSyncService._sync_sources at 0x7d640dc30040>)>
+          └ <class 'app.client.knowledge_base.sync_service.RetellSyncService'>
+
+  File "/home/admin12/Documents/Call-Assistant/ai-call-assistant/app/client/knowledge_base/sync_service.py", line 88, in _sync_sources
+    for src in sources:
+               └ None
+
+TypeError: 'NoneType' object is not iterable
+2025-10-13 20:17:30 | INFO | ✅ POST /api/clientside/knowledge-base/retell/sync-user → 200 | 332.97ms
+2025-10-13 20:17:32 | INFO | ➡️  POST /api/clientside/knowledge-base/retell/sync-user
+2025-10-13 20:17:32 | INFO | (USER: developer.hsyn@gmail.com) 🔄 Syncing KB: knowledge_base_b0fb37dd812fa5e0
+2025-10-13 20:17:32 | INFO | ✅ Synced sources for KB: knowledge_base_b0fb37dd812fa5e0
+2025-10-13 20:17:32 | INFO | ✅ POST /api/clientside/knowledge-base/retell/sync-user → 200 | 397.76ms
+2025-10-13 20:17:40 | INFO | ➡️  GET /api/clientside/knowledge-base/retrieve-detail
+2025-10-13 20:17:40 | INFO | ✅ GET /api/clientside/knowledge-base/retrieve-detail → 200 | 9.80ms
+2025-10-13 20:33:24 | INFO | ✅ Redis connected successfully
+2025-10-13 20:33:24 | INFO | ✅ MongoDB initialized
+2025-10-13 20:33:32 | INFO | ✅ Redis connected successfully
+2025-10-13 20:33:32 | INFO | ✅ MongoDB initialized
+2025-10-13 20:35:58 | INFO | 🛑 Application shutting down...
+2025-10-13 20:36:28 | INFO | ✅ Redis connected successfully
+2025-10-13 20:36:28 | INFO | ✅ MongoDB initialized
+2025-10-13 20:36:39 | INFO | 🛑 Application shutting down...
+2025-10-13 20:38:10 | INFO | ✅ Redis connected successfully
+2025-10-13 20:38:10 | INFO | ✅ MongoDB initialized
+2025-10-13 20:38:10 | INFO | ➡️  POST /api/clientside/knowledge-base/create
+2025-10-13 20:38:11 | INFO | ✅ POST /api/clientside/knowledge-base/create → 201 | 1417.40ms
+2025-10-13 20:38:30 | INFO | ➡️  POST /api/clientside/knowledge-base/retell/sync-user
+2025-10-13 20:38:30 | INFO | (USER: developer.hsyn@gmail.com) 🔄 Syncing KB: knowledge_base_5cf2e1443239aa1d
+2025-10-13 20:38:31 | INFO | ✅ Synced sources for KB: knowledge_base_5cf2e1443239aa1d
+2025-10-13 20:38:31 | INFO | ✅ POST /api/clientside/knowledge-base/retell/sync-user → 200 | 897.35ms
+2025-10-13 20:38:37 | INFO | ➡️  GET /api/clientside/knowledge-base/retrieve-detail
+2025-10-13 20:38:37 | INFO | ✅ GET /api/clientside/knowledge-base/retrieve-detail → 200 | 10.51ms
+2025-10-13 20:38:40 | INFO | ➡️  GET /api/clientside/knowledge-base/retrieve-detail
+2025-10-13 20:38:40 | INFO | ✅ GET /api/clientside/knowledge-base/retrieve-detail → 200 | 9.09ms
+2025-10-13 20:42:00 | INFO | 🛑 Application shutting down...
+2025-10-13 20:43:41 | INFO | ✅ Redis connected successfully
+2025-10-13 20:43:41 | INFO | ✅ MongoDB initialized
+2025-10-13 20:43:42 | INFO | ➡️  POST /api/clientside/knowledge-base/create
+2025-10-13 20:43:44 | INFO | ✅ POST /api/clientside/knowledge-base/create → 201 | 1375.65ms
+2025-10-13 20:43:56 | INFO | ➡️  POST /api/clientside/knowledge-base/retell/sync-user
+2025-10-13 20:43:56 | INFO | (USER: developer.hsyn@gmail.com) 🔄 Syncing KB: knowledge_base_8931693cb38d68f9
+2025-10-13 20:43:57 | INFO | ✅ Synced sources for KB: knowledge_base_8931693cb38d68f9
+2025-10-13 20:43:57 | INFO | ✅ POST /api/clientside/knowledge-base/retell/sync-user → 200 | 840.69ms
+2025-10-13 20:44:03 | INFO | ➡️  GET /api/clientside/knowledge-base/retrieve-detail
+2025-10-13 20:44:03 | INFO | ✅ GET /api/clientside/knowledge-base/retrieve-detail → 200 | 9.88ms
+2025-10-13 20:44:08 | INFO | ➡️  GET /api/clientside/knowledge-base/retrieve-detail
+2025-10-13 20:44:08 | INFO | ✅ GET /api/clientside/knowledge-base/retrieve-detail → 200 | 11.62ms

@@ -1,4 +1,5 @@
 import httpx
+import io
 from retell import Retell
 from fastapi import HTTPException, status
 from app.config.settings import settings
@@ -44,22 +45,36 @@ class RetellService:
             )
 
 
-
 class RetellKnowledgeBaseService:
-    """Handles Retell API communication."""
-
     @staticmethod
-    def create_knowledge_base(name: str, texts=None, urls=None, files=None):
-        kwargs = {"knowledge_base_name": name}
-        if texts:
-            kwargs["knowledge_base_texts"] = [t.model_dump() for t in texts]
-        if urls:
-            kwargs["knowledge_base_urls"] = urls
-        if files:
-            kwargs["knowledge_base_files"] = files
-
+    async def create_knowledge_base(name, texts=None, urls=None, files=None):
+        file_objects = []
         try:
+            if files:
+                for upload in files:
+                    content = await upload.read()
+                    file_obj = io.BytesIO(content)
+                    file_obj.name = upload.filename
+                    file_objects.append(file_obj)
+
+            kwargs = {"knowledge_base_name": name}
+            if texts:
+                kwargs["knowledge_base_texts"] = [t.model_dump() for t in texts]
+            if urls:
+                kwargs["knowledge_base_urls"] = urls
+            if file_objects:
+                kwargs["knowledge_base_files"] = file_objects
+
             response = client.knowledge_base.create(**kwargs)
             return response
+
         except Exception as e:
             raise InternalServerErrorException(f"Retell API Error: {str(e)}")
+
+        finally:
+            for f in file_objects:
+                try:
+                    f.close()
+                except Exception:
+                    pass
+
