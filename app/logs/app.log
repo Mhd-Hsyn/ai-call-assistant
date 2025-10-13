@@ -1,0 +1,99 @@
+2025-10-13 19:30:35 | INFO | ✅ Redis connected successfully
+2025-10-13 19:30:35 | INFO | ✅ MongoDB initialized
+2025-10-13 14:31:08 | INFO | ✅ Redis connected successfully
+2025-10-13 14:31:41 | INFO | ✅ Redis connected successfully
+2025-10-13 14:32:15 | INFO | ✅ Redis connected successfully
+2025-10-13 14:32:50 | INFO | ✅ Redis connected successfully
+2025-10-13 14:33:24 | INFO | ✅ Redis connected successfully
+2025-10-13 14:33:58 | INFO | ✅ Redis connected successfully
+2025-10-13 14:34:32 | INFO | ✅ Redis connected successfully
+2025-10-13 19:34:59 | INFO | 🛑 Application shutting down...
+2025-10-13 19:35:02 | INFO | ✅ Redis connected successfully
+2025-10-13 19:35:02 | INFO | ✅ MongoDB initialized
+2025-10-13 14:35:05 | INFO | ✅ Redis connected successfully
+2025-10-13 14:35:39 | INFO | ✅ Redis connected successfully
+2025-10-13 19:35:50 | INFO | ✅ Redis connected successfully
+2025-10-13 19:35:50 | INFO | ✅ MongoDB initialized
+2025-10-13 14:36:15 | INFO | ✅ Redis connected successfully
+2025-10-13 19:36:15 | INFO | ✅ Redis connected successfully
+2025-10-13 19:36:15 | INFO | ✅ MongoDB initialized
+2025-10-13 19:36:18 | INFO | ✅ Redis connected successfully
+2025-10-13 19:36:18 | INFO | ✅ MongoDB initialized
+2025-10-13 14:36:48 | INFO | ✅ Redis connected successfully
+2025-10-13 19:37:13 | INFO | 🛑 Application shutting down...
+2025-10-13 19:42:58 | INFO | ✅ Redis connected successfully
+2025-10-13 19:42:58 | INFO | ✅ MongoDB initialized
+2025-10-13 19:44:09 | INFO | 🛑 Application shutting down...
+2025-10-13 19:44:13 | INFO | ✅ Redis connected successfully
+2025-10-13 19:44:13 | INFO | ✅ MongoDB initialized
+2025-10-13 19:46:40 | INFO | 🛑 Application shutting down...
+2025-10-13 19:46:42 | INFO | ✅ Redis connected successfully
+2025-10-13 19:46:42 | INFO | ✅ MongoDB initialized
+2025-10-13 19:47:05 | INFO | ✅ Redis connected successfully
+2025-10-13 19:47:05 | INFO | ✅ MongoDB initialized
+2025-10-13 19:47:10 | INFO | ✅ Redis connected successfully
+2025-10-13 19:47:10 | INFO | ✅ MongoDB initialized
+2025-10-13 19:47:26 | INFO | ✅ Redis connected successfully
+2025-10-13 19:47:26 | INFO | ✅ MongoDB initialized
+2025-10-13 19:48:44 | INFO | ✅ Redis connected successfully
+2025-10-13 19:48:44 | INFO | ✅ MongoDB initialized
+2025-10-13 19:48:47 | INFO | ✅ Redis connected successfully
+2025-10-13 19:48:47 | INFO | ✅ MongoDB initialized
+2025-10-13 19:49:29 | INFO | 🛑 Application shutting down...
+2025-10-13 19:49:32 | INFO | ✅ Redis connected successfully
+2025-10-13 19:49:32 | INFO | ✅ MongoDB initialized
+2025-10-13 19:50:58 | INFO | 🛑 Application shutting down...
+2025-10-13 19:52:00 | INFO | ✅ Redis connected successfully
+2025-10-13 19:52:00 | INFO | ✅ MongoDB initialized
+2025-10-13 19:52:17 | INFO | ✅ Redis connected successfully
+2025-10-13 19:52:17 | INFO | ✅ MongoDB initialized
+2025-10-13 19:52:21 | INFO | ➡️  GET /api/clientside/knowledge-base/list-detail
+2025-10-13 19:52:21 | INFO | ✅ GET /api/clientside/knowledge-base/list-detail → 404 | 1.08ms
+2025-10-13 19:52:24 | INFO | ➡️  GET /api/clientside/knowledge-base/list-detail
+2025-10-13 19:52:24 | INFO | ✅ GET /api/clientside/knowledge-base/list-detail → 404 | 1.37ms
+2025-10-13 19:52:30 | INFO | ➡️  POST /api/auth/user/login
+2025-10-13 19:52:30 | INFO | ✅ POST /api/auth/user/login → 404 | 1.45ms
+2025-10-13 19:53:18 | INFO | ✅ Redis connected successfully
+2025-10-13 19:53:18 | INFO | ✅ MongoDB initialized
+2025-10-13 19:53:42 | INFO | 🛑 Application shutting down...
+2025-10-13 19:53:44 | INFO | ✅ Redis connected successfully
+2025-10-13 19:53:44 | INFO | ✅ MongoDB initialized
+2025-10-13 19:55:53 | INFO | ✅ Redis connected successfully
+2025-10-13 19:55:53 | INFO | ✅ MongoDB initialized
+2025-10-13 19:56:19 | INFO | ➡️  POST /api/auth/user/login
+2025-10-13 19:56:19 | INFO | ✅ POST /api/auth/user/login → 404 | 1.02ms
+2025-10-13 19:58:17 | INFO | ✅ Redis connected successfully
+2025-10-13 19:58:17 | INFO | ✅ MongoDB initialized
+2025-10-13 19:58:19 | INFO | ➡️  POST /api/auth/user/login
+2025-10-13 19:58:19 | INFO | ➡️  POST /api/auth/user/login
+2025-10-13 19:58:19 | INFO | ✅ POST /api/auth/user/login → 200 | 73.77ms
+2025-10-13 19:58:19 | INFO | ✅ POST /api/auth/user/login → 200 | 75.19ms
+2025-10-13 19:58:29 | INFO | ✅ Redis connected successfully
+2025-10-13 19:58:29 | INFO | ✅ MongoDB initialized
+2025-10-13 19:59:45 | INFO | ✅ Redis connected successfully
+2025-10-13 19:59:46 | INFO | ✅ MongoDB initialized
+2025-10-13 20:00:01 | INFO | 🛑 Application shutting down...
+2025-10-13 20:00:11 | INFO | ✅ Redis connected successfully
+2025-10-13 20:00:11 | INFO | ✅ MongoDB initialized
+2025-10-13 20:00:15 | INFO | ➡️  POST /api/auth/user/login
+2025-10-13 20:00:15 | INFO | ✅ POST /api/auth/user/login → 200 | 55.14ms
+2025-10-13 20:00:22 | INFO | ➡️  GET /api/clientside/knowledge-base/retrieve-detail
+2025-10-13 20:00:22 | INFO | ✅ GET /api/clientside/knowledge-base/retrieve-detail → 404 | 1.18ms
+2025-10-13 20:00:25 | INFO | ➡️  GET /api/clientside/knowledge-base/retrieve-detail
+2025-10-13 20:00:25 | INFO | ✅ GET /api/clientside/knowledge-base/retrieve-detail → 404 | 0.84ms
+2025-10-13 20:00:26 | INFO | ➡️  GET /api/clientside/knowledge-base/retrieve-detail
+2025-10-13 20:00:26 | INFO | ✅ GET /api/clientside/knowledge-base/retrieve-detail → 404 | 1.18ms
+2025-10-13 20:00:27 | INFO | ➡️  GET /api/clientside/knowledge-base/retrieve-detail
+2025-10-13 20:00:27 | INFO | ✅ GET /api/clientside/knowledge-base/retrieve-detail → 404 | 1.26ms
+2025-10-13 20:00:34 | INFO | ➡️  POST /api/auth/user/login
+2025-10-13 20:00:34 | INFO | ✅ POST /api/auth/user/login → 200 | 44.14ms
+2025-10-13 20:00:35 | INFO | ➡️  POST /api/auth/user/login
+2025-10-13 20:00:35 | INFO | ✅ POST /api/auth/user/login → 200 | 59.41ms
+2025-10-13 20:00:40 | INFO | ➡️  GET /api/clientside/knowledge-base/retrieve-detail
+2025-10-13 20:00:40 | INFO | ✅ GET /api/clientside/knowledge-base/retrieve-detail → 404 | 0.93ms
+2025-10-13 20:00:48 | INFO | ➡️  GET /api/clientside/knowledge-base/list-detail
+2025-10-13 20:00:48 | INFO | ✅ GET /api/clientside/knowledge-base/list-detail → 404 | 1.37ms
+2025-10-13 20:01:02 | INFO | ✅ Redis connected successfully
+2025-10-13 20:01:02 | INFO | ✅ MongoDB initialized
+2025-10-13 20:01:02 | INFO | ➡️  GET /api/clientside/knowledge-base/list-detail
+2025-10-13 20:01:02 | INFO | ✅ GET /api/clientside/knowledge-base/list-detail → 200 | 29.37ms
