@@ -167,6 +167,30 @@ async def get_knowledge_base(
 
 
 
+@knowledge_base_router.post(
+    "/retell/sync-user",
+    status_code=status.HTTP_200_OK,
+    response_model=APIBaseResponse,
+)
+async def sync_user_knowledge_bases_from_retell(
+    user: UserModel = Depends(ProfileActive()),
+):
+    """
+    🔁 Sync all IN_PROGRESS knowledge bases for the current user with Retell API.
+    - Fetches latest KB data from Retell
+    - Adds missing sources
+    - Updates KB status if changed
+    """
+    result = await RetellSyncService.sync_user_knowledge_bases(user)
+
+    return APIBaseResponse(
+        status=True,
+        message="User knowledge bases synced successfully",
+        data=result,
+    )
+
+
+
 @knowledge_base_router.post("/retell/sync-all", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
 async def sync_knowledge_bases_from_retell():
     """
@@ -182,6 +206,8 @@ async def sync_knowledge_bases_from_retell():
         message="Knowledge bases synced successfully",
         data=result,
     )
+
+
 
 
 

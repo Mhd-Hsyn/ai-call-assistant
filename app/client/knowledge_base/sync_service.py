@@ -1,59 +1,84 @@
 import json
 from retell import Retell
+from beanie.operators import And
 from app.config.settings import settings
 from app.client.models import KnowledgeBaseModel, KnowledgeBaseSourceModel
 from app.core.constants.choices import KnowledgeBaseSourceTypeChoices, KnowledgeBaseStatusChoices
 from app.config.logger_config import get_logger
+from app.auth.models import UserModel
 
 logger = get_logger("Retell Sync KnowledgeBase Service")
-
-
-client = Retell(api_key=settings.retell_api_key)
 
 
 class RetellSyncService:
     client = Retell(api_key=settings.retell_api_key)
 
+    # -------------------- Public APIs --------------------
+
     @staticmethod
     async def sync_in_progress_knowledge_bases():
         """
-        🔁 Fetch all IN_PROGRESS knowledge bases and sync with Retell API.
+        🔁 Sync all IN_PROGRESS knowledge bases globally.
         """
-        # Step 1: Get all KBs in progress
-        in_progress_kbs = await KnowledgeBaseModel.find(
-            KnowledgeBaseModel.status == KnowledgeBaseStatusChoices.IN_PROGRESS
-        ).to_list()
+        return await RetellSyncService._sync_kbs(
+            filters={KnowledgeBaseModel.status: KnowledgeBaseStatusChoices.IN_PROGRESS},
+            log_prefix="(GLOBAL)",
+        )
 
-        if not in_progress_kbs:
+    @staticmethod
+    async def sync_user_knowledge_bases(user: UserModel):
+        """
+        🔁 Sync all IN_PROGRESS knowledge bases for a specific user.
+        """
+        return await RetellSyncService._sync_kbs(
+            filters={
+                KnowledgeBaseModel.user.id: user.id,
+                KnowledgeBaseModel.status: KnowledgeBaseStatusChoices.IN_PROGRESS,
+            },
+            log_prefix=f"(USER: {user.email})",
+        )
+
+    # -------------------- Core Logic --------------------
+
+    @staticmethod
+    async def _sync_kbs(filters: dict, log_prefix: str = ""):
+        """
+        🧠 Core sync function used for both global & user-specific syncs.
+        """
+        query = And(*[k == v for k, v in filters.items()])
+        kbs = await KnowledgeBaseModel.find(query).to_list()
+
+        if not kbs:
             return {"message": "No IN_PROGRESS knowledge bases found"}
 
         synced_kbs = []
 
-        for kb in in_progress_kbs:
+        for kb in kbs:
             try:
-                logger.info(f"🔄 Syncing KB: {kb.knowledge_base_id}")
+                logger.info(f"{log_prefix} 🔄 Syncing KB: {kb.knowledge_base_id}")
 
-                # Step 2: Call Retell API
                 kb_data = RetellSyncService.client.knowledge_base.retrieve(kb.knowledge_base_id)
                 json_dict = json.loads(kb_data.model_dump_json())
 
-                # Step 3: Update KB status if changed
+                # ✅ Update KB status if changed
                 if json_dict.get("status") and json_dict["status"] != kb.status:
                     kb.status = json_dict["status"]
                     await kb.save()
 
-                # Step 4: Sync sources
+                # ✅ Sync sources
                 await RetellSyncService._sync_sources(kb, json_dict.get("knowledge_base_sources", []))
 
                 synced_kbs.append(kb.knowledge_base_id)
 
             except Exception as e:
-                logger.exception(f"❌ Failed to sync {kb.knowledge_base_id}: {str(e)}")
+                logger.exception(f"{log_prefix} ❌ Failed to sync {kb.knowledge_base_id}: {str(e)}")
 
         return {
             "message": f"Synced {len(synced_kbs)} knowledge bases",
             "synced_ids": synced_kbs,
         }
+
+    # -------------------- Source Sync --------------------
 
     @staticmethod
     async def _sync_sources(kb: KnowledgeBaseModel, sources: list):
@@ -68,7 +93,6 @@ class RetellSyncService:
             existing = await KnowledgeBaseSourceModel.find_one(
                 KnowledgeBaseSourceModel.source_id == source_id
             )
-
             if existing:
                 continue  # ✅ already exists
 
@@ -87,3 +111,4 @@ class RetellSyncService:
             await new_source.insert()
 
         logger.info(f"✅ Synced sources for KB: {kb.knowledge_base_id}")
+

@@ -489,3 +489,18 @@ status
 2025-10-11 15:20:48 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 12.11ms
 2025-10-11 15:32:56 | INFO | ➡️  Request started: GET http://localhost:8010/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
 2025-10-11 15:32:56 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 46.26ms
+2025-10-13 14:50:01 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/retell/sync-user
+2025-10-13 14:50:07 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/retell/sync-all
+2025-10-13 14:53:53 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/retell/sync-all
+2025-10-13 15:00:17 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/retell/sync-all
+2025-10-13 15:00:17 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/retell/sync-all Status: 200 | Time: 5.52ms
+2025-10-13 15:00:25 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/retell/sync-user
+2025-10-13 15:00:25 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/retell/sync-user Status: 200 | Time: 20.40ms
+2025-10-13 15:01:58 | INFO | ➡️  Request started: POST http://localhost:8000/api/clientside/knowledge-base/retell/sync-user
+2025-10-13 15:01:58 | INFO | (USER: developer.hsyn@gmail.com) 🔄 Syncing KB: knowledge_base_bfc4603a54a09b94
+2025-10-13 15:01:59 | INFO | ✅ Synced sources for KB: knowledge_base_bfc4603a54a09b94
+2025-10-13 15:01:59 | INFO | ✅ Request completed: POST /api/clientside/knowledge-base/retell/sync-user Status: 200 | Time: 1307.91ms
+2025-10-13 15:02:17 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-13 15:02:17 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 10.74ms
+2025-10-13 15:02:19 | INFO | ➡️  Request started: GET http://localhost:8000/api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173
+2025-10-13 15:02:19 | INFO | ✅ Request completed: GET /api/clientside/knowledge-base/60c3938f-4181-4e07-8f7f-6b71cb334173 Status: 200 | Time: 8.68ms
