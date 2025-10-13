@@ -1,4 +1,5 @@
 from uuid import UUID
+from typing import List
 from fastapi import (
     APIRouter, 
     Request, 
@@ -7,6 +8,8 @@ from fastapi import (
     Body, 
     Depends, 
 )
+from beanie.operators import In
+from collections import defaultdict
 from app.config.settings import settings
 from app.core.exceptions.base import (
     AppException,
@@ -49,7 +52,8 @@ from .schemas import (
     KnowledgeBaseResponse,
     SitemapRequest,
     KnowledgeBaseDetailResponse,
-    KnowledgeBaseSourceResponse
+    KnowledgeBaseSourceResponse,
+    KnowledgeBaseInfoResponse
 
 )
 
@@ -120,8 +124,44 @@ async def create_knowledge_base(
 
 
 
+@knowledge_base_router.get("/with-sources")
+async def list_user_knowledge_bases(user: UserModel = Depends(ProfileActive())):
+    knowledge_bases = await KnowledgeBaseModel.find(
+        KnowledgeBaseModel.user.id == user.id
+    ).to_list()
+
+    if not knowledge_bases:
+        return APIBaseResponse(status=True, message="No knowledge bases found", data=[])
+
+    kb_ids = [kb.id for kb in knowledge_bases]
+    sources = await KnowledgeBaseSourceModel.find(
+        In("knowledge_base.$id", kb_ids)
+    ).to_list()
+
+    # ✅ Group efficiently
+    sources_by_kb = defaultdict(list)
+    for s in sources:
+        sources_by_kb[s.knowledge_base.ref.id].append(s)
+
+    # ✅ Build response using list comprehension (fast)
+    kb_responses = [
+        KnowledgeBaseDetailResponse(
+            **kb.model_dump(),
+            sources=[KnowledgeBaseSourceResponse(**s.model_dump()) for s in sources_by_kb.get(kb.id, [])],
+        )
+        for kb in knowledge_bases
+    ]
+
+    return APIBaseResponse(
+        status=True,
+        message="Knowledge bases fetched successfully",
+        data=kb_responses,
+    )
+
+
+
 @knowledge_base_router.get(
-    "/{knowledge_base_uuid}",
+    "/{knowledge_base_uuid}/with-sources",
     response_model=APIBaseResponse,
     status_code=status.HTTP_200_OK,
 )
@@ -164,6 +204,46 @@ async def get_knowledge_base(
         message="Knowledge base fetched successfully",
         data=kb_response,
     )
+
+
+
+
+@knowledge_base_router.get(
+    "/",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def list_user_knowledge_bases_only(
+    user: UserModel = Depends(ProfileActive())
+):
+    """
+    🧾 Get all knowledge bases for current user (without sources).
+    Returns lightweight info: id, name, status, created_at, updated_at
+    """
+
+    # ✅ Fetch all KBs for this user
+    knowledge_bases = await KnowledgeBaseModel.find(
+        KnowledgeBaseModel.user.id == user.id
+    ).to_list()
+
+    if not knowledge_bases:
+        return APIBaseResponse(
+            status=True,
+            message="No knowledge bases found",
+            data=[],
+        )
+
+    # ✅ Use response schema for clean serialization
+    kb_responses: List[KnowledgeBaseInfoResponse] = [
+        KnowledgeBaseInfoResponse.model_validate(kb) for kb in knowledge_bases
+    ]
+
+    return APIBaseResponse(
+        status=True,
+        message="Knowledge bases fetched successfully (without sources)",
+        data=kb_responses,
+    )
+
 
 
 

@@ -159,3 +159,20 @@ class KnowledgeBaseDetailResponse(BaseModel):
             datetime: lambda v: v.strftime("%Y-%m-%d %H:%M:%S") if isinstance(v, datetime) else v,
         }
 
+
+class KnowledgeBaseInfoResponse(BaseModel):
+    id: uuid.UUID
+    knowledge_base_id: str
+    name: str
+    status: KnowledgeBaseStatusChoices
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True
+        json_encoders = {
+            uuid.UUID: str,
+            datetime: lambda v: v.strftime("%Y-%m-%d %H:%M:%S") if isinstance(v, datetime) else v,
+        }
+
+
