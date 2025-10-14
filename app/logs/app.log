@@ -726,3 +726,14 @@ TypeError: 'NoneType' object is not iterable
 2025-10-14 17:11:39 | INFO | ✅ POST /api/clientside/agent/create → 201 | 1802.76ms
 2025-10-14 17:12:18 | INFO | ✅ Redis connected successfully
 2025-10-14 17:12:18 | INFO | ✅ MongoDB initialized
+2025-10-14 17:15:37 | INFO | 🛑 Application shutting down...
+2025-10-14 17:15:40 | INFO | ✅ Redis connected successfully
+2025-10-14 17:15:40 | INFO | ✅ MongoDB initialized
+2025-10-14 17:16:54 | INFO | ✅ Redis connected successfully
+2025-10-14 17:16:54 | INFO | ✅ MongoDB initialized
+2025-10-14 17:16:57 | INFO | ✅ Redis connected successfully
+2025-10-14 17:16:57 | INFO | ✅ MongoDB initialized
+2025-10-14 17:17:00 | INFO | ➡️  POST /api/clientside/agent/create
+2025-10-14 17:17:00 | INFO | ✅ POST /api/clientside/agent/create → 422 | 16.38ms
+2025-10-14 17:17:29 | INFO | ➡️  POST /api/clientside/agent/create
+2025-10-14 17:17:30 | INFO | ✅ POST /api/clientside/agent/create → 201 | 1559.29ms

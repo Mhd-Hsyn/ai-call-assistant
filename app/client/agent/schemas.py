@@ -3,7 +3,11 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 from uuid import UUID
 from typing import List, Optional, Any
-
+from app.core.constants.choices import (
+    VoiceModelChoices,
+    LanguageChoices,
+    EngineStartSpeakChoice
+)
 
 class APIBaseResponse(BaseModel):
     status: bool
@@ -13,16 +17,31 @@ class APIBaseResponse(BaseModel):
 
 
 class CreateAgentAndEngineSchema(BaseModel):
+    """Schema to create a Response Engine + Agent"""
+    
+    # Response Engine fields
     general_prompt: Optional[str] = Field(None, description="General prompt for LLM")
-    knowledge_base_ids: Optional[List[str]] = Field(default_factory=list, description="Linked KB IDs")
+    knowledge_base_ids: Optional[List[str]] = Field(default_factory=list, description="Linked Knowledge Base IDs")
     temperature: Optional[float] = Field(0.7, description="Temperature for LLM")
-    voice_model: Optional[str] = Field("gpt-4o-mini", description="Voice model variant")
-    start_speaker: Optional[str] = Field("gpt-4o-mini", description="Voice model variant")
+    voice_model: VoiceModelChoices = Field(
+        default=VoiceModelChoices.GPT_4O_MINI,
+        description="Voice model variant (must match Retell supported models)"
+    )
+    start_speaker: EngineStartSpeakChoice = Field(
+        default=EngineStartSpeakChoice.USER,
+        description="Who starts the conversation"
+    )
 
-    # Agent details
+    # Agent fields
     agent_name: str = Field(..., description="Name of the Agent")
     voice_id: str = Field(..., description="Voice ID from Retell /voices API")
-    language: Optional[str] = Field("en-US", description="Language code")
+    language: LanguageChoices = Field(
+        default=LanguageChoices.EN_US,
+        description="Language code (e.g. en-US, es-ES, fr-FR)"
+    )
+
+    class Config:
+        use_enum_values = True  # ✅ auto serialize enums to string
 
 
 
