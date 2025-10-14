@@ -121,3 +121,16 @@ class VoiceResponse(BaseModel):
     description: Optional[str] = None
 
 
+
+#####  Retrieve Agent  #####
+
+class AgentResponseSchema(BaseModel):
+    id: UUID
+    agent_id: str
+    agent_name: str
+    voice_id: str
+    language: str
+    created_at: datetime
+    updated_at: datetime
+
+

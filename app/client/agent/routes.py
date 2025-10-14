@@ -33,8 +33,10 @@ from app.core.utils.save_images import (
     save_profile_image
 )
 from .schemas import (
-    VoiceResponse,
-    CreateAgentAndEngineSchema
+    APIBaseResponse,
+    CreateAgentAndEngineSchema,
+    AgentResponseSchema,
+
 )
 from .service import (
     AgentService,
@@ -83,5 +85,33 @@ async def create_agent_and_engine(
     agent_service = AgentService()
     return await agent_service.create_agent_and_engine(payload, user)
 
+
+@agent_router.get("/list", status_code=status.HTTP_200_OK)
+async def list_user_agents(user: UserModel = Depends(ProfileActive())):
+    """
+    🤖 Get all agents created by the authenticated user.
+    Ordered by newest first (created_at DESC)
+    """
+    agents = (
+        await AgentModel.find(AgentModel.user.id == user.id)
+        .sort(-AgentModel.created_at)
+        .to_list()
+    )
+
+    if not agents:
+        return APIBaseResponse(
+            status=True,
+            message="No agents found",
+            data=[],
+        )
+
+    agent_responses = [AgentResponseSchema(**agent.model_dump()) for agent in agents]
+
+    return APIBaseResponse(
+        status=True,
+        message="Agents fetched successfully",
+        count=len(agent_responses),
+        data=agent_responses,
+    )
 
 
