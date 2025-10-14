@@ -60,4 +60,4 @@ dist/
 .eggs/
 
 media/
-app.logs
+app.log
