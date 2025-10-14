@@ -15,6 +15,7 @@ class APIBaseResponse(BaseModel):
     data: Any | None = None
 
 
+#####  Agent Create Schema  #####
 
 class CreateAgentAndEngineSchema(BaseModel):
     """Schema to create a Response Engine + Agent"""
@@ -100,4 +101,23 @@ class AgentAndEngineCreateResponse(BaseModel):
     """Final combined response"""
     engine: ResponseEngineResponse
     agent: AgentResponse
+
+
+
+#####  Voice ID Response Schema  #####
+
+class VoiceResponse(BaseModel):
+    voice_id: Optional[str] = None
+    voice_name: Optional[str] = None
+    provider: Optional[str] = None
+    gender: Optional[str] = None
+    accent: Optional[str] = None
+    age: Optional[str] = None
+    preview_audio_url: Optional[str] = None
+    voice_type: Optional[str] = None
+    standard_voice_type: Optional[str] = None
+    avatar_url: Optional[str] = None
+    language: Optional[str] = None
+    description: Optional[str] = None
+
 

@@ -1,10 +1,12 @@
 from retell import Retell
+from typing import Optional, List
 from app.config.settings import settings
 from app.auth.models import UserModel
-from app.core.exceptions.base import AppException
+from app.core.exceptions.base import AppException, BadGatewayException
 from app.core.exceptions.handlers import handle_retell_error
 from ..models import AgentModel,ResponseEngineModel
 from .schemas import (
+    VoiceResponse,
     CreateAgentAndEngineSchema, 
     APIBaseResponse,
     AgentAndEngineCreateResponse,
@@ -12,6 +14,35 @@ from .schemas import (
     AgentResponse
 
 )
+
+
+
+class RetellVoiceService:
+    def __init__(self):
+        self.client = Retell(api_key=settings.retell_api_key)
+
+    def list_voices(self, language: str | None = None, gender: str | None = None) -> List[VoiceResponse]:
+        data = self.client.voice.list() or []
+        valid_voices: List[VoiceResponse] = []
+
+        for v in data:
+            try:
+                # Convert SDK object → dict
+                voice_dict = v.model_dump() if hasattr(v, "model_dump") else v.__dict__
+
+                # Optional filters
+                if language and voice_dict.get("language") and voice_dict["language"].lower() != language.lower():
+                    continue
+                if gender and voice_dict.get("gender") and voice_dict["gender"].lower() != gender.lower():
+                    continue
+
+                valid_voices.append(VoiceResponse(**voice_dict))
+            except Exception as e:
+                print(f"⚠️ Skipped invalid voice entry: {e}")
+                continue
+
+        return valid_voices
+
 
 
 class RetellAgentCreateService:

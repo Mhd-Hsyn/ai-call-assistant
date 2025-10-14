@@ -737,3 +737,84 @@ TypeError: 'NoneType' object is not iterable
 2025-10-14 17:17:00 | INFO | ✅ POST /api/clientside/agent/create → 422 | 16.38ms
 2025-10-14 17:17:29 | INFO | ➡️  POST /api/clientside/agent/create
 2025-10-14 17:17:30 | INFO | ✅ POST /api/clientside/agent/create → 201 | 1559.29ms
+2025-10-14 17:18:33 | INFO | ✅ Redis connected successfully
+2025-10-14 17:18:34 | INFO | ✅ MongoDB initialized
+2025-10-14 17:26:39 | INFO | ✅ Redis connected successfully
+2025-10-14 17:26:39 | INFO | ✅ MongoDB initialized
+2025-10-14 17:26:58 | INFO | 🛑 Application shutting down...
+2025-10-14 17:27:00 | INFO | ✅ Redis connected successfully
+2025-10-14 17:27:00 | INFO | ✅ MongoDB initialized
+2025-10-14 17:31:15 | INFO | 🛑 Application shutting down...
+2025-10-14 17:31:28 | INFO | ✅ Redis connected successfully
+2025-10-14 17:31:29 | INFO | ✅ MongoDB initialized
+2025-10-14 17:32:35 | INFO | 🛑 Application shutting down...
+2025-10-14 17:32:37 | INFO | ✅ Redis connected successfully
+2025-10-14 17:32:37 | INFO | ✅ MongoDB initialized
+2025-10-14 17:32:50 | INFO | 🛑 Application shutting down...
+2025-10-14 17:32:52 | INFO | ✅ Redis connected successfully
+2025-10-14 17:32:52 | INFO | ✅ MongoDB initialized
+2025-10-14 17:33:56 | INFO | 🛑 Application shutting down...
+2025-10-14 17:33:58 | INFO | ✅ Redis connected successfully
+2025-10-14 17:33:58 | INFO | ✅ MongoDB initialized
+2025-10-14 17:34:10 | INFO | 🛑 Application shutting down...
+2025-10-14 17:34:54 | INFO | ✅ Redis connected successfully
+2025-10-14 17:34:54 | INFO | ✅ MongoDB initialized
+2025-10-14 17:34:59 | INFO | ✅ Redis connected successfully
+2025-10-14 17:34:59 | INFO | ✅ MongoDB initialized
+2025-10-14 17:35:20 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:35:21 | INFO | ✅ GET /api/clientside/agent/voices → 502 | 927.01ms
+2025-10-14 17:36:08 | INFO | 🛑 Application shutting down...
+2025-10-14 17:36:10 | INFO | ✅ Redis connected successfully
+2025-10-14 17:36:10 | INFO | ✅ MongoDB initialized
+2025-10-14 17:36:22 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:36:23 | INFO | ✅ GET /api/clientside/agent/voices → 502 | 1056.30ms
+2025-10-14 17:36:25 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:36:26 | INFO | ✅ GET /api/clientside/agent/voices → 502 | 918.96ms
+2025-10-14 17:37:35 | INFO | 🛑 Application shutting down...
+2025-10-14 17:37:37 | INFO | ✅ Redis connected successfully
+2025-10-14 17:37:37 | INFO | ✅ MongoDB initialized
+2025-10-14 17:37:53 | INFO | ✅ Redis connected successfully
+2025-10-14 17:37:53 | INFO | ✅ MongoDB initialized
+2025-10-14 17:37:55 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:37:56 | INFO | ✅ GET /api/clientside/agent/voices → 502 | 936.47ms
+2025-10-14 17:38:35 | INFO | ✅ Redis connected successfully
+2025-10-14 17:38:35 | INFO | ✅ MongoDB initialized
+2025-10-14 17:38:51 | INFO | 🛑 Application shutting down...
+2025-10-14 17:38:53 | INFO | ✅ Redis connected successfully
+2025-10-14 17:38:53 | INFO | ✅ MongoDB initialized
+2025-10-14 17:39:22 | INFO | ✅ Redis connected successfully
+2025-10-14 17:39:22 | INFO | ✅ MongoDB initialized
+2025-10-14 17:39:40 | INFO | ✅ Redis connected successfully
+2025-10-14 17:39:40 | INFO | ✅ MongoDB initialized
+2025-10-14 17:39:43 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:39:44 | INFO | ✅ GET /api/clientside/agent/voices → 200 | 945.04ms
+2025-10-14 17:40:12 | INFO | 🛑 Application shutting down...
+2025-10-14 17:40:14 | INFO | ✅ Redis connected successfully
+2025-10-14 17:40:14 | INFO | ✅ MongoDB initialized
+2025-10-14 17:40:16 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:40:17 | INFO | ✅ GET /api/clientside/agent/voices → 200 | 941.94ms
+2025-10-14 17:41:54 | INFO | ✅ Redis connected successfully
+2025-10-14 17:41:54 | INFO | ✅ MongoDB initialized
+2025-10-14 17:42:01 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:42:02 | INFO | ✅ GET /api/clientside/agent/voices → 200 | 1011.24ms
+2025-10-14 17:42:07 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:42:08 | INFO | ✅ GET /api/clientside/agent/voices → 200 | 890.24ms
+2025-10-14 17:42:23 | INFO | ✅ Redis connected successfully
+2025-10-14 17:42:23 | INFO | ✅ MongoDB initialized
+2025-10-14 17:42:26 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:42:27 | INFO | ✅ GET /api/clientside/agent/voices → 200 | 968.12ms
+2025-10-14 17:42:56 | INFO | ✅ Redis connected successfully
+2025-10-14 17:42:56 | INFO | ✅ MongoDB initialized
+2025-10-14 17:43:10 | INFO | ✅ Redis connected successfully
+2025-10-14 17:43:10 | INFO | ✅ MongoDB initialized
+2025-10-14 17:43:47 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:43:48 | INFO | ✅ GET /api/clientside/agent/voices → 200 | 898.07ms
+2025-10-14 17:45:55 | INFO | ✅ Redis connected successfully
+2025-10-14 17:45:55 | INFO | ✅ MongoDB initialized
+2025-10-14 17:46:01 | INFO | ✅ Redis connected successfully
+2025-10-14 17:46:01 | INFO | ✅ MongoDB initialized
+2025-10-14 17:46:23 | INFO | 🛑 Application shutting down...
+2025-10-14 17:47:31 | INFO | ✅ Redis connected successfully
+2025-10-14 17:47:31 | INFO | ✅ MongoDB initialized
+2025-10-14 17:47:33 | INFO | ➡️  GET /api/clientside/agent/voices
+2025-10-14 17:47:34 | INFO | ✅ GET /api/clientside/agent/voices → 200 | 1061.63ms

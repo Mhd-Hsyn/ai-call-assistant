@@ -3,18 +3,15 @@ from fastapi import (
     Request, 
     status, 
     UploadFile, 
-    Body, 
+    Query, 
     Depends, 
 )
+from typing import Optional
 from app.config.settings import settings
 from app.core.exceptions.base import (
     AppException,
-    InternalServerErrorException,
-    ToManyRequestExeption,
-    NotFoundException,
-)
-from app.core.dependencies.authentication import (
-    JWTAuthentication
+    BadGatewayException,
+
 )
 from app.core.dependencies.authorization import (
     EmailVerified, 
@@ -36,14 +33,40 @@ from app.core.utils.save_images import (
     save_profile_image
 )
 from .schemas import (
-    APIBaseResponse,
+    VoiceResponse,
     CreateAgentAndEngineSchema
 )
 from .service import (
-    AgentService
+    AgentService,
+    RetellVoiceService
+    
 )
 
 agent_router = APIRouter()
+
+
+
+@agent_router.get("/voices", status_code=status.HTTP_200_OK)
+async def list_voices(
+    language: Optional[str] = Query(None, description="Filter by language code, e.g. en-US"),
+    gender: Optional[str] = Query(None, description="Filter by gender (male/female)")
+):
+    """
+    🎙️ List available Retell voices  
+    Optionally filter by language or gender.
+    """
+    try:
+        voice_service = RetellVoiceService()
+        voices = voice_service.list_voices(language=language, gender=gender)
+        return {
+            "status": True,
+            "message": "Voices fetched successfully",
+            "count": len(voices),
+            "data": [v.model_dump() for v in voices],
+        }
+    except Exception as e:
+        raise BadGatewayException(f"Failed to fetch voices from Retell: {e}")
+
 
 @agent_router.post(
     "/create",

@@ -36,3 +36,12 @@ class InternalServerErrorException(AppException):
     def __init__(self, message="Internal server error"):
         super().__init__(message, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
+
+class BadGatewayException(AppException):
+    """502 Bad Gateway Error."""
+    def __init__(self, message="Internal server error"):
+        super().__init__(message, status.HTTP_502_BAD_GATEWAY)
+
+
+
