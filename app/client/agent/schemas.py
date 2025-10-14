@@ -1,6 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import List, Optional, Dict
 from uuid import UUID
 from typing import List, Optional, Any
 from app.core.constants.choices import (
@@ -36,6 +36,7 @@ class CreateAgentAndEngineSchema(BaseModel):
     # Agent fields
     agent_name: str = Field(..., description="Name of the Agent")
     voice_id: str = Field(..., description="Voice ID from Retell /voices API")
+    voice_id_data: Optional[Dict[str, Any]] = Field(default=None, description="Full voice metadata object")
     language: LanguageChoices = Field(
         default=LanguageChoices.EN_US,
         description="Language code (e.g. en-US, es-ES, fr-FR)"
@@ -128,8 +129,9 @@ class AgentResponseSchema(BaseModel):
     id: UUID
     agent_id: str
     agent_name: str
-    voice_id: str
     language: str
+    voice_id: str
+    voice_id_data: Optional[dict] = None
     created_at: datetime
     updated_at: datetime
 

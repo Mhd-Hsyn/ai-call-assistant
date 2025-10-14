@@ -1,6 +1,6 @@
 from beanie import Link, Document
 from pydantic import Field
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 from app.core.models.base import BaseDocument
 from app.auth.models import UserModel
 from app.core.constants.choices import (
@@ -44,13 +44,13 @@ class ResponseEngineModel(BaseDocument):
     general_prompt: Optional[str] = None
     knowledge_base_ids: Optional[List[str]] = Field(default_factory=list)
     temperature: Optional[float] = 0
-    voice_model: Optional[VoiceModelChoices] = Field(
-        default=VoiceModelChoices.GPT_4O_MINI,
-        description="Voice model variant"
-    )
     start_speaker: Optional[EngineStartSpeakChoice] = Field(
         default=EngineStartSpeakChoice.USER,
         description="Who start conversation"
+    )
+    voice_model: Optional[VoiceModelChoices] = Field(
+        default=VoiceModelChoices.GPT_4O_MINI,
+        description="Voice model variant"
     )
 
     class Settings:
@@ -68,6 +68,7 @@ class AgentModel(BaseDocument):
     agent_id: str = Field(..., index=True, unique=True, description="Agent ID from Retell API")
     agent_name: str = Field(..., description="Agent name shown in the app")
     voice_id: str = Field(..., description="Selected voice ID from Retell /voices API")
+    voice_id_data: Optional[Dict[str, Any]] = Field(default=None, description="Full voice metadata object")
     language: LanguageChoices = Field(
         default=LanguageChoices.EN_US,
         description="Language code (e.g. en-US, es-ES, fr-FR)"

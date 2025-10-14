@@ -108,18 +108,19 @@ class AgentService:
         # Step 3: Create Agent on Retell
         agent_response = await self.retell_service.create_agent(llm_response.llm_id, payload)
 
-        # Step 4: Save Agent in DB
+        # Step 4: Save Agent in DB (with full voice object)
         agent = AgentModel(
             user=user,
             response_engine=engine,
             agent_id=agent_response.agent_id,
             agent_name=payload.agent_name,
             voice_id=payload.voice_id,
+            voice_id_data=payload.voice_id_data,
             language=payload.language
         )
         await agent.insert()
 
-        # Step 5: Return Response
+        # Step 5: Return response
         response_data = AgentAndEngineCreateResponse(
             engine=ResponseEngineResponse.model_validate(engine),
             agent=AgentResponse.model_validate(agent)
