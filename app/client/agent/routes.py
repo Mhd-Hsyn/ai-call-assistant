@@ -24,12 +24,41 @@ from app.core.constants.choices import (
     KnowledgeBaseStatusChoices,
     KnowledgeBaseSourceTypeChoices
 )
+from app.auth.models import (
+    UserModel
+)
 from ..models import (
-    KnowledgeBaseModel,
-    KnowledgeBaseSourceModel
+    ResponseEngineModel,
+    AgentModel
+    
 )
 from app.core.utils.save_images import (
     save_profile_image
 )
+from .schemas import (
+    APIBaseResponse,
+    CreateAgentAndEngineSchema
+)
+from .service import (
+    AgentService
+)
 
 agent_router = APIRouter()
+
+@agent_router.post(
+    "/create",
+    response_model=None,
+    status_code=status.HTTP_201_CREATED
+)
+async def create_agent_and_engine(
+    payload: CreateAgentAndEngineSchema,
+    user: UserModel = Depends(ProfileActive())
+):
+    """
+    🧠 Create a Response Engine and a linked Agent in Retell & save in DB
+    """
+    agent_service = AgentService()
+    return await agent_service.create_agent_and_engine(payload, user)
+
+
+

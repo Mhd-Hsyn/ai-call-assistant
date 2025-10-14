@@ -91,3 +91,7 @@ class VoiceModelChoices(StrEnum):
     GEMINI_2_5_FLASH_LITE = "gemini-2.5-flash-lite"
 
 
+class EngineStartSpeakChoice(StrEnum):
+    AGENT = 'agent'
+    USER = 'user'
+
