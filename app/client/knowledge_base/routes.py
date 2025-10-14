@@ -119,17 +119,25 @@ async def create_knowledge_base(
 
 @knowledge_base_router.get("/list-detail")
 async def list_user_knowledge_bases(user: UserModel = Depends(ProfileActive())):
-    knowledge_bases = await KnowledgeBaseModel.find(
-        KnowledgeBaseModel.user.id == user.id
-    ).to_list()
+    knowledge_bases = (
+        await KnowledgeBaseModel.find(
+            KnowledgeBaseModel.user.id == user.id
+        )
+        .sort(-KnowledgeBaseModel.created_at)
+        .to_list()
+    )
 
     if not knowledge_bases:
         return APIBaseResponse(status=True, message="No knowledge bases found", data=[])
 
     kb_ids = [kb.id for kb in knowledge_bases]
-    sources = await KnowledgeBaseSourceModel.find(
-        In("knowledge_base.$id", kb_ids)
-    ).to_list()
+    sources = (
+        await KnowledgeBaseSourceModel.find(
+            In("knowledge_base.$id", kb_ids)
+        )
+        .sort(-KnowledgeBaseSourceModel.created_at)
+        .to_list()
+    )
 
     # ✅ Group efficiently
     sources_by_kb = defaultdict(list)
@@ -179,7 +187,7 @@ async def get_knowledge_base_with_sources(
     # ✅ Fetch all related sources
     sources = await KnowledgeBaseSourceModel.find(
         KnowledgeBaseSourceModel.knowledge_base.id == kb.id
-    ).to_list()
+    ).sort(-KnowledgeBaseSourceModel.created_at).to_list()
 
     # ✅ Serialize sources
     source_responses = [
@@ -215,9 +223,13 @@ async def list_user_knowledge_bases_only(
     """
 
     # ✅ Fetch all KBs for this user
-    knowledge_bases = await KnowledgeBaseModel.find(
-        KnowledgeBaseModel.user.id == user.id
-    ).to_list()
+    knowledge_bases = (
+        await KnowledgeBaseModel.find(
+            KnowledgeBaseModel.user.id == user.id
+        )
+        .sort(-KnowledgeBaseModel.created_at)
+        .to_list()
+    )
 
     if not knowledge_bases:
         return APIBaseResponse(
