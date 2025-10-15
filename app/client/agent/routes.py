@@ -183,7 +183,7 @@ async def get_agent_data_by_id(
 
 
 @agent_router.get(
-    "/agent-engine-knowledgebase",
+    "/engine-knowledgebase",
     response_model=APIBaseResponse,
     status_code=status.HTTP_200_OK
 )
