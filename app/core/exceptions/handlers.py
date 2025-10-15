@@ -29,18 +29,17 @@ async def app_exception_handler(request: Request, exc: AppException):
 #         },
 #     )
 
+
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     errors = []
     message_parts = []
 
     for err in exc.errors():
-        field = err["loc"][-1]
-        msg = err["msg"]
+        loc = err.get("loc", ())
+        field = loc[-1] if loc else "non_field_error"
+        msg = err.get("msg", "Invalid input")
 
-        # add in error list
         errors.append({field: msg})
-
-        # add to message summary
         message_parts.append(f"{field} {msg}")
 
     summary_message = "Validation failed"

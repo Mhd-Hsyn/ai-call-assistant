@@ -85,7 +85,7 @@ class AgentResponse(BaseModel):
     agent_name: str
     voice_id: str
     language: str
-    response_engine: LinkedEngineInfo  # ✅ Avoid recursion here
+    response_engine: LinkedEngineInfo
     created_at: datetime
     updated_at: datetime
 
@@ -135,4 +135,11 @@ class AgentResponseSchema(BaseModel):
     created_at: datetime
     updated_at: datetime
 
+    class Config:
+        orm_mode = True
+        from_attributes = True
+        json_encoders = {
+            UUID: str,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p") if isinstance(v, datetime) else v,
+        }
 

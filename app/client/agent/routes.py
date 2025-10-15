@@ -12,6 +12,7 @@ from app.config.settings import settings
 from app.core.exceptions.base import (
     AppException,
     BadGatewayException,
+    NotFoundException
 
 )
 from app.core.dependencies.authorization import (
@@ -37,7 +38,7 @@ from .schemas import (
     APIBaseResponse,
     CreateAgentAndEngineSchema,
     AgentResponseSchema,
-    ResponseEngineResponse
+    ResponseEngineResponse,
 )
 from .service import (
     AgentService,
@@ -106,7 +107,9 @@ async def list_user_agents(user: UserModel = Depends(ProfileActive())):
             data=[],
         )
 
-    agent_responses = [AgentResponseSchema(**agent.model_dump()) for agent in agents]
+    agent_responses = [
+        AgentResponseSchema.model_validate(agent) for agent in agents
+    ]
 
     return APIBaseResponse(
         status=True,
@@ -149,6 +152,31 @@ async def get_engine_data_by_agent(
         status=True,
         message="Engine data fetched successfully",
         data=response_data,
+    )
+
+
+
+@agent_router.get(
+    "/agent-data",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def get_agent_data_by_id(
+    agent_id : UUID = Query(..., description="Agent UUID"),
+    user : UserModel = Depends(dependency=ProfileActive())
+):
+    agent = await AgentModel.find_one(
+        AgentModel.id == agent_id,
+        AgentModel.user.id == user.id
+    )
+    if not agent:
+        raise NotFoundException("agent not found")
+
+    agent_data = AgentResponseSchema.model_validate(agent)
+    return APIBaseResponse(
+        status= True,
+        message= "Agent data retrive successfully",
+        data=agent_data
     )
 
 
