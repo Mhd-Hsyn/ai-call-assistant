@@ -1,4 +1,5 @@
 from uuid import UUID
+from beanie.operators import In
 from fastapi import (
     APIRouter, 
     Request, 
@@ -27,8 +28,8 @@ from app.auth.models import (
     UserModel
 )
 from ..models import (
-    ResponseEngineModel,
-    AgentModel
+    AgentModel,
+    KnowledgeBaseModel,
     
 )
 from app.core.utils.save_images import (
@@ -39,6 +40,7 @@ from .schemas import (
     CreateAgentAndEngineSchema,
     AgentResponseSchema,
     ResponseEngineResponse,
+    KnowledgeBaseInfoResponse,
 )
 from .service import (
     AgentService,
@@ -178,5 +180,37 @@ async def get_agent_data_by_id(
         message= "Agent data retrive successfully",
         data=agent_data
     )
+
+
+@agent_router.get(
+    "/agent-engine-knowledgebase",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def get_agent_engine_knowledgebases(
+    agent_id : UUID = Query(..., description="Agent UUID"),
+    user : UserModel = Depends(dependency=ProfileActive())
+):
+    agent = await AgentModel.find_one(
+        AgentModel.id == agent_id,
+        AgentModel.user.id == user.id,
+        fetch_links=True
+    )
+    response_engine = agent.response_engine
+    if not agent or not response_engine:
+        raise NotFoundException("Agent or Engine not found")
+
+    knowledge_base_ids = response_engine.knowledge_base_ids
+    knowledge_bases = await KnowledgeBaseModel.find(
+        In(KnowledgeBaseModel.knowledge_base_id, knowledge_base_ids)
+    ).to_list()
+    data = [KnowledgeBaseInfoResponse.model_validate(kb) for kb in knowledge_bases]
+
+    return APIBaseResponse(
+        status=True,
+        message= "Knowledge Base retrive successfully",
+        data= data
+    )
+
 
 

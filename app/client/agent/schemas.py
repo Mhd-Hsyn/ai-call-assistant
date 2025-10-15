@@ -6,7 +6,8 @@ from typing import List, Optional, Any
 from app.core.constants.choices import (
     VoiceModelChoices,
     LanguageChoices,
-    EngineStartSpeakChoice
+    EngineStartSpeakChoice,
+    KnowledgeBaseStatusChoices
 )
 
 class APIBaseResponse(BaseModel):
@@ -142,4 +143,21 @@ class AgentResponseSchema(BaseModel):
             UUID: str,
             datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p") if isinstance(v, datetime) else v,
         }
+
+
+class KnowledgeBaseInfoResponse(BaseModel):
+    id: UUID
+    knowledge_base_id: str
+    name: str
+    status: KnowledgeBaseStatusChoices
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True
+        json_encoders = {
+            UUID: str,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p") if isinstance(v, datetime) else v,
+        }
+
 
