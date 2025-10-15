@@ -161,3 +161,22 @@ class KnowledgeBaseInfoResponse(BaseModel):
         }
 
 
+# update
+
+class UpdateEngineSchema(BaseModel):
+    general_prompt: Optional[str] = None
+    knowledge_base_ids: Optional[List[str]] = None
+    temperature: Optional[float] = None
+    voice_model: Optional[str] = None
+    start_speaker: Optional[str] = None
+    begin_message: Optional[str] = None
+
+
+class UpdateAgentSchema(BaseModel):
+    agent_name: Optional[str] = None
+    voice_id: Optional[str] = None
+    voice_id_data: Optional[dict] = None
+    language: Optional[str] = None
+
+
+

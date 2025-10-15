@@ -1,8 +1,9 @@
+from uuid import UUID
 from retell import Retell
-from typing import Optional, List
+from typing import List
 from app.config.settings import settings
 from app.auth.models import UserModel
-from app.core.exceptions.base import AppException, BadGatewayException
+from app.core.exceptions.base import NotFoundException
 from app.core.exceptions.handlers import handle_retell_error
 from ..models import AgentModel,ResponseEngineModel
 from .schemas import (
@@ -11,7 +12,10 @@ from .schemas import (
     APIBaseResponse,
     AgentAndEngineCreateResponse,
     ResponseEngineResponse,
-    AgentResponse
+    AgentResponse,
+    UpdateEngineSchema,
+    UpdateAgentSchema,
+    AgentResponseSchema,
 
 )
 
@@ -45,7 +49,7 @@ class RetellVoiceService:
 
 
 
-class RetellAgentCreateService:
+class RetellAgentService:
     def __init__(self):
         self.client = Retell(api_key=settings.retell_api_key)
 
@@ -81,7 +85,7 @@ class RetellAgentCreateService:
 
 class AgentService:
     def __init__(self):
-        self.retell_service = RetellAgentCreateService()
+        self.retell_service = RetellAgentService()
 
     async def create_agent_and_engine(self, payload: CreateAgentAndEngineSchema, user: UserModel):
         """
@@ -131,4 +135,84 @@ class AgentService:
             message="Response Engine and Agent created successfully",
             data=response_data
         )
-        
+
+    async def update_response_engine(self, engine_id: str, payload: UpdateEngineSchema, user: UserModel):
+        """
+        🔹 Update Response Engine on Retell
+        🔹 Update same in DB
+        """
+        # 1️⃣ Find engine in DB
+        engine = await ResponseEngineModel.find_one(
+            ResponseEngineModel.engine_id == engine_id,
+            ResponseEngineModel.user.id == user.id
+        )
+        if not engine:
+            raise NotFoundException("Response Engine not found")
+
+        # 2️⃣ Update on Retell
+        try:
+            retell_client = Retell(api_key=settings.retell_api_key)
+            updated_llm = retell_client.llm.update(
+                llm_id=engine_id,
+                start_speaker=payload.start_speaker or "user",
+                general_prompt=payload.general_prompt or engine.general_prompt,
+                knowledge_base_ids=payload.knowledge_base_ids or engine.knowledge_base_ids,
+                model_temperature=payload.temperature or engine.temperature,
+                model=payload.voice_model or engine.voice_model,
+                begin_message=payload.begin_message or None
+            )
+        except Exception as e:
+            raise handle_retell_error(e)
+
+        # 3️⃣ Update in DB
+        update_data = payload.dict(exclude_unset=True)
+        for key, value in update_data.items():
+            setattr(engine, key, value)
+        await engine.save()
+
+        return APIBaseResponse(
+            status=True,
+            message="Response Engine updated successfully",
+            data=ResponseEngineResponse.model_validate(engine)
+        )
+
+
+    async def update_agent(self, agent_id: str, payload: UpdateAgentSchema, user: UserModel):
+        """
+        🔹 Update Agent on Retell
+        🔹 Update same in DB
+        """
+        # 1️⃣ Find agent in DB
+        agent = await AgentModel.find_one(
+            AgentModel.agent_id == agent_id,
+            AgentModel.user.id == user.id,
+            fetch_links=True
+        )
+        if not agent:
+            raise NotFoundException("Agent not found")
+
+        # 2️⃣ Update on Retell
+        try:
+            retell_client = Retell(api_key=settings.retell_api_key)
+            updated_agent = retell_client.agent.update(
+                agent_id=agent_id,
+                agent_name=payload.agent_name or agent.agent_name,
+                voice_id=payload.voice_id or agent.voice_id,
+                language=payload.language or agent.language
+            )
+        except Exception as e:
+            raise handle_retell_error(e)
+
+        # 3️⃣ Update in DB
+        update_data = payload.dict(exclude_unset=True)
+        for key, value in update_data.items():
+            setattr(agent, key, value)
+        await agent.save()
+
+        return APIBaseResponse(
+            status=True,
+            message="Agent updated successfully",
+            data=AgentResponseSchema.model_validate(agent)
+        )
+
+

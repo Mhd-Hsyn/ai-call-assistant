@@ -17,12 +17,7 @@ from app.core.exceptions.base import (
 
 )
 from app.core.dependencies.authorization import (
-    EmailVerified, 
     ProfileActive
-)
-from app.core.constants.choices import (
-    KnowledgeBaseStatusChoices,
-    KnowledgeBaseSourceTypeChoices
 )
 from app.auth.models import (
     UserModel
@@ -32,15 +27,15 @@ from ..models import (
     KnowledgeBaseModel,
     
 )
-from app.core.utils.save_images import (
-    save_profile_image
-)
 from .schemas import (
     APIBaseResponse,
     CreateAgentAndEngineSchema,
     AgentResponseSchema,
     ResponseEngineResponse,
     KnowledgeBaseInfoResponse,
+    UpdateEngineSchema,
+    UpdateAgentSchema,
+
 )
 from .service import (
     AgentService,
@@ -211,6 +206,41 @@ async def get_agent_engine_knowledgebases(
         message= "Knowledge Base retrive successfully",
         data= data
     )
+
+# update
+
+@agent_router.patch(
+    "/update-engine/{engine_id}",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def update_response_engine(
+    engine_id: str,
+    payload: UpdateEngineSchema,
+    user: UserModel = Depends(ProfileActive())
+):
+    """
+    ⚙️ Update Response Engine on Retell and in DB
+    """
+    service = AgentService()
+    return await service.update_response_engine(engine_id, payload, user)
+
+
+@agent_router.patch(
+    "/update-agent/{agent_id}",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def update_agent(
+    agent_id: str,
+    payload: UpdateAgentSchema,
+    user: UserModel = Depends(ProfileActive())
+):
+    """
+    🧠 Update Agent on Retell and in DB
+    """
+    service = AgentService()
+    return await service.update_agent(agent_id, payload, user)
 
 
 
