@@ -1,3 +1,4 @@
+from uuid import UUID
 from fastapi import (
     APIRouter, 
     Request, 
@@ -36,7 +37,7 @@ from .schemas import (
     APIBaseResponse,
     CreateAgentAndEngineSchema,
     AgentResponseSchema,
-
+    ResponseEngineResponse
 )
 from .service import (
     AgentService,
@@ -86,7 +87,7 @@ async def create_agent_and_engine(
     return await agent_service.create_agent_and_engine(payload, user)
 
 
-@agent_router.get("/list", status_code=status.HTTP_200_OK)
+@agent_router.get("/list", response_model=APIBaseResponse, status_code=status.HTTP_200_OK)
 async def list_user_agents(user: UserModel = Depends(ProfileActive())):
     """
     🤖 Get all agents created by the authenticated user.
@@ -112,6 +113,42 @@ async def list_user_agents(user: UserModel = Depends(ProfileActive())):
         message="Agents fetched successfully",
         count=len(agent_responses),
         data=agent_responses,
+    )
+
+
+@agent_router.get(
+    "/engine-data",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def get_engine_data_by_agent(
+    agent_id: UUID = Query(..., description="Agent UUID"),
+    user: UserModel = Depends(ProfileActive()),
+):
+    """
+    🎯 Fetch the Response Engine data for a specific Agent using its agent_id.
+    Only returns the Response Engine details (no Agent data).
+    """
+    # Find the agent and fetch the linked response engine
+    agent = await AgentModel.find_one(
+        AgentModel.id == agent_id,
+        AgentModel.user.id == user.id,
+        fetch_links=True
+    )
+
+    if not agent or not agent.response_engine:
+        return APIBaseResponse(
+            status=False,
+            message="Engine not found for this agent or user",
+        )
+
+    engine = agent.response_engine
+    response_data=ResponseEngineResponse.model_validate(engine)
+
+    return APIBaseResponse(
+        status=True,
+        message="Engine data fetched successfully",
+        data=response_data,
     )
 
 

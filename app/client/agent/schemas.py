@@ -64,7 +64,7 @@ class ResponseEngineResponse(BaseModel):
         from_attributes = True
         json_encoders = {
             UUID: str,
-            datetime: lambda v: v.strftime("%Y-%m-%d %H:%M:%S") if isinstance(v, datetime) else v,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p") if isinstance(v, datetime) else v,
         }
 
 
@@ -94,7 +94,7 @@ class AgentResponse(BaseModel):
         from_attributes = True
         json_encoders = {
             UUID: str,
-            datetime: lambda v: v.strftime("%Y-%m-%d %H:%M:%S") if isinstance(v, datetime) else v,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p") if isinstance(v, datetime) else v,
         }
 
 

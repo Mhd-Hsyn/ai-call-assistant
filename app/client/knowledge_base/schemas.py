@@ -119,7 +119,7 @@ class KnowledgeBaseResponse(BaseModel):
         from_attributes = True
         json_encoders = {
             uuid.UUID: str,
-            datetime: lambda v: v.strftime("%Y-%m-%d %H:%M:%S") if isinstance(v, datetime) else v,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p") if isinstance(v, datetime) else v,
         }
 
 
@@ -138,7 +138,7 @@ class KnowledgeBaseSourceResponse(BaseModel):
         from_attributes = True
         json_encoders = {
             uuid.UUID: str,
-            datetime: lambda v: v.strftime("%Y-%m-%d %H:%M:%S") if isinstance(v, datetime) else v,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p") if isinstance(v, datetime) else v,
         }
 
 
@@ -156,7 +156,7 @@ class KnowledgeBaseDetailResponse(BaseModel):
         from_attributes = True
         json_encoders = {
             uuid.UUID: str,
-            datetime: lambda v: v.strftime("%Y-%m-%d %H:%M:%S") if isinstance(v, datetime) else v,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p") if isinstance(v, datetime) else v,
         }
 
 
@@ -172,7 +172,7 @@ class KnowledgeBaseInfoResponse(BaseModel):
         from_attributes = True
         json_encoders = {
             uuid.UUID: str,
-            datetime: lambda v: v.strftime("%Y-%m-%d %H:%M:%S") if isinstance(v, datetime) else v,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p") if isinstance(v, datetime) else v,
         }
 
 
