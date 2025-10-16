@@ -44,7 +44,7 @@ class CreateAgentAndEngineSchema(BaseModel):
     )
 
     class Config:
-        use_enum_values = True  # ✅ auto serialize enums to string
+        use_enum_values = True  # auto serialize enums to string
 
 
 

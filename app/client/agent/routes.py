@@ -1,17 +1,14 @@
 from uuid import UUID
+from typing import Optional
 from beanie.operators import In
 from fastapi import (
     APIRouter, 
-    Request, 
     status, 
-    UploadFile, 
     Query, 
     Depends, 
 )
-from typing import Optional
 from app.config.settings import settings
 from app.core.exceptions.base import (
-    AppException,
     BadGatewayException,
     NotFoundException
 
@@ -53,7 +50,7 @@ async def list_voices(
     gender: Optional[str] = Query(None, description="Filter by gender (male/female)")
 ):
     """
-    🎙️ List available Retell voices  
+    List available Retell voices  
     Optionally filter by language or gender.
     """
     try:
@@ -79,7 +76,7 @@ async def create_agent_and_engine(
     user: UserModel = Depends(ProfileActive())
 ):
     """
-    🧠 Create a Response Engine and a linked Agent in Retell & save in DB
+    Create a Response Engine and a linked Agent in Retell & save in DB
     """
     agent_service = AgentService()
     return await agent_service.create_agent_and_engine(payload, user)
@@ -88,7 +85,7 @@ async def create_agent_and_engine(
 @agent_router.get("/list", response_model=APIBaseResponse, status_code=status.HTTP_200_OK)
 async def list_user_agents(user: UserModel = Depends(ProfileActive())):
     """
-    🤖 Get all agents created by the authenticated user.
+    Get all agents created by the authenticated user.
     Ordered by newest first (created_at DESC)
     """
     agents = (
@@ -126,7 +123,7 @@ async def get_engine_data_by_agent(
     user: UserModel = Depends(ProfileActive()),
 ):
     """
-    🎯 Fetch the Response Engine data for a specific Agent using its agent_id.
+    Fetch the Response Engine data for a specific Agent using its agent_id.
     Only returns the Response Engine details (no Agent data).
     """
     # Find the agent and fetch the linked response engine
@@ -220,7 +217,7 @@ async def update_response_engine(
     user: UserModel = Depends(ProfileActive())
 ):
     """
-    ⚙️ Update Response Engine on Retell and in DB
+    Update Response Engine on Retell and in DB
     """
     service = AgentService()
     return await service.update_response_engine(retell_engine_llm_id, payload, user)
@@ -237,7 +234,7 @@ async def update_agent(
     user: UserModel = Depends(ProfileActive())
 ):
     """
-    🧠 Update Agent on Retell and in DB
+    Update Agent on Retell and in DB
     """
     service = AgentService()
     return await service.update_agent(retell_agent_id, payload, user)
@@ -251,7 +248,7 @@ async def delete_agent_and_engine(
     user: UserModel = Depends(ProfileActive())
 ):
     """
-    🗑️ Delete agent + linked response engine from Retell & DB
+    Delete agent + linked response engine from Retell & DB
     """
     service = AgentService()
     return await service.delete_agent_and_engine(agent_id, user)

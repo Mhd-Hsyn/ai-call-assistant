@@ -15,7 +15,7 @@ class RetellService:
     @staticmethod
     async def list_sitemap(website_url):
         """
-        📡 Calls Retell AI API to list sitemaps of a given website.
+        Calls Retell AI API to list sitemaps of a given website.
         """
         endpoint = f"{RetellService.BASE_URL}/list-sitemap"
         headers = {

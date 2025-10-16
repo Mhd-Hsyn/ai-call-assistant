@@ -1,30 +1,21 @@
 from uuid import UUID
 from typing import List
+from collections import defaultdict
+from beanie.operators import In
 from fastapi import (
     APIRouter, 
     status, 
     Query,
     Depends, 
 )
-from beanie.operators import In
-from collections import defaultdict
-from app.config.settings import settings
 from app.core.exceptions.base import (
-    AppException,
-    InternalServerErrorException,
-    ToManyRequestExeption,
     NotFoundException,
 )
-from app.core.dependencies.authentication import (
-    JWTAuthentication
-)
 from app.core.dependencies.authorization import (
-    EmailVerified, 
     ProfileActive
 )
 from app.core.constants.choices import (
     KnowledgeBaseStatusChoices,
-    KnowledgeBaseSourceTypeChoices
 )
 from ..models import (
     KnowledgeBaseModel,
@@ -32,9 +23,6 @@ from ..models import (
 )
 from app.auth.models import (
     UserModel
-)
-from app.core.utils.save_images import (
-    save_profile_image
 )
 from .service import (
     RetellKnowledgeBaseService,
@@ -66,7 +54,7 @@ knowledge_base_router = APIRouter()
 )
 async def list_sitemap(payload: SitemapRequest):
     """
-    🌐 Fetch sitemap links from Retell AI API (via service layer).
+    Fetch sitemap links from Retell AI API (via service layer).
     """
     sitemap_data = await RetellService.list_sitemap(payload.website_url)
 
@@ -139,12 +127,12 @@ async def list_user_knowledge_bases(user: UserModel = Depends(ProfileActive())):
         .to_list()
     )
 
-    # ✅ Group efficiently
+    # Group efficiently
     sources_by_kb = defaultdict(list)
     for s in sources:
         sources_by_kb[s.knowledge_base.ref.id].append(s)
 
-    # ✅ Build response using list comprehension (fast)
+    # Build response using list comprehension (fast)
     kb_responses = [
         KnowledgeBaseDetailResponse(
             **kb.model_dump(),
@@ -171,11 +159,11 @@ async def get_knowledge_base_with_sources(
     user: UserModel = Depends(ProfileActive()),
 ):
     """
-    📚 Get a single Knowledge Base and its associated Sources.
+    Get a single Knowledge Base and its associated Sources.
     Accessible only to the authenticated owner.
     """
 
-    # ✅ Fetch KB for this user
+    # Fetch KB for this user
     kb = await KnowledgeBaseModel.find_one(
         KnowledgeBaseModel.id == knowledge_base_uuid,
         KnowledgeBaseModel.user.id == user.id,
@@ -184,17 +172,17 @@ async def get_knowledge_base_with_sources(
     if not kb:
         raise NotFoundException("Knowledge base not found")
 
-    # ✅ Fetch all related sources
+    # Fetch all related sources
     sources = await KnowledgeBaseSourceModel.find(
         KnowledgeBaseSourceModel.knowledge_base.id == kb.id
     ).sort(-KnowledgeBaseSourceModel.created_at).to_list()
 
-    # ✅ Serialize sources
+    # Serialize sources
     source_responses = [
         KnowledgeBaseSourceResponse.model_validate(s) for s in sources
     ]
 
-    # ✅ Build final KB response
+    # Build final KB response
     kb_response = KnowledgeBaseDetailResponse(
         **kb.model_dump(),
         sources=source_responses,
@@ -218,11 +206,11 @@ async def list_user_knowledge_bases_only(
     user: UserModel = Depends(ProfileActive())
 ):
     """
-    🧾 Get all knowledge bases for current user (without sources).
+    Get all knowledge bases for current user (without sources).
     Returns lightweight info: id, name, status, created_at, updated_at
     """
 
-    # ✅ Fetch all KBs for this user
+    # Fetch all KBs for this user
     knowledge_bases = (
         await KnowledgeBaseModel.find(
             KnowledgeBaseModel.user.id == user.id
@@ -238,7 +226,7 @@ async def list_user_knowledge_bases_only(
             data=[],
         )
 
-    # ✅ Use response schema for clean serialization
+    # Use response schema for clean serialization
     kb_responses: List[KnowledgeBaseInfoResponse] = [
         KnowledgeBaseInfoResponse.model_validate(kb) for kb in knowledge_bases
     ]
@@ -261,7 +249,7 @@ async def sync_user_knowledge_bases_from_retell(
     user: UserModel = Depends(ProfileActive()),
 ):
     """
-    🔁 Sync all IN_PROGRESS knowledge bases for the current user with Retell API.
+    Sync all IN_PROGRESS knowledge bases for the current user with Retell API.
     - Fetches latest KB data from Retell
     - Adds missing sources
     - Updates KB status if changed
@@ -279,7 +267,7 @@ async def sync_user_knowledge_bases_from_retell(
 @knowledge_base_router.post("/retell/sync-all", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
 async def sync_knowledge_bases_from_retell():
     """
-    🔁 Sync all IN_PROGRESS knowledge bases with Retell API.
+    Sync all IN_PROGRESS knowledge bases with Retell API.
     - Fetches latest data
     - Adds missing sources
     - Updates KB status if changed

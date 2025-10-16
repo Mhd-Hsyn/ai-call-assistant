@@ -1,19 +1,28 @@
 import json
 import uuid
 from datetime import datetime
-from beanie import Link
-from fastapi import Form, File, UploadFile
-from pydantic import BaseModel, Field, field_validator, HttpUrl
-from typing import List, Optional, Any
+from typing import (
+    List, 
+    Optional, 
+    Any
+)
+from pydantic import (
+    BaseModel, 
+    Field, 
+    field_validator, 
+    HttpUrl
+)
+from fastapi import (
+    Form, 
+    File, 
+    UploadFile
+)
 from app.core.exceptions.handlers import (
     AppException
 )
 from app.core.constants.choices import (
     KnowledgeBaseStatusChoices,
     KnowledgeBaseSourceTypeChoices
-)
-from ..models import (
-    KnowledgeBaseSourceModel
 )
 
 
@@ -150,7 +159,6 @@ class KnowledgeBaseDetailResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
     sources: List[KnowledgeBaseSourceResponse] = []
-    # sources: Optional[List[Link[KnowledgeBaseSourceModel]]] = None  # 👈 reverse link
 
     class Config:
         from_attributes = True
