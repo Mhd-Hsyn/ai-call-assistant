@@ -42,7 +42,7 @@ class RetellVoiceService:
 
                 valid_voices.append(VoiceResponse(**voice_dict))
             except Exception as e:
-                print(f"⚠️ Skipped invalid voice entry: {e}")
+                print(f"Skipped invalid voice entry: {e}")
                 continue
 
         return valid_voices
@@ -78,6 +78,34 @@ class RetellAgentService:
                 agent_name = payload.agent_name,
                 voice_id=payload.voice_id,
                 language=payload.language
+            )
+        except Exception as e:
+            raise handle_retell_error(e)
+
+
+    async def update_response_engine(self, engine_id: str, payload, existing_engine):
+        """🧠 Update Response Engine on Retell"""
+        try:
+            return self.client.llm.update(
+                llm_id=engine_id,
+                start_speaker=payload.start_speaker or "user",
+                general_prompt=payload.general_prompt or existing_engine.general_prompt,
+                knowledge_base_ids=payload.knowledge_base_ids or existing_engine.knowledge_base_ids,
+                model_temperature=payload.temperature or existing_engine.temperature,
+                model=payload.voice_model or existing_engine.voice_model,
+                begin_message=payload.begin_message or None
+            )
+        except Exception as e:
+            raise handle_retell_error(e)
+
+    async def update_agent(self, agent_id: str, payload, existing_agent):
+        """🧩 Update Agent on Retell"""
+        try:
+            return self.client.agent.update(
+                agent_id=agent_id,
+                agent_name=payload.agent_name or existing_agent.agent_name,
+                voice_id=payload.voice_id or existing_agent.voice_id,
+                language=payload.language or existing_agent.language
             )
         except Exception as e:
             raise handle_retell_error(e)
@@ -136,10 +164,10 @@ class AgentService:
             data=response_data
         )
 
+
     async def update_response_engine(self, engine_id: str, payload: UpdateEngineSchema, user: UserModel):
         """
-        🔹 Update Response Engine on Retell
-        🔹 Update same in DB
+        🔹 Update Response Engine on Retell + DB
         """
         # 1️⃣ Find engine in DB
         engine = await ResponseEngineModel.find_one(
@@ -150,19 +178,7 @@ class AgentService:
             raise NotFoundException("Response Engine not found")
 
         # 2️⃣ Update on Retell
-        try:
-            retell_client = Retell(api_key=settings.retell_api_key)
-            updated_llm = retell_client.llm.update(
-                llm_id=engine_id,
-                start_speaker=payload.start_speaker or "user",
-                general_prompt=payload.general_prompt or engine.general_prompt,
-                knowledge_base_ids=payload.knowledge_base_ids or engine.knowledge_base_ids,
-                model_temperature=payload.temperature or engine.temperature,
-                model=payload.voice_model or engine.voice_model,
-                begin_message=payload.begin_message or None
-            )
-        except Exception as e:
-            raise handle_retell_error(e)
+        await self.retell_service.update_response_engine(engine_id, payload, engine)
 
         # 3️⃣ Update in DB
         update_data = payload.dict(exclude_unset=True)
@@ -176,11 +192,9 @@ class AgentService:
             data=ResponseEngineResponse.model_validate(engine)
         )
 
-
     async def update_agent(self, agent_id: str, payload: UpdateAgentSchema, user: UserModel):
         """
-        🔹 Update Agent on Retell
-        🔹 Update same in DB
+        🔹 Update Agent on Retell + DB
         """
         # 1️⃣ Find agent in DB
         agent = await AgentModel.find_one(
@@ -192,16 +206,7 @@ class AgentService:
             raise NotFoundException("Agent not found")
 
         # 2️⃣ Update on Retell
-        try:
-            retell_client = Retell(api_key=settings.retell_api_key)
-            updated_agent = retell_client.agent.update(
-                agent_id=agent_id,
-                agent_name=payload.agent_name or agent.agent_name,
-                voice_id=payload.voice_id or agent.voice_id,
-                language=payload.language or agent.language
-            )
-        except Exception as e:
-            raise handle_retell_error(e)
+        await self.retell_service.update_agent(agent_id, payload, agent)
 
         # 3️⃣ Update in DB
         update_data = payload.dict(exclude_unset=True)
