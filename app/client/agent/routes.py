@@ -210,12 +210,12 @@ async def get_agent_engine_knowledgebases(
 # update
 
 @agent_router.patch(
-    "/update-engine/{engine_id}",
+    "/update-engine/{retell_engine_llm_id}",
     response_model=APIBaseResponse,
     status_code=status.HTTP_200_OK
 )
 async def update_response_engine(
-    engine_id: str,
+    retell_engine_llm_id: str,
     payload: UpdateEngineSchema,
     user: UserModel = Depends(ProfileActive())
 ):
@@ -223,16 +223,16 @@ async def update_response_engine(
     ⚙️ Update Response Engine on Retell and in DB
     """
     service = AgentService()
-    return await service.update_response_engine(engine_id, payload, user)
+    return await service.update_response_engine(retell_engine_llm_id, payload, user)
 
 
 @agent_router.patch(
-    "/update-agent/{agent_id}",
+    "/update-agent/{retell_agent_id}",
     response_model=APIBaseResponse,
     status_code=status.HTTP_200_OK
 )
 async def update_agent(
-    agent_id: str,
+    retell_agent_id: str,
     payload: UpdateAgentSchema,
     user: UserModel = Depends(ProfileActive())
 ):
@@ -240,7 +240,19 @@ async def update_agent(
     🧠 Update Agent on Retell and in DB
     """
     service = AgentService()
-    return await service.update_agent(agent_id, payload, user)
+    return await service.update_agent(retell_agent_id, payload, user)
 
 
+# delete
+
+@agent_router.delete("/delete", response_model=APIBaseResponse)
+async def delete_agent_and_engine(
+    agent_id : UUID = Query(..., description="Agent UUID"),
+    user: UserModel = Depends(ProfileActive())
+):
+    """
+    🗑️ Delete agent + linked response engine from Retell & DB
+    """
+    service = AgentService()
+    return await service.delete_agent_and_engine(agent_id, user)
 

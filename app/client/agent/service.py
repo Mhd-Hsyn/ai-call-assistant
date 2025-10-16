@@ -98,6 +98,7 @@ class RetellAgentService:
         except Exception as e:
             raise handle_retell_error(e)
 
+
     async def update_agent(self, agent_id: str, payload, existing_agent):
         """🧩 Update Agent on Retell"""
         try:
@@ -107,6 +108,21 @@ class RetellAgentService:
                 voice_id=payload.voice_id or existing_agent.voice_id,
                 language=payload.language or existing_agent.language
             )
+        except Exception as e:
+            raise handle_retell_error(e)
+
+
+    async def delete_agent(self, agent_id: str):
+        """🧩 Delete Agent from Retell"""
+        try:
+            return self.client.agent.delete(agent_id)
+        except Exception as e:
+            raise handle_retell_error(e)
+
+    async def delete_response_engine(self, engine_id: str):
+        """🧠 Delete Response Engine from Retell"""
+        try:
+            return self.client.llm.delete(engine_id)
         except Exception as e:
             raise handle_retell_error(e)
 
@@ -165,20 +181,20 @@ class AgentService:
         )
 
 
-    async def update_response_engine(self, engine_id: str, payload: UpdateEngineSchema, user: UserModel):
+    async def update_response_engine(self, retell_engine_llm_id: str, payload: UpdateEngineSchema, user: UserModel):
         """
         🔹 Update Response Engine on Retell + DB
         """
         # 1️⃣ Find engine in DB
         engine = await ResponseEngineModel.find_one(
-            ResponseEngineModel.engine_id == engine_id,
+            ResponseEngineModel.engine_id == retell_engine_llm_id,
             ResponseEngineModel.user.id == user.id
         )
         if not engine:
             raise NotFoundException("Response Engine not found")
 
         # 2️⃣ Update on Retell
-        await self.retell_service.update_response_engine(engine_id, payload, engine)
+        await self.retell_service.update_response_engine(retell_engine_llm_id, payload, engine)
 
         # 3️⃣ Update in DB
         update_data = payload.dict(exclude_unset=True)
@@ -192,13 +208,13 @@ class AgentService:
             data=ResponseEngineResponse.model_validate(engine)
         )
 
-    async def update_agent(self, agent_id: str, payload: UpdateAgentSchema, user: UserModel):
+    async def update_agent(self, retell_agent_id: str, payload: UpdateAgentSchema, user: UserModel):
         """
         🔹 Update Agent on Retell + DB
         """
         # 1️⃣ Find agent in DB
         agent = await AgentModel.find_one(
-            AgentModel.agent_id == agent_id,
+            AgentModel.agent_id == retell_agent_id,
             AgentModel.user.id == user.id,
             fetch_links=True
         )
@@ -206,7 +222,7 @@ class AgentService:
             raise NotFoundException("Agent not found")
 
         # 2️⃣ Update on Retell
-        await self.retell_service.update_agent(agent_id, payload, agent)
+        await self.retell_service.update_agent(retell_agent_id, payload, agent)
 
         # 3️⃣ Update in DB
         update_data = payload.dict(exclude_unset=True)
@@ -221,3 +237,41 @@ class AgentService:
         )
 
 
+    async def delete_agent_and_engine(self, agent_uuid: UUID, user: UserModel):
+        """
+        🗑️ Delete Agent and its Response Engine from:
+        - Retell (both agent + llm)
+        - Local database
+        """
+        # 1️⃣ Find Agent in DB (with response_engine link)
+        agent = await AgentModel.find_one(
+            AgentModel.id == agent_uuid,
+            AgentModel.user.id == user.id,
+            fetch_links=True
+        )
+        if not agent:
+            raise NotFoundException("Agent not found")
+
+        # 2️⃣ Fetch linked ResponseEngine
+        engine = agent.response_engine
+        if not engine:
+            raise NotFoundException("Linked Response Engine not found")
+
+        # 3️⃣ Delete from Retell
+        try:
+            await self.retell_service.delete_agent(agent.agent_id)
+            await self.retell_service.delete_response_engine(engine.engine_id)
+        except Exception as e:
+            # even if Retell delete fails, proceed to local delete
+            print(f"⚠️ Retell delete failed: {e}")
+
+        # 4️⃣ Delete from DB
+        await agent.delete()
+        await engine.delete()
+
+        # 5️⃣ Return success
+        return APIBaseResponse(
+            status=True,
+            message="Agent and linked Response Engine deleted successfully",
+            data=None
+        )
