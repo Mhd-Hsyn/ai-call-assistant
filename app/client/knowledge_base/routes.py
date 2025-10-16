@@ -65,8 +65,6 @@ async def list_sitemap(payload: SitemapRequest):
     )
 
 
-
-
 @knowledge_base_router.post(
     "/create",
     response_model=APIBaseResponse,
@@ -101,8 +99,6 @@ async def create_knowledge_base(
         message="Knowledge base created successfully",
         data=data
     )
-
-
 
 
 @knowledge_base_router.get("/list-detail")
@@ -146,7 +142,6 @@ async def list_user_knowledge_bases(user: UserModel = Depends(ProfileActive())):
         message="Knowledge bases fetched successfully",
         data=kb_responses,
     )
-
 
 
 @knowledge_base_router.get(
@@ -195,8 +190,6 @@ async def get_knowledge_base_with_sources(
     )
 
 
-
-
 @knowledge_base_router.get(
     "/list-info",
     response_model=APIBaseResponse,
@@ -238,8 +231,6 @@ async def list_user_knowledge_bases_only(
     )
 
 
-
-
 @knowledge_base_router.post(
     "/retell/sync-user",
     status_code=status.HTTP_200_OK,
@@ -261,7 +252,6 @@ async def sync_user_knowledge_bases_from_retell(
         message="User knowledge bases synced successfully",
         data=result,
     )
-
 
 
 @knowledge_base_router.post("/retell/sync-all", status_code=status.HTTP_200_OK, response_model=APIBaseResponse)
