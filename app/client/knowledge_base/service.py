@@ -98,3 +98,16 @@ class RetellKnowledgeBaseService:
             # raise InternalServerErrorException(f"Failed to delete source from Retell: {str(e)}")
 
 
+    @classmethod
+    async def delete_knowledge_base_from_retell(cls, knowledge_base_id: str):
+        """
+        Delete a knowledge base from Retell platform.
+        """
+        try:
+            response = client.agent.delete(knowledge_base_id)
+            return response
+        except Exception as e:
+            logger.info(f"e __________________ {e}")
+            # raise InternalServerErrorException(f"Failed to delete from Retell: {str(e)}")
+
+

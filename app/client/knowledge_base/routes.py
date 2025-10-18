@@ -298,6 +298,10 @@ async def delete_source(
     if knowledgebase.user.id != user.id:
         raise ForbiddenException("You are not authorized to delete this source.")
 
+    await RetellKnowledgeBaseService.delete_knowledge_base_from_retell(
+        knowledge_base_id=knowledgebase.knowledge_base_id
+    )
+
     # Delete the source
     await knowledgebase.delete()
 
