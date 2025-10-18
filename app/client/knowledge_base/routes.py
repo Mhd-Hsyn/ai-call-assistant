@@ -244,14 +244,11 @@ async def delete_source(
     user: UserModel = Depends(dependency=ProfileActive()),
     source_uuid: UUID = Query(..., description="Knowledge Base Source UUID"),
 ):
-    # Fetch the source
     source = await KnowledgeBaseSourceModel.get(str(source_uuid), fetch_links=True)
 
     if not source:
         raise NotFoundException("Knowledge Base Source not found.")
 
-    # Fetch related KnowledgeBase and validate ownership
-    await source.fetch_link(KnowledgeBaseSourceModel.knowledge_base)
     kb = source.knowledge_base
     await kb.fetch_link(KnowledgeBaseModel.user)
 
@@ -266,6 +263,37 @@ async def delete_source(
         message="Source deleted successfully",
         data=None
     )
+
+
+@knowledge_base_router.delete(
+    path='/delete-knowledgebase',
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def delete_source(
+    user: UserModel = Depends(dependency=ProfileActive()),
+    knowledgebase_uuid: UUID = Query(..., description="Knowledge Base Source UUID"),
+):
+
+    knowledgebase = await KnowledgeBaseModel.get(str(knowledgebase_uuid), fetch_links=True)
+
+    if not knowledgebase:
+        raise NotFoundException("Knowledge Base not found.")
+
+    await knowledgebase.fetch_link(KnowledgeBaseModel.user)
+
+    if knowledgebase.user.id != user.id:
+        raise ForbiddenException("You are not authorized to delete this source.")
+
+    # Delete the source
+    await knowledgebase.delete()
+
+    return APIBaseResponse(
+        status=True,
+        message="Source deleted successfully",
+        data=None
+    )
+
 
 
 
