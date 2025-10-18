@@ -1,9 +1,10 @@
-from typing import List
 from uuid import UUID
 from retell import Retell
+from typing import List
+from pydantic import ValidationError
 from app.auth.models import UserModel
 from app.config.settings import settings
-from app.core.exceptions.base import NotFoundException
+from app.core.exceptions.base import NotFoundException, AppException
 from app.core.exceptions.handlers import handle_retell_error
 from ..models import AgentModel, ResponseEngineModel
 from .schemas import (
@@ -171,10 +172,21 @@ class AgentService:
 
         await self.retell_service.update_response_engine(retell_engine_llm_id, payload, engine)
 
-        update_data = payload.dict(exclude_unset=True)
+        update_data = {
+            key: value
+            for key, value in payload.dict(exclude_unset=True).items()
+            if value is not None
+        }
+
         for key, value in update_data.items():
             setattr(engine, key, value)
-        await engine.save()
+        
+        try:
+            engine = ResponseEngineModel.model_validate(engine.model_dump())
+        except ValidationError as e:
+            raise AppException(f"Invalid data: {e.errors()}")
+        else:
+            await engine.save()
 
         return APIBaseResponse(
             status=True,
@@ -194,10 +206,20 @@ class AgentService:
 
         await self.retell_service.update_agent(retell_agent_id, payload, agent)
 
-        update_data = payload.dict(exclude_unset=True)
+        update_data = {
+            key: value
+            for key, value in payload.dict(exclude_unset=True).items()
+            if value is not None
+        }
         for key, value in update_data.items():
             setattr(agent, key, value)
-        await agent.save()
+        
+        try:
+            agent = AgentModel.model_validate(agent.model_dump())
+        except ValidationError as e:
+            raise AppException(f"Invalid data: {e.errors()}")
+        else:
+            await agent.save()
 
         return APIBaseResponse(
             status=True,

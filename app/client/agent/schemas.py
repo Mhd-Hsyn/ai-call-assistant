@@ -1,14 +1,24 @@
-from datetime import datetime
-from pydantic import BaseModel, Field
-from typing import List, Optional, Dict
 from uuid import UUID
-from typing import List, Optional, Any
+from datetime import datetime
+from pydantic import (
+    BaseModel,
+    ValidationInfo,
+    Field, 
+    field_validator
+)
+from typing import (
+    List, 
+    Optional, 
+    Dict,
+    Any
+)
 from app.core.constants.choices import (
     VoiceModelChoices,
     LanguageChoices,
     EngineStartSpeakChoice,
     KnowledgeBaseStatusChoices
 )
+
 
 class APIBaseResponse(BaseModel):
     status: bool
@@ -167,12 +177,22 @@ class UpdateEngineSchema(BaseModel):
     start_speaker: Optional[str] = None
     begin_message: Optional[str] = None
 
+    @field_validator('*', mode='before')
+    def reject_nulls(cls, v, info: ValidationInfo):
+        if v is None:
+            raise ValueError(f"Field '{info.field_name}' cannot be null")
+        return v
+
 
 class UpdateAgentSchema(BaseModel):
     agent_name: Optional[str] = None
     voice_id: Optional[str] = None
-    voice_id_data: Optional[dict] = None
+    voice_id_data: Optional[Dict] = None
     language: Optional[str] = None
 
-
+    @field_validator('*', mode='before')
+    def reject_nulls(cls, v, info: ValidationInfo):
+        if v is None:
+            raise ValueError(f"Field '{info.field_name}' cannot be null")
+        return v
 

@@ -16,5 +16,7 @@ class BaseDocument(Document):
         json_encoders = {uuid.UUID: str}
 
     async def save(self, *args, **kwargs):
+        self.__class__.model_validate(self.model_dump())
+
         self.updated_at = datetime.utcnow()
         return await super().save(*args, **kwargs)

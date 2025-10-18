@@ -41,14 +41,14 @@ class ResponseEngineModel(BaseDocument):
 
     user: Link[UserModel]
     engine_id: str = Field(..., index=True, unique=True, description="ID from Retell API")
-    general_prompt: Optional[str] = None
+    general_prompt: str = None
     knowledge_base_ids: Optional[List[str]] = Field(default_factory=list)
-    temperature: Optional[float] = 0
-    start_speaker: Optional[EngineStartSpeakChoice] = Field(
+    temperature: float = 0
+    start_speaker: EngineStartSpeakChoice = Field(
         default=EngineStartSpeakChoice.USER,
         description="Who start conversation"
     )
-    voice_model: Optional[VoiceModelChoices] = Field(
+    voice_model: VoiceModelChoices = Field(
         default=VoiceModelChoices.GPT_4O_MINI,
         description="Voice model variant"
     )
