@@ -61,7 +61,6 @@ class ResponseEngineResponse(BaseModel):
     updated_at: datetime
 
     class Config:
-        orm_mode = True
         from_attributes = True
         json_encoders = {
             UUID: str,
@@ -74,7 +73,6 @@ class LinkedEngineInfo(BaseModel):
     engine_id: str
 
     class Config:
-        orm_mode = True
         from_attributes = True
         json_encoders = {UUID: str}
 
@@ -91,7 +89,6 @@ class AgentResponse(BaseModel):
     updated_at: datetime
 
     class Config:
-        orm_mode = True
         from_attributes = True
         json_encoders = {
             UUID: str,
@@ -137,7 +134,6 @@ class AgentResponseSchema(BaseModel):
     updated_at: datetime
 
     class Config:
-        orm_mode = True
         from_attributes = True
         json_encoders = {
             UUID: str,

@@ -10,7 +10,7 @@ logger = get_logger("lifespan")
 async def lifespan(app):
     """Startup & shutdown lifecycle management."""
     try:
-        otp_client.ping()
+        await otp_client.ping()
         logger.info("✅ Redis connected successfully")
     except Exception as e:
         logger.error(f"❌ Redis connection failed: {e}")

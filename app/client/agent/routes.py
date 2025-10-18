@@ -39,6 +39,10 @@ from .service import (
     RetellVoiceService
     
 )
+from app.config.logger import get_logger
+
+
+logger = get_logger("Agent Routes")
 
 agent_router = APIRouter()
 
@@ -100,6 +104,10 @@ async def list_user_agents(user: UserModel = Depends(ProfileActive())):
             message="No agents found",
             data=[],
         )
+    logger.info(f"agents __________ {agents}")
+    for index, agent in enumerate(agents):
+        logger.info(f"{index} --------- {agent.voice_id}")
+        logger.info(f"{index} --------- {agent.voice_id_data}")
 
     agent_responses = [
         AgentResponseSchema.model_validate(agent) for agent in agents
