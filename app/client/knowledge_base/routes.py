@@ -10,6 +10,7 @@ from fastapi import (
 )
 from app.core.exceptions.base import (
     NotFoundException,
+    ForbiddenException,
 )
 from app.core.dependencies.authorization import (
     ProfileActive
@@ -42,7 +43,9 @@ from .schemas import (
     KnowledgeBaseInfoResponse
 
 )
+from app.config.logger import get_logger
 
+logger = get_logger("Knowledge Base route")
 
 knowledge_base_router = APIRouter()
 
@@ -229,6 +232,42 @@ async def list_user_knowledge_bases_only(
         message="Knowledge bases fetched successfully (without sources)",
         data=kb_responses,
     )
+
+
+
+@knowledge_base_router.delete(
+    path='/delete-source',
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def delete_source(
+    user: UserModel = Depends(dependency=ProfileActive()),
+    source_uuid: UUID = Query(..., description="Knowledge Base Source UUID"),
+):
+    # Fetch the source
+    source = await KnowledgeBaseSourceModel.get(str(source_uuid), fetch_links=True)
+
+    if not source:
+        raise NotFoundException("Knowledge Base Source not found.")
+
+    # Fetch related KnowledgeBase and validate ownership
+    await source.fetch_link(KnowledgeBaseSourceModel.knowledge_base)
+    kb = source.knowledge_base
+    await kb.fetch_link(KnowledgeBaseModel.user)
+
+    if kb.user.id != user.id:
+        raise ForbiddenException("You are not authorized to delete this source.")
+
+    # Delete the source
+    await source.delete()
+
+    return APIBaseResponse(
+        status=True,
+        message="Source deleted successfully",
+        data=None
+    )
+
+
 
 
 @knowledge_base_router.post(

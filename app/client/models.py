@@ -1,4 +1,4 @@
-from beanie import Link, Document
+from beanie import Link, before_event, Delete
 from pydantic import Field
 from typing import Optional, List, Dict, Any
 from app.core.models.base import BaseDocument
@@ -56,6 +56,19 @@ class ResponseEngineModel(BaseDocument):
     class Settings:
         name = "response_engines"
 
+    @before_event(Delete)
+    async def delete_related_sources_and_references(self):
+        # Delete related KnowledgeBaseSourceModel
+        await KnowledgeBaseSourceModel.find(
+            KnowledgeBaseSourceModel.knowledge_base.id == self.id
+        ).delete_many()
+
+        # Remove this KB id from ResponseEngineModel.knowledge_base_ids arrays
+        await ResponseEngineModel.find(
+            ResponseEngineModel.knowledge_base_ids == self.knowledge_base_id
+        ).update_many(
+            {"$pull": {"knowledge_base_ids": self.knowledge_base_id}}
+        )
 
 
 class AgentModel(BaseDocument):
