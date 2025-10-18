@@ -5,6 +5,9 @@ from fastapi import HTTPException, status
 from app.config.settings import settings
 from app.core.exceptions.base import InternalServerErrorException
 
+from app.config.logger import get_logger
+
+logger = get_logger("Knowledge Base service")
 
 client = Retell(api_key=settings.retell_api_key)
 
@@ -77,4 +80,21 @@ class RetellKnowledgeBaseService:
                     f.close()
                 except Exception:
                     pass
+
+
+    @staticmethod
+    async def delete_source_from_retell(source_id: str, knowledge_base_id: str):
+        """
+        Deletes a specific source from Retell Knowledge Base.
+        """
+        try:
+            response = client.knowledge_base.delete_source(
+                source_id=source_id,
+                knowledge_base_id=knowledge_base_id,
+            )
+            return response
+        except Exception as e:
+            logger.info(f"e __________________ {e}")
+            # raise InternalServerErrorException(f"Failed to delete source from Retell: {str(e)}")
+
 

@@ -234,34 +234,47 @@ async def list_user_knowledge_bases_only(
     )
 
 
-
 @knowledge_base_router.delete(
-    path='/delete-source',
+    path="/delete-source",
     response_model=APIBaseResponse,
-    status_code=status.HTTP_200_OK
+    status_code=status.HTTP_200_OK,
 )
 async def delete_source(
-    user: UserModel = Depends(dependency=ProfileActive()),
+    user: UserModel = Depends(ProfileActive()),
     source_uuid: UUID = Query(..., description="Knowledge Base Source UUID"),
+    knowledgebase_uuid: UUID = Query(..., description="Knowledge Base UUID"),
 ):
-    source = await KnowledgeBaseSourceModel.get(str(source_uuid), fetch_links=True)
+    # Verify KB belongs to user (single optimized query)
+    kb = await KnowledgeBaseModel.find_one(
+        KnowledgeBaseModel.id == knowledgebase_uuid,
+        KnowledgeBaseModel.user.id == user.id,
+    )
+
+    if not kb:
+        raise ForbiddenException("You are not authorized to delete this source or KB not found.")
+
+    # Fetch the source ensuring it's linked to this KB
+    source = await KnowledgeBaseSourceModel.find_one(
+        KnowledgeBaseSourceModel.id == source_uuid,
+        KnowledgeBaseSourceModel.knowledge_base.id == kb.id
+    )
 
     if not source:
-        raise NotFoundException("Knowledge Base Source not found.")
+        raise NotFoundException("Source not found in this Knowledge Base.")
 
-    kb = source.knowledge_base
-    await kb.fetch_link(KnowledgeBaseModel.user)
+    # Delete from Retell (external sync)
+    await RetellKnowledgeBaseService.delete_source_from_retell(
+        source_id=source.source_id,
+        knowledge_base_id=kb.knowledge_base_id
+    )
 
-    if kb.user.id != user.id:
-        raise ForbiddenException("You are not authorized to delete this source.")
-
-    # Delete the source
+    # Delete locally
     await source.delete()
 
     return APIBaseResponse(
         status=True,
         message="Source deleted successfully",
-        data=None
+        data=None,
     )
 
 
