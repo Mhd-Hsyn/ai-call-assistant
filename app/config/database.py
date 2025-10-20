@@ -10,6 +10,7 @@ from app.client.models import (
     KnowledgeBaseSourceModel,
     ResponseEngineModel,
     AgentModel,
+    CallModel,
 )
 from app.config.settings import settings
 
@@ -34,6 +35,7 @@ async def init_db():
             KnowledgeBaseModel,
             KnowledgeBaseSourceModel,
             ResponseEngineModel,
-            AgentModel
+            AgentModel,
+            CallModel,
         ]
     )
