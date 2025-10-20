@@ -25,3 +25,13 @@ class APIBaseResponse(BaseModel):
     data: Any | None = None
 
 
+
+
+class CallInitializeSchema(BaseModel):
+    from_number: str
+    to_number: str
+    override_agent_id: Optional[str] = Field(None, alias="override_agent_id")
+    retell_llm_dynamic_variables: Optional[Dict[str, Any]] = Field(default_factory=dict)
+
+
+

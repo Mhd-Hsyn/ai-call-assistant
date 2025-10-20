@@ -28,11 +28,12 @@ from ..models import (
 )
 from .schemas import (
     APIBaseResponse,
+    CallInitializeSchema,
 
 )
-# from .services import (
-    
-# )
+from .services import (
+    RetellCallService   
+)
 from app.core.utils.helpers import (
     parse_timestamp
 )
@@ -47,8 +48,36 @@ calls_router = APIRouter()
 
 
 
+@calls_router.post(
+    "/initialize-call",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+async def initialize_call(
+    payload: CallInitializeSchema,
+    user: UserModel = Depends(ProfileActive()),
+):
+    """
+    Initialize a phone call through Retell and store it in DB.
+    """
+    service = RetellCallService()
+    new_call = await service.create_phone_call(user=user, payload=payload.dict(by_alias=True))
+
+    return APIBaseResponse(
+        status=True,
+        message="Call initialized successfully",
+        data={
+            "call_id": new_call.call_id, 
+            "agent_id": new_call.agent_retell_id
+        }
+    )
+    
 
 
+
+
+
+# {{BASE_URL}}/api/clientside/calls/retell/webhook
 @calls_router.post("/retell/webhook")
 async def retell_webhook(payload: dict):
     """
