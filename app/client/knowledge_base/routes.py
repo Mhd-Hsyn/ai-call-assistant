@@ -307,7 +307,7 @@ async def delete_source(
 
     return APIBaseResponse(
         status=True,
-        message="Source deleted successfully",
+        message="Knowledgebase deleted successfully",
         data=None
     )
 
