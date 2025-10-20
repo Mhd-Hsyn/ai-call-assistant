@@ -1,6 +1,7 @@
-import hashlib
-import json
 import uuid
+import json
+import hashlib
+from datetime import datetime
 from passlib.hash import pbkdf2_sha256
 from app.core.rabbitmq_publisher.core.rabitmq_publisher import (
     get_rabbit_mq_email_send_publisher
@@ -44,6 +45,24 @@ class UUIDEncoder(json.JSONEncoder):
         if isinstance(obj, uuid.UUID):
             return str(obj)
         return super(UUIDEncoder, self).default(obj)
+
+
+
+def parse_timestamp(ts: int | float | str | None) -> datetime | None:
+    """
+    Convert a timestamp (in ms or sec) to a Python datetime object.
+    Handles None and already-valid datetime formats gracefully.
+    """
+    if ts is None:
+        return None
+    try:
+        ts = float(ts)
+        # If timestamp looks like milliseconds (13 digits)
+        if ts > 1e12:
+            ts /= 1000
+        return datetime.utcfromtimestamp(ts)
+    except Exception:
+        return None
 
 
 

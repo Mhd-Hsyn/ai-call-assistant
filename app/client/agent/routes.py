@@ -257,3 +257,39 @@ async def delete_agent_and_engine(
     service = AgentService()
     return await service.delete_agent_and_engine(agent_id, user)
 
+
+
+
+@agent_router.get("/user-id", response_model=APIBaseResponse)
+async def get_user_id_by_agent(
+    agent_id : UUID = Query(..., description="Agent UUID"),
+):
+    """
+    🔍 Get the User ID linked to a given Retell Agent ID.
+    """
+    # Find the agent by agent_id
+    agent = await AgentModel.find_one(AgentModel.id == agent_id, fetch_links=True)
+    if not agent:
+        raise NotFoundException(
+            "Agent not found"
+        )
+
+    # Extract the linked user
+    user = agent.user  # Because fetch_links=True, user is already loaded
+    if not user:
+        raise NotFoundException(
+            "Linked user not found"
+        )
+
+    return APIBaseResponse(
+        status=True,
+        message="User found successfully",
+        data={
+            "user_id": str(user.id),
+            "user_email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name
+        }
+    )
+
+

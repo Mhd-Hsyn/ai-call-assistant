@@ -108,8 +108,8 @@ class CallModel(BaseDocument):
     agent: Link[AgentModel]
 
     # Identifiers
-    agent_name = str
-    agent_retell_id = str
+    agent_name : str 
+    agent_retell_id : str
     call_id: str = Field(..., index=True, unique=True)
     call_type: CallTypeChoices = Field(default=CallTypeChoices.PHONE_CALL, description= 'call type (phone-call or web-call)')
     direction: CallDirectionChoices
