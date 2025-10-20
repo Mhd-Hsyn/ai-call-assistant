@@ -1,0 +1,35 @@
+{
+  "event": "call_started",
+  "call": {
+    "call_id": "call_2db33d619aca830686d267ac3c2",
+    "call_type": "phone_call",
+    "agent_id": "agent_7f829accfaa46c5bfb76ca46b1",
+    "agent_version": 0,
+    "agent_name": "n8n",
+    "retell_llm_dynamic_variables": {
+      "name": "=muhammad asad",
+      "phone_number": "=19727774163",
+      "email": "=safdarhnh1@gmail.com",
+      "lastvisitedon": "=05/14/25",
+      "details": "=Career coaching inquiry"
+    },
+    "call_status": "ongoing",
+    "start_timestamp": 1758965347607,
+    "latency": {},
+    "call_cost": {
+      "product_costs": [],
+      "total_duration_seconds": 0,
+      "total_duration_unit_price": 0,
+      "combined_cost": 0
+    },
+    "opt_out_sensitive_data_storage": false,
+    "data_storage_setting": "everything",
+    "opt_in_signed_url": false,
+    "from_number": "+18723287358",
+    "to_number": "+19727774163",
+    "direction": "outbound",
+    "telephony_identifier": {
+      "twilio_call_sid": "CAe55bc5b3fddfe173b9514d71a71939c5"
+    }
+  }
+}

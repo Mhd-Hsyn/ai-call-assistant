@@ -1,0 +1,10 @@
+{
+    "from": "+18723287358",  // dropdown static
+    "to": "",
+    "override_agent_id": "",   // dropdown get all agent then give agent_id  "agent__"
+    "retell_llm_dynamic_variables": {
+        "key1": "value1",
+        "key2": "value2",
+        "key3": "value3"
+    }
+}

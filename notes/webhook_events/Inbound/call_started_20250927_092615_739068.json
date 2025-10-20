@@ -1,0 +1,39 @@
+{
+  "event": "call_started",
+  "call": {
+    "call_id": "call_65875d4c4e8607327bf5cb1c9fa",
+    "call_type": "phone_call",
+    "agent_id": "agent_c78c661066e49f03ab4bde9952",
+    "agent_version": 0,
+    "agent_name": "inbound",
+    "retell_llm_dynamic_variables": {
+      "twilio-accountsid": "AC3a763dcc1163919f1660965bc0859f4b",
+      "twilio-callsid": "CA37b5cdc8003c4fe992e99950645dd231",
+      "twilio-verstat": "TN-Validation-Passed-A"
+    },
+    "custom_sip_headers": {
+      "x-twilio-accountsid": "AC3a763dcc1163919f1660965bc0859f4b",
+      "x-twilio-callsid": "CA37b5cdc8003c4fe992e99950645dd231",
+      "x-twilio-verstat": "TN-Validation-Passed-A"
+    },
+    "call_status": "ongoing",
+    "start_timestamp": 1758965174609,
+    "public_log_url": "https://dxc03zgurdly9.cloudfront.net/9d124afb97ff6284dfeb45d3551aed001dceb1ca819b9094923941117b96cb5f/public.log",
+    "latency": {},
+    "call_cost": {
+      "product_costs": [],
+      "total_duration_seconds": 0,
+      "total_duration_unit_price": 0,
+      "combined_cost": 0
+    },
+    "opt_out_sensitive_data_storage": false,
+    "data_storage_setting": "everything",
+    "opt_in_signed_url": false,
+    "from_number": "+19727774163",
+    "to_number": "+18723287358",
+    "direction": "inbound",
+    "telephony_identifier": {
+      "twilio_call_sid": "CA37b5cdc8003c4fe992e99950645dd231"
+    }
+  }
+}

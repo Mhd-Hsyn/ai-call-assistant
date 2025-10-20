@@ -1,0 +1,2760 @@
+{
+  "event": "call_analyzed",
+  "call": {
+    "call_id": "call_65875d4c4e8607327bf5cb1c9fa",
+    "call_type": "phone_call",
+    "agent_id": "agent_c78c661066e49f03ab4bde9952",
+    "agent_version": 0,
+    "agent_name": "inbound",
+    "retell_llm_dynamic_variables": {
+      "twilio-accountsid": "AC3a763dcc1163919f1660965bc0859f4b",
+      "twilio-callsid": "CA37b5cdc8003c4fe992e99950645dd231",
+      "twilio-verstat": "TN-Validation-Passed-A"
+    },
+    "custom_sip_headers": {
+      "x-twilio-accountsid": "AC3a763dcc1163919f1660965bc0859f4b",
+      "x-twilio-callsid": "CA37b5cdc8003c4fe992e99950645dd231",
+      "x-twilio-verstat": "TN-Validation-Passed-A"
+    },
+    "call_status": "ended",
+    "start_timestamp": 1758965174609,
+    "end_timestamp": 1758965269826,
+    "duration_ms": 95217,
+    "transcript": "Agent: Hello {{name}}, this is Clara from Summit Consulting Group. I hope you\u2019re doing well today! Do you have a quick moment to chat?\nUser: Yes.\nAgent: Thank you! I noticed your last visit was on {{lastvisitedon}} regarding {{details}}. At Summit Consulting Group, we help businesses with growth, strategy, and expert advisory support. Would you like to hear more about how we can help you?\nUser: I have a question. When I visit last?\nAgent: Of course! According to our records, your last visit was on {{lastvisitedon}}. If you\u2019d like, I can \nUser: What \nAgent: share more details about that visit or help with any \nUser: are you saying?\nAgent: Sorry \nUser: Can you repeat?\nUser: it?\nAgent: Of course! Your last visit with us was on {{lastvisitedon}}. If you\u2019d like, I can share more about what we discussed or help answer any questions you have today.\nUser: Yeah.\nAgent: Great! During your last visit on {{lastvisitedon}}, you showed interest in {{details}}. Is there anything specific you\u2019d like to discuss or any questions I can answer for you today?\nAgent: Just checking in\u2014if you have any questions or would like to discuss your interests from your last visit, I\u2019m here to help!\nUser: I'm busy \nAgent:  Let me know how I can \nUser: right now. Can I talk to, like, a Coca or goodbye?\nAgent: No problem at all. Thank you for your time today. If you need anything in the future, feel free to reach out. Have a great day!\n",
+    "transcript_object": [
+      {
+        "role": "agent",
+        "content": "Hello {{name}}, this is Clara from Summit Consulting Group. I hope you\u2019re doing well today! Do you have a quick moment to chat?",
+        "words": [
+          {
+            "word": "Hello ",
+            "start": 1.098,
+            "end": 1.527
+          },
+          {
+            "word": "{{name}}, ",
+            "start": 1.527,
+            "end": 2.085
+          },
+          {
+            "word": "this ",
+            "start": 2.085,
+            "end": 2.27
+          },
+          {
+            "word": "is ",
+            "start": 2.27,
+            "end": 2.41
+          },
+          {
+            "word": "Clara ",
+            "start": 2.41,
+            "end": 2.758
+          },
+          {
+            "word": "from ",
+            "start": 2.758,
+            "end": 2.967
+          },
+          {
+            "word": "Summit ",
+            "start": 2.967,
+            "end": 3.223
+          },
+          {
+            "word": "Consulting ",
+            "start": 3.223,
+            "end": 3.664
+          },
+          {
+            "word": "Group.",
+            "start": 3.664,
+            "end": 4.116
+          },
+          {
+            "word": " I ",
+            "start": 4.1625,
+            "end": 4.2905
+          },
+          {
+            "word": "hope ",
+            "start": 4.2905,
+            "end": 4.4645
+          },
+          {
+            "word": "you\u2019re ",
+            "start": 4.4645,
+            "end": 4.7555
+          },
+          {
+            "word": "doing ",
+            "start": 4.7555,
+            "end": 5.0455
+          },
+          {
+            "word": "well ",
+            "start": 5.0455,
+            "end": 5.2655
+          },
+          {
+            "word": "today!",
+            "start": 5.2655,
+            "end": 5.8815
+          },
+          {
+            "word": " Do ",
+            "start": 5.904208251953125,
+            "end": 6.032208251953125
+          },
+          {
+            "word": "you ",
+            "start": 6.032208251953125,
+            "end": 6.136208251953125
+          },
+          {
+            "word": "have ",
+            "start": 6.136208251953125,
+            "end": 6.276208251953125
+          },
+          {
+            "word": "a ",
+            "start": 6.276208251953125,
+            "end": 6.357208251953125
+          },
+          {
+            "word": "quick ",
+            "start": 6.357208251953125,
+            "end": 6.612208251953125
+          },
+          {
+            "word": "moment ",
+            "start": 6.612208251953125,
+            "end": 6.949208251953125
+          },
+          {
+            "word": "to ",
+            "start": 6.949208251953125,
+            "end": 7.065208251953125
+          },
+          {
+            "word": "chat?",
+            "start": 7.065208251953125,
+            "end": 7.646208251953125
+          }
+        ],
+        "metadata": {
+          "response_id": 0
+        }
+      },
+      {
+        "role": "user",
+        "content": "Yes.",
+        "words": [
+          {
+            "word": "Yes.",
+            "start": 13.055,
+            "end": 13.295
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Thank you! I noticed your last visit was on {{lastvisitedon}} regarding {{details}}. At Summit Consulting Group, we help businesses with growth, strategy, and expert advisory support. Would you like to hear more about how we can help you?",
+        "words": [
+          {
+            "word": "Thank ",
+            "start": 14.465,
+            "end": 14.813
+          },
+          {
+            "word": "you!",
+            "start": 14.813,
+            "end": 15.243
+          },
+          {
+            "word": " I ",
+            "start": 15.288916748046875,
+            "end": 15.474916748046875
+          },
+          {
+            "word": "noticed ",
+            "start": 15.474916748046875,
+            "end": 15.822916748046875
+          },
+          {
+            "word": "your ",
+            "start": 15.822916748046875,
+            "end": 15.985916748046876
+          },
+          {
+            "word": "last ",
+            "start": 15.985916748046876,
+            "end": 16.229916748046875
+          },
+          {
+            "word": "visit ",
+            "start": 16.229916748046875,
+            "end": 16.484916748046874
+          },
+          {
+            "word": "was ",
+            "start": 16.484916748046874,
+            "end": 16.658916748046874
+          },
+          {
+            "word": "on ",
+            "start": 16.658916748046874,
+            "end": 16.821916748046874
+          },
+          {
+            "word": "{{lastvisitedon}} ",
+            "start": 16.821916748046874,
+            "end": 18.330916748046874
+          },
+          {
+            "word": "regarding ",
+            "start": 18.330916748046874,
+            "end": 18.806916748046874
+          },
+          {
+            "word": "{{details}}.",
+            "start": 18.806916748046874,
+            "end": 19.840916748046876
+          },
+          {
+            "word": " At ",
+            "start": 19.852458251953124,
+            "end": 20.130458251953126
+          },
+          {
+            "word": "Summit ",
+            "start": 20.130458251953126,
+            "end": 20.467458251953126
+          },
+          {
+            "word": "Consulting ",
+            "start": 20.467458251953126,
+            "end": 21.001458251953125
+          },
+          {
+            "word": "Group, ",
+            "start": 21.001458251953125,
+            "end": 21.373458251953124
+          },
+          {
+            "word": "we ",
+            "start": 21.373458251953124,
+            "end": 21.535458251953123
+          },
+          {
+            "word": "help ",
+            "start": 21.535458251953123,
+            "end": 21.744458251953127
+          },
+          {
+            "word": "businesses ",
+            "start": 21.744458251953127,
+            "end": 22.266458251953125
+          },
+          {
+            "word": "with ",
+            "start": 22.266458251953125,
+            "end": 22.464458251953126
+          },
+          {
+            "word": "growth, ",
+            "start": 22.464458251953126,
+            "end": 22.835458251953124
+          },
+          {
+            "word": "strategy, ",
+            "start": 22.835458251953124,
+            "end": 23.381458251953124
+          },
+          {
+            "word": "and ",
+            "start": 23.381458251953124,
+            "end": 23.555458251953127
+          },
+          {
+            "word": "expert ",
+            "start": 23.555458251953127,
+            "end": 23.938458251953126
+          },
+          {
+            "word": "advisory ",
+            "start": 23.938458251953126,
+            "end": 24.449458251953125
+          },
+          {
+            "word": "support.",
+            "start": 24.449458251953125,
+            "end": 25.181458251953124
+          },
+          {
+            "word": " Would ",
+            "start": 25.227041748046876,
+            "end": 25.413041748046876
+          },
+          {
+            "word": "you ",
+            "start": 25.413041748046876,
+            "end": 25.529041748046875
+          },
+          {
+            "word": "like ",
+            "start": 25.529041748046875,
+            "end": 25.715041748046875
+          },
+          {
+            "word": "to ",
+            "start": 25.715041748046875,
+            "end": 25.820041748046876
+          },
+          {
+            "word": "hear ",
+            "start": 25.820041748046876,
+            "end": 25.994041748046875
+          },
+          {
+            "word": "more ",
+            "start": 25.994041748046875,
+            "end": 26.168041748046875
+          },
+          {
+            "word": "about ",
+            "start": 26.168041748046875,
+            "end": 26.412041748046875
+          },
+          {
+            "word": "how ",
+            "start": 26.412041748046875,
+            "end": 26.574041748046874
+          },
+          {
+            "word": "we ",
+            "start": 26.574041748046874,
+            "end": 26.679041748046874
+          },
+          {
+            "word": "can ",
+            "start": 26.679041748046874,
+            "end": 26.830041748046874
+          },
+          {
+            "word": "help ",
+            "start": 26.830041748046874,
+            "end": 27.073041748046876
+          },
+          {
+            "word": "you?",
+            "start": 27.073041748046876,
+            "end": 27.457041748046876
+          }
+        ],
+        "metadata": {
+          "response_id": 1
+        }
+      },
+      {
+        "role": "user",
+        "content": "I have a question. When I visit last?",
+        "words": [
+          {
+            "word": "I ",
+            "start": 28.014999999999997,
+            "end": 28.335001
+          },
+          {
+            "word": "have ",
+            "start": 28.335001,
+            "end": 28.495001
+          },
+          {
+            "word": "a ",
+            "start": 28.495001,
+            "end": 28.655001
+          },
+          {
+            "word": "question. ",
+            "start": 28.655001,
+            "end": 29.294999999999998
+          },
+          {
+            "word": "When ",
+            "start": 29.455,
+            "end": 29.775
+          },
+          {
+            "word": "I ",
+            "start": 29.775,
+            "end": 29.854999999999997
+          },
+          {
+            "word": "visit ",
+            "start": 29.854999999999997,
+            "end": 30.175002
+          },
+          {
+            "word": "last?",
+            "start": 30.175002,
+            "end": 30.495001
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Of course! According to our records, your last visit was on {{lastvisitedon}}. If you\u2019d like, I can ",
+        "words": [
+          {
+            "word": "Of ",
+            "start": 31.529,
+            "end": 31.669
+          },
+          {
+            "word": "course!",
+            "start": 31.669,
+            "end": 32.237
+          },
+          {
+            "word": " According ",
+            "start": 32.2605,
+            "end": 32.6785
+          },
+          {
+            "word": "to ",
+            "start": 32.6785,
+            "end": 32.7715
+          },
+          {
+            "word": "our ",
+            "start": 32.7715,
+            "end": 32.8995
+          },
+          {
+            "word": "records, ",
+            "start": 32.8995,
+            "end": 33.2595
+          },
+          {
+            "word": "your ",
+            "start": 33.2595,
+            "end": 33.4215
+          },
+          {
+            "word": "last ",
+            "start": 33.4215,
+            "end": 33.6655
+          },
+          {
+            "word": "visit ",
+            "start": 33.6655,
+            "end": 33.9445
+          },
+          {
+            "word": "was ",
+            "start": 33.9445,
+            "end": 34.1185
+          },
+          {
+            "word": "on ",
+            "start": 34.1185,
+            "end": 34.2575
+          },
+          {
+            "word": "{{lastvisitedon}}.",
+            "start": 34.2575,
+            "end": 36.5565
+          },
+          {
+            "word": " If ",
+            "start": 36.60241674804688,
+            "end": 36.707416748046874
+          },
+          {
+            "word": "you\u2019d ",
+            "start": 36.707416748046874,
+            "end": 36.881416748046874
+          },
+          {
+            "word": "like, ",
+            "start": 36.881416748046874,
+            "end": 37.183416748046874
+          },
+          {
+            "word": "I ",
+            "start": 37.183416748046874,
+            "end": 37.27641674804688
+          },
+          {
+            "word": "can ",
+            "start": 37.27641674804688,
+            "end": 37.42741674804687
+          }
+        ],
+        "metadata": {
+          "response_id": 3
+        }
+      },
+      {
+        "role": "user",
+        "content": "What ",
+        "words": [
+          {
+            "word": "What ",
+            "start": 37.604998,
+            "end": 38.404997
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "share more details about that visit or help with any ",
+        "words": [
+          {
+            "word": "share ",
+            "start": 37.42741674804687,
+            "end": 37.624416748046876
+          },
+          {
+            "word": "more ",
+            "start": 37.624416748046876,
+            "end": 37.798416748046876
+          },
+          {
+            "word": "details ",
+            "start": 37.798416748046876,
+            "end": 38.170416748046875
+          },
+          {
+            "word": "about ",
+            "start": 38.170416748046875,
+            "end": 38.36741674804688
+          },
+          {
+            "word": "that ",
+            "start": 38.36741674804688,
+            "end": 38.530416748046875
+          },
+          {
+            "word": "visit ",
+            "start": 38.530416748046875,
+            "end": 38.91341674804688
+          },
+          {
+            "word": "or ",
+            "start": 38.91341674804688,
+            "end": 39.07541674804688
+          },
+          {
+            "word": "help ",
+            "start": 39.07541674804688,
+            "end": 39.28441674804687
+          },
+          {
+            "word": "with ",
+            "start": 39.28441674804687,
+            "end": 39.47041674804687
+          },
+          {
+            "word": "any ",
+            "start": 39.47041674804687,
+            "end": 39.679416748046876
+          }
+        ],
+        "metadata": {
+          "response_id": 3
+        }
+      },
+      {
+        "role": "user",
+        "content": "are you saying?",
+        "words": [
+          {
+            "word": "are ",
+            "start": 39.604998,
+            "end": 39.845
+          },
+          {
+            "word": "you ",
+            "start": 39.845,
+            "end": 40.004999999999995
+          },
+          {
+            "word": "saying?",
+            "start": 40.004999999999995,
+            "end": 40.244997
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Sorry ",
+        "words": [
+          {
+            "word": "Sorry ",
+            "start": 41.534,
+            "end": 41.813
+          }
+        ],
+        "metadata": {
+          "response_id": 4
+        }
+      },
+      {
+        "role": "user",
+        "content": "Can you repeat?",
+        "words": [
+          {
+            "word": "Can ",
+            "start": 41.515,
+            "end": 41.754999999999995
+          },
+          {
+            "word": "you ",
+            "start": 41.754999999999995,
+            "end": 41.915
+          },
+          {
+            "word": "repeat?",
+            "start": 41.915,
+            "end": 42.235
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "it?",
+        "words": [
+          {
+            "word": "it?",
+            "start": 42.635,
+            "end": 42.875
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Of course! Your last visit with us was on {{lastvisitedon}}. If you\u2019d like, I can share more about what we discussed or help answer any questions you have today.",
+        "words": [
+          {
+            "word": "Of ",
+            "start": 43.619,
+            "end": 43.816
+          },
+          {
+            "word": "course!",
+            "start": 43.816,
+            "end": 44.478
+          },
+          {
+            "word": " Your ",
+            "start": 44.49025,
+            "end": 44.69925
+          },
+          {
+            "word": "last ",
+            "start": 44.69925,
+            "end": 44.91925
+          },
+          {
+            "word": "visit ",
+            "start": 44.91925,
+            "end": 45.16325
+          },
+          {
+            "word": "with ",
+            "start": 45.16325,
+            "end": 45.34925
+          },
+          {
+            "word": "us ",
+            "start": 45.34925,
+            "end": 45.51125
+          },
+          {
+            "word": "was ",
+            "start": 45.51125,
+            "end": 45.69725
+          },
+          {
+            "word": "on ",
+            "start": 45.69725,
+            "end": 45.89425
+          },
+          {
+            "word": "{{lastvisitedon}}.",
+            "start": 45.89425,
+            "end": 47.63625
+          },
+          {
+            "word": " If ",
+            "start": 47.682166748046875,
+            "end": 47.880166748046875
+          },
+          {
+            "word": "you\u2019d ",
+            "start": 47.880166748046875,
+            "end": 48.066166748046875
+          },
+          {
+            "word": "like, ",
+            "start": 48.066166748046875,
+            "end": 48.286166748046874
+          },
+          {
+            "word": "I ",
+            "start": 48.286166748046874,
+            "end": 48.356166748046874
+          },
+          {
+            "word": "can ",
+            "start": 48.356166748046874,
+            "end": 48.51816674804687
+          },
+          {
+            "word": "share ",
+            "start": 48.51816674804687,
+            "end": 48.727166748046876
+          },
+          {
+            "word": "more ",
+            "start": 48.727166748046876,
+            "end": 48.85516674804688
+          },
+          {
+            "word": "about ",
+            "start": 48.85516674804688,
+            "end": 49.01816674804687
+          },
+          {
+            "word": "what ",
+            "start": 49.01816674804687,
+            "end": 49.16916674804688
+          },
+          {
+            "word": "we ",
+            "start": 49.16916674804688,
+            "end": 49.29616674804687
+          },
+          {
+            "word": "discussed ",
+            "start": 49.29616674804687,
+            "end": 49.77216674804688
+          },
+          {
+            "word": "or ",
+            "start": 49.77216674804688,
+            "end": 49.90016674804688
+          },
+          {
+            "word": "help ",
+            "start": 49.90016674804688,
+            "end": 50.121166748046875
+          },
+          {
+            "word": "answer ",
+            "start": 50.121166748046875,
+            "end": 50.411166748046874
+          },
+          {
+            "word": "any ",
+            "start": 50.411166748046874,
+            "end": 50.60816674804688
+          },
+          {
+            "word": "questions ",
+            "start": 50.60816674804688,
+            "end": 51.04916674804687
+          },
+          {
+            "word": "you ",
+            "start": 51.04916674804687,
+            "end": 51.18916674804687
+          },
+          {
+            "word": "have ",
+            "start": 51.18916674804687,
+            "end": 51.374166748046875
+          },
+          {
+            "word": "today.",
+            "start": 51.374166748046875,
+            "end": 51.908166748046874
+          }
+        ],
+        "metadata": {
+          "response_id": 5
+        }
+      },
+      {
+        "role": "user",
+        "content": "Yeah.",
+        "words": [
+          {
+            "word": "Yeah.",
+            "start": 54.625,
+            "end": 54.945
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Great! During your last visit on {{lastvisitedon}}, you showed interest in {{details}}. Is there anything specific you\u2019d like to discuss or any questions I can answer for you today?",
+        "words": [
+          {
+            "word": "Great!",
+            "start": 56.503,
+            "end": 57.084
+          },
+          {
+            "word": " During ",
+            "start": 57.118625,
+            "end": 57.385625
+          },
+          {
+            "word": "your ",
+            "start": 57.385625,
+            "end": 57.524625
+          },
+          {
+            "word": "last ",
+            "start": 57.524625,
+            "end": 57.768625
+          },
+          {
+            "word": "visit ",
+            "start": 57.768625,
+            "end": 58.093625
+          },
+          {
+            "word": "on ",
+            "start": 58.093625,
+            "end": 58.256625
+          },
+          {
+            "word": "{{lastvisitedon}}, ",
+            "start": 58.256625,
+            "end": 59.219625
+          },
+          {
+            "word": "you ",
+            "start": 59.219625,
+            "end": 59.382625
+          },
+          {
+            "word": "showed ",
+            "start": 59.382625,
+            "end": 59.649625
+          },
+          {
+            "word": "interest ",
+            "start": 59.649625,
+            "end": 60.020625
+          },
+          {
+            "word": "in ",
+            "start": 60.020625,
+            "end": 60.218625
+          },
+          {
+            "word": "{{details}}.",
+            "start": 60.218625,
+            "end": 62.052625
+          },
+          {
+            "word": " Is ",
+            "start": 62.09870825195313,
+            "end": 62.273708251953124
+          },
+          {
+            "word": "there ",
+            "start": 62.273708251953124,
+            "end": 62.43570825195312
+          },
+          {
+            "word": "anything ",
+            "start": 62.43570825195312,
+            "end": 62.78370825195312
+          },
+          {
+            "word": "specific ",
+            "start": 62.78370825195312,
+            "end": 63.294708251953125
+          },
+          {
+            "word": "you\u2019d ",
+            "start": 63.294708251953125,
+            "end": 63.45770825195312
+          },
+          {
+            "word": "like ",
+            "start": 63.45770825195312,
+            "end": 63.63170825195313
+          },
+          {
+            "word": "to ",
+            "start": 63.63170825195313,
+            "end": 63.73570825195313
+          },
+          {
+            "word": "discuss ",
+            "start": 63.73570825195313,
+            "end": 64.31670825195313
+          },
+          {
+            "word": "or ",
+            "start": 64.31670825195313,
+            "end": 64.54870825195313
+          },
+          {
+            "word": "any ",
+            "start": 64.54870825195313,
+            "end": 64.74670825195312
+          },
+          {
+            "word": "questions ",
+            "start": 64.74670825195312,
+            "end": 65.23370825195312
+          },
+          {
+            "word": "I ",
+            "start": 65.23370825195312,
+            "end": 65.32670825195312
+          },
+          {
+            "word": "can ",
+            "start": 65.32670825195312,
+            "end": 65.47770825195313
+          },
+          {
+            "word": "answer ",
+            "start": 65.47770825195313,
+            "end": 65.74470825195313
+          },
+          {
+            "word": "for ",
+            "start": 65.74470825195313,
+            "end": 65.90770825195312
+          },
+          {
+            "word": "you ",
+            "start": 65.90770825195312,
+            "end": 66.02370825195312
+          },
+          {
+            "word": "today?",
+            "start": 66.02370825195312,
+            "end": 66.60370825195312
+          }
+        ],
+        "metadata": {
+          "response_id": 6
+        }
+      },
+      {
+        "role": "agent",
+        "content": "Just checking in\u2014if you have any questions or would like to discuss your interests from your last visit, I\u2019m here to help!",
+        "words": [
+          {
+            "word": "Just ",
+            "start": 78.205,
+            "end": 78.553
+          },
+          {
+            "word": "checking ",
+            "start": 78.553,
+            "end": 79.006
+          },
+          {
+            "word": "in\u2014if ",
+            "start": 79.006,
+            "end": 79.459
+          },
+          {
+            "word": "you ",
+            "start": 79.459,
+            "end": 79.598
+          },
+          {
+            "word": "have ",
+            "start": 79.598,
+            "end": 79.784
+          },
+          {
+            "word": "any ",
+            "start": 79.784,
+            "end": 80.005
+          },
+          {
+            "word": "questions ",
+            "start": 80.005,
+            "end": 80.666
+          },
+          {
+            "word": "or ",
+            "start": 80.666,
+            "end": 80.806
+          },
+          {
+            "word": "would ",
+            "start": 80.806,
+            "end": 80.957
+          },
+          {
+            "word": "like ",
+            "start": 80.957,
+            "end": 81.096
+          },
+          {
+            "word": "to ",
+            "start": 81.096,
+            "end": 81.2
+          },
+          {
+            "word": "discuss ",
+            "start": 81.2,
+            "end": 81.584
+          },
+          {
+            "word": "your ",
+            "start": 81.584,
+            "end": 81.746
+          },
+          {
+            "word": "interests ",
+            "start": 81.746,
+            "end": 82.141
+          },
+          {
+            "word": "from ",
+            "start": 82.141,
+            "end": 82.327
+          },
+          {
+            "word": "your ",
+            "start": 82.327,
+            "end": 82.489
+          },
+          {
+            "word": "last ",
+            "start": 82.489,
+            "end": 82.733
+          },
+          {
+            "word": "visit, ",
+            "start": 82.733,
+            "end": 83.151
+          },
+          {
+            "word": "I\u2019m ",
+            "start": 83.151,
+            "end": 83.418
+          },
+          {
+            "word": "here ",
+            "start": 83.418,
+            "end": 83.627
+          },
+          {
+            "word": "to ",
+            "start": 83.627,
+            "end": 83.755
+          },
+          {
+            "word": "help!",
+            "start": 83.755,
+            "end": 84.219
+          }
+        ],
+        "metadata": {
+          "response_id": 7
+        }
+      },
+      {
+        "role": "user",
+        "content": "I'm busy ",
+        "words": [
+          {
+            "word": "I'm ",
+            "start": 84.39500000000001,
+            "end": 84.715
+          },
+          {
+            "word": "busy ",
+            "start": 84.715,
+            "end": 84.95500000000001
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": " Let me know how I can ",
+        "words": [
+          {
+            "word": " Let ",
+            "start": 84.24208325195312,
+            "end": 84.40508325195313
+          },
+          {
+            "word": "me ",
+            "start": 84.40508325195313,
+            "end": 84.48608325195312
+          },
+          {
+            "word": "know ",
+            "start": 84.48608325195312,
+            "end": 84.64908325195313
+          },
+          {
+            "word": "how ",
+            "start": 84.64908325195313,
+            "end": 84.79908325195312
+          },
+          {
+            "word": "I ",
+            "start": 84.79908325195312,
+            "end": 84.85808325195312
+          },
+          {
+            "word": "can ",
+            "start": 84.85808325195312,
+            "end": 85.00808325195312
+          }
+        ],
+        "metadata": {
+          "response_id": 7
+        }
+      },
+      {
+        "role": "user",
+        "content": "right now. Can I talk to, like, a Coca or goodbye?",
+        "words": [
+          {
+            "word": "right ",
+            "start": 84.95500000000001,
+            "end": 85.19500000000001
+          },
+          {
+            "word": "now. ",
+            "start": 85.19500000000001,
+            "end": 85.435
+          },
+          {
+            "word": "Can ",
+            "start": 85.435,
+            "end": 85.595
+          },
+          {
+            "word": "I ",
+            "start": 85.595,
+            "end": 85.67500000000001
+          },
+          {
+            "word": "talk ",
+            "start": 85.67500000000001,
+            "end": 85.83500000000001
+          },
+          {
+            "word": "to, ",
+            "start": 85.83500000000001,
+            "end": 85.995
+          },
+          {
+            "word": "like, ",
+            "start": 85.995,
+            "end": 86.155
+          },
+          {
+            "word": "a ",
+            "start": 86.155,
+            "end": 86.31500000000001
+          },
+          {
+            "word": "Coca ",
+            "start": 86.31500000000001,
+            "end": 86.635
+          },
+          {
+            "word": "or ",
+            "start": 86.635,
+            "end": 86.795
+          },
+          {
+            "word": "goodbye?",
+            "start": 86.795,
+            "end": 87.11500000000001
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "No problem at all. Thank you for your time today. If you need anything in the future, feel free to reach out. Have a great day!",
+        "words": [
+          {
+            "word": "No ",
+            "start": 88.755,
+            "end": 88.918
+          },
+          {
+            "word": "problem ",
+            "start": 88.918,
+            "end": 89.243
+          },
+          {
+            "word": "at ",
+            "start": 89.243,
+            "end": 89.336
+          },
+          {
+            "word": "all. ",
+            "start": 89.336,
+            "end": 89.788
+          },
+          {
+            "word": "Thank ",
+            "start": 89.83445825195312,
+            "end": 90.11345825195312
+          },
+          {
+            "word": "you ",
+            "start": 90.11345825195312,
+            "end": 90.21845825195312
+          },
+          {
+            "word": "for ",
+            "start": 90.21845825195312,
+            "end": 90.33445825195312
+          },
+          {
+            "word": "your ",
+            "start": 90.33445825195312,
+            "end": 90.46145825195312
+          },
+          {
+            "word": "time ",
+            "start": 90.46145825195312,
+            "end": 90.67045825195312
+          },
+          {
+            "word": "today. ",
+            "start": 90.67045825195312,
+            "end": 91.18145825195313
+          },
+          {
+            "word": "If ",
+            "start": 91.22766674804687,
+            "end": 91.33266674804688
+          },
+          {
+            "word": "you ",
+            "start": 91.33266674804688,
+            "end": 91.44866674804688
+          },
+          {
+            "word": "need ",
+            "start": 91.44866674804688,
+            "end": 91.65766674804688
+          },
+          {
+            "word": "anything ",
+            "start": 91.65766674804688,
+            "end": 92.02966674804688
+          },
+          {
+            "word": "in ",
+            "start": 92.02966674804688,
+            "end": 92.11066674804688
+          },
+          {
+            "word": "the ",
+            "start": 92.11066674804688,
+            "end": 92.21466674804688
+          },
+          {
+            "word": "future, ",
+            "start": 92.21466674804688,
+            "end": 92.71466674804688
+          },
+          {
+            "word": "feel ",
+            "start": 92.71466674804688,
+            "end": 92.92266674804688
+          },
+          {
+            "word": "free ",
+            "start": 92.92266674804688,
+            "end": 93.08566674804688
+          },
+          {
+            "word": "to ",
+            "start": 93.08566674804688,
+            "end": 93.17866674804688
+          },
+          {
+            "word": "reach ",
+            "start": 93.17866674804688,
+            "end": 93.42266674804688
+          },
+          {
+            "word": "out. ",
+            "start": 93.42266674804688,
+            "end": 93.92166674804687
+          },
+          {
+            "word": "Have ",
+            "start": 93.967625,
+            "end": 94.188625
+          },
+          {
+            "word": "a ",
+            "start": 94.188625,
+            "end": 94.258625
+          },
+          {
+            "word": "great ",
+            "start": 94.258625,
+            "end": 94.548625
+          },
+          {
+            "word": "day!",
+            "start": 94.548625,
+            "end": 95.175625
+          }
+        ],
+        "metadata": {
+          "response_id": 9
+        }
+      }
+    ],
+    "transcript_with_tool_calls": [
+      {
+        "role": "agent",
+        "content": "Hello {{name}}, this is Clara from Summit Consulting Group. I hope you\u2019re doing well today! Do you have a quick moment to chat?",
+        "words": [
+          {
+            "word": "Hello ",
+            "start": 1.098,
+            "end": 1.527
+          },
+          {
+            "word": "{{name}}, ",
+            "start": 1.527,
+            "end": 2.085
+          },
+          {
+            "word": "this ",
+            "start": 2.085,
+            "end": 2.27
+          },
+          {
+            "word": "is ",
+            "start": 2.27,
+            "end": 2.41
+          },
+          {
+            "word": "Clara ",
+            "start": 2.41,
+            "end": 2.758
+          },
+          {
+            "word": "from ",
+            "start": 2.758,
+            "end": 2.967
+          },
+          {
+            "word": "Summit ",
+            "start": 2.967,
+            "end": 3.223
+          },
+          {
+            "word": "Consulting ",
+            "start": 3.223,
+            "end": 3.664
+          },
+          {
+            "word": "Group.",
+            "start": 3.664,
+            "end": 4.116
+          },
+          {
+            "word": " I ",
+            "start": 4.1625,
+            "end": 4.2905
+          },
+          {
+            "word": "hope ",
+            "start": 4.2905,
+            "end": 4.4645
+          },
+          {
+            "word": "you\u2019re ",
+            "start": 4.4645,
+            "end": 4.7555
+          },
+          {
+            "word": "doing ",
+            "start": 4.7555,
+            "end": 5.0455
+          },
+          {
+            "word": "well ",
+            "start": 5.0455,
+            "end": 5.2655
+          },
+          {
+            "word": "today!",
+            "start": 5.2655,
+            "end": 5.8815
+          },
+          {
+            "word": " Do ",
+            "start": 5.904208251953125,
+            "end": 6.032208251953125
+          },
+          {
+            "word": "you ",
+            "start": 6.032208251953125,
+            "end": 6.136208251953125
+          },
+          {
+            "word": "have ",
+            "start": 6.136208251953125,
+            "end": 6.276208251953125
+          },
+          {
+            "word": "a ",
+            "start": 6.276208251953125,
+            "end": 6.357208251953125
+          },
+          {
+            "word": "quick ",
+            "start": 6.357208251953125,
+            "end": 6.612208251953125
+          },
+          {
+            "word": "moment ",
+            "start": 6.612208251953125,
+            "end": 6.949208251953125
+          },
+          {
+            "word": "to ",
+            "start": 6.949208251953125,
+            "end": 7.065208251953125
+          },
+          {
+            "word": "chat?",
+            "start": 7.065208251953125,
+            "end": 7.646208251953125
+          }
+        ],
+        "metadata": {
+          "response_id": 0
+        }
+      },
+      {
+        "role": "user",
+        "content": "Yes.",
+        "words": [
+          {
+            "word": "Yes.",
+            "start": 13.055,
+            "end": 13.295
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Thank you! I noticed your last visit was on {{lastvisitedon}} regarding {{details}}. At Summit Consulting Group, we help businesses with growth, strategy, and expert advisory support. Would you like to hear more about how we can help you?",
+        "words": [
+          {
+            "word": "Thank ",
+            "start": 14.465,
+            "end": 14.813
+          },
+          {
+            "word": "you!",
+            "start": 14.813,
+            "end": 15.243
+          },
+          {
+            "word": " I ",
+            "start": 15.288916748046875,
+            "end": 15.474916748046875
+          },
+          {
+            "word": "noticed ",
+            "start": 15.474916748046875,
+            "end": 15.822916748046875
+          },
+          {
+            "word": "your ",
+            "start": 15.822916748046875,
+            "end": 15.985916748046876
+          },
+          {
+            "word": "last ",
+            "start": 15.985916748046876,
+            "end": 16.229916748046875
+          },
+          {
+            "word": "visit ",
+            "start": 16.229916748046875,
+            "end": 16.484916748046874
+          },
+          {
+            "word": "was ",
+            "start": 16.484916748046874,
+            "end": 16.658916748046874
+          },
+          {
+            "word": "on ",
+            "start": 16.658916748046874,
+            "end": 16.821916748046874
+          },
+          {
+            "word": "{{lastvisitedon}} ",
+            "start": 16.821916748046874,
+            "end": 18.330916748046874
+          },
+          {
+            "word": "regarding ",
+            "start": 18.330916748046874,
+            "end": 18.806916748046874
+          },
+          {
+            "word": "{{details}}.",
+            "start": 18.806916748046874,
+            "end": 19.840916748046876
+          },
+          {
+            "word": " At ",
+            "start": 19.852458251953124,
+            "end": 20.130458251953126
+          },
+          {
+            "word": "Summit ",
+            "start": 20.130458251953126,
+            "end": 20.467458251953126
+          },
+          {
+            "word": "Consulting ",
+            "start": 20.467458251953126,
+            "end": 21.001458251953125
+          },
+          {
+            "word": "Group, ",
+            "start": 21.001458251953125,
+            "end": 21.373458251953124
+          },
+          {
+            "word": "we ",
+            "start": 21.373458251953124,
+            "end": 21.535458251953123
+          },
+          {
+            "word": "help ",
+            "start": 21.535458251953123,
+            "end": 21.744458251953127
+          },
+          {
+            "word": "businesses ",
+            "start": 21.744458251953127,
+            "end": 22.266458251953125
+          },
+          {
+            "word": "with ",
+            "start": 22.266458251953125,
+            "end": 22.464458251953126
+          },
+          {
+            "word": "growth, ",
+            "start": 22.464458251953126,
+            "end": 22.835458251953124
+          },
+          {
+            "word": "strategy, ",
+            "start": 22.835458251953124,
+            "end": 23.381458251953124
+          },
+          {
+            "word": "and ",
+            "start": 23.381458251953124,
+            "end": 23.555458251953127
+          },
+          {
+            "word": "expert ",
+            "start": 23.555458251953127,
+            "end": 23.938458251953126
+          },
+          {
+            "word": "advisory ",
+            "start": 23.938458251953126,
+            "end": 24.449458251953125
+          },
+          {
+            "word": "support.",
+            "start": 24.449458251953125,
+            "end": 25.181458251953124
+          },
+          {
+            "word": " Would ",
+            "start": 25.227041748046876,
+            "end": 25.413041748046876
+          },
+          {
+            "word": "you ",
+            "start": 25.413041748046876,
+            "end": 25.529041748046875
+          },
+          {
+            "word": "like ",
+            "start": 25.529041748046875,
+            "end": 25.715041748046875
+          },
+          {
+            "word": "to ",
+            "start": 25.715041748046875,
+            "end": 25.820041748046876
+          },
+          {
+            "word": "hear ",
+            "start": 25.820041748046876,
+            "end": 25.994041748046875
+          },
+          {
+            "word": "more ",
+            "start": 25.994041748046875,
+            "end": 26.168041748046875
+          },
+          {
+            "word": "about ",
+            "start": 26.168041748046875,
+            "end": 26.412041748046875
+          },
+          {
+            "word": "how ",
+            "start": 26.412041748046875,
+            "end": 26.574041748046874
+          },
+          {
+            "word": "we ",
+            "start": 26.574041748046874,
+            "end": 26.679041748046874
+          },
+          {
+            "word": "can ",
+            "start": 26.679041748046874,
+            "end": 26.830041748046874
+          },
+          {
+            "word": "help ",
+            "start": 26.830041748046874,
+            "end": 27.073041748046876
+          },
+          {
+            "word": "you?",
+            "start": 27.073041748046876,
+            "end": 27.457041748046876
+          }
+        ],
+        "metadata": {
+          "response_id": 1
+        }
+      },
+      {
+        "role": "user",
+        "content": "I have a question. When I visit last?",
+        "words": [
+          {
+            "word": "I ",
+            "start": 28.014999999999997,
+            "end": 28.335001
+          },
+          {
+            "word": "have ",
+            "start": 28.335001,
+            "end": 28.495001
+          },
+          {
+            "word": "a ",
+            "start": 28.495001,
+            "end": 28.655001
+          },
+          {
+            "word": "question. ",
+            "start": 28.655001,
+            "end": 29.294999999999998
+          },
+          {
+            "word": "When ",
+            "start": 29.455,
+            "end": 29.775
+          },
+          {
+            "word": "I ",
+            "start": 29.775,
+            "end": 29.854999999999997
+          },
+          {
+            "word": "visit ",
+            "start": 29.854999999999997,
+            "end": 30.175002
+          },
+          {
+            "word": "last?",
+            "start": 30.175002,
+            "end": 30.495001
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Of course! According to our records, your last visit was on {{lastvisitedon}}. If you\u2019d like, I can ",
+        "words": [
+          {
+            "word": "Of ",
+            "start": 31.529,
+            "end": 31.669
+          },
+          {
+            "word": "course!",
+            "start": 31.669,
+            "end": 32.237
+          },
+          {
+            "word": " According ",
+            "start": 32.2605,
+            "end": 32.6785
+          },
+          {
+            "word": "to ",
+            "start": 32.6785,
+            "end": 32.7715
+          },
+          {
+            "word": "our ",
+            "start": 32.7715,
+            "end": 32.8995
+          },
+          {
+            "word": "records, ",
+            "start": 32.8995,
+            "end": 33.2595
+          },
+          {
+            "word": "your ",
+            "start": 33.2595,
+            "end": 33.4215
+          },
+          {
+            "word": "last ",
+            "start": 33.4215,
+            "end": 33.6655
+          },
+          {
+            "word": "visit ",
+            "start": 33.6655,
+            "end": 33.9445
+          },
+          {
+            "word": "was ",
+            "start": 33.9445,
+            "end": 34.1185
+          },
+          {
+            "word": "on ",
+            "start": 34.1185,
+            "end": 34.2575
+          },
+          {
+            "word": "{{lastvisitedon}}.",
+            "start": 34.2575,
+            "end": 36.5565
+          },
+          {
+            "word": " If ",
+            "start": 36.60241674804688,
+            "end": 36.707416748046874
+          },
+          {
+            "word": "you\u2019d ",
+            "start": 36.707416748046874,
+            "end": 36.881416748046874
+          },
+          {
+            "word": "like, ",
+            "start": 36.881416748046874,
+            "end": 37.183416748046874
+          },
+          {
+            "word": "I ",
+            "start": 37.183416748046874,
+            "end": 37.27641674804688
+          },
+          {
+            "word": "can ",
+            "start": 37.27641674804688,
+            "end": 37.42741674804687
+          }
+        ],
+        "metadata": {
+          "response_id": 3
+        }
+      },
+      {
+        "role": "user",
+        "content": "What ",
+        "words": [
+          {
+            "word": "What ",
+            "start": 37.604998,
+            "end": 38.404997
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "share more details about that visit or help with any ",
+        "words": [
+          {
+            "word": "share ",
+            "start": 37.42741674804687,
+            "end": 37.624416748046876
+          },
+          {
+            "word": "more ",
+            "start": 37.624416748046876,
+            "end": 37.798416748046876
+          },
+          {
+            "word": "details ",
+            "start": 37.798416748046876,
+            "end": 38.170416748046875
+          },
+          {
+            "word": "about ",
+            "start": 38.170416748046875,
+            "end": 38.36741674804688
+          },
+          {
+            "word": "that ",
+            "start": 38.36741674804688,
+            "end": 38.530416748046875
+          },
+          {
+            "word": "visit ",
+            "start": 38.530416748046875,
+            "end": 38.91341674804688
+          },
+          {
+            "word": "or ",
+            "start": 38.91341674804688,
+            "end": 39.07541674804688
+          },
+          {
+            "word": "help ",
+            "start": 39.07541674804688,
+            "end": 39.28441674804687
+          },
+          {
+            "word": "with ",
+            "start": 39.28441674804687,
+            "end": 39.47041674804687
+          },
+          {
+            "word": "any ",
+            "start": 39.47041674804687,
+            "end": 39.679416748046876
+          }
+        ],
+        "metadata": {
+          "response_id": 3
+        }
+      },
+      {
+        "role": "user",
+        "content": "are you saying?",
+        "words": [
+          {
+            "word": "are ",
+            "start": 39.604998,
+            "end": 39.845
+          },
+          {
+            "word": "you ",
+            "start": 39.845,
+            "end": 40.004999999999995
+          },
+          {
+            "word": "saying?",
+            "start": 40.004999999999995,
+            "end": 40.244997
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Sorry ",
+        "words": [
+          {
+            "word": "Sorry ",
+            "start": 41.534,
+            "end": 41.813
+          }
+        ],
+        "metadata": {
+          "response_id": 4
+        }
+      },
+      {
+        "role": "user",
+        "content": "Can you repeat?",
+        "words": [
+          {
+            "word": "Can ",
+            "start": 41.515,
+            "end": 41.754999999999995
+          },
+          {
+            "word": "you ",
+            "start": 41.754999999999995,
+            "end": 41.915
+          },
+          {
+            "word": "repeat?",
+            "start": 41.915,
+            "end": 42.235
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "it?",
+        "words": [
+          {
+            "word": "it?",
+            "start": 42.635,
+            "end": 42.875
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Of course! Your last visit with us was on {{lastvisitedon}}. If you\u2019d like, I can share more about what we discussed or help answer any questions you have today.",
+        "words": [
+          {
+            "word": "Of ",
+            "start": 43.619,
+            "end": 43.816
+          },
+          {
+            "word": "course!",
+            "start": 43.816,
+            "end": 44.478
+          },
+          {
+            "word": " Your ",
+            "start": 44.49025,
+            "end": 44.69925
+          },
+          {
+            "word": "last ",
+            "start": 44.69925,
+            "end": 44.91925
+          },
+          {
+            "word": "visit ",
+            "start": 44.91925,
+            "end": 45.16325
+          },
+          {
+            "word": "with ",
+            "start": 45.16325,
+            "end": 45.34925
+          },
+          {
+            "word": "us ",
+            "start": 45.34925,
+            "end": 45.51125
+          },
+          {
+            "word": "was ",
+            "start": 45.51125,
+            "end": 45.69725
+          },
+          {
+            "word": "on ",
+            "start": 45.69725,
+            "end": 45.89425
+          },
+          {
+            "word": "{{lastvisitedon}}.",
+            "start": 45.89425,
+            "end": 47.63625
+          },
+          {
+            "word": " If ",
+            "start": 47.682166748046875,
+            "end": 47.880166748046875
+          },
+          {
+            "word": "you\u2019d ",
+            "start": 47.880166748046875,
+            "end": 48.066166748046875
+          },
+          {
+            "word": "like, ",
+            "start": 48.066166748046875,
+            "end": 48.286166748046874
+          },
+          {
+            "word": "I ",
+            "start": 48.286166748046874,
+            "end": 48.356166748046874
+          },
+          {
+            "word": "can ",
+            "start": 48.356166748046874,
+            "end": 48.51816674804687
+          },
+          {
+            "word": "share ",
+            "start": 48.51816674804687,
+            "end": 48.727166748046876
+          },
+          {
+            "word": "more ",
+            "start": 48.727166748046876,
+            "end": 48.85516674804688
+          },
+          {
+            "word": "about ",
+            "start": 48.85516674804688,
+            "end": 49.01816674804687
+          },
+          {
+            "word": "what ",
+            "start": 49.01816674804687,
+            "end": 49.16916674804688
+          },
+          {
+            "word": "we ",
+            "start": 49.16916674804688,
+            "end": 49.29616674804687
+          },
+          {
+            "word": "discussed ",
+            "start": 49.29616674804687,
+            "end": 49.77216674804688
+          },
+          {
+            "word": "or ",
+            "start": 49.77216674804688,
+            "end": 49.90016674804688
+          },
+          {
+            "word": "help ",
+            "start": 49.90016674804688,
+            "end": 50.121166748046875
+          },
+          {
+            "word": "answer ",
+            "start": 50.121166748046875,
+            "end": 50.411166748046874
+          },
+          {
+            "word": "any ",
+            "start": 50.411166748046874,
+            "end": 50.60816674804688
+          },
+          {
+            "word": "questions ",
+            "start": 50.60816674804688,
+            "end": 51.04916674804687
+          },
+          {
+            "word": "you ",
+            "start": 51.04916674804687,
+            "end": 51.18916674804687
+          },
+          {
+            "word": "have ",
+            "start": 51.18916674804687,
+            "end": 51.374166748046875
+          },
+          {
+            "word": "today.",
+            "start": 51.374166748046875,
+            "end": 51.908166748046874
+          }
+        ],
+        "metadata": {
+          "response_id": 5
+        }
+      },
+      {
+        "role": "user",
+        "content": "Yeah.",
+        "words": [
+          {
+            "word": "Yeah.",
+            "start": 54.625,
+            "end": 54.945
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Great! During your last visit on {{lastvisitedon}}, you showed interest in {{details}}. Is there anything specific you\u2019d like to discuss or any questions I can answer for you today?",
+        "words": [
+          {
+            "word": "Great!",
+            "start": 56.503,
+            "end": 57.084
+          },
+          {
+            "word": " During ",
+            "start": 57.118625,
+            "end": 57.385625
+          },
+          {
+            "word": "your ",
+            "start": 57.385625,
+            "end": 57.524625
+          },
+          {
+            "word": "last ",
+            "start": 57.524625,
+            "end": 57.768625
+          },
+          {
+            "word": "visit ",
+            "start": 57.768625,
+            "end": 58.093625
+          },
+          {
+            "word": "on ",
+            "start": 58.093625,
+            "end": 58.256625
+          },
+          {
+            "word": "{{lastvisitedon}}, ",
+            "start": 58.256625,
+            "end": 59.219625
+          },
+          {
+            "word": "you ",
+            "start": 59.219625,
+            "end": 59.382625
+          },
+          {
+            "word": "showed ",
+            "start": 59.382625,
+            "end": 59.649625
+          },
+          {
+            "word": "interest ",
+            "start": 59.649625,
+            "end": 60.020625
+          },
+          {
+            "word": "in ",
+            "start": 60.020625,
+            "end": 60.218625
+          },
+          {
+            "word": "{{details}}.",
+            "start": 60.218625,
+            "end": 62.052625
+          },
+          {
+            "word": " Is ",
+            "start": 62.09870825195313,
+            "end": 62.273708251953124
+          },
+          {
+            "word": "there ",
+            "start": 62.273708251953124,
+            "end": 62.43570825195312
+          },
+          {
+            "word": "anything ",
+            "start": 62.43570825195312,
+            "end": 62.78370825195312
+          },
+          {
+            "word": "specific ",
+            "start": 62.78370825195312,
+            "end": 63.294708251953125
+          },
+          {
+            "word": "you\u2019d ",
+            "start": 63.294708251953125,
+            "end": 63.45770825195312
+          },
+          {
+            "word": "like ",
+            "start": 63.45770825195312,
+            "end": 63.63170825195313
+          },
+          {
+            "word": "to ",
+            "start": 63.63170825195313,
+            "end": 63.73570825195313
+          },
+          {
+            "word": "discuss ",
+            "start": 63.73570825195313,
+            "end": 64.31670825195313
+          },
+          {
+            "word": "or ",
+            "start": 64.31670825195313,
+            "end": 64.54870825195313
+          },
+          {
+            "word": "any ",
+            "start": 64.54870825195313,
+            "end": 64.74670825195312
+          },
+          {
+            "word": "questions ",
+            "start": 64.74670825195312,
+            "end": 65.23370825195312
+          },
+          {
+            "word": "I ",
+            "start": 65.23370825195312,
+            "end": 65.32670825195312
+          },
+          {
+            "word": "can ",
+            "start": 65.32670825195312,
+            "end": 65.47770825195313
+          },
+          {
+            "word": "answer ",
+            "start": 65.47770825195313,
+            "end": 65.74470825195313
+          },
+          {
+            "word": "for ",
+            "start": 65.74470825195313,
+            "end": 65.90770825195312
+          },
+          {
+            "word": "you ",
+            "start": 65.90770825195312,
+            "end": 66.02370825195312
+          },
+          {
+            "word": "today?",
+            "start": 66.02370825195312,
+            "end": 66.60370825195312
+          }
+        ],
+        "metadata": {
+          "response_id": 6
+        }
+      },
+      {
+        "role": "agent",
+        "content": "Just checking in\u2014if you have any questions or would like to discuss your interests from your last visit, I\u2019m here to help!",
+        "words": [
+          {
+            "word": "Just ",
+            "start": 78.205,
+            "end": 78.553
+          },
+          {
+            "word": "checking ",
+            "start": 78.553,
+            "end": 79.006
+          },
+          {
+            "word": "in\u2014if ",
+            "start": 79.006,
+            "end": 79.459
+          },
+          {
+            "word": "you ",
+            "start": 79.459,
+            "end": 79.598
+          },
+          {
+            "word": "have ",
+            "start": 79.598,
+            "end": 79.784
+          },
+          {
+            "word": "any ",
+            "start": 79.784,
+            "end": 80.005
+          },
+          {
+            "word": "questions ",
+            "start": 80.005,
+            "end": 80.666
+          },
+          {
+            "word": "or ",
+            "start": 80.666,
+            "end": 80.806
+          },
+          {
+            "word": "would ",
+            "start": 80.806,
+            "end": 80.957
+          },
+          {
+            "word": "like ",
+            "start": 80.957,
+            "end": 81.096
+          },
+          {
+            "word": "to ",
+            "start": 81.096,
+            "end": 81.2
+          },
+          {
+            "word": "discuss ",
+            "start": 81.2,
+            "end": 81.584
+          },
+          {
+            "word": "your ",
+            "start": 81.584,
+            "end": 81.746
+          },
+          {
+            "word": "interests ",
+            "start": 81.746,
+            "end": 82.141
+          },
+          {
+            "word": "from ",
+            "start": 82.141,
+            "end": 82.327
+          },
+          {
+            "word": "your ",
+            "start": 82.327,
+            "end": 82.489
+          },
+          {
+            "word": "last ",
+            "start": 82.489,
+            "end": 82.733
+          },
+          {
+            "word": "visit, ",
+            "start": 82.733,
+            "end": 83.151
+          },
+          {
+            "word": "I\u2019m ",
+            "start": 83.151,
+            "end": 83.418
+          },
+          {
+            "word": "here ",
+            "start": 83.418,
+            "end": 83.627
+          },
+          {
+            "word": "to ",
+            "start": 83.627,
+            "end": 83.755
+          },
+          {
+            "word": "help!",
+            "start": 83.755,
+            "end": 84.219
+          }
+        ],
+        "metadata": {
+          "response_id": 7
+        }
+      },
+      {
+        "role": "user",
+        "content": "I'm busy ",
+        "words": [
+          {
+            "word": "I'm ",
+            "start": 84.39500000000001,
+            "end": 84.715
+          },
+          {
+            "word": "busy ",
+            "start": 84.715,
+            "end": 84.95500000000001
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": " Let me know how I can ",
+        "words": [
+          {
+            "word": " Let ",
+            "start": 84.24208325195312,
+            "end": 84.40508325195313
+          },
+          {
+            "word": "me ",
+            "start": 84.40508325195313,
+            "end": 84.48608325195312
+          },
+          {
+            "word": "know ",
+            "start": 84.48608325195312,
+            "end": 84.64908325195313
+          },
+          {
+            "word": "how ",
+            "start": 84.64908325195313,
+            "end": 84.79908325195312
+          },
+          {
+            "word": "I ",
+            "start": 84.79908325195312,
+            "end": 84.85808325195312
+          },
+          {
+            "word": "can ",
+            "start": 84.85808325195312,
+            "end": 85.00808325195312
+          }
+        ],
+        "metadata": {
+          "response_id": 7
+        }
+      },
+      {
+        "role": "user",
+        "content": "right now. Can I talk to, like, a Coca or goodbye?",
+        "words": [
+          {
+            "word": "right ",
+            "start": 84.95500000000001,
+            "end": 85.19500000000001
+          },
+          {
+            "word": "now. ",
+            "start": 85.19500000000001,
+            "end": 85.435
+          },
+          {
+            "word": "Can ",
+            "start": 85.435,
+            "end": 85.595
+          },
+          {
+            "word": "I ",
+            "start": 85.595,
+            "end": 85.67500000000001
+          },
+          {
+            "word": "talk ",
+            "start": 85.67500000000001,
+            "end": 85.83500000000001
+          },
+          {
+            "word": "to, ",
+            "start": 85.83500000000001,
+            "end": 85.995
+          },
+          {
+            "word": "like, ",
+            "start": 85.995,
+            "end": 86.155
+          },
+          {
+            "word": "a ",
+            "start": 86.155,
+            "end": 86.31500000000001
+          },
+          {
+            "word": "Coca ",
+            "start": 86.31500000000001,
+            "end": 86.635
+          },
+          {
+            "word": "or ",
+            "start": 86.635,
+            "end": 86.795
+          },
+          {
+            "word": "goodbye?",
+            "start": 86.795,
+            "end": 87.11500000000001
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "No problem at all. Thank you for your time today. If you need anything in the future, feel free to reach out. Have a great day!",
+        "words": [
+          {
+            "word": "No ",
+            "start": 88.755,
+            "end": 88.918
+          },
+          {
+            "word": "problem ",
+            "start": 88.918,
+            "end": 89.243
+          },
+          {
+            "word": "at ",
+            "start": 89.243,
+            "end": 89.336
+          },
+          {
+            "word": "all. ",
+            "start": 89.336,
+            "end": 89.788
+          },
+          {
+            "word": "Thank ",
+            "start": 89.83445825195312,
+            "end": 90.11345825195312
+          },
+          {
+            "word": "you ",
+            "start": 90.11345825195312,
+            "end": 90.21845825195312
+          },
+          {
+            "word": "for ",
+            "start": 90.21845825195312,
+            "end": 90.33445825195312
+          },
+          {
+            "word": "your ",
+            "start": 90.33445825195312,
+            "end": 90.46145825195312
+          },
+          {
+            "word": "time ",
+            "start": 90.46145825195312,
+            "end": 90.67045825195312
+          },
+          {
+            "word": "today. ",
+            "start": 90.67045825195312,
+            "end": 91.18145825195313
+          },
+          {
+            "word": "If ",
+            "start": 91.22766674804687,
+            "end": 91.33266674804688
+          },
+          {
+            "word": "you ",
+            "start": 91.33266674804688,
+            "end": 91.44866674804688
+          },
+          {
+            "word": "need ",
+            "start": 91.44866674804688,
+            "end": 91.65766674804688
+          },
+          {
+            "word": "anything ",
+            "start": 91.65766674804688,
+            "end": 92.02966674804688
+          },
+          {
+            "word": "in ",
+            "start": 92.02966674804688,
+            "end": 92.11066674804688
+          },
+          {
+            "word": "the ",
+            "start": 92.11066674804688,
+            "end": 92.21466674804688
+          },
+          {
+            "word": "future, ",
+            "start": 92.21466674804688,
+            "end": 92.71466674804688
+          },
+          {
+            "word": "feel ",
+            "start": 92.71466674804688,
+            "end": 92.92266674804688
+          },
+          {
+            "word": "free ",
+            "start": 92.92266674804688,
+            "end": 93.08566674804688
+          },
+          {
+            "word": "to ",
+            "start": 93.08566674804688,
+            "end": 93.17866674804688
+          },
+          {
+            "word": "reach ",
+            "start": 93.17866674804688,
+            "end": 93.42266674804688
+          },
+          {
+            "word": "out. ",
+            "start": 93.42266674804688,
+            "end": 93.92166674804687
+          },
+          {
+            "word": "Have ",
+            "start": 93.967625,
+            "end": 94.188625
+          },
+          {
+            "word": "a ",
+            "start": 94.188625,
+            "end": 94.258625
+          },
+          {
+            "word": "great ",
+            "start": 94.258625,
+            "end": 94.548625
+          },
+          {
+            "word": "day!",
+            "start": 94.548625,
+            "end": 95.175625
+          }
+        ],
+        "metadata": {
+          "response_id": 9
+        }
+      },
+      {
+        "role": "tool_call_invocation",
+        "tool_call_id": "765834a23c6b8462",
+        "name": "end_call",
+        "arguments": "{\"execution_message\":\"No problem at all. Thank you for your time today. If you need anything in the future, feel free to reach out. Have a great day!\"}"
+      }
+    ],
+    "recording_url": "https://dxc03zgurdly9.cloudfront.net/9d124afb97ff6284dfeb45d3551aed001dceb1ca819b9094923941117b96cb5f/recording.wav",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/9d124afb97ff6284dfeb45d3551aed001dceb1ca819b9094923941117b96cb5f/recording_multichannel.wav",
+    "public_log_url": "https://dxc03zgurdly9.cloudfront.net/9d124afb97ff6284dfeb45d3551aed001dceb1ca819b9094923941117b96cb5f/public.log",
+    "disconnection_reason": "agent_hangup",
+    "latency": {
+      "llm": {
+        "p50": 584,
+        "p90": 1049.2,
+        "p95": 1055.6,
+        "p99": 1060.72,
+        "min": 515,
+        "max": 1062,
+        "num": 9,
+        "values": [
+          522,
+          601,
+          550,
+          582,
+          515,
+          584,
+          1062,
+          968,
+          1046
+        ]
+      },
+      "e2e": {
+        "p50": 1203.00146484375,
+        "p90": 1454,
+        "p95": 1460,
+        "p99": 1464.8,
+        "min": 952.9990234375,
+        "max": 1466,
+        "num": 6,
+        "values": [
+          1112,
+          952.9990234375,
+          1138.0029296875,
+          1268,
+          1442,
+          1466
+        ]
+      },
+      "tts": {
+        "p50": 289,
+        "p90": 484.4,
+        "p95": 487.2,
+        "p99": 489.44,
+        "min": 252,
+        "max": 490,
+        "num": 9,
+        "values": [
+          483,
+          300,
+          287,
+          253,
+          401,
+          289,
+          268,
+          490,
+          252
+        ]
+      }
+    },
+    "call_cost": {
+      "product_costs": [
+        {
+          "product": "elevenlabs_tts",
+          "unit_price": 0.1166667,
+          "cost": 11.2
+        },
+        {
+          "product": "gpt_4_1",
+          "unit_price": 0.075,
+          "cost": 7.2
+        },
+        {
+          "product": "us_twilio_telephony",
+          "unit_price": 0.025,
+          "cost": 2.4
+        }
+      ],
+      "total_duration_seconds": 96,
+      "total_duration_unit_price": 0.2166667,
+      "combined_cost": 20.8
+    },
+    "call_analysis": {
+      "call_summary": "The user had a brief conversation with the agent, Clara, from Summit Consulting Group, who attempted to discuss the user's last visit and offer assistance. However, the user expressed that they were busy and requested to end the call.",
+      "in_voicemail": false,
+      "user_sentiment": "Neutral",
+      "call_successful": false,
+      "custom_analysis_data": {}
+    },
+    "opt_out_sensitive_data_storage": false,
+    "data_storage_setting": "everything",
+    "opt_in_signed_url": false,
+    "llm_token_usage": {
+      "values": [
+        1245,
+        1266,
+        1328,
+        1333,
+        1380,
+        1391,
+        1442,
+        1502,
+        1539,
+        1540
+      ],
+      "average": 1396.6,
+      "num_requests": 10
+    },
+    "from_number": "+19727774163",
+    "to_number": "+18723287358",
+    "direction": "inbound",
+    "telephony_identifier": {
+      "twilio_call_sid": "CA37b5cdc8003c4fe992e99950645dd231"
+    }
+  }
+}

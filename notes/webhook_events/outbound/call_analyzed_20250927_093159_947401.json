@@ -1,0 +1,4808 @@
+{
+  "event": "call_analyzed",
+  "call": {
+    "call_id": "call_2db33d619aca830686d267ac3c2",
+    "call_type": "phone_call",
+    "agent_id": "agent_7f829accfaa46c5bfb76ca46b1",
+    "agent_version": 0,
+    "agent_name": "n8n",
+    "retell_llm_dynamic_variables": {
+      "name": "=muhammad asad",
+      "phone_number": "=19727774163",
+      "email": "=safdarhnh1@gmail.com",
+      "lastvisitedon": "=05/14/25",
+      "details": "=Career coaching inquiry"
+    },
+    "call_status": "ended",
+    "start_timestamp": 1758965347607,
+    "end_timestamp": 1758965515904,
+    "duration_ms": 168297,
+    "transcript": "User: Please hold while I try to connect you.\nAgent: Of course, take your time. I\u2019ll be here when you\u2019re ready to continue.\nUser: Hello.\nAgent: Hello Muhammad Asad! I hope you\u2019re doing well today. Do you have a quick moment to chat about your career coaching inquiry?\nUser: Yes.\nUser: I'm \nAgent: Thank you! I \nUser: I'm thinking about to do masters in AI So can you suggest me a best energy and suggest me a future proof Business book future\nUser: You can see that I view retirement only.\nAgent: Thank you for sharing your thoughts, Muhammad. It sounds like you\u2019re considering a master\u2019s in AI and also thinking about retirement planning. I\u2019d be happy to offer some guidance.\n\nFor a future-proof business book, I recommend The Future Is Faster Than You Think by Peter H. Diamandis and Steven Kotler. It covers how technology, including AI, is shaping business and society.\n\nIf you\u2019re interested in energy fields related to AI, renewable energy and smart grid technology are growing areas with strong future potential.\n\nWould you like more tailored advice or resources on retirement planning, AI careers, or business strategy?\nUser: Yes.\nAgent: Great! To help you best, would you like to focus more on AI career paths, retirement planning, or business strategy? Let me know your main interest, and I can share specific advice and resources.\nUser: I'm interested in to doing a in AI. So yeah, I need a guidance in\nAgent: That\u2019s exciting, Muhammad! Pursuing a master\u2019s in AI can open many doors. We can help you explore career paths, top programs, and how to align your studies with future job trends.\n\nWould you like to schedule a complimentary consultation to discuss your goals and get personalized advice? If so, do you prefer mornings or afternoons (Pacific Time)?\nUser: I prefer morning and I prefer date on nine October.\nAgent: Let me check our availability for the morning of October 9th.We have availability on the morning of October 9th between 9:00 A M and 12:00 P M (Pacific Time). Is there a specific time in that range that works best for you?\nUser: Yes. Yes. Nine o'clock is best.\nUser: So book it an appointment in that.\nAgent: Your consultation is being scheduled for October \nAgent: 9th at 9:00 A M Pacific Time. You'll receive a confirmation soon.Your appointment is confirmed for October 9th at 9:00 A M Pacific Time. Thank you for choosing Summit Consulting Group! If you have any questions before then, feel free to reach out. Have a great day!\nUser: Goodbye.\nAgent: Goodbye, Muhammad! Wishing you all the best on your journey. If you need anything else, we're here to help.\n",
+    "transcript_object": [
+      {
+        "role": "user",
+        "content": "Please hold while I try to connect you.",
+        "words": [
+          {
+            "word": "Please ",
+            "start": 0.72699997,
+            "end": 1.047
+          },
+          {
+            "word": "hold ",
+            "start": 1.047,
+            "end": 1.287
+          },
+          {
+            "word": "while ",
+            "start": 1.287,
+            "end": 1.527
+          },
+          {
+            "word": "I ",
+            "start": 1.527,
+            "end": 1.6869999999999998
+          },
+          {
+            "word": "try ",
+            "start": 1.6869999999999998,
+            "end": 1.8469999
+          },
+          {
+            "word": "to ",
+            "start": 1.8469999,
+            "end": 1.9269999999999998
+          },
+          {
+            "word": "connect ",
+            "start": 1.9269999999999998,
+            "end": 2.1669998
+          },
+          {
+            "word": "you.",
+            "start": 2.1669998,
+            "end": 2.327
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Of course, take your time. I\u2019ll be here when you\u2019re ready to continue.",
+        "words": [
+          {
+            "word": "Of ",
+            "start": 3.517,
+            "end": 3.702
+          },
+          {
+            "word": "course, ",
+            "start": 3.702,
+            "end": 3.981
+          },
+          {
+            "word": "take ",
+            "start": 3.981,
+            "end": 4.167
+          },
+          {
+            "word": "your ",
+            "start": 4.167,
+            "end": 4.329
+          },
+          {
+            "word": "time.",
+            "start": 4.329,
+            "end": 4.922
+          },
+          {
+            "word": " I\u2019ll ",
+            "start": 4.967541748046875,
+            "end": 5.176541748046875
+          },
+          {
+            "word": "be ",
+            "start": 5.176541748046875,
+            "end": 5.293541748046875
+          },
+          {
+            "word": "here ",
+            "start": 5.293541748046875,
+            "end": 5.432541748046875
+          },
+          {
+            "word": "when ",
+            "start": 5.432541748046875,
+            "end": 5.571541748046875
+          },
+          {
+            "word": "you\u2019re ",
+            "start": 5.571541748046875,
+            "end": 5.815541748046875
+          },
+          {
+            "word": "ready ",
+            "start": 5.815541748046875,
+            "end": 6.047541748046875
+          },
+          {
+            "word": "to ",
+            "start": 6.047541748046875,
+            "end": 6.152541748046875
+          },
+          {
+            "word": "continue.",
+            "start": 6.152541748046875,
+            "end": 6.918541748046875
+          }
+        ],
+        "metadata": {
+          "response_id": 2
+        }
+      },
+      {
+        "role": "user",
+        "content": "Hello.",
+        "words": [
+          {
+            "word": "Hello.",
+            "start": 10.707001,
+            "end": 10.947001
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Hello Muhammad Asad! I hope you\u2019re doing well today. Do you have a quick moment to chat about your career coaching inquiry?",
+        "words": [
+          {
+            "word": "Hello ",
+            "start": 12.083,
+            "end": 12.57
+          },
+          {
+            "word": "Muhammad ",
+            "start": 12.57,
+            "end": 12.965
+          },
+          {
+            "word": "Asad!",
+            "start": 12.965,
+            "end": 13.534
+          },
+          {
+            "word": " I ",
+            "start": 13.579958251953125,
+            "end": 13.661958251953125
+          },
+          {
+            "word": "hope ",
+            "start": 13.661958251953125,
+            "end": 13.800958251953125
+          },
+          {
+            "word": "you\u2019re ",
+            "start": 13.800958251953125,
+            "end": 13.974958251953124
+          },
+          {
+            "word": "doing ",
+            "start": 13.974958251953124,
+            "end": 14.183958251953126
+          },
+          {
+            "word": "well ",
+            "start": 14.183958251953126,
+            "end": 14.404958251953126
+          },
+          {
+            "word": "today.",
+            "start": 14.404958251953126,
+            "end": 14.973958251953125
+          },
+          {
+            "word": " Do ",
+            "start": 14.985583251953125,
+            "end": 15.147583251953124
+          },
+          {
+            "word": "you ",
+            "start": 15.147583251953124,
+            "end": 15.240583251953124
+          },
+          {
+            "word": "have ",
+            "start": 15.240583251953124,
+            "end": 15.356583251953126
+          },
+          {
+            "word": "a ",
+            "start": 15.356583251953126,
+            "end": 15.414583251953125
+          },
+          {
+            "word": "quick ",
+            "start": 15.414583251953125,
+            "end": 15.635583251953125
+          },
+          {
+            "word": "moment ",
+            "start": 15.635583251953125,
+            "end": 15.937583251953125
+          },
+          {
+            "word": "to ",
+            "start": 15.937583251953125,
+            "end": 16.053583251953125
+          },
+          {
+            "word": "chat ",
+            "start": 16.053583251953125,
+            "end": 16.262583251953124
+          },
+          {
+            "word": "about ",
+            "start": 16.262583251953124,
+            "end": 16.436583251953124
+          },
+          {
+            "word": "your ",
+            "start": 16.436583251953124,
+            "end": 16.598583251953126
+          },
+          {
+            "word": "career ",
+            "start": 16.598583251953126,
+            "end": 16.900583251953126
+          },
+          {
+            "word": "coaching ",
+            "start": 16.900583251953126,
+            "end": 17.260583251953125
+          },
+          {
+            "word": "inquiry?",
+            "start": 17.260583251953125,
+            "end": 17.899583251953125
+          }
+        ],
+        "metadata": {
+          "response_id": 3
+        }
+      },
+      {
+        "role": "user",
+        "content": "Yes.",
+        "words": [
+          {
+            "word": "Yes.",
+            "start": 19.437,
+            "end": 19.677000000000003
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "I'm ",
+        "words": [
+          {
+            "word": "I'm ",
+            "start": 19.977,
+            "end": 20.697000000000003
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Thank you! I ",
+        "words": [
+          {
+            "word": "Thank ",
+            "start": 20.884,
+            "end": 21.209
+          },
+          {
+            "word": "you!",
+            "start": 21.209,
+            "end": 21.65
+          },
+          {
+            "word": " I ",
+            "start": 21.695916748046876,
+            "end": 21.846916748046876
+          }
+        ],
+        "metadata": {
+          "response_id": 4
+        }
+      },
+      {
+        "role": "user",
+        "content": "I'm thinking about to do masters in AI So can you suggest me a best energy and suggest me a future proof Business book future",
+        "words": [
+          {
+            "word": "I'm ",
+            "start": 20.777,
+            "end": 21.577
+          },
+          {
+            "word": "thinking ",
+            "start": 21.737000000000002,
+            "end": 22.217000000000002
+          },
+          {
+            "word": "about ",
+            "start": 22.217000000000002,
+            "end": 22.537000000000003
+          },
+          {
+            "word": "to ",
+            "start": 22.537000000000003,
+            "end": 22.777
+          },
+          {
+            "word": "do ",
+            "start": 22.777,
+            "end": 23.017000000000003
+          },
+          {
+            "word": "masters ",
+            "start": 23.017000000000003,
+            "end": 23.337
+          },
+          {
+            "word": "in ",
+            "start": 23.337,
+            "end": 23.577
+          },
+          {
+            "word": "AI ",
+            "start": 23.577,
+            "end": 23.817
+          },
+          {
+            "word": "So ",
+            "start": 23.987000000000002,
+            "end": 24.387
+          },
+          {
+            "word": "can ",
+            "start": 24.387,
+            "end": 24.706999
+          },
+          {
+            "word": "you ",
+            "start": 24.706999,
+            "end": 24.866999
+          },
+          {
+            "word": "suggest ",
+            "start": 24.866999,
+            "end": 25.187
+          },
+          {
+            "word": "me ",
+            "start": 25.187,
+            "end": 25.347
+          },
+          {
+            "word": "a ",
+            "start": 25.347,
+            "end": 25.507
+          },
+          {
+            "word": "best ",
+            "start": 25.507,
+            "end": 25.747
+          },
+          {
+            "word": "energy ",
+            "start": 25.747,
+            "end": 26.227
+          },
+          {
+            "word": "and ",
+            "start": 26.227,
+            "end": 26.626999
+          },
+          {
+            "word": "suggest ",
+            "start": 26.626999,
+            "end": 26.946999
+          },
+          {
+            "word": "me ",
+            "start": 26.946999,
+            "end": 27.187
+          },
+          {
+            "word": "a ",
+            "start": 27.187,
+            "end": 27.267000000000003
+          },
+          {
+            "word": "future ",
+            "start": 27.267000000000003,
+            "end": 27.667
+          },
+          {
+            "word": "proof ",
+            "start": 27.667,
+            "end": 27.987000000000002
+          },
+          {
+            "word": "Business ",
+            "start": 28.317,
+            "end": 29.116999
+          },
+          {
+            "word": "book ",
+            "start": 30.477,
+            "end": 30.796999000000003
+          },
+          {
+            "word": "future",
+            "start": 30.796999000000003,
+            "end": 31.117
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "You can see that I view retirement only.",
+        "words": [
+          {
+            "word": "You ",
+            "start": 31.617,
+            "end": 32.017002
+          },
+          {
+            "word": "can ",
+            "start": 32.017002,
+            "end": 32.097
+          },
+          {
+            "word": "see ",
+            "start": 32.097,
+            "end": 32.336999999999996
+          },
+          {
+            "word": "that ",
+            "start": 32.336999999999996,
+            "end": 32.577
+          },
+          {
+            "word": "I ",
+            "start": 32.577,
+            "end": 32.817
+          },
+          {
+            "word": "view ",
+            "start": 32.817,
+            "end": 32.977
+          },
+          {
+            "word": "retirement ",
+            "start": 32.977,
+            "end": 33.457
+          },
+          {
+            "word": "only.",
+            "start": 33.457,
+            "end": 33.697002
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Thank you for sharing your thoughts, Muhammad. It sounds like you\u2019re considering a master\u2019s in AI and also thinking about retirement planning. I\u2019d be happy to offer some guidance.\n\nFor a future-proof business book, I recommend The Future Is Faster Than You Think by Peter H. Diamandis and Steven Kotler. It covers how technology, including AI, is shaping business and society.\n\nIf you\u2019re interested in energy fields related to AI, renewable energy and smart grid technology are growing areas with strong future potential.\n\nWould you like more tailored advice or resources on retirement planning, AI careers, or business strategy?",
+        "words": [
+          {
+            "word": "Thank ",
+            "start": 35.174,
+            "end": 35.464
+          },
+          {
+            "word": "you ",
+            "start": 35.464,
+            "end": 35.592
+          },
+          {
+            "word": "for ",
+            "start": 35.592,
+            "end": 35.72
+          },
+          {
+            "word": "sharing ",
+            "start": 35.72,
+            "end": 35.987
+          },
+          {
+            "word": "your ",
+            "start": 35.987,
+            "end": 36.114
+          },
+          {
+            "word": "thoughts, ",
+            "start": 36.114,
+            "end": 36.451
+          },
+          {
+            "word": "Muhammad.",
+            "start": 36.451,
+            "end": 37.217
+          },
+          {
+            "word": " It ",
+            "start": 37.26325,
+            "end": 37.35625
+          },
+          {
+            "word": "sounds ",
+            "start": 37.35625,
+            "end": 37.57725
+          },
+          {
+            "word": "like ",
+            "start": 37.57725,
+            "end": 37.71625
+          },
+          {
+            "word": "you\u2019re ",
+            "start": 37.71625,
+            "end": 37.87925
+          },
+          {
+            "word": "considering ",
+            "start": 37.87925,
+            "end": 38.72625
+          },
+          {
+            "word": "a ",
+            "start": 38.72625,
+            "end": 38.97025
+          },
+          {
+            "word": "master\u2019s ",
+            "start": 38.97025,
+            "end": 39.53925
+          },
+          {
+            "word": "in ",
+            "start": 39.53925,
+            "end": 39.74825
+          },
+          {
+            "word": "AI ",
+            "start": 39.74825,
+            "end": 40.10825
+          },
+          {
+            "word": "and ",
+            "start": 40.10825,
+            "end": 40.22425
+          },
+          {
+            "word": "also ",
+            "start": 40.22425,
+            "end": 40.52625
+          },
+          {
+            "word": "thinking ",
+            "start": 40.52625,
+            "end": 40.80425
+          },
+          {
+            "word": "about ",
+            "start": 40.80425,
+            "end": 41.02525
+          },
+          {
+            "word": "retirement ",
+            "start": 41.02525,
+            "end": 41.52425
+          },
+          {
+            "word": "planning.",
+            "start": 41.52425,
+            "end": 42.14025
+          },
+          {
+            "word": " I\u2019d ",
+            "start": 42.185875,
+            "end": 42.394875
+          },
+          {
+            "word": "be ",
+            "start": 42.394875,
+            "end": 42.476875
+          },
+          {
+            "word": "happy ",
+            "start": 42.476875,
+            "end": 42.731875
+          },
+          {
+            "word": "to ",
+            "start": 42.731875,
+            "end": 42.812875
+          },
+          {
+            "word": "offer ",
+            "start": 42.812875,
+            "end": 43.079875
+          },
+          {
+            "word": "some ",
+            "start": 43.079875,
+            "end": 43.254875
+          },
+          {
+            "word": "guidance.",
+            "start": 43.254875,
+            "end": 44.089875
+          },
+          {
+            "word": "\n\nFor ",
+            "start": 44.136375,
+            "end": 44.322375
+          },
+          {
+            "word": "a ",
+            "start": 44.322375,
+            "end": 44.403375
+          },
+          {
+            "word": "future-proof ",
+            "start": 44.403375,
+            "end": 44.972375
+          },
+          {
+            "word": "business ",
+            "start": 44.972375,
+            "end": 45.297375
+          },
+          {
+            "word": "book, ",
+            "start": 45.297375,
+            "end": 45.553375
+          },
+          {
+            "word": "I ",
+            "start": 45.553375,
+            "end": 45.727375
+          },
+          {
+            "word": "recommend ",
+            "start": 45.727375,
+            "end": 46.157375
+          },
+          {
+            "word": "The ",
+            "start": 46.157375,
+            "end": 46.261375
+          },
+          {
+            "word": "Future ",
+            "start": 46.261375,
+            "end": 46.609375
+          },
+          {
+            "word": "Is ",
+            "start": 46.609375,
+            "end": 46.737375
+          },
+          {
+            "word": "Faster ",
+            "start": 46.737375,
+            "end": 47.120375
+          },
+          {
+            "word": "Than ",
+            "start": 47.120375,
+            "end": 47.306375
+          },
+          {
+            "word": "You ",
+            "start": 47.306375,
+            "end": 47.445375
+          },
+          {
+            "word": "Think ",
+            "start": 47.445375,
+            "end": 47.886375
+          },
+          {
+            "word": "by ",
+            "start": 47.886375,
+            "end": 48.119375
+          },
+          {
+            "word": "Peter ",
+            "start": 48.119375,
+            "end": 48.386375
+          },
+          {
+            "word": "H.",
+            "start": 48.386375,
+            "end": 48.966375
+          },
+          {
+            "word": " Diamandis ",
+            "start": 49.012583251953124,
+            "end": 49.558583251953124
+          },
+          {
+            "word": "and ",
+            "start": 49.558583251953124,
+            "end": 49.67458325195312
+          },
+          {
+            "word": "Steven ",
+            "start": 49.67458325195312,
+            "end": 49.97658325195312
+          },
+          {
+            "word": "Kotler.",
+            "start": 49.97658325195312,
+            "end": 50.591583251953125
+          },
+          {
+            "word": " It ",
+            "start": 50.627,
+            "end": 50.801
+          },
+          {
+            "word": "covers ",
+            "start": 50.801,
+            "end": 51.091
+          },
+          {
+            "word": "how ",
+            "start": 51.091,
+            "end": 51.242
+          },
+          {
+            "word": "technology, ",
+            "start": 51.242,
+            "end": 51.881
+          },
+          {
+            "word": "including ",
+            "start": 51.881,
+            "end": 52.392
+          },
+          {
+            "word": "AI, ",
+            "start": 52.392,
+            "end": 52.728
+          },
+          {
+            "word": "is ",
+            "start": 52.728,
+            "end": 52.856
+          },
+          {
+            "word": "shaping ",
+            "start": 52.856,
+            "end": 53.181
+          },
+          {
+            "word": "business ",
+            "start": 53.181,
+            "end": 53.506
+          },
+          {
+            "word": "and ",
+            "start": 53.506,
+            "end": 53.611
+          },
+          {
+            "word": "society.",
+            "start": 53.611,
+            "end": 54.354
+          },
+          {
+            "word": "\n\nIf ",
+            "start": 54.399625,
+            "end": 54.539625
+          },
+          {
+            "word": "you\u2019re ",
+            "start": 54.539625,
+            "end": 54.713625
+          },
+          {
+            "word": "interested ",
+            "start": 54.713625,
+            "end": 55.131625
+          },
+          {
+            "word": "in ",
+            "start": 55.131625,
+            "end": 55.247625
+          },
+          {
+            "word": "energy ",
+            "start": 55.247625,
+            "end": 55.642625
+          },
+          {
+            "word": "fields ",
+            "start": 55.642625,
+            "end": 55.874625
+          },
+          {
+            "word": "related ",
+            "start": 55.874625,
+            "end": 56.187625
+          },
+          {
+            "word": "to ",
+            "start": 56.187625,
+            "end": 56.303625
+          },
+          {
+            "word": "AI, ",
+            "start": 56.303625,
+            "end": 57.128625
+          },
+          {
+            "word": "renewable ",
+            "start": 57.128625,
+            "end": 57.673625
+          },
+          {
+            "word": "energy ",
+            "start": 57.673625,
+            "end": 58.149625
+          },
+          {
+            "word": "and ",
+            "start": 58.149625,
+            "end": 58.300625
+          },
+          {
+            "word": "smart ",
+            "start": 58.300625,
+            "end": 58.567625
+          },
+          {
+            "word": "grid ",
+            "start": 58.567625,
+            "end": 58.765625
+          },
+          {
+            "word": "technology ",
+            "start": 58.765625,
+            "end": 59.392625
+          },
+          {
+            "word": "are ",
+            "start": 59.392625,
+            "end": 59.543625
+          },
+          {
+            "word": "growing ",
+            "start": 59.543625,
+            "end": 59.868625
+          },
+          {
+            "word": "areas ",
+            "start": 59.868625,
+            "end": 60.251625
+          },
+          {
+            "word": "with ",
+            "start": 60.251625,
+            "end": 60.413625
+          },
+          {
+            "word": "strong ",
+            "start": 60.413625,
+            "end": 60.727625
+          },
+          {
+            "word": "future ",
+            "start": 60.727625,
+            "end": 61.064625
+          },
+          {
+            "word": "potential.",
+            "start": 61.064625,
+            "end": 61.830625
+          },
+          {
+            "word": "\n\nWould ",
+            "start": 61.876458251953125,
+            "end": 62.09745825195313
+          },
+          {
+            "word": "you ",
+            "start": 62.09745825195313,
+            "end": 62.21345825195313
+          },
+          {
+            "word": "like ",
+            "start": 62.21345825195313,
+            "end": 62.41045825195312
+          },
+          {
+            "word": "more ",
+            "start": 62.41045825195312,
+            "end": 62.59645825195312
+          },
+          {
+            "word": "tailored ",
+            "start": 62.59645825195312,
+            "end": 62.99145825195313
+          },
+          {
+            "word": "advice ",
+            "start": 62.99145825195313,
+            "end": 63.525458251953125
+          },
+          {
+            "word": "or ",
+            "start": 63.525458251953125,
+            "end": 63.96645825195313
+          },
+          {
+            "word": "resources ",
+            "start": 63.96645825195313,
+            "end": 64.76745825195313
+          },
+          {
+            "word": "on ",
+            "start": 64.76745825195313,
+            "end": 65.02345825195313
+          },
+          {
+            "word": "retirement ",
+            "start": 65.02345825195313,
+            "end": 65.47645825195312
+          },
+          {
+            "word": "planning, ",
+            "start": 65.47645825195312,
+            "end": 66.23045825195312
+          },
+          {
+            "word": "AI ",
+            "start": 66.23045825195312,
+            "end": 66.66045825195313
+          },
+          {
+            "word": "careers, ",
+            "start": 66.66045825195313,
+            "end": 67.29845825195312
+          },
+          {
+            "word": "or ",
+            "start": 67.29845825195312,
+            "end": 67.55445825195312
+          },
+          {
+            "word": "business ",
+            "start": 67.55445825195312,
+            "end": 67.90245825195312
+          },
+          {
+            "word": "strategy?",
+            "start": 67.90245825195312,
+            "end": 68.65745825195313
+          }
+        ],
+        "metadata": {
+          "response_id": 10
+        }
+      },
+      {
+        "role": "user",
+        "content": "Yes.",
+        "words": [
+          {
+            "word": "Yes.",
+            "start": 71.56700500000001,
+            "end": 71.887005
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Great! To help you best, would you like to focus more on AI career paths, retirement planning, or business strategy? Let me know your main interest, and I can share specific advice and resources.",
+        "words": [
+          {
+            "word": "Great!",
+            "start": 73.65,
+            "end": 74.323
+          },
+          {
+            "word": " To ",
+            "start": 74.3695,
+            "end": 74.4975
+          },
+          {
+            "word": "help ",
+            "start": 74.4975,
+            "end": 74.6955
+          },
+          {
+            "word": "you ",
+            "start": 74.6955,
+            "end": 74.8225
+          },
+          {
+            "word": "best, ",
+            "start": 74.8225,
+            "end": 75.0545
+          },
+          {
+            "word": "would ",
+            "start": 75.0545,
+            "end": 75.2175
+          },
+          {
+            "word": "you ",
+            "start": 75.2175,
+            "end": 75.3335
+          },
+          {
+            "word": "like ",
+            "start": 75.3335,
+            "end": 75.4965
+          },
+          {
+            "word": "to ",
+            "start": 75.4965,
+            "end": 75.6125
+          },
+          {
+            "word": "focus ",
+            "start": 75.6125,
+            "end": 75.9605
+          },
+          {
+            "word": "more ",
+            "start": 75.9605,
+            "end": 76.1925
+          },
+          {
+            "word": "on ",
+            "start": 76.1925,
+            "end": 76.3555
+          },
+          {
+            "word": "AI ",
+            "start": 76.3555,
+            "end": 76.7035
+          },
+          {
+            "word": "career ",
+            "start": 76.7035,
+            "end": 77.0515
+          },
+          {
+            "word": "paths, ",
+            "start": 77.0515,
+            "end": 77.5515
+          },
+          {
+            "word": "retirement ",
+            "start": 77.5515,
+            "end": 78.0275
+          },
+          {
+            "word": "planning, ",
+            "start": 78.0275,
+            "end": 78.4335
+          },
+          {
+            "word": "or ",
+            "start": 78.4335,
+            "end": 78.6775
+          },
+          {
+            "word": "business ",
+            "start": 78.6775,
+            "end": 78.9905
+          },
+          {
+            "word": "strategy?",
+            "start": 78.9905,
+            "end": 79.7105
+          },
+          {
+            "word": " Let ",
+            "start": 79.72254174804688,
+            "end": 79.93154174804687
+          },
+          {
+            "word": "me ",
+            "start": 79.93154174804687,
+            "end": 80.05854174804688
+          },
+          {
+            "word": "know ",
+            "start": 80.05854174804688,
+            "end": 80.27954174804688
+          },
+          {
+            "word": "your ",
+            "start": 80.27954174804688,
+            "end": 80.44154174804687
+          },
+          {
+            "word": "main ",
+            "start": 80.44154174804687,
+            "end": 80.62754174804688
+          },
+          {
+            "word": "interest, ",
+            "start": 80.62754174804688,
+            "end": 81.06854174804687
+          },
+          {
+            "word": "and ",
+            "start": 81.06854174804687,
+            "end": 81.20854174804687
+          },
+          {
+            "word": "I ",
+            "start": 81.20854174804687,
+            "end": 81.28954174804687
+          },
+          {
+            "word": "can ",
+            "start": 81.28954174804687,
+            "end": 81.45154174804688
+          },
+          {
+            "word": "share ",
+            "start": 81.45154174804688,
+            "end": 81.70754174804688
+          },
+          {
+            "word": "specific ",
+            "start": 81.70754174804688,
+            "end": 82.26454174804688
+          },
+          {
+            "word": "advice ",
+            "start": 82.26454174804688,
+            "end": 82.70554174804687
+          },
+          {
+            "word": "and ",
+            "start": 82.70554174804687,
+            "end": 82.84554174804687
+          },
+          {
+            "word": "resources.",
+            "start": 82.84554174804687,
+            "end": 83.84354174804687
+          }
+        ],
+        "metadata": {
+          "response_id": 12
+        }
+      },
+      {
+        "role": "user",
+        "content": "I'm interested in to doing a in AI. So yeah, I need a guidance in",
+        "words": [
+          {
+            "word": "I'm ",
+            "start": 85.387,
+            "end": 85.947
+          },
+          {
+            "word": "interested ",
+            "start": 85.947,
+            "end": 86.427
+          },
+          {
+            "word": "in ",
+            "start": 86.427,
+            "end": 86.747
+          },
+          {
+            "word": "to ",
+            "start": 86.827,
+            "end": 86.986996
+          },
+          {
+            "word": "doing ",
+            "start": 86.986996,
+            "end": 87.147
+          },
+          {
+            "word": "a ",
+            "start": 87.147,
+            "end": 87.307
+          },
+          {
+            "word": "in ",
+            "start": 87.557,
+            "end": 87.87700000000001
+          },
+          {
+            "word": "AI. ",
+            "start": 87.87700000000001,
+            "end": 88.43700000000001
+          },
+          {
+            "word": "So ",
+            "start": 88.43700000000001,
+            "end": 88.677006
+          },
+          {
+            "word": "yeah, ",
+            "start": 89.967,
+            "end": 90.367
+          },
+          {
+            "word": "I ",
+            "start": 90.367,
+            "end": 90.447
+          },
+          {
+            "word": "need ",
+            "start": 90.447,
+            "end": 90.68700000000001
+          },
+          {
+            "word": "a ",
+            "start": 90.68700000000001,
+            "end": 90.84700000000001
+          },
+          {
+            "word": "guidance ",
+            "start": 90.84700000000001,
+            "end": 91.16699600000001
+          },
+          {
+            "word": "in",
+            "start": 91.16699600000001,
+            "end": 91.327
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "That\u2019s exciting, Muhammad! Pursuing a master\u2019s in AI can open many doors. We can help you explore career paths, top programs, and how to align your studies with future job trends.\n\nWould you like to schedule a complimentary consultation to discuss your goals and get personalized advice? If so, do you prefer mornings or afternoons (Pacific Time)?",
+        "words": [
+          {
+            "word": "That\u2019s ",
+            "start": 94.696,
+            "end": 95.01
+          },
+          {
+            "word": "exciting, ",
+            "start": 95.01,
+            "end": 95.428
+          },
+          {
+            "word": "Muhammad!",
+            "start": 95.428,
+            "end": 96.055
+          },
+          {
+            "word": " Pursuing ",
+            "start": 96.066625,
+            "end": 96.530625
+          },
+          {
+            "word": "a ",
+            "start": 96.530625,
+            "end": 96.600625
+          },
+          {
+            "word": "master\u2019s ",
+            "start": 96.600625,
+            "end": 97.041625
+          },
+          {
+            "word": "in ",
+            "start": 97.041625,
+            "end": 97.203625
+          },
+          {
+            "word": "AI ",
+            "start": 97.203625,
+            "end": 97.587625
+          },
+          {
+            "word": "can ",
+            "start": 97.587625,
+            "end": 97.749625
+          },
+          {
+            "word": "open ",
+            "start": 97.749625,
+            "end": 98.028625
+          },
+          {
+            "word": "many ",
+            "start": 98.028625,
+            "end": 98.295625
+          },
+          {
+            "word": "doors.",
+            "start": 98.295625,
+            "end": 98.980625
+          },
+          {
+            "word": " We ",
+            "start": 98.99233325195313,
+            "end": 99.16633325195312
+          },
+          {
+            "word": "can ",
+            "start": 99.16633325195312,
+            "end": 99.31733325195313
+          },
+          {
+            "word": "help ",
+            "start": 99.31733325195313,
+            "end": 99.50233325195312
+          },
+          {
+            "word": "you ",
+            "start": 99.50233325195312,
+            "end": 99.65333325195313
+          },
+          {
+            "word": "explore ",
+            "start": 99.65333325195313,
+            "end": 100.12933325195313
+          },
+          {
+            "word": "career ",
+            "start": 100.12933325195313,
+            "end": 100.43133325195312
+          },
+          {
+            "word": "paths, ",
+            "start": 100.43133325195312,
+            "end": 100.82633325195313
+          },
+          {
+            "word": "top ",
+            "start": 100.82633325195313,
+            "end": 101.10533325195313
+          },
+          {
+            "word": "programs, ",
+            "start": 101.10533325195313,
+            "end": 101.97533325195313
+          },
+          {
+            "word": "and ",
+            "start": 101.97533325195313,
+            "end": 102.17333325195312
+          },
+          {
+            "word": "how ",
+            "start": 102.17333325195312,
+            "end": 102.33533325195313
+          },
+          {
+            "word": "to ",
+            "start": 102.33533325195313,
+            "end": 102.47533325195313
+          },
+          {
+            "word": "align ",
+            "start": 102.47533325195313,
+            "end": 102.84633325195313
+          },
+          {
+            "word": "your ",
+            "start": 102.84633325195313,
+            "end": 103.02033325195312
+          },
+          {
+            "word": "studies ",
+            "start": 103.02033325195312,
+            "end": 103.39233325195312
+          },
+          {
+            "word": "with ",
+            "start": 103.39233325195312,
+            "end": 103.57833325195313
+          },
+          {
+            "word": "future ",
+            "start": 103.57833325195313,
+            "end": 103.93733325195312
+          },
+          {
+            "word": "job ",
+            "start": 103.93733325195312,
+            "end": 104.23933325195313
+          },
+          {
+            "word": "trends.",
+            "start": 104.23933325195313,
+            "end": 105.06433325195313
+          },
+          {
+            "word": "\n\nWould ",
+            "start": 105.10995825195313,
+            "end": 105.33095825195312
+          },
+          {
+            "word": "you ",
+            "start": 105.33095825195312,
+            "end": 105.44695825195312
+          },
+          {
+            "word": "like ",
+            "start": 105.44695825195312,
+            "end": 105.57495825195312
+          },
+          {
+            "word": "to ",
+            "start": 105.57495825195312,
+            "end": 105.66795825195312
+          },
+          {
+            "word": "schedule ",
+            "start": 105.66795825195312,
+            "end": 106.17895825195312
+          },
+          {
+            "word": "a ",
+            "start": 106.17895825195312,
+            "end": 106.32895825195313
+          },
+          {
+            "word": "complimentary ",
+            "start": 106.32895825195313,
+            "end": 107.00295825195313
+          },
+          {
+            "word": "consultation ",
+            "start": 107.00295825195313,
+            "end": 107.75795825195313
+          },
+          {
+            "word": "to ",
+            "start": 107.75795825195313,
+            "end": 107.93195825195312
+          },
+          {
+            "word": "discuss ",
+            "start": 107.93195825195312,
+            "end": 108.33795825195313
+          },
+          {
+            "word": "your ",
+            "start": 108.33795825195313,
+            "end": 108.50095825195312
+          },
+          {
+            "word": "goals ",
+            "start": 108.50095825195312,
+            "end": 108.94195825195312
+          },
+          {
+            "word": "and ",
+            "start": 108.94195825195312,
+            "end": 109.27795825195312
+          },
+          {
+            "word": "get ",
+            "start": 109.27795825195312,
+            "end": 109.49895825195313
+          },
+          {
+            "word": "personalized ",
+            "start": 109.49895825195313,
+            "end": 110.03295825195312
+          },
+          {
+            "word": "advice?",
+            "start": 110.03295825195312,
+            "end": 110.68295825195312
+          },
+          {
+            "word": " If ",
+            "start": 110.70620825195313,
+            "end": 110.93820825195313
+          },
+          {
+            "word": "so, ",
+            "start": 110.93820825195313,
+            "end": 111.21720825195312
+          },
+          {
+            "word": "do ",
+            "start": 111.21720825195312,
+            "end": 111.32220825195313
+          },
+          {
+            "word": "you ",
+            "start": 111.32220825195313,
+            "end": 111.44920825195312
+          },
+          {
+            "word": "prefer ",
+            "start": 111.44920825195312,
+            "end": 111.97220825195312
+          },
+          {
+            "word": "mornings ",
+            "start": 111.97220825195312,
+            "end": 112.37820825195313
+          },
+          {
+            "word": "or ",
+            "start": 112.37820825195313,
+            "end": 112.48320825195313
+          },
+          {
+            "word": "afternoons ",
+            "start": 112.48320825195313,
+            "end": 113.06320825195313
+          },
+          {
+            "word": "(Pacific ",
+            "start": 113.06320825195313,
+            "end": 113.59720825195312
+          },
+          {
+            "word": "Time)?",
+            "start": 113.59720825195312,
+            "end": 114.12020825195313
+          }
+        ],
+        "metadata": {
+          "response_id": 13
+        }
+      },
+      {
+        "role": "user",
+        "content": "I prefer morning and I prefer date on nine October.",
+        "words": [
+          {
+            "word": "I ",
+            "start": 115.577,
+            "end": 115.897
+          },
+          {
+            "word": "prefer ",
+            "start": 115.897,
+            "end": 116.29700000000001
+          },
+          {
+            "word": "morning ",
+            "start": 116.29700000000001,
+            "end": 116.857
+          },
+          {
+            "word": "and ",
+            "start": 116.857,
+            "end": 117.337
+          },
+          {
+            "word": "I ",
+            "start": 117.337,
+            "end": 117.65700000000001
+          },
+          {
+            "word": "prefer ",
+            "start": 117.65700000000001,
+            "end": 118.137
+          },
+          {
+            "word": "date ",
+            "start": 118.137,
+            "end": 118.537
+          },
+          {
+            "word": "on ",
+            "start": 118.537,
+            "end": 119.09700000000001
+          },
+          {
+            "word": "nine ",
+            "start": 120.51699500000001,
+            "end": 120.836994
+          },
+          {
+            "word": "October.",
+            "start": 120.836994,
+            "end": 121.31700000000001
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Let me check our availability for the morning of October 9th.We have availability on the morning of October 9th between 9:00 A M and 12:00 P M (Pacific Time). Is there a specific time in that range that works best for you?",
+        "words": [
+          {
+            "word": "Let ",
+            "start": 123.18,
+            "end": 123.343
+          },
+          {
+            "word": "me ",
+            "start": 123.343,
+            "end": 123.436
+          },
+          {
+            "word": "check ",
+            "start": 123.436,
+            "end": 123.633
+          },
+          {
+            "word": "our ",
+            "start": 123.633,
+            "end": 123.737
+          },
+          {
+            "word": "availability ",
+            "start": 123.737,
+            "end": 124.538
+          },
+          {
+            "word": "for ",
+            "start": 124.538,
+            "end": 124.875
+          },
+          {
+            "word": "the ",
+            "start": 124.875,
+            "end": 124.991
+          },
+          {
+            "word": "morning ",
+            "start": 124.991,
+            "end": 125.316
+          },
+          {
+            "word": "of ",
+            "start": 125.316,
+            "end": 125.467
+          },
+          {
+            "word": "October ",
+            "start": 125.467,
+            "end": 125.932
+          },
+          {
+            "word": "9th.",
+            "start": 125.932,
+            "end": 126.454
+          },
+          {
+            "word": "We ",
+            "start": 126.500125,
+            "end": 126.698125
+          },
+          {
+            "word": "have ",
+            "start": 126.698125,
+            "end": 126.976125
+          },
+          {
+            "word": "availability ",
+            "start": 126.976125,
+            "end": 127.650125
+          },
+          {
+            "word": "on ",
+            "start": 127.650125,
+            "end": 127.754125
+          },
+          {
+            "word": "the ",
+            "start": 127.754125,
+            "end": 127.847125
+          },
+          {
+            "word": "morning ",
+            "start": 127.847125,
+            "end": 128.103125
+          },
+          {
+            "word": "of ",
+            "start": 128.103125,
+            "end": 128.195125
+          },
+          {
+            "word": "October ",
+            "start": 128.195125,
+            "end": 128.637125
+          },
+          {
+            "word": "9th ",
+            "start": 128.637125,
+            "end": 128.915125
+          },
+          {
+            "word": "between ",
+            "start": 128.915125,
+            "end": 129.240125
+          },
+          {
+            "word": "9:00 ",
+            "start": 129.240125,
+            "end": 129.403125
+          },
+          {
+            "word": "A ",
+            "start": 129.403125,
+            "end": 129.774125
+          },
+          {
+            "word": "M ",
+            "start": 129.774125,
+            "end": 130.007125
+          },
+          {
+            "word": "and ",
+            "start": 130.007125,
+            "end": 130.239125
+          },
+          {
+            "word": "12:00 ",
+            "start": 130.239125,
+            "end": 130.390125
+          },
+          {
+            "word": "P ",
+            "start": 130.390125,
+            "end": 130.634125
+          },
+          {
+            "word": "M ",
+            "start": 130.634125,
+            "end": 130.982125
+          },
+          {
+            "word": "(Pacific ",
+            "start": 130.982125,
+            "end": 131.261125
+          },
+          {
+            "word": "Time).",
+            "start": 131.261125,
+            "end": 131.539125
+          },
+          {
+            "word": " Is ",
+            "start": 132.8514167480469,
+            "end": 133.01341674804686
+          },
+          {
+            "word": "there ",
+            "start": 133.01341674804686,
+            "end": 133.17641674804688
+          },
+          {
+            "word": "a ",
+            "start": 133.17641674804688,
+            "end": 133.23441674804687
+          },
+          {
+            "word": "specific ",
+            "start": 133.23441674804687,
+            "end": 133.69841674804687
+          },
+          {
+            "word": "time ",
+            "start": 133.69841674804687,
+            "end": 133.89641674804687
+          },
+          {
+            "word": "in ",
+            "start": 133.89641674804687,
+            "end": 133.98941674804686
+          },
+          {
+            "word": "that ",
+            "start": 133.98941674804686,
+            "end": 134.17441674804687
+          },
+          {
+            "word": "range ",
+            "start": 134.17441674804687,
+            "end": 134.43041674804687
+          },
+          {
+            "word": "that ",
+            "start": 134.43041674804687,
+            "end": 134.56941674804688
+          },
+          {
+            "word": "works ",
+            "start": 134.56941674804688,
+            "end": 134.84841674804687
+          },
+          {
+            "word": "best ",
+            "start": 134.84841674804687,
+            "end": 135.10341674804687
+          },
+          {
+            "word": "for ",
+            "start": 135.10341674804687,
+            "end": 135.26641674804688
+          },
+          {
+            "word": "you?",
+            "start": 135.26641674804688,
+            "end": 135.69541674804688
+          }
+        ],
+        "metadata": {
+          "response_id": 14
+        }
+      },
+      {
+        "role": "user",
+        "content": "Yes. Yes. Nine o'clock is best.",
+        "words": [
+          {
+            "word": "Yes. ",
+            "start": 137.007,
+            "end": 137.407
+          },
+          {
+            "word": "Yes. ",
+            "start": 137.407,
+            "end": 137.647
+          },
+          {
+            "word": "Nine ",
+            "start": 137.647,
+            "end": 137.88699
+          },
+          {
+            "word": "o'clock ",
+            "start": 137.88699,
+            "end": 138.287
+          },
+          {
+            "word": "is ",
+            "start": 138.287,
+            "end": 138.52699
+          },
+          {
+            "word": "best.",
+            "start": 138.52699,
+            "end": 138.847
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "So book it an appointment in that.",
+        "words": [
+          {
+            "word": "So ",
+            "start": 139.327,
+            "end": 139.567
+          },
+          {
+            "word": "book ",
+            "start": 139.567,
+            "end": 139.80700000000002
+          },
+          {
+            "word": "it ",
+            "start": 139.80700000000002,
+            "end": 139.967
+          },
+          {
+            "word": "an ",
+            "start": 139.967,
+            "end": 140.04701
+          },
+          {
+            "word": "appointment ",
+            "start": 140.04701,
+            "end": 140.36700000000002
+          },
+          {
+            "word": "in ",
+            "start": 140.36700000000002,
+            "end": 140.607
+          },
+          {
+            "word": "that.",
+            "start": 140.607,
+            "end": 140.847
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Your consultation is being scheduled for October ",
+        "words": [
+          {
+            "word": "Your ",
+            "start": 142.666,
+            "end": 142.852
+          },
+          {
+            "word": "consultation ",
+            "start": 142.852,
+            "end": 143.421
+          },
+          {
+            "word": "is ",
+            "start": 143.421,
+            "end": 143.502
+          },
+          {
+            "word": "being ",
+            "start": 143.502,
+            "end": 143.699
+          },
+          {
+            "word": "scheduled ",
+            "start": 143.699,
+            "end": 144.059
+          },
+          {
+            "word": "for ",
+            "start": 144.059,
+            "end": 144.21
+          },
+          {
+            "word": "October ",
+            "start": 144.21,
+            "end": 144.616
+          }
+        ],
+        "metadata": {
+          "response_id": 17
+        }
+      },
+      {
+        "role": "agent",
+        "content": "9th at 9:00 A M Pacific Time. You'll receive a confirmation soon.Your appointment is confirmed for October 9th at 9:00 A M Pacific Time. Thank you for choosing Summit Consulting Group! If you have any questions before then, feel free to reach out. Have a great day!",
+        "words": [
+          {
+            "word": "9th ",
+            "start": 144.616,
+            "end": 144.872
+          },
+          {
+            "word": "at ",
+            "start": 144.872,
+            "end": 144.976
+          },
+          {
+            "word": "9:00 ",
+            "start": 144.976,
+            "end": 145.15
+          },
+          {
+            "word": "A ",
+            "start": 145.15,
+            "end": 145.568
+          },
+          {
+            "word": "M ",
+            "start": 145.568,
+            "end": 145.731
+          },
+          {
+            "word": "Pacific ",
+            "start": 145.731,
+            "end": 145.835
+          },
+          {
+            "word": "Time. ",
+            "start": 145.835,
+            "end": 146.219
+          },
+          {
+            "word": "You'll ",
+            "start": 146.69416674804688,
+            "end": 146.93816674804688
+          },
+          {
+            "word": "receive ",
+            "start": 146.93816674804688,
+            "end": 147.21716674804688
+          },
+          {
+            "word": "a ",
+            "start": 147.21716674804688,
+            "end": 147.28716674804687
+          },
+          {
+            "word": "confirmation ",
+            "start": 147.28716674804687,
+            "end": 147.94816674804687
+          },
+          {
+            "word": "soon.",
+            "start": 147.94816674804687,
+            "end": 148.45916674804687
+          },
+          {
+            "word": "Your ",
+            "start": 148.50533325195312,
+            "end": 148.69133325195313
+          },
+          {
+            "word": "appointment ",
+            "start": 148.69133325195313,
+            "end": 149.14433325195313
+          },
+          {
+            "word": "is ",
+            "start": 149.14433325195313,
+            "end": 149.2603332519531
+          },
+          {
+            "word": "confirmed ",
+            "start": 149.2603332519531,
+            "end": 149.7363332519531
+          },
+          {
+            "word": "for ",
+            "start": 149.7363332519531,
+            "end": 149.91033325195312
+          },
+          {
+            "word": "October ",
+            "start": 149.91033325195312,
+            "end": 150.36333325195312
+          },
+          {
+            "word": "9th ",
+            "start": 150.36333325195312,
+            "end": 150.6883332519531
+          },
+          {
+            "word": "at ",
+            "start": 150.6883332519531,
+            "end": 150.80433325195312
+          },
+          {
+            "word": "9:00 ",
+            "start": 150.80433325195312,
+            "end": 150.99033325195313
+          },
+          {
+            "word": "A ",
+            "start": 150.99033325195313,
+            "end": 151.48933325195313
+          },
+          {
+            "word": "M ",
+            "start": 151.48933325195313,
+            "end": 151.77933325195312
+          },
+          {
+            "word": "Pacific ",
+            "start": 151.77933325195312,
+            "end": 151.96533325195313
+          },
+          {
+            "word": "Time.",
+            "start": 151.96533325195313,
+            "end": 152.39533325195313
+          },
+          {
+            "word": " Thank ",
+            "start": 153.01,
+            "end": 153.254
+          },
+          {
+            "word": "you ",
+            "start": 153.254,
+            "end": 153.37
+          },
+          {
+            "word": "for ",
+            "start": 153.37,
+            "end": 153.486
+          },
+          {
+            "word": "choosing ",
+            "start": 153.486,
+            "end": 153.846
+          },
+          {
+            "word": "Summit ",
+            "start": 153.846,
+            "end": 154.137
+          },
+          {
+            "word": "Consulting ",
+            "start": 154.137,
+            "end": 154.589
+          },
+          {
+            "word": "Group!",
+            "start": 154.589,
+            "end": 155.054
+          },
+          {
+            "word": " If ",
+            "start": 155.09979174804687,
+            "end": 155.23979174804688
+          },
+          {
+            "word": "you ",
+            "start": 155.23979174804688,
+            "end": 155.37879174804686
+          },
+          {
+            "word": "have ",
+            "start": 155.37879174804686,
+            "end": 155.55279174804687
+          },
+          {
+            "word": "any ",
+            "start": 155.55279174804687,
+            "end": 155.72679174804688
+          },
+          {
+            "word": "questions ",
+            "start": 155.72679174804688,
+            "end": 156.17979174804688
+          },
+          {
+            "word": "before ",
+            "start": 156.17979174804688,
+            "end": 156.50479174804687
+          },
+          {
+            "word": "then, ",
+            "start": 156.50479174804687,
+            "end": 156.73679174804687
+          },
+          {
+            "word": "feel ",
+            "start": 156.73679174804687,
+            "end": 156.95779174804687
+          },
+          {
+            "word": "free ",
+            "start": 156.95779174804687,
+            "end": 157.12079174804688
+          },
+          {
+            "word": "to ",
+            "start": 157.12079174804688,
+            "end": 157.21279174804687
+          },
+          {
+            "word": "reach ",
+            "start": 157.21279174804687,
+            "end": 157.45679174804687
+          },
+          {
+            "word": "out.",
+            "start": 157.45679174804687,
+            "end": 157.79379174804689
+          },
+          {
+            "word": " Have ",
+            "start": 157.83975,
+            "end": 158.02575
+          },
+          {
+            "word": "a ",
+            "start": 158.02575,
+            "end": 158.08375
+          },
+          {
+            "word": "great ",
+            "start": 158.08375,
+            "end": 158.30475
+          },
+          {
+            "word": "day!",
+            "start": 158.30475,
+            "end": 158.81575
+          }
+        ],
+        "metadata": {
+          "response_id": 17
+        }
+      },
+      {
+        "role": "user",
+        "content": "Goodbye.",
+        "words": [
+          {
+            "word": "Goodbye.",
+            "start": 160.227,
+            "end": 160.86700000000002
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Goodbye, Muhammad! Wishing you all the best on your journey. If you need anything else, we're here to help.",
+        "words": [
+          {
+            "word": "Goodbye, ",
+            "start": 162.938,
+            "end": 163.321
+          },
+          {
+            "word": "Muhammad! ",
+            "start": 163.321,
+            "end": 163.983
+          },
+          {
+            "word": "Wishing ",
+            "start": 164.029,
+            "end": 164.378
+          },
+          {
+            "word": "you ",
+            "start": 164.378,
+            "end": 164.529
+          },
+          {
+            "word": "all ",
+            "start": 164.529,
+            "end": 164.714
+          },
+          {
+            "word": "the ",
+            "start": 164.714,
+            "end": 164.819
+          },
+          {
+            "word": "best ",
+            "start": 164.819,
+            "end": 165.051
+          },
+          {
+            "word": "on ",
+            "start": 165.051,
+            "end": 165.167
+          },
+          {
+            "word": "your ",
+            "start": 165.167,
+            "end": 165.33
+          },
+          {
+            "word": "journey. ",
+            "start": 165.33,
+            "end": 166.026
+          },
+          {
+            "word": "If ",
+            "start": 166.038375,
+            "end": 166.281375
+          },
+          {
+            "word": "you ",
+            "start": 166.281375,
+            "end": 166.409375
+          },
+          {
+            "word": "need ",
+            "start": 166.409375,
+            "end": 166.630375
+          },
+          {
+            "word": "anything ",
+            "start": 166.630375,
+            "end": 167.013375
+          },
+          {
+            "word": "else, ",
+            "start": 167.013375,
+            "end": 167.257375
+          },
+          {
+            "word": "we're ",
+            "start": 167.257375,
+            "end": 167.466375
+          },
+          {
+            "word": "here ",
+            "start": 167.466375,
+            "end": 167.640375
+          },
+          {
+            "word": "to ",
+            "start": 167.640375,
+            "end": 167.744375
+          },
+          {
+            "word": "help.",
+            "start": 167.744375,
+            "end": 168.255375
+          }
+        ],
+        "metadata": {
+          "response_id": 18
+        }
+      }
+    ],
+    "transcript_with_tool_calls": [
+      {
+        "role": "user",
+        "content": "Please hold while I try to connect you.",
+        "words": [
+          {
+            "word": "Please ",
+            "start": 0.72699997,
+            "end": 1.047
+          },
+          {
+            "word": "hold ",
+            "start": 1.047,
+            "end": 1.287
+          },
+          {
+            "word": "while ",
+            "start": 1.287,
+            "end": 1.527
+          },
+          {
+            "word": "I ",
+            "start": 1.527,
+            "end": 1.6869999999999998
+          },
+          {
+            "word": "try ",
+            "start": 1.6869999999999998,
+            "end": 1.8469999
+          },
+          {
+            "word": "to ",
+            "start": 1.8469999,
+            "end": 1.9269999999999998
+          },
+          {
+            "word": "connect ",
+            "start": 1.9269999999999998,
+            "end": 2.1669998
+          },
+          {
+            "word": "you.",
+            "start": 2.1669998,
+            "end": 2.327
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Of course, take your time. I\u2019ll be here when you\u2019re ready to continue.",
+        "words": [
+          {
+            "word": "Of ",
+            "start": 3.517,
+            "end": 3.702
+          },
+          {
+            "word": "course, ",
+            "start": 3.702,
+            "end": 3.981
+          },
+          {
+            "word": "take ",
+            "start": 3.981,
+            "end": 4.167
+          },
+          {
+            "word": "your ",
+            "start": 4.167,
+            "end": 4.329
+          },
+          {
+            "word": "time.",
+            "start": 4.329,
+            "end": 4.922
+          },
+          {
+            "word": " I\u2019ll ",
+            "start": 4.967541748046875,
+            "end": 5.176541748046875
+          },
+          {
+            "word": "be ",
+            "start": 5.176541748046875,
+            "end": 5.293541748046875
+          },
+          {
+            "word": "here ",
+            "start": 5.293541748046875,
+            "end": 5.432541748046875
+          },
+          {
+            "word": "when ",
+            "start": 5.432541748046875,
+            "end": 5.571541748046875
+          },
+          {
+            "word": "you\u2019re ",
+            "start": 5.571541748046875,
+            "end": 5.815541748046875
+          },
+          {
+            "word": "ready ",
+            "start": 5.815541748046875,
+            "end": 6.047541748046875
+          },
+          {
+            "word": "to ",
+            "start": 6.047541748046875,
+            "end": 6.152541748046875
+          },
+          {
+            "word": "continue.",
+            "start": 6.152541748046875,
+            "end": 6.918541748046875
+          }
+        ],
+        "metadata": {
+          "response_id": 2
+        }
+      },
+      {
+        "role": "user",
+        "content": "Hello.",
+        "words": [
+          {
+            "word": "Hello.",
+            "start": 10.707001,
+            "end": 10.947001
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Hello Muhammad Asad! I hope you\u2019re doing well today. Do you have a quick moment to chat about your career coaching inquiry?",
+        "words": [
+          {
+            "word": "Hello ",
+            "start": 12.083,
+            "end": 12.57
+          },
+          {
+            "word": "Muhammad ",
+            "start": 12.57,
+            "end": 12.965
+          },
+          {
+            "word": "Asad!",
+            "start": 12.965,
+            "end": 13.534
+          },
+          {
+            "word": " I ",
+            "start": 13.579958251953125,
+            "end": 13.661958251953125
+          },
+          {
+            "word": "hope ",
+            "start": 13.661958251953125,
+            "end": 13.800958251953125
+          },
+          {
+            "word": "you\u2019re ",
+            "start": 13.800958251953125,
+            "end": 13.974958251953124
+          },
+          {
+            "word": "doing ",
+            "start": 13.974958251953124,
+            "end": 14.183958251953126
+          },
+          {
+            "word": "well ",
+            "start": 14.183958251953126,
+            "end": 14.404958251953126
+          },
+          {
+            "word": "today.",
+            "start": 14.404958251953126,
+            "end": 14.973958251953125
+          },
+          {
+            "word": " Do ",
+            "start": 14.985583251953125,
+            "end": 15.147583251953124
+          },
+          {
+            "word": "you ",
+            "start": 15.147583251953124,
+            "end": 15.240583251953124
+          },
+          {
+            "word": "have ",
+            "start": 15.240583251953124,
+            "end": 15.356583251953126
+          },
+          {
+            "word": "a ",
+            "start": 15.356583251953126,
+            "end": 15.414583251953125
+          },
+          {
+            "word": "quick ",
+            "start": 15.414583251953125,
+            "end": 15.635583251953125
+          },
+          {
+            "word": "moment ",
+            "start": 15.635583251953125,
+            "end": 15.937583251953125
+          },
+          {
+            "word": "to ",
+            "start": 15.937583251953125,
+            "end": 16.053583251953125
+          },
+          {
+            "word": "chat ",
+            "start": 16.053583251953125,
+            "end": 16.262583251953124
+          },
+          {
+            "word": "about ",
+            "start": 16.262583251953124,
+            "end": 16.436583251953124
+          },
+          {
+            "word": "your ",
+            "start": 16.436583251953124,
+            "end": 16.598583251953126
+          },
+          {
+            "word": "career ",
+            "start": 16.598583251953126,
+            "end": 16.900583251953126
+          },
+          {
+            "word": "coaching ",
+            "start": 16.900583251953126,
+            "end": 17.260583251953125
+          },
+          {
+            "word": "inquiry?",
+            "start": 17.260583251953125,
+            "end": 17.899583251953125
+          }
+        ],
+        "metadata": {
+          "response_id": 3
+        }
+      },
+      {
+        "role": "user",
+        "content": "Yes.",
+        "words": [
+          {
+            "word": "Yes.",
+            "start": 19.437,
+            "end": 19.677000000000003
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "I'm ",
+        "words": [
+          {
+            "word": "I'm ",
+            "start": 19.977,
+            "end": 20.697000000000003
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Thank you! I ",
+        "words": [
+          {
+            "word": "Thank ",
+            "start": 20.884,
+            "end": 21.209
+          },
+          {
+            "word": "you!",
+            "start": 21.209,
+            "end": 21.65
+          },
+          {
+            "word": " I ",
+            "start": 21.695916748046876,
+            "end": 21.846916748046876
+          }
+        ],
+        "metadata": {
+          "response_id": 4
+        }
+      },
+      {
+        "role": "user",
+        "content": "I'm thinking about to do masters in AI So can you suggest me a best energy and suggest me a future proof Business book future",
+        "words": [
+          {
+            "word": "I'm ",
+            "start": 20.777,
+            "end": 21.577
+          },
+          {
+            "word": "thinking ",
+            "start": 21.737000000000002,
+            "end": 22.217000000000002
+          },
+          {
+            "word": "about ",
+            "start": 22.217000000000002,
+            "end": 22.537000000000003
+          },
+          {
+            "word": "to ",
+            "start": 22.537000000000003,
+            "end": 22.777
+          },
+          {
+            "word": "do ",
+            "start": 22.777,
+            "end": 23.017000000000003
+          },
+          {
+            "word": "masters ",
+            "start": 23.017000000000003,
+            "end": 23.337
+          },
+          {
+            "word": "in ",
+            "start": 23.337,
+            "end": 23.577
+          },
+          {
+            "word": "AI ",
+            "start": 23.577,
+            "end": 23.817
+          },
+          {
+            "word": "So ",
+            "start": 23.987000000000002,
+            "end": 24.387
+          },
+          {
+            "word": "can ",
+            "start": 24.387,
+            "end": 24.706999
+          },
+          {
+            "word": "you ",
+            "start": 24.706999,
+            "end": 24.866999
+          },
+          {
+            "word": "suggest ",
+            "start": 24.866999,
+            "end": 25.187
+          },
+          {
+            "word": "me ",
+            "start": 25.187,
+            "end": 25.347
+          },
+          {
+            "word": "a ",
+            "start": 25.347,
+            "end": 25.507
+          },
+          {
+            "word": "best ",
+            "start": 25.507,
+            "end": 25.747
+          },
+          {
+            "word": "energy ",
+            "start": 25.747,
+            "end": 26.227
+          },
+          {
+            "word": "and ",
+            "start": 26.227,
+            "end": 26.626999
+          },
+          {
+            "word": "suggest ",
+            "start": 26.626999,
+            "end": 26.946999
+          },
+          {
+            "word": "me ",
+            "start": 26.946999,
+            "end": 27.187
+          },
+          {
+            "word": "a ",
+            "start": 27.187,
+            "end": 27.267000000000003
+          },
+          {
+            "word": "future ",
+            "start": 27.267000000000003,
+            "end": 27.667
+          },
+          {
+            "word": "proof ",
+            "start": 27.667,
+            "end": 27.987000000000002
+          },
+          {
+            "word": "Business ",
+            "start": 28.317,
+            "end": 29.116999
+          },
+          {
+            "word": "book ",
+            "start": 30.477,
+            "end": 30.796999000000003
+          },
+          {
+            "word": "future",
+            "start": 30.796999000000003,
+            "end": 31.117
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "You can see that I view retirement only.",
+        "words": [
+          {
+            "word": "You ",
+            "start": 31.617,
+            "end": 32.017002
+          },
+          {
+            "word": "can ",
+            "start": 32.017002,
+            "end": 32.097
+          },
+          {
+            "word": "see ",
+            "start": 32.097,
+            "end": 32.336999999999996
+          },
+          {
+            "word": "that ",
+            "start": 32.336999999999996,
+            "end": 32.577
+          },
+          {
+            "word": "I ",
+            "start": 32.577,
+            "end": 32.817
+          },
+          {
+            "word": "view ",
+            "start": 32.817,
+            "end": 32.977
+          },
+          {
+            "word": "retirement ",
+            "start": 32.977,
+            "end": 33.457
+          },
+          {
+            "word": "only.",
+            "start": 33.457,
+            "end": 33.697002
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Thank you for sharing your thoughts, Muhammad. It sounds like you\u2019re considering a master\u2019s in AI and also thinking about retirement planning. I\u2019d be happy to offer some guidance.\n\nFor a future-proof business book, I recommend The Future Is Faster Than You Think by Peter H. Diamandis and Steven Kotler. It covers how technology, including AI, is shaping business and society.\n\nIf you\u2019re interested in energy fields related to AI, renewable energy and smart grid technology are growing areas with strong future potential.\n\nWould you like more tailored advice or resources on retirement planning, AI careers, or business strategy?",
+        "words": [
+          {
+            "word": "Thank ",
+            "start": 35.174,
+            "end": 35.464
+          },
+          {
+            "word": "you ",
+            "start": 35.464,
+            "end": 35.592
+          },
+          {
+            "word": "for ",
+            "start": 35.592,
+            "end": 35.72
+          },
+          {
+            "word": "sharing ",
+            "start": 35.72,
+            "end": 35.987
+          },
+          {
+            "word": "your ",
+            "start": 35.987,
+            "end": 36.114
+          },
+          {
+            "word": "thoughts, ",
+            "start": 36.114,
+            "end": 36.451
+          },
+          {
+            "word": "Muhammad.",
+            "start": 36.451,
+            "end": 37.217
+          },
+          {
+            "word": " It ",
+            "start": 37.26325,
+            "end": 37.35625
+          },
+          {
+            "word": "sounds ",
+            "start": 37.35625,
+            "end": 37.57725
+          },
+          {
+            "word": "like ",
+            "start": 37.57725,
+            "end": 37.71625
+          },
+          {
+            "word": "you\u2019re ",
+            "start": 37.71625,
+            "end": 37.87925
+          },
+          {
+            "word": "considering ",
+            "start": 37.87925,
+            "end": 38.72625
+          },
+          {
+            "word": "a ",
+            "start": 38.72625,
+            "end": 38.97025
+          },
+          {
+            "word": "master\u2019s ",
+            "start": 38.97025,
+            "end": 39.53925
+          },
+          {
+            "word": "in ",
+            "start": 39.53925,
+            "end": 39.74825
+          },
+          {
+            "word": "AI ",
+            "start": 39.74825,
+            "end": 40.10825
+          },
+          {
+            "word": "and ",
+            "start": 40.10825,
+            "end": 40.22425
+          },
+          {
+            "word": "also ",
+            "start": 40.22425,
+            "end": 40.52625
+          },
+          {
+            "word": "thinking ",
+            "start": 40.52625,
+            "end": 40.80425
+          },
+          {
+            "word": "about ",
+            "start": 40.80425,
+            "end": 41.02525
+          },
+          {
+            "word": "retirement ",
+            "start": 41.02525,
+            "end": 41.52425
+          },
+          {
+            "word": "planning.",
+            "start": 41.52425,
+            "end": 42.14025
+          },
+          {
+            "word": " I\u2019d ",
+            "start": 42.185875,
+            "end": 42.394875
+          },
+          {
+            "word": "be ",
+            "start": 42.394875,
+            "end": 42.476875
+          },
+          {
+            "word": "happy ",
+            "start": 42.476875,
+            "end": 42.731875
+          },
+          {
+            "word": "to ",
+            "start": 42.731875,
+            "end": 42.812875
+          },
+          {
+            "word": "offer ",
+            "start": 42.812875,
+            "end": 43.079875
+          },
+          {
+            "word": "some ",
+            "start": 43.079875,
+            "end": 43.254875
+          },
+          {
+            "word": "guidance.",
+            "start": 43.254875,
+            "end": 44.089875
+          },
+          {
+            "word": "\n\nFor ",
+            "start": 44.136375,
+            "end": 44.322375
+          },
+          {
+            "word": "a ",
+            "start": 44.322375,
+            "end": 44.403375
+          },
+          {
+            "word": "future-proof ",
+            "start": 44.403375,
+            "end": 44.972375
+          },
+          {
+            "word": "business ",
+            "start": 44.972375,
+            "end": 45.297375
+          },
+          {
+            "word": "book, ",
+            "start": 45.297375,
+            "end": 45.553375
+          },
+          {
+            "word": "I ",
+            "start": 45.553375,
+            "end": 45.727375
+          },
+          {
+            "word": "recommend ",
+            "start": 45.727375,
+            "end": 46.157375
+          },
+          {
+            "word": "The ",
+            "start": 46.157375,
+            "end": 46.261375
+          },
+          {
+            "word": "Future ",
+            "start": 46.261375,
+            "end": 46.609375
+          },
+          {
+            "word": "Is ",
+            "start": 46.609375,
+            "end": 46.737375
+          },
+          {
+            "word": "Faster ",
+            "start": 46.737375,
+            "end": 47.120375
+          },
+          {
+            "word": "Than ",
+            "start": 47.120375,
+            "end": 47.306375
+          },
+          {
+            "word": "You ",
+            "start": 47.306375,
+            "end": 47.445375
+          },
+          {
+            "word": "Think ",
+            "start": 47.445375,
+            "end": 47.886375
+          },
+          {
+            "word": "by ",
+            "start": 47.886375,
+            "end": 48.119375
+          },
+          {
+            "word": "Peter ",
+            "start": 48.119375,
+            "end": 48.386375
+          },
+          {
+            "word": "H.",
+            "start": 48.386375,
+            "end": 48.966375
+          },
+          {
+            "word": " Diamandis ",
+            "start": 49.012583251953124,
+            "end": 49.558583251953124
+          },
+          {
+            "word": "and ",
+            "start": 49.558583251953124,
+            "end": 49.67458325195312
+          },
+          {
+            "word": "Steven ",
+            "start": 49.67458325195312,
+            "end": 49.97658325195312
+          },
+          {
+            "word": "Kotler.",
+            "start": 49.97658325195312,
+            "end": 50.591583251953125
+          },
+          {
+            "word": " It ",
+            "start": 50.627,
+            "end": 50.801
+          },
+          {
+            "word": "covers ",
+            "start": 50.801,
+            "end": 51.091
+          },
+          {
+            "word": "how ",
+            "start": 51.091,
+            "end": 51.242
+          },
+          {
+            "word": "technology, ",
+            "start": 51.242,
+            "end": 51.881
+          },
+          {
+            "word": "including ",
+            "start": 51.881,
+            "end": 52.392
+          },
+          {
+            "word": "AI, ",
+            "start": 52.392,
+            "end": 52.728
+          },
+          {
+            "word": "is ",
+            "start": 52.728,
+            "end": 52.856
+          },
+          {
+            "word": "shaping ",
+            "start": 52.856,
+            "end": 53.181
+          },
+          {
+            "word": "business ",
+            "start": 53.181,
+            "end": 53.506
+          },
+          {
+            "word": "and ",
+            "start": 53.506,
+            "end": 53.611
+          },
+          {
+            "word": "society.",
+            "start": 53.611,
+            "end": 54.354
+          },
+          {
+            "word": "\n\nIf ",
+            "start": 54.399625,
+            "end": 54.539625
+          },
+          {
+            "word": "you\u2019re ",
+            "start": 54.539625,
+            "end": 54.713625
+          },
+          {
+            "word": "interested ",
+            "start": 54.713625,
+            "end": 55.131625
+          },
+          {
+            "word": "in ",
+            "start": 55.131625,
+            "end": 55.247625
+          },
+          {
+            "word": "energy ",
+            "start": 55.247625,
+            "end": 55.642625
+          },
+          {
+            "word": "fields ",
+            "start": 55.642625,
+            "end": 55.874625
+          },
+          {
+            "word": "related ",
+            "start": 55.874625,
+            "end": 56.187625
+          },
+          {
+            "word": "to ",
+            "start": 56.187625,
+            "end": 56.303625
+          },
+          {
+            "word": "AI, ",
+            "start": 56.303625,
+            "end": 57.128625
+          },
+          {
+            "word": "renewable ",
+            "start": 57.128625,
+            "end": 57.673625
+          },
+          {
+            "word": "energy ",
+            "start": 57.673625,
+            "end": 58.149625
+          },
+          {
+            "word": "and ",
+            "start": 58.149625,
+            "end": 58.300625
+          },
+          {
+            "word": "smart ",
+            "start": 58.300625,
+            "end": 58.567625
+          },
+          {
+            "word": "grid ",
+            "start": 58.567625,
+            "end": 58.765625
+          },
+          {
+            "word": "technology ",
+            "start": 58.765625,
+            "end": 59.392625
+          },
+          {
+            "word": "are ",
+            "start": 59.392625,
+            "end": 59.543625
+          },
+          {
+            "word": "growing ",
+            "start": 59.543625,
+            "end": 59.868625
+          },
+          {
+            "word": "areas ",
+            "start": 59.868625,
+            "end": 60.251625
+          },
+          {
+            "word": "with ",
+            "start": 60.251625,
+            "end": 60.413625
+          },
+          {
+            "word": "strong ",
+            "start": 60.413625,
+            "end": 60.727625
+          },
+          {
+            "word": "future ",
+            "start": 60.727625,
+            "end": 61.064625
+          },
+          {
+            "word": "potential.",
+            "start": 61.064625,
+            "end": 61.830625
+          },
+          {
+            "word": "\n\nWould ",
+            "start": 61.876458251953125,
+            "end": 62.09745825195313
+          },
+          {
+            "word": "you ",
+            "start": 62.09745825195313,
+            "end": 62.21345825195313
+          },
+          {
+            "word": "like ",
+            "start": 62.21345825195313,
+            "end": 62.41045825195312
+          },
+          {
+            "word": "more ",
+            "start": 62.41045825195312,
+            "end": 62.59645825195312
+          },
+          {
+            "word": "tailored ",
+            "start": 62.59645825195312,
+            "end": 62.99145825195313
+          },
+          {
+            "word": "advice ",
+            "start": 62.99145825195313,
+            "end": 63.525458251953125
+          },
+          {
+            "word": "or ",
+            "start": 63.525458251953125,
+            "end": 63.96645825195313
+          },
+          {
+            "word": "resources ",
+            "start": 63.96645825195313,
+            "end": 64.76745825195313
+          },
+          {
+            "word": "on ",
+            "start": 64.76745825195313,
+            "end": 65.02345825195313
+          },
+          {
+            "word": "retirement ",
+            "start": 65.02345825195313,
+            "end": 65.47645825195312
+          },
+          {
+            "word": "planning, ",
+            "start": 65.47645825195312,
+            "end": 66.23045825195312
+          },
+          {
+            "word": "AI ",
+            "start": 66.23045825195312,
+            "end": 66.66045825195313
+          },
+          {
+            "word": "careers, ",
+            "start": 66.66045825195313,
+            "end": 67.29845825195312
+          },
+          {
+            "word": "or ",
+            "start": 67.29845825195312,
+            "end": 67.55445825195312
+          },
+          {
+            "word": "business ",
+            "start": 67.55445825195312,
+            "end": 67.90245825195312
+          },
+          {
+            "word": "strategy?",
+            "start": 67.90245825195312,
+            "end": 68.65745825195313
+          }
+        ],
+        "metadata": {
+          "response_id": 10
+        }
+      },
+      {
+        "role": "user",
+        "content": "Yes.",
+        "words": [
+          {
+            "word": "Yes.",
+            "start": 71.56700500000001,
+            "end": 71.887005
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Great! To help you best, would you like to focus more on AI career paths, retirement planning, or business strategy? Let me know your main interest, and I can share specific advice and resources.",
+        "words": [
+          {
+            "word": "Great!",
+            "start": 73.65,
+            "end": 74.323
+          },
+          {
+            "word": " To ",
+            "start": 74.3695,
+            "end": 74.4975
+          },
+          {
+            "word": "help ",
+            "start": 74.4975,
+            "end": 74.6955
+          },
+          {
+            "word": "you ",
+            "start": 74.6955,
+            "end": 74.8225
+          },
+          {
+            "word": "best, ",
+            "start": 74.8225,
+            "end": 75.0545
+          },
+          {
+            "word": "would ",
+            "start": 75.0545,
+            "end": 75.2175
+          },
+          {
+            "word": "you ",
+            "start": 75.2175,
+            "end": 75.3335
+          },
+          {
+            "word": "like ",
+            "start": 75.3335,
+            "end": 75.4965
+          },
+          {
+            "word": "to ",
+            "start": 75.4965,
+            "end": 75.6125
+          },
+          {
+            "word": "focus ",
+            "start": 75.6125,
+            "end": 75.9605
+          },
+          {
+            "word": "more ",
+            "start": 75.9605,
+            "end": 76.1925
+          },
+          {
+            "word": "on ",
+            "start": 76.1925,
+            "end": 76.3555
+          },
+          {
+            "word": "AI ",
+            "start": 76.3555,
+            "end": 76.7035
+          },
+          {
+            "word": "career ",
+            "start": 76.7035,
+            "end": 77.0515
+          },
+          {
+            "word": "paths, ",
+            "start": 77.0515,
+            "end": 77.5515
+          },
+          {
+            "word": "retirement ",
+            "start": 77.5515,
+            "end": 78.0275
+          },
+          {
+            "word": "planning, ",
+            "start": 78.0275,
+            "end": 78.4335
+          },
+          {
+            "word": "or ",
+            "start": 78.4335,
+            "end": 78.6775
+          },
+          {
+            "word": "business ",
+            "start": 78.6775,
+            "end": 78.9905
+          },
+          {
+            "word": "strategy?",
+            "start": 78.9905,
+            "end": 79.7105
+          },
+          {
+            "word": " Let ",
+            "start": 79.72254174804688,
+            "end": 79.93154174804687
+          },
+          {
+            "word": "me ",
+            "start": 79.93154174804687,
+            "end": 80.05854174804688
+          },
+          {
+            "word": "know ",
+            "start": 80.05854174804688,
+            "end": 80.27954174804688
+          },
+          {
+            "word": "your ",
+            "start": 80.27954174804688,
+            "end": 80.44154174804687
+          },
+          {
+            "word": "main ",
+            "start": 80.44154174804687,
+            "end": 80.62754174804688
+          },
+          {
+            "word": "interest, ",
+            "start": 80.62754174804688,
+            "end": 81.06854174804687
+          },
+          {
+            "word": "and ",
+            "start": 81.06854174804687,
+            "end": 81.20854174804687
+          },
+          {
+            "word": "I ",
+            "start": 81.20854174804687,
+            "end": 81.28954174804687
+          },
+          {
+            "word": "can ",
+            "start": 81.28954174804687,
+            "end": 81.45154174804688
+          },
+          {
+            "word": "share ",
+            "start": 81.45154174804688,
+            "end": 81.70754174804688
+          },
+          {
+            "word": "specific ",
+            "start": 81.70754174804688,
+            "end": 82.26454174804688
+          },
+          {
+            "word": "advice ",
+            "start": 82.26454174804688,
+            "end": 82.70554174804687
+          },
+          {
+            "word": "and ",
+            "start": 82.70554174804687,
+            "end": 82.84554174804687
+          },
+          {
+            "word": "resources.",
+            "start": 82.84554174804687,
+            "end": 83.84354174804687
+          }
+        ],
+        "metadata": {
+          "response_id": 12
+        }
+      },
+      {
+        "role": "user",
+        "content": "I'm interested in to doing a in AI. So yeah, I need a guidance in",
+        "words": [
+          {
+            "word": "I'm ",
+            "start": 85.387,
+            "end": 85.947
+          },
+          {
+            "word": "interested ",
+            "start": 85.947,
+            "end": 86.427
+          },
+          {
+            "word": "in ",
+            "start": 86.427,
+            "end": 86.747
+          },
+          {
+            "word": "to ",
+            "start": 86.827,
+            "end": 86.986996
+          },
+          {
+            "word": "doing ",
+            "start": 86.986996,
+            "end": 87.147
+          },
+          {
+            "word": "a ",
+            "start": 87.147,
+            "end": 87.307
+          },
+          {
+            "word": "in ",
+            "start": 87.557,
+            "end": 87.87700000000001
+          },
+          {
+            "word": "AI. ",
+            "start": 87.87700000000001,
+            "end": 88.43700000000001
+          },
+          {
+            "word": "So ",
+            "start": 88.43700000000001,
+            "end": 88.677006
+          },
+          {
+            "word": "yeah, ",
+            "start": 89.967,
+            "end": 90.367
+          },
+          {
+            "word": "I ",
+            "start": 90.367,
+            "end": 90.447
+          },
+          {
+            "word": "need ",
+            "start": 90.447,
+            "end": 90.68700000000001
+          },
+          {
+            "word": "a ",
+            "start": 90.68700000000001,
+            "end": 90.84700000000001
+          },
+          {
+            "word": "guidance ",
+            "start": 90.84700000000001,
+            "end": 91.16699600000001
+          },
+          {
+            "word": "in",
+            "start": 91.16699600000001,
+            "end": 91.327
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "That\u2019s exciting, Muhammad! Pursuing a master\u2019s in AI can open many doors. We can help you explore career paths, top programs, and how to align your studies with future job trends.\n\nWould you like to schedule a complimentary consultation to discuss your goals and get personalized advice? If so, do you prefer mornings or afternoons (Pacific Time)?",
+        "words": [
+          {
+            "word": "That\u2019s ",
+            "start": 94.696,
+            "end": 95.01
+          },
+          {
+            "word": "exciting, ",
+            "start": 95.01,
+            "end": 95.428
+          },
+          {
+            "word": "Muhammad!",
+            "start": 95.428,
+            "end": 96.055
+          },
+          {
+            "word": " Pursuing ",
+            "start": 96.066625,
+            "end": 96.530625
+          },
+          {
+            "word": "a ",
+            "start": 96.530625,
+            "end": 96.600625
+          },
+          {
+            "word": "master\u2019s ",
+            "start": 96.600625,
+            "end": 97.041625
+          },
+          {
+            "word": "in ",
+            "start": 97.041625,
+            "end": 97.203625
+          },
+          {
+            "word": "AI ",
+            "start": 97.203625,
+            "end": 97.587625
+          },
+          {
+            "word": "can ",
+            "start": 97.587625,
+            "end": 97.749625
+          },
+          {
+            "word": "open ",
+            "start": 97.749625,
+            "end": 98.028625
+          },
+          {
+            "word": "many ",
+            "start": 98.028625,
+            "end": 98.295625
+          },
+          {
+            "word": "doors.",
+            "start": 98.295625,
+            "end": 98.980625
+          },
+          {
+            "word": " We ",
+            "start": 98.99233325195313,
+            "end": 99.16633325195312
+          },
+          {
+            "word": "can ",
+            "start": 99.16633325195312,
+            "end": 99.31733325195313
+          },
+          {
+            "word": "help ",
+            "start": 99.31733325195313,
+            "end": 99.50233325195312
+          },
+          {
+            "word": "you ",
+            "start": 99.50233325195312,
+            "end": 99.65333325195313
+          },
+          {
+            "word": "explore ",
+            "start": 99.65333325195313,
+            "end": 100.12933325195313
+          },
+          {
+            "word": "career ",
+            "start": 100.12933325195313,
+            "end": 100.43133325195312
+          },
+          {
+            "word": "paths, ",
+            "start": 100.43133325195312,
+            "end": 100.82633325195313
+          },
+          {
+            "word": "top ",
+            "start": 100.82633325195313,
+            "end": 101.10533325195313
+          },
+          {
+            "word": "programs, ",
+            "start": 101.10533325195313,
+            "end": 101.97533325195313
+          },
+          {
+            "word": "and ",
+            "start": 101.97533325195313,
+            "end": 102.17333325195312
+          },
+          {
+            "word": "how ",
+            "start": 102.17333325195312,
+            "end": 102.33533325195313
+          },
+          {
+            "word": "to ",
+            "start": 102.33533325195313,
+            "end": 102.47533325195313
+          },
+          {
+            "word": "align ",
+            "start": 102.47533325195313,
+            "end": 102.84633325195313
+          },
+          {
+            "word": "your ",
+            "start": 102.84633325195313,
+            "end": 103.02033325195312
+          },
+          {
+            "word": "studies ",
+            "start": 103.02033325195312,
+            "end": 103.39233325195312
+          },
+          {
+            "word": "with ",
+            "start": 103.39233325195312,
+            "end": 103.57833325195313
+          },
+          {
+            "word": "future ",
+            "start": 103.57833325195313,
+            "end": 103.93733325195312
+          },
+          {
+            "word": "job ",
+            "start": 103.93733325195312,
+            "end": 104.23933325195313
+          },
+          {
+            "word": "trends.",
+            "start": 104.23933325195313,
+            "end": 105.06433325195313
+          },
+          {
+            "word": "\n\nWould ",
+            "start": 105.10995825195313,
+            "end": 105.33095825195312
+          },
+          {
+            "word": "you ",
+            "start": 105.33095825195312,
+            "end": 105.44695825195312
+          },
+          {
+            "word": "like ",
+            "start": 105.44695825195312,
+            "end": 105.57495825195312
+          },
+          {
+            "word": "to ",
+            "start": 105.57495825195312,
+            "end": 105.66795825195312
+          },
+          {
+            "word": "schedule ",
+            "start": 105.66795825195312,
+            "end": 106.17895825195312
+          },
+          {
+            "word": "a ",
+            "start": 106.17895825195312,
+            "end": 106.32895825195313
+          },
+          {
+            "word": "complimentary ",
+            "start": 106.32895825195313,
+            "end": 107.00295825195313
+          },
+          {
+            "word": "consultation ",
+            "start": 107.00295825195313,
+            "end": 107.75795825195313
+          },
+          {
+            "word": "to ",
+            "start": 107.75795825195313,
+            "end": 107.93195825195312
+          },
+          {
+            "word": "discuss ",
+            "start": 107.93195825195312,
+            "end": 108.33795825195313
+          },
+          {
+            "word": "your ",
+            "start": 108.33795825195313,
+            "end": 108.50095825195312
+          },
+          {
+            "word": "goals ",
+            "start": 108.50095825195312,
+            "end": 108.94195825195312
+          },
+          {
+            "word": "and ",
+            "start": 108.94195825195312,
+            "end": 109.27795825195312
+          },
+          {
+            "word": "get ",
+            "start": 109.27795825195312,
+            "end": 109.49895825195313
+          },
+          {
+            "word": "personalized ",
+            "start": 109.49895825195313,
+            "end": 110.03295825195312
+          },
+          {
+            "word": "advice?",
+            "start": 110.03295825195312,
+            "end": 110.68295825195312
+          },
+          {
+            "word": " If ",
+            "start": 110.70620825195313,
+            "end": 110.93820825195313
+          },
+          {
+            "word": "so, ",
+            "start": 110.93820825195313,
+            "end": 111.21720825195312
+          },
+          {
+            "word": "do ",
+            "start": 111.21720825195312,
+            "end": 111.32220825195313
+          },
+          {
+            "word": "you ",
+            "start": 111.32220825195313,
+            "end": 111.44920825195312
+          },
+          {
+            "word": "prefer ",
+            "start": 111.44920825195312,
+            "end": 111.97220825195312
+          },
+          {
+            "word": "mornings ",
+            "start": 111.97220825195312,
+            "end": 112.37820825195313
+          },
+          {
+            "word": "or ",
+            "start": 112.37820825195313,
+            "end": 112.48320825195313
+          },
+          {
+            "word": "afternoons ",
+            "start": 112.48320825195313,
+            "end": 113.06320825195313
+          },
+          {
+            "word": "(Pacific ",
+            "start": 113.06320825195313,
+            "end": 113.59720825195312
+          },
+          {
+            "word": "Time)?",
+            "start": 113.59720825195312,
+            "end": 114.12020825195313
+          }
+        ],
+        "metadata": {
+          "response_id": 13
+        }
+      },
+      {
+        "role": "user",
+        "content": "I prefer morning and I prefer date on nine October.",
+        "words": [
+          {
+            "word": "I ",
+            "start": 115.577,
+            "end": 115.897
+          },
+          {
+            "word": "prefer ",
+            "start": 115.897,
+            "end": 116.29700000000001
+          },
+          {
+            "word": "morning ",
+            "start": 116.29700000000001,
+            "end": 116.857
+          },
+          {
+            "word": "and ",
+            "start": 116.857,
+            "end": 117.337
+          },
+          {
+            "word": "I ",
+            "start": 117.337,
+            "end": 117.65700000000001
+          },
+          {
+            "word": "prefer ",
+            "start": 117.65700000000001,
+            "end": 118.137
+          },
+          {
+            "word": "date ",
+            "start": 118.137,
+            "end": 118.537
+          },
+          {
+            "word": "on ",
+            "start": 118.537,
+            "end": 119.09700000000001
+          },
+          {
+            "word": "nine ",
+            "start": 120.51699500000001,
+            "end": 120.836994
+          },
+          {
+            "word": "October.",
+            "start": 120.836994,
+            "end": 121.31700000000001
+          }
+        ]
+      },
+      {
+        "role": "tool_call_invocation",
+        "tool_call_id": "36ab234667bc7dda",
+        "name": "check_calendar_availability",
+        "arguments": "{\"start_time\":\"October 9th 9:00 AM\",\"end_time\":\"October 9th 12:00 PM\",\"execution_message\":\"Let me check our availability for the morning of October 9th.\"}"
+      },
+      {
+        "role": "tool_call_result",
+        "tool_call_id": "36ab234667bc7dda",
+        "content": "{\"availability_for_selected_time\":[{\"date\":\"Thursday, 2025 October 10/9/2025 Coordinated Universal Time\",\"availability_range\":[\"From 9:00 AM to 12:00 PM\"]}]}"
+      },
+      {
+        "role": "agent",
+        "content": "Let me check our availability for the morning of October 9th.We have availability on the morning of October 9th between 9:00 A M and 12:00 P M (Pacific Time). Is there a specific time in that range that works best for you?",
+        "words": [
+          {
+            "word": "Let ",
+            "start": 123.18,
+            "end": 123.343
+          },
+          {
+            "word": "me ",
+            "start": 123.343,
+            "end": 123.436
+          },
+          {
+            "word": "check ",
+            "start": 123.436,
+            "end": 123.633
+          },
+          {
+            "word": "our ",
+            "start": 123.633,
+            "end": 123.737
+          },
+          {
+            "word": "availability ",
+            "start": 123.737,
+            "end": 124.538
+          },
+          {
+            "word": "for ",
+            "start": 124.538,
+            "end": 124.875
+          },
+          {
+            "word": "the ",
+            "start": 124.875,
+            "end": 124.991
+          },
+          {
+            "word": "morning ",
+            "start": 124.991,
+            "end": 125.316
+          },
+          {
+            "word": "of ",
+            "start": 125.316,
+            "end": 125.467
+          },
+          {
+            "word": "October ",
+            "start": 125.467,
+            "end": 125.932
+          },
+          {
+            "word": "9th.",
+            "start": 125.932,
+            "end": 126.454
+          },
+          {
+            "word": "We ",
+            "start": 126.500125,
+            "end": 126.698125
+          },
+          {
+            "word": "have ",
+            "start": 126.698125,
+            "end": 126.976125
+          },
+          {
+            "word": "availability ",
+            "start": 126.976125,
+            "end": 127.650125
+          },
+          {
+            "word": "on ",
+            "start": 127.650125,
+            "end": 127.754125
+          },
+          {
+            "word": "the ",
+            "start": 127.754125,
+            "end": 127.847125
+          },
+          {
+            "word": "morning ",
+            "start": 127.847125,
+            "end": 128.103125
+          },
+          {
+            "word": "of ",
+            "start": 128.103125,
+            "end": 128.195125
+          },
+          {
+            "word": "October ",
+            "start": 128.195125,
+            "end": 128.637125
+          },
+          {
+            "word": "9th ",
+            "start": 128.637125,
+            "end": 128.915125
+          },
+          {
+            "word": "between ",
+            "start": 128.915125,
+            "end": 129.240125
+          },
+          {
+            "word": "9:00 ",
+            "start": 129.240125,
+            "end": 129.403125
+          },
+          {
+            "word": "A ",
+            "start": 129.403125,
+            "end": 129.774125
+          },
+          {
+            "word": "M ",
+            "start": 129.774125,
+            "end": 130.007125
+          },
+          {
+            "word": "and ",
+            "start": 130.007125,
+            "end": 130.239125
+          },
+          {
+            "word": "12:00 ",
+            "start": 130.239125,
+            "end": 130.390125
+          },
+          {
+            "word": "P ",
+            "start": 130.390125,
+            "end": 130.634125
+          },
+          {
+            "word": "M ",
+            "start": 130.634125,
+            "end": 130.982125
+          },
+          {
+            "word": "(Pacific ",
+            "start": 130.982125,
+            "end": 131.261125
+          },
+          {
+            "word": "Time).",
+            "start": 131.261125,
+            "end": 131.539125
+          },
+          {
+            "word": " Is ",
+            "start": 132.8514167480469,
+            "end": 133.01341674804686
+          },
+          {
+            "word": "there ",
+            "start": 133.01341674804686,
+            "end": 133.17641674804688
+          },
+          {
+            "word": "a ",
+            "start": 133.17641674804688,
+            "end": 133.23441674804687
+          },
+          {
+            "word": "specific ",
+            "start": 133.23441674804687,
+            "end": 133.69841674804687
+          },
+          {
+            "word": "time ",
+            "start": 133.69841674804687,
+            "end": 133.89641674804687
+          },
+          {
+            "word": "in ",
+            "start": 133.89641674804687,
+            "end": 133.98941674804686
+          },
+          {
+            "word": "that ",
+            "start": 133.98941674804686,
+            "end": 134.17441674804687
+          },
+          {
+            "word": "range ",
+            "start": 134.17441674804687,
+            "end": 134.43041674804687
+          },
+          {
+            "word": "that ",
+            "start": 134.43041674804687,
+            "end": 134.56941674804688
+          },
+          {
+            "word": "works ",
+            "start": 134.56941674804688,
+            "end": 134.84841674804687
+          },
+          {
+            "word": "best ",
+            "start": 134.84841674804687,
+            "end": 135.10341674804687
+          },
+          {
+            "word": "for ",
+            "start": 135.10341674804687,
+            "end": 135.26641674804688
+          },
+          {
+            "word": "you?",
+            "start": 135.26641674804688,
+            "end": 135.69541674804688
+          }
+        ],
+        "metadata": {
+          "response_id": 14
+        }
+      },
+      {
+        "role": "user",
+        "content": "Yes. Yes. Nine o'clock is best.",
+        "words": [
+          {
+            "word": "Yes. ",
+            "start": 137.007,
+            "end": 137.407
+          },
+          {
+            "word": "Yes. ",
+            "start": 137.407,
+            "end": 137.647
+          },
+          {
+            "word": "Nine ",
+            "start": 137.647,
+            "end": 137.88699
+          },
+          {
+            "word": "o'clock ",
+            "start": 137.88699,
+            "end": 138.287
+          },
+          {
+            "word": "is ",
+            "start": 138.287,
+            "end": 138.52699
+          },
+          {
+            "word": "best.",
+            "start": 138.52699,
+            "end": 138.847
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "So book it an appointment in that.",
+        "words": [
+          {
+            "word": "So ",
+            "start": 139.327,
+            "end": 139.567
+          },
+          {
+            "word": "book ",
+            "start": 139.567,
+            "end": 139.80700000000002
+          },
+          {
+            "word": "it ",
+            "start": 139.80700000000002,
+            "end": 139.967
+          },
+          {
+            "word": "an ",
+            "start": 139.967,
+            "end": 140.04701
+          },
+          {
+            "word": "appointment ",
+            "start": 140.04701,
+            "end": 140.36700000000002
+          },
+          {
+            "word": "in ",
+            "start": 140.36700000000002,
+            "end": 140.607
+          },
+          {
+            "word": "that.",
+            "start": 140.607,
+            "end": 140.847
+          }
+        ]
+      },
+      {
+        "role": "tool_call_invocation",
+        "tool_call_id": "3226081b91bd5868",
+        "name": "book_appointment",
+        "arguments": "{\"time\":\"October 9th 9:00 AM\",\"name\":\"Muhammad Asad\",\"email\":\"safdarhnh1@gmail.com\",\"execution_message\":\"Your consultation is being scheduled for October 9th at 9:00 A M Pacific Time. You'll receive a confirmation soon.\"}"
+      },
+      {
+        "role": "agent",
+        "content": "Your consultation is being scheduled for October ",
+        "words": [
+          {
+            "word": "Your ",
+            "start": 142.666,
+            "end": 142.852
+          },
+          {
+            "word": "consultation ",
+            "start": 142.852,
+            "end": 143.421
+          },
+          {
+            "word": "is ",
+            "start": 143.421,
+            "end": 143.502
+          },
+          {
+            "word": "being ",
+            "start": 143.502,
+            "end": 143.699
+          },
+          {
+            "word": "scheduled ",
+            "start": 143.699,
+            "end": 144.059
+          },
+          {
+            "word": "for ",
+            "start": 144.059,
+            "end": 144.21
+          },
+          {
+            "word": "October ",
+            "start": 144.21,
+            "end": 144.616
+          }
+        ],
+        "metadata": {
+          "response_id": 17
+        }
+      },
+      {
+        "role": "tool_call_result",
+        "tool_call_id": "3226081b91bd5868",
+        "content": "{\"status\":\"Successfully booked an appointment.\",\"booking_id\":11256422,\"booking_uid\":\"3qfk6AmLgN7sZXLniT8oU9\"}"
+      },
+      {
+        "role": "agent",
+        "content": "9th at 9:00 A M Pacific Time. You'll receive a confirmation soon.Your appointment is confirmed for October 9th at 9:00 A M Pacific Time. Thank you for choosing Summit Consulting Group! If you have any questions before then, feel free to reach out. Have a great day!",
+        "words": [
+          {
+            "word": "9th ",
+            "start": 144.616,
+            "end": 144.872
+          },
+          {
+            "word": "at ",
+            "start": 144.872,
+            "end": 144.976
+          },
+          {
+            "word": "9:00 ",
+            "start": 144.976,
+            "end": 145.15
+          },
+          {
+            "word": "A ",
+            "start": 145.15,
+            "end": 145.568
+          },
+          {
+            "word": "M ",
+            "start": 145.568,
+            "end": 145.731
+          },
+          {
+            "word": "Pacific ",
+            "start": 145.731,
+            "end": 145.835
+          },
+          {
+            "word": "Time. ",
+            "start": 145.835,
+            "end": 146.219
+          },
+          {
+            "word": "You'll ",
+            "start": 146.69416674804688,
+            "end": 146.93816674804688
+          },
+          {
+            "word": "receive ",
+            "start": 146.93816674804688,
+            "end": 147.21716674804688
+          },
+          {
+            "word": "a ",
+            "start": 147.21716674804688,
+            "end": 147.28716674804687
+          },
+          {
+            "word": "confirmation ",
+            "start": 147.28716674804687,
+            "end": 147.94816674804687
+          },
+          {
+            "word": "soon.",
+            "start": 147.94816674804687,
+            "end": 148.45916674804687
+          },
+          {
+            "word": "Your ",
+            "start": 148.50533325195312,
+            "end": 148.69133325195313
+          },
+          {
+            "word": "appointment ",
+            "start": 148.69133325195313,
+            "end": 149.14433325195313
+          },
+          {
+            "word": "is ",
+            "start": 149.14433325195313,
+            "end": 149.2603332519531
+          },
+          {
+            "word": "confirmed ",
+            "start": 149.2603332519531,
+            "end": 149.7363332519531
+          },
+          {
+            "word": "for ",
+            "start": 149.7363332519531,
+            "end": 149.91033325195312
+          },
+          {
+            "word": "October ",
+            "start": 149.91033325195312,
+            "end": 150.36333325195312
+          },
+          {
+            "word": "9th ",
+            "start": 150.36333325195312,
+            "end": 150.6883332519531
+          },
+          {
+            "word": "at ",
+            "start": 150.6883332519531,
+            "end": 150.80433325195312
+          },
+          {
+            "word": "9:00 ",
+            "start": 150.80433325195312,
+            "end": 150.99033325195313
+          },
+          {
+            "word": "A ",
+            "start": 150.99033325195313,
+            "end": 151.48933325195313
+          },
+          {
+            "word": "M ",
+            "start": 151.48933325195313,
+            "end": 151.77933325195312
+          },
+          {
+            "word": "Pacific ",
+            "start": 151.77933325195312,
+            "end": 151.96533325195313
+          },
+          {
+            "word": "Time.",
+            "start": 151.96533325195313,
+            "end": 152.39533325195313
+          },
+          {
+            "word": " Thank ",
+            "start": 153.01,
+            "end": 153.254
+          },
+          {
+            "word": "you ",
+            "start": 153.254,
+            "end": 153.37
+          },
+          {
+            "word": "for ",
+            "start": 153.37,
+            "end": 153.486
+          },
+          {
+            "word": "choosing ",
+            "start": 153.486,
+            "end": 153.846
+          },
+          {
+            "word": "Summit ",
+            "start": 153.846,
+            "end": 154.137
+          },
+          {
+            "word": "Consulting ",
+            "start": 154.137,
+            "end": 154.589
+          },
+          {
+            "word": "Group!",
+            "start": 154.589,
+            "end": 155.054
+          },
+          {
+            "word": " If ",
+            "start": 155.09979174804687,
+            "end": 155.23979174804688
+          },
+          {
+            "word": "you ",
+            "start": 155.23979174804688,
+            "end": 155.37879174804686
+          },
+          {
+            "word": "have ",
+            "start": 155.37879174804686,
+            "end": 155.55279174804687
+          },
+          {
+            "word": "any ",
+            "start": 155.55279174804687,
+            "end": 155.72679174804688
+          },
+          {
+            "word": "questions ",
+            "start": 155.72679174804688,
+            "end": 156.17979174804688
+          },
+          {
+            "word": "before ",
+            "start": 156.17979174804688,
+            "end": 156.50479174804687
+          },
+          {
+            "word": "then, ",
+            "start": 156.50479174804687,
+            "end": 156.73679174804687
+          },
+          {
+            "word": "feel ",
+            "start": 156.73679174804687,
+            "end": 156.95779174804687
+          },
+          {
+            "word": "free ",
+            "start": 156.95779174804687,
+            "end": 157.12079174804688
+          },
+          {
+            "word": "to ",
+            "start": 157.12079174804688,
+            "end": 157.21279174804687
+          },
+          {
+            "word": "reach ",
+            "start": 157.21279174804687,
+            "end": 157.45679174804687
+          },
+          {
+            "word": "out.",
+            "start": 157.45679174804687,
+            "end": 157.79379174804689
+          },
+          {
+            "word": " Have ",
+            "start": 157.83975,
+            "end": 158.02575
+          },
+          {
+            "word": "a ",
+            "start": 158.02575,
+            "end": 158.08375
+          },
+          {
+            "word": "great ",
+            "start": 158.08375,
+            "end": 158.30475
+          },
+          {
+            "word": "day!",
+            "start": 158.30475,
+            "end": 158.81575
+          }
+        ],
+        "metadata": {
+          "response_id": 17
+        }
+      },
+      {
+        "role": "user",
+        "content": "Goodbye.",
+        "words": [
+          {
+            "word": "Goodbye.",
+            "start": 160.227,
+            "end": 160.86700000000002
+          }
+        ]
+      },
+      {
+        "role": "agent",
+        "content": "Goodbye, Muhammad! Wishing you all the best on your journey. If you need anything else, we're here to help.",
+        "words": [
+          {
+            "word": "Goodbye, ",
+            "start": 162.938,
+            "end": 163.321
+          },
+          {
+            "word": "Muhammad! ",
+            "start": 163.321,
+            "end": 163.983
+          },
+          {
+            "word": "Wishing ",
+            "start": 164.029,
+            "end": 164.378
+          },
+          {
+            "word": "you ",
+            "start": 164.378,
+            "end": 164.529
+          },
+          {
+            "word": "all ",
+            "start": 164.529,
+            "end": 164.714
+          },
+          {
+            "word": "the ",
+            "start": 164.714,
+            "end": 164.819
+          },
+          {
+            "word": "best ",
+            "start": 164.819,
+            "end": 165.051
+          },
+          {
+            "word": "on ",
+            "start": 165.051,
+            "end": 165.167
+          },
+          {
+            "word": "your ",
+            "start": 165.167,
+            "end": 165.33
+          },
+          {
+            "word": "journey. ",
+            "start": 165.33,
+            "end": 166.026
+          },
+          {
+            "word": "If ",
+            "start": 166.038375,
+            "end": 166.281375
+          },
+          {
+            "word": "you ",
+            "start": 166.281375,
+            "end": 166.409375
+          },
+          {
+            "word": "need ",
+            "start": 166.409375,
+            "end": 166.630375
+          },
+          {
+            "word": "anything ",
+            "start": 166.630375,
+            "end": 167.013375
+          },
+          {
+            "word": "else, ",
+            "start": 167.013375,
+            "end": 167.257375
+          },
+          {
+            "word": "we're ",
+            "start": 167.257375,
+            "end": 167.466375
+          },
+          {
+            "word": "here ",
+            "start": 167.466375,
+            "end": 167.640375
+          },
+          {
+            "word": "to ",
+            "start": 167.640375,
+            "end": 167.744375
+          },
+          {
+            "word": "help.",
+            "start": 167.744375,
+            "end": 168.255375
+          }
+        ],
+        "metadata": {
+          "response_id": 18
+        }
+      },
+      {
+        "role": "tool_call_invocation",
+        "tool_call_id": "c5037de6314d553d",
+        "name": "end_call",
+        "arguments": "{\"execution_message\":\"Goodbye, Muhammad! Wishing you all the best on your journey. If you need anything else, we're here to help.\"}"
+      }
+    ],
+    "recording_url": "https://dxc03zgurdly9.cloudfront.net/a6025fe88cf9814afcff6be2889e6b7e5d2a8a95c0044ae363faacef6d94d10b/recording.wav",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a6025fe88cf9814afcff6be2889e6b7e5d2a8a95c0044ae363faacef6d94d10b/recording_multichannel.wav",
+    "public_log_url": "https://dxc03zgurdly9.cloudfront.net/a6025fe88cf9814afcff6be2889e6b7e5d2a8a95c0044ae363faacef6d94d10b/public.log",
+    "disconnection_reason": "agent_hangup",
+    "latency": {
+      "llm": {
+        "p50": 714,
+        "p90": 1062.4,
+        "p95": 1104.65,
+        "p99": 1135.33,
+        "min": 559,
+        "max": 1143,
+        "num": 14,
+        "values": [
+          1084,
+          619,
+          631,
+          559,
+          651,
+          722,
+          627,
+          578,
+          772,
+          711,
+          717,
+          1143,
+          1012,
+          900
+        ]
+      },
+      "e2e": {
+        "p50": 1646.9951171875,
+        "p90": 2221.599999999999,
+        "p95": 2754.7999999999993,
+        "p99": 3181.3599999999997,
+        "min": 1007.9990234375,
+        "max": 3288,
+        "num": 9,
+        "values": [
+          1062,
+          1007.9990234375,
+          1137,
+          1383.998046875,
+          1646.9951171875,
+          3288,
+          1747,
+          1668,
+          1955
+        ]
+      },
+      "tts": {
+        "p50": 307.5,
+        "p90": 421.90000000000003,
+        "p95": 434.75,
+        "p99": 437.35,
+        "min": 237,
+        "max": 438,
+        "num": 14,
+        "values": [
+          313,
+          281,
+          289,
+          237,
+          274,
+          433,
+          304,
+          311,
+          349,
+          396,
+          259,
+          370,
+          438,
+          278
+        ]
+      }
+    },
+    "call_cost": {
+      "product_costs": [
+        {
+          "product": "elevenlabs_tts",
+          "unit_price": 0.1166667,
+          "cost": 19.7166667
+        },
+        {
+          "product": "gpt_4_1",
+          "unit_price": 0.075,
+          "cost": 12.675
+        },
+        {
+          "product": "us_twilio_telephony",
+          "unit_price": 0.025,
+          "cost": 4.225
+        }
+      ],
+      "total_duration_seconds": 169,
+      "total_duration_unit_price": 0.2166667,
+      "combined_cost": 36.6166667
+    },
+    "call_analysis": {
+      "call_summary": "The user, Muhammad Asad, inquired about pursuing a master's in AI and requested guidance on future-proof business books and retirement planning. The agent recommended a book and scheduled a consultation for October 9th at 9:00 AM Pacific Time, successfully completing the user's request.",
+      "in_voicemail": false,
+      "user_sentiment": "Positive",
+      "call_successful": true,
+      "custom_analysis_data": {}
+    },
+    "opt_out_sensitive_data_storage": false,
+    "data_storage_setting": "everything",
+    "opt_in_signed_url": false,
+    "llm_token_usage": {
+      "values": [
+        1252,
+        1258,
+        1284,
+        1319,
+        1331,
+        1352,
+        1355,
+        1355,
+        1362,
+        1367,
+        1497,
+        1497,
+        1561,
+        1648,
+        1785,
+        1842,
+        1844,
+        1855,
+        2013,
+        2067
+      ],
+      "average": 1542.2,
+      "num_requests": 20
+    },
+    "from_number": "+18723287358",
+    "to_number": "+19727774163",
+    "direction": "outbound",
+    "telephony_identifier": {
+      "twilio_call_sid": "CAe55bc5b3fddfe173b9514d71a71939c5"
+    }
+  }
+}
