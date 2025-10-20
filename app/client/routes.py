@@ -7,6 +7,9 @@ from .knowledge_base.routes import (
 from .agent.routes import (
     agent_router
 )
+from .calls.routes import (
+    calls_router
+)
 
 client_router = APIRouter()
 
@@ -20,5 +23,9 @@ client_router.include_router(
     prefix="/agent",
     tags=["Agent"],
 )
-
+client_router.include_router(
+    calls_router,
+    prefix="/calls",
+    tags=['Calls']
+)
 
