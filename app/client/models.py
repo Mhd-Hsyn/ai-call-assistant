@@ -1,3 +1,4 @@
+from datetime import datetime
 from beanie import Link, before_event, Delete
 from pydantic import Field
 from typing import Optional, List, Dict, Any
@@ -8,7 +9,11 @@ from app.core.constants.choices import (
     KnowledgeBaseSourceTypeChoices,
     VoiceModelChoices,
     LanguageChoices,
-    EngineStartSpeakChoice
+    EngineStartSpeakChoice,
+    CallStatusChoices,
+    CallDirectionChoices,
+    CallTypeChoices,
+
 )
 
 
@@ -90,6 +95,67 @@ class AgentModel(BaseDocument):
 
     class Settings:
         name = "agents"
+
+
+
+class CallModel(BaseDocument):
+    """
+    Stores all Retell phone call details, synced from webhooks or Retell API.
+    """
+
+    # Relations
+    user: Link[UserModel]
+    agent: Link[AgentModel]
+
+    # Identifiers
+    agent_name = str
+    agent_retell_id = str
+    call_id: str = Field(..., index=True, unique=True)
+    call_type: CallTypeChoices = Field(default=CallTypeChoices.PHONE_CALL, description= 'call type (phone-call or web-call)')
+    direction: CallDirectionChoices
+    call_status: CallStatusChoices = Field(default=CallStatusChoices.REGISTERED, description= 'call status')
+    disconnection_reason: Optional[str] = None
+
+    # Numbers
+    from_number: Optional[str] = None
+    to_number: Optional[str] = None
+
+    # Timestamps
+    start_timestamp: Optional[datetime] = None
+    end_timestamp: Optional[datetime] = None
+    duration_ms: Optional[int] = None
+
+    # Meta + Identifiers
+    metadata: Optional[Dict[str, Any]] = Field(default_factory=dict)
+    retell_llm_dynamic_variables: Optional[Dict[str, Any]] = Field(default_factory=dict)
+    collected_dynamic_variables: Optional[Dict[str, Any]] = Field(default_factory=dict)
+
+    # URLs (recordings, transcripts, logs)
+    recording_url: Optional[str] = None
+    recording_multi_channel_url: Optional[str] = None
+    scrubbed_recording_url: Optional[str] = None
+    scrubbed_recording_multi_channel_url: Optional[str] = None
+    public_log_url: Optional[str] = None
+    knowledge_base_retrieved_contents_url: Optional[str] = None
+
+    # Transcript
+    transcript: Optional[str] = None
+    transcript_object: Optional[List[Dict[str, Any]]] = Field(default_factory=list)
+    transcript_with_tool_calls: Optional[List[Dict[str, Any]]] = Field(default_factory=list)
+    scrubbed_transcript_with_tool_calls: Optional[List[Dict[str, Any]]] = Field(default_factory=list)
+
+    # Analysis
+    call_analysis: Optional[Dict[str, Any]] = Field(default_factory=dict)
+    call_cost: Optional[Dict[str, Any]] = Field(default_factory=dict)
+    llm_token_usage: Optional[Dict[str, Any]] = Field(default_factory=dict)
+
+    class Settings:
+        name = "calls"
+
+    def __repr__(self):
+        return f"<Call {self.call_id} ({self.call_status})>"
+
+
 
 
 

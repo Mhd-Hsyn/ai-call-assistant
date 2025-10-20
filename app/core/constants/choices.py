@@ -95,3 +95,22 @@ class EngineStartSpeakChoice(StrEnum):
     AGENT = 'agent'
     USER = 'user'
 
+
+class CallStatusChoices(StrEnum):
+    REGISTERED = 'registered'
+    NOT_CONNECTED = 'not_connected'
+    ONGOING = 'ongoing'
+    ENDED = 'ended'
+    ERROR = 'error'
+
+
+class CallDirectionChoices(StrEnum):
+    INBOUND = 'inbound'
+    OUTBOUND = 'outbound'
+
+
+class CallTypeChoices(StrEnum):
+    PHONE_CALL = 'phone_call'
+    WEB_CALL = 'web_call'
+
+
