@@ -104,7 +104,7 @@ class RetellKnowledgeBaseService:
         Delete a knowledge base from Retell platform.
         """
         try:
-            response = client.agent.delete(knowledge_base_id)
+            response = client.knowledge_base.delete(knowledge_base_id)
             return response
         except Exception as e:
             logger.info(f"e __________________ {e}")
