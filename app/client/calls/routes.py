@@ -1,9 +1,11 @@
 import json
+from uuid import UUID
 from datetime import datetime
 from fastapi import (
     APIRouter, 
     status, 
-    UploadFile, 
+    UploadFile,
+    Query,
     File,
     Depends, 
 )
@@ -27,6 +29,7 @@ from .schemas import (
     APIBaseResponse,
     CallInitializeSchema,
     CallDisplayInfoResponseSchema,
+    CallFullResponseSchema,
 )
 from .services import (
     RetellCallService,
@@ -247,8 +250,7 @@ async def retell_webhook(payload: dict):
     status_code=status.HTTP_200_OK,
 )
 async def retrieve_my_calls(user: UserModel = Depends(ProfileActive())):
-    all_calls = await CallModel.find(CallModel.user.id == user.id, fetch_links=True).to_list()
-    logger.info(f"all_calls \n----- {all_calls}")
+    all_calls = await CallModel.find(CallModel.user.id == user.id).to_list()
 
     serialized_calls = [
         CallDisplayInfoResponseSchema.model_validate(call) for call in all_calls
@@ -259,5 +261,31 @@ async def retrieve_my_calls(user: UserModel = Depends(ProfileActive())):
         message="All calls retrieved successfully",
         data=serialized_calls,
     )
+
+
+@calls_router.get(
+    "/detail",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def retrieve_my_calls(
+    user: UserModel = Depends(ProfileActive()),
+    call_uuid : UUID = Query(..., description="call uuid")
+):
+    call = await CallModel.find_one(
+        CallModel.id == call_uuid,
+        CallModel.user.id == user.id,
+        fetch_links=True 
+    )
+
+    serialized_calls = CallFullResponseSchema.model_validate(call)
+
+    return APIBaseResponse(
+        status=True,
+        message="call details retrieved successfully",
+        data=serialized_calls,
+    )
+
+
 
 
