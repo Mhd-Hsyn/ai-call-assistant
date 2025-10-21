@@ -26,7 +26,7 @@ from ..models import (
 from .schemas import (
     APIBaseResponse,
     CallInitializeSchema,
-    CallResponseSchema,
+    CallDisplayInfoResponseSchema,
 )
 from .services import (
     RetellCallService,
@@ -250,7 +250,7 @@ async def retrieve_my_calls(user: UserModel = Depends(ProfileActive())):
     logger.info(f"all_calls \n----- {all_calls}")
 
     serialized_calls = [
-        CallResponseSchema.model_validate(call) for call in all_calls
+        CallDisplayInfoResponseSchema.model_validate(call) for call in all_calls
     ]
 
     return APIBaseResponse(
