@@ -197,7 +197,7 @@ async def retell_webhook(payload: dict):
             end_time = datetime.utcnow()
 
         # Update fields with validation
-        existing.call_status = "ended"
+        existing.call_status = call_data.get("call_status")
         existing.end_timestamp = end_time
         existing.duration_ms = call_data.get("duration_ms")
         existing.transcript = call_data.get("transcript")
@@ -229,6 +229,7 @@ async def retell_webhook(payload: dict):
         existing.call_analysis = call_data.get("call_analysis", {})
         existing.call_cost = call_data.get("call_cost", {})
         existing.llm_token_usage = call_data.get("llm_token_usage", {})
+        existing.call_status = call_data.get("call_status")
         existing.transcript = call_data.get("transcript") or existing.transcript
         existing.transcript_object = call_data.get("transcript_object") or existing.transcript_object
         existing.transcript_with_tool_calls = call_data.get("transcript_with_tool_calls") or existing.transcript_with_tool_calls
