@@ -50,8 +50,9 @@ class CallDisplayInfoResponseSchema(BaseModel):
 
     call_analysis: Optional[Dict[str, Any]] = Field(default_factory=dict)
     call_cost: Optional[Dict[str, Any]] = Field(default_factory=dict)
+    disconnection_reason : Optional[str]
 
-    # 🧠 Derived (computed) fields
+    # Derived (computed) fields
     @computed_field(return_type=str)
     def formatted_duration(self) -> Optional[str]:
         """Convert duration from milliseconds → HH:MM:SS format"""
@@ -83,8 +84,23 @@ class CallDisplayInfoResponseSchema(BaseModel):
         if self.call_cost and "combined_cost" in self.call_cost:
             # Assuming backend stores cost in cents → divide by 100
             cost_cents = self.call_cost["combined_cost"]
-            return round(cost_cents / 100, 2)
+            return round(cost_cents / 100, 3)
         return None
+
+    @computed_field(return_type=str)
+    def call_successful(self) -> Optional[str]:
+        """Extract and convert call success status → human-readable text"""
+        if not self.call_analysis:
+            return None
+
+        status = self.call_analysis.get("call_successful")
+
+        if status is True:
+            return "Successful"
+        elif status is False:
+            return "Unsuccessful"
+        else:
+            return None
 
     class Config:
         from_attributes = True

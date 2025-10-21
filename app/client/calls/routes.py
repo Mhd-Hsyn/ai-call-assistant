@@ -199,6 +199,7 @@ async def retell_webhook(payload: dict):
         existing.duration_ms = call_data.get("duration_ms")
         existing.transcript = call_data.get("transcript")
         existing.recording_url = call_data.get("recording_url")
+        existing.disconnection_reason = call_data.get("disconnection_reason")
         existing.recording_multi_channel_url = call_data.get("recording_multi_channel_url")
         existing.public_log_url = call_data.get("public_log_url")
         existing.scrubbed_recording_url = call_data.get("scrubbed_recording_url")

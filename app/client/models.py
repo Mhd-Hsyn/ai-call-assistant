@@ -13,6 +13,7 @@ from app.core.constants.choices import (
     CallStatusChoices,
     CallDirectionChoices,
     CallTypeChoices,
+    CallDisconnectionReasonChoices,
 
 )
 
@@ -114,7 +115,7 @@ class CallModel(BaseDocument):
     call_type: CallTypeChoices = Field(default=CallTypeChoices.PHONE_CALL, description= 'call type (phone-call or web-call)')
     direction: CallDirectionChoices
     call_status: CallStatusChoices = Field(default=CallStatusChoices.REGISTERED, description= 'call status')
-    disconnection_reason: Optional[str] = None
+    disconnection_reason: Optional[CallDisconnectionReasonChoices] = Field(default=None,description="Call disconnection reason")
 
     # Numbers
     from_number: Optional[str] = None
