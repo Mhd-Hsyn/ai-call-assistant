@@ -115,7 +115,7 @@ class CallDisplayInfoResponseSchema(CallBaseResponseSchema):
 class CallFullResponseSchema(CallBaseResponseSchema):
     id: UUID
     call_id: str
-    agent: Optional[AgentMiniSchema]
+    # agent: Optional[AgentMiniSchema]
 
     agent_name: Optional[str]
     call_type: Optional[str]
