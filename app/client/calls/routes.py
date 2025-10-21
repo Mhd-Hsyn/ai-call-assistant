@@ -1,17 +1,14 @@
 import json
-from uuid import UUID
 from datetime import datetime
-from typing import Optional
-from beanie.operators import In
 from fastapi import (
     APIRouter, 
     status, 
-    Query, 
+    UploadFile, 
+    File,
     Depends, 
 )
 from app.config.settings import settings
 from app.core.exceptions.base import (
-    BadGatewayException,
     AppException,
     NotFoundException
 
@@ -29,10 +26,10 @@ from ..models import (
 from .schemas import (
     APIBaseResponse,
     CallInitializeSchema,
-
 )
 from .services import (
-    RetellCallService   
+    RetellCallService,
+    CallFileService
 )
 from app.core.utils.helpers import (
     parse_timestamp
@@ -45,6 +42,22 @@ logger = get_logger("Calling Routes")
 calls_router = APIRouter()
 
 
+
+@calls_router.post(
+    "/parse-file",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def parse_file(file: UploadFile = File(...)):
+    """
+    Upload Excel or CSV file → Get array of key-value objects
+    """
+    records = await CallFileService.parse_uploaded_file(file)
+    return APIBaseResponse(
+        status=True,
+        message="File parsed successfully",
+        data=records
+    )
 
 
 

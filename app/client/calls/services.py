@@ -1,15 +1,63 @@
-import json
+import pandas as pd
+import numpy as np
+from io import BytesIO
+from fastapi import UploadFile
 from retell import Retell
 from app.config.settings import settings
 from app.client.models import CallModel, AgentModel
 from app.auth.models import UserModel
+from app.core.exceptions.base import (
+    AppException, 
+    InternalServerErrorException
+)
 from app.config.logger import get_logger
-from datetime import datetime
 from app.core.utils.helpers import (
     parse_timestamp
 )
 
 logger = get_logger("Retell Service")
+
+
+
+
+class CallFileService:
+    """
+    Service for handling Excel/CSV file parsing
+    """
+
+    @staticmethod
+    async def parse_uploaded_file(file: UploadFile):
+        try:
+            contents = await file.read()
+            file_ext = file.filename.split(".")[-1].lower()
+
+            # Read file using pandas
+            if file_ext == "csv":
+                df = pd.read_csv(BytesIO(contents))
+            elif file_ext in ["xls", "xlsx"]:
+                df = pd.read_excel(BytesIO(contents))
+            else:
+                raise AppException("Invalid file type. Only CSV or Excel supported.")
+
+            # Replace NaN with empty string
+            df = df.replace({np.nan: ""})
+
+            # Convert all numpy datatypes to native Python types
+            records = df.astype(object).to_dict(orient="records")
+
+            # Ensure all keys/values are basic serializable types
+            for record in records:
+                for k, v in record.items():
+                    if isinstance(v, (np.integer, np.floating)):
+                        record[k] = v.item()
+                    elif pd.isna(v):
+                        record[k] = ""
+
+            return records
+
+        except Exception as e:
+            raise InternalServerErrorException(f"File parse failed: {str(e)}")
+
 
 
 class RetellCallService:
