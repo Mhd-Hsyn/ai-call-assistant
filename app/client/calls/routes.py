@@ -231,6 +231,7 @@ async def retell_webhook(payload: dict):
         existing.call_cost = call_data.get("call_cost", {})
         existing.llm_token_usage = call_data.get("llm_token_usage", {})
         existing.call_status = call_data.get("call_status")
+        existing.disconnection_reason = call_data.get("disconnection_reason")
         existing.transcript = call_data.get("transcript") or existing.transcript
         existing.transcript_object = call_data.get("transcript_object") or existing.transcript_object
         existing.transcript_with_tool_calls = call_data.get("transcript_with_tool_calls") or existing.transcript_with_tool_calls
