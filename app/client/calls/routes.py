@@ -250,7 +250,13 @@ async def retell_webhook(payload: dict):
     status_code=status.HTTP_200_OK,
 )
 async def retrieve_my_calls(user: UserModel = Depends(ProfileActive())):
-    all_calls = await CallModel.find(CallModel.user.id == user.id).to_list()
+    all_calls = (
+        await CallModel.find(
+            CallModel.user.id == user.id
+        )
+        .sort(-CallModel.created_at)
+        .to_list()
+    )
 
     serialized_calls = [
         CallDisplayInfoResponseSchema.model_validate(call) for call in all_calls
