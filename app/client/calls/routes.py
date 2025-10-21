@@ -213,6 +213,7 @@ async def retell_webhook(payload: dict):
         existing.call_analysis = call_data.get("call_analysis", {})
         existing.call_cost = call_data.get("call_cost", {})
         existing.llm_token_usage = call_data.get("llm_token_usage", {})
+        existing.retell_llm_dynamic_variables = call_data.get("retell_llm_dynamic_variables", {})
 
         await existing.save()
         logger.info(f"Call marked as ended successfully (call_id={call_id})")
@@ -236,6 +237,7 @@ async def retell_webhook(payload: dict):
         existing.recording_url = call_data.get("recording_url") or existing.recording_url
         existing.recording_multi_channel_url = call_data.get("recording_multi_channel_url") or existing.recording_multi_channel_url
         existing.public_log_url = call_data.get("public_log_url") or existing.public_log_url
+        existing.retell_llm_dynamic_variables = call_data.get("retell_llm_dynamic_variables", {})
 
         # Don’t overwrite metadata or retell_llm_dynamic_variables
         await existing.save()
