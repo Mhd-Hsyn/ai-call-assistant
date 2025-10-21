@@ -26,10 +26,11 @@ from ..models import (
 from .schemas import (
     APIBaseResponse,
     CallInitializeSchema,
+    CallResponseSchema,
 )
 from .services import (
     RetellCallService,
-    CallFileService
+    CallFileService,
 )
 from app.core.utils.helpers import (
     parse_timestamp
@@ -87,9 +88,6 @@ async def initialize_call(
     
 
 
-
-
-
 # {{BASE_URL}}/api/clientside/calls/retell/webhook
 @calls_router.post("/retell/webhook")
 async def retell_webhook(payload: dict):
@@ -133,7 +131,7 @@ async def retell_webhook(payload: dict):
             # Find related Agent
             agent_id = call_data.get("agent_id")
             logger.info(f"Looking up Agent ID: {agent_id}")
-            agent = await AgentModel.find_one(AgentModel.agent_id == agent_id)
+            agent = await AgentModel.find_one(AgentModel.agent_id == agent_id, fetch_links=True)
 
             if not agent:
                 logger.error(f"Agent not found in DB (agent_id={agent_id})")
@@ -239,5 +237,26 @@ async def retell_webhook(payload: dict):
 
         logger.info(f"Call analyzed data saved successfully (call_id={call_id})")
         return {"success": True, "message": "Call analysis updated successfully"}
+
+
+
+@calls_router.get(
+    "/all-calls",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def retrieve_my_calls(user: UserModel = Depends(ProfileActive())):
+    all_calls = await CallModel.find(CallModel.user.id == user.id, fetch_links=True).to_list()
+    logger.info(f"all_calls \n----- {all_calls}")
+
+    serialized_calls = [
+        CallResponseSchema.model_validate(call) for call in all_calls
+    ]
+
+    return APIBaseResponse(
+        status=True,
+        message="All calls retrieved successfully",
+        data=serialized_calls,
+    )
 
 
