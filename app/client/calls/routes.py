@@ -241,7 +241,7 @@ async def retell_webhook(payload: dict):
 
 
 @calls_router.get(
-    "/all-calls",
+    "/list",
     response_model=APIBaseResponse,
     status_code=status.HTTP_200_OK,
 )
