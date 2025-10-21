@@ -88,11 +88,11 @@ class CallBaseResponseSchema(BaseModel):
 
 
 class AgentMiniSchema(BaseModel):
-    id: UUID
-    agent_name: str
-    agent_id: str
+    id: Optional[UUID]
+    agent_name: Optional[str]
+    agent_id: Optional[str]
     voice_id_data: Optional[dict]
-    language: str
+    language: Optional[str]
 
     class Config:
         from_attributes = True
