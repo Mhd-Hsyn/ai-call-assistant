@@ -178,6 +178,8 @@ async def retell_webhook(payload: dict):
             existing.call_status = call_data.get("call_status")
             existing.start_timestamp = start_time
             existing.metadata = call_data.get("metadata", {})
+            existing.retell_llm_dynamic_variables=retell_vars
+
             await existing.save()
 
             logger.info(f"Existing call updated successfully (call_id={call_id})")
@@ -192,12 +194,16 @@ async def retell_webhook(payload: dict):
         # Safely parse timestamps
         raw_end = call_data.get("end_timestamp")
         end_time = parse_timestamp(raw_end)
+        raw_timestamp = call_data.get("start_timestamp")
+        start_time = parse_timestamp(raw_timestamp)
+
         if not end_time:
             logger.warning(f"Invalid or missing end_timestamp for call_id={call_id}")
             end_time = datetime.utcnow()
 
         # Update fields with validation
         existing.call_status = call_data.get("call_status")
+        existing.start_timestamp = start_time
         existing.end_timestamp = end_time
         existing.duration_ms = call_data.get("duration_ms")
         existing.transcript = call_data.get("transcript")

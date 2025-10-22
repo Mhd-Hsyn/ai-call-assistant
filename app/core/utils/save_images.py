@@ -22,7 +22,7 @@ async def save_profile_image(email: str, image: UploadFile | None) -> str:
     with open(file_path, "wb") as f:
         f.write(await image.read())
 
-    return f"users/{unique_name}"
+    return f"data/users/{unique_name}"
 
 
 async def delete_old_image(old_path: str):
