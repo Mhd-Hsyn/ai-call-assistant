@@ -5,7 +5,7 @@ from fastapi import UploadFile
 from app.config.settings import MEDIA_DIR
 
 MEDIA_ROOT = MEDIA_DIR
-USER_IMAGE_DIR = os.path.join(MEDIA_ROOT, "users")
+USER_IMAGE_DIR = os.path.join(MEDIA_ROOT, "all_images/users")
 
 
 async def save_profile_image(email: str, image: UploadFile | None) -> str:
@@ -22,7 +22,7 @@ async def save_profile_image(email: str, image: UploadFile | None) -> str:
     with open(file_path, "wb") as f:
         f.write(await image.read())
 
-    return f"data/users/{unique_name}"
+    return f"all_images/users/{unique_name}"
 
 
 async def delete_old_image(old_path: str):
