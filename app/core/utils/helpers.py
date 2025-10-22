@@ -65,6 +65,20 @@ def parse_timestamp(ts: int | float | str | None) -> datetime | None:
         return None
 
 
+def get_day_with_suffix(day: int) -> str:
+    """Return day number with English ordinal suffix."""
+    if 11 <= day <= 13:
+        return f"{day}th"
+    last_digit = day % 10
+    if last_digit == 1:
+        return f"{day}st"
+    elif last_digit == 2:
+        return f"{day}nd"
+    elif last_digit == 3:
+        return f"{day}rd"
+    return f"{day}th"
+
+
 
 
 def get_email_publisher(

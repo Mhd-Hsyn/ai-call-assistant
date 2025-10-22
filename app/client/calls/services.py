@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
 from io import BytesIO
-from fastapi import UploadFile
+from datetime import datetime
+from dateutil import parser
 from retell import Retell
+from fastapi import UploadFile
 from app.config.settings import settings
 from app.client.models import CallModel, AgentModel
 from app.auth.models import UserModel
@@ -12,11 +14,11 @@ from app.core.exceptions.base import (
 )
 from app.config.logger import get_logger
 from app.core.utils.helpers import (
-    parse_timestamp
+    parse_timestamp,
+    get_day_with_suffix,
 )
 
 logger = get_logger("Retell Service")
-
 
 
 
@@ -39,24 +41,64 @@ class CallFileService:
             else:
                 raise AppException("Invalid file type. Only CSV or Excel supported.")
 
+            # Clean column names
+            df.columns = (
+                df.columns.str.strip()
+                .str.lower()
+                .str.replace(" ", "_")
+            )
+
             # Replace NaN with empty string
             df = df.replace({np.nan: ""})
 
-            # Convert all numpy datatypes to native Python types
+            # Convert DataFrame to list of dicts
             records = df.astype(object).to_dict(orient="records")
 
-            # Ensure all keys/values are basic serializable types
+            # Clean and normalize values
             for record in records:
                 for k, v in record.items():
-                    if isinstance(v, (np.integer, np.floating)):
-                        record[k] = v.item()
-                    elif pd.isna(v):
+
+                    # Handle pandas datetime safely
+                    if isinstance(v, (datetime, pd.Timestamp)):
+                        if pd.isna(v):  # skip NaT
+                            record[k] = ""
+                        else:
+                            day = get_day_with_suffix(v.day)
+                            record[k] = f"{day} {v.strftime('%b, %Y')}"  # 1st Oct, 2025
+                        continue
+
+                    # Handle int
+                    if isinstance(v, (np.integer, int)):
+                        record[k] = str(int(v))
+                        continue
+
+                    # Handle float
+                    if isinstance(v, (np.floating, float)):
+                        record[k] = str(int(v)) if str(v).endswith(".0") else str(v)
+                        continue
+
+                    # Handle string
+                    if isinstance(v, str):
+                        val = v.strip()
+                        if val:
+                            try:
+                                parsed = parser.parse(val, fuzzy=True, dayfirst=False)
+                                record[k] = parsed.strftime("%b %d, %Y")
+                            except Exception:
+                                record[k] = val
+                        else:
+                            record[k] = ""
+                        continue
+
+                    # Handle NaN or None
+                    if pd.isna(v):
                         record[k] = ""
 
             return records
 
         except Exception as e:
             raise InternalServerErrorException(f"File parse failed: {str(e)}")
+
 
 
 
