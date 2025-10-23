@@ -1,3 +1,4 @@
+from decimal import Decimal
 from datetime import datetime
 from beanie import Link, before_event, Delete
 from pydantic import Field
@@ -14,6 +15,7 @@ from app.core.constants.choices import (
     CallDirectionChoices,
     CallTypeChoices,
     CallDisconnectionReasonChoices,
+    UserSentimentChoices,
 
 )
 
@@ -145,10 +147,17 @@ class CallModel(BaseDocument):
     transcript_with_tool_calls: Optional[List[Dict[str, Any]]] = Field(default_factory=list)
     scrubbed_transcript_with_tool_calls: Optional[List[Dict[str, Any]]] = Field(default_factory=list)
 
+    # Consting
+    call_cost: Optional[Dict[str, Any]] = Field(default_factory=dict)
+    combined_cost : Optional[Decimal] = Field(default=Decimal("0.0"), description="Total cost in cents")
+    total_duration : Optional[int] = Field(default=None, description="Total duration in seconds")
+    total_duration_unit_price : Optional[Decimal] = Field(default=Decimal("0.0"), description="Total duration in seconds")
+
     # Analysis
     call_analysis: Optional[Dict[str, Any]] = Field(default_factory=dict)
-    call_cost: Optional[Dict[str, Any]] = Field(default_factory=dict)
     llm_token_usage: Optional[Dict[str, Any]] = Field(default_factory=dict)
+    user_sentiment : Optional[UserSentimentChoices] = Field(default=None,description="User Sentiment Enums")
+    call_successful : Optional[bool]
 
     class Settings:
         name = "calls"

@@ -144,3 +144,10 @@ class CallDisconnectionReasonChoices(StrEnum):
     ERROR_USER_NOT_JOINED = "error_user_not_joined"
     REGISTERED_CALL_TIMEOUT = "registered_call_timeout"
 
+
+class UserSentimentChoices(StrEnum):
+    NEGATIVE= "Negative"
+    POSITIVE= "Positive"
+    NEUTRAL= "Neutral"
+    UNKNOWN= "Unknown" 
+
