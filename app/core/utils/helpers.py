@@ -80,6 +80,33 @@ def get_day_with_suffix(day: int) -> str:
 
 
 
+def format_seconds_duration(seconds: int) -> str:
+    """
+    Converts seconds into a human-readable duration string.
+    Example:
+        3661 -> "1 hour 1 minute 1 second"
+        93784 -> "1 day 2 hours 3 minutes 4 seconds"
+    """
+    if seconds <= 0:
+        return "0 seconds"
+
+    days, remainder = divmod(seconds, 86400)   # 86400 = 24 * 3600
+    hours, remainder = divmod(remainder, 3600)
+    minutes, seconds = divmod(remainder, 60)
+
+    parts = []
+    if days:
+        parts.append(f"{days} day{'s' if days != 1 else ''}")
+    if hours:
+        parts.append(f"{hours} hour{'s' if hours != 1 else ''}")
+    if minutes:
+        parts.append(f"{minutes} minute{'s' if minutes != 1 else ''}")
+    if seconds:
+        parts.append(f"{seconds} second{'s' if seconds != 1 else ''}")
+
+    return " ".join(parts)
+
+
 
 def get_email_publisher(
     publisher_payload_data,

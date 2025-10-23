@@ -10,6 +10,9 @@ from .agent.routes import (
 from .calls.routes import (
     calls_router
 )
+from .pricing.routes import (
+    pricing_router
+)
 
 client_router = APIRouter()
 
@@ -27,5 +30,10 @@ client_router.include_router(
     calls_router,
     prefix="/calls",
     tags=['Calls']
+)
+client_router.include_router(
+    router=pricing_router,
+    prefix='/pricing',
+    tags=['Pricing']
 )
 
