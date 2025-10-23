@@ -150,7 +150,7 @@ class RetellCallService:
 
             await new_call.insert()
 
-            logger.info(f"✅ Retell call created and saved | call_id={new_call.call_id}")
+            logger.info(f"Retell call created and saved | call_id={new_call.call_id}")
             return new_call
 
         except Exception as e:
