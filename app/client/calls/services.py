@@ -1,24 +1,29 @@
 import json
-import pandas as pd
 import numpy as np
+import pandas as pd
 from io import BytesIO
-from datetime import datetime
 from dateutil import parser
+from datetime import datetime
 from retell import Retell
 from fastapi import UploadFile
 from app.config.settings import settings
-from app.client.models import CallModel, AgentModel
-from app.auth.models import UserModel
+from app.client.models import (
+    CallModel, 
+    AgentModel
+)
+from app.auth.models import (
+    UserModel
+)
 from app.core.exceptions.base import (
     AppException, 
     InternalServerErrorException,
     NotFoundException,
 )
-from app.config.logger import get_logger
 from app.core.utils.helpers import (
     parse_timestamp,
     get_day_with_suffix,
 )
+from app.config.logger import get_logger
 
 logger = get_logger("Retell Call Service")
 

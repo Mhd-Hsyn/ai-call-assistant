@@ -1,6 +1,4 @@
-import json
 from uuid import UUID
-from datetime import datetime
 from fastapi import (
     APIRouter, 
     status, 
@@ -9,11 +7,8 @@ from fastapi import (
     File,
     Depends, 
 )
-from app.config.settings import settings
 from app.core.exceptions.base import (
     AppException,
-    NotFoundException
-
 )
 from app.core.dependencies.authorization import (
     ProfileActive
@@ -22,7 +17,6 @@ from app.auth.models import (
     UserModel
 )
 from ..models import (
-    AgentModel,
     CallModel
 )
 from .schemas import (
