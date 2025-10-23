@@ -1,3 +1,4 @@
+from math import ceil
 from uuid import UUID
 from fastapi import (
     APIRouter, 
@@ -21,6 +22,8 @@ from ..models import (
 )
 from .schemas import (
     APIBaseResponse,
+    PaginationMeta,
+    PaginaionResponse,
     CallInitializeSchema,
     CallDisplayInfoResponseSchema,
     CallFullResponseSchema,
@@ -99,15 +102,24 @@ async def retell_webhook(payload: dict):
 
 @calls_router.get(
     "/list",
-    response_model=APIBaseResponse,
+    response_model=PaginaionResponse,
     status_code=status.HTTP_200_OK,
 )
-async def retrieve_my_calls(user: UserModel = Depends(ProfileActive())):
+async def retrieve_my_calls(
+    user: UserModel = Depends(ProfileActive()),
+    page: int = 1,
+    page_size: int = 10,
+):
+    skip = (page - 1) * page_size
+    total_records = await CallModel.find(CallModel.user.id == user.id).count()
+
     all_calls = (
         await CallModel.find(
             CallModel.user.id == user.id
         )
         .sort(-CallModel.created_at)
+        .skip(skip)
+        .limit(page_size)
         .to_list()
     )
 
@@ -115,10 +127,23 @@ async def retrieve_my_calls(user: UserModel = Depends(ProfileActive())):
         CallDisplayInfoResponseSchema.model_validate(call) for call in all_calls
     ]
 
-    return APIBaseResponse(
+    # Calculate pagination flags
+    total_pages = ceil(total_records / page_size)
+    is_next = page < total_pages
+    is_previous = page > 1
+
+    return PaginaionResponse(
         status=True,
         message="All calls retrieved successfully",
-        data=serialized_calls,
+        meta = PaginationMeta(
+            page_size = page_size,
+            page = page,
+            total_records = total_records,
+            total_pages = total_pages,
+            is_next = is_next,
+            is_previous = is_previous,
+        ),
+        data= serialized_calls
     )
 
 

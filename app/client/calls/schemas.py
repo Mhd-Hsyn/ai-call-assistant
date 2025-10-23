@@ -20,6 +20,23 @@ class APIBaseResponse(BaseModel):
 
 
 
+class PaginationMeta(BaseModel):
+    page_size: int
+    page: int
+    total_records: int
+    total_pages: int
+    is_next: bool
+    is_previous: bool
+
+class PaginaionResponse(BaseModel):
+    status: bool
+    message: str
+    meta : PaginationMeta
+    data: Any | None = None
+
+
+
+
 class CallInitializeSchema(BaseModel):
     from_number: str
     to_number: str
