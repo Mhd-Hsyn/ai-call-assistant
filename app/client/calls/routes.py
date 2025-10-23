@@ -127,8 +127,8 @@ async def retell_webhook(payload: dict):
         logger.info(f"Raw timestamp: {raw_timestamp} | Parsed datetime: {start_time}")
 
         if not start_time:
-            logger.error(f"Invalid start_timestamp: {raw_timestamp}")
-            raise AppException(f"Invalid start_timestamp: {raw_timestamp}")
+            logger.warning(f"Invalid or missing start_time for call_id={call_id}")
+            start_time = datetime.utcnow()
 
         if not existing:
             # Find related Agent
@@ -192,10 +192,10 @@ async def retell_webhook(payload: dict):
             return {"success": False, "message": "Call not found for call_ended event"}
 
         # Safely parse timestamps
-        raw_end = call_data.get("end_timestamp")
-        end_time = parse_timestamp(raw_end)
-        raw_timestamp = call_data.get("start_timestamp")
-        start_time = parse_timestamp(raw_timestamp)
+        raw_end_timestamp = call_data.get("end_timestamp")
+        end_time = parse_timestamp(raw_end_timestamp)
+        raw_start_timestamp = call_data.get("start_timestamp")
+        start_time = parse_timestamp(raw_start_timestamp)
 
         if not end_time:
             logger.warning(f"Invalid or missing end_timestamp for call_id={call_id}")
@@ -231,11 +231,22 @@ async def retell_webhook(payload: dict):
             logger.warning(f"No existing call found for call_analyzed event (call_id={call_id})")
             return {"success": False, "message": "Call not found for call_analyzed event"}
 
+        raw_end_timestamp = call_data.get("end_timestamp")
+        end_time = parse_timestamp(raw_end_timestamp)
+        raw_start_timestamp = call_data.get("start_timestamp")
+        start_time = parse_timestamp(raw_start_timestamp)
+        if not end_time:
+            logger.warning(f"Invalid or missing end_timestamp for call_id={call_id}")
+            end_time = datetime.utcnow()
+
         # Update analysis-related fields
+        existing.call_status = call_data.get("call_status")
+        existing.start_timestamp = start_time
+        existing.end_timestamp = end_time
+        existing.duration_ms = call_data.get("duration_ms")
         existing.call_analysis = call_data.get("call_analysis", {})
         existing.call_cost = call_data.get("call_cost", {})
         existing.llm_token_usage = call_data.get("llm_token_usage", {})
-        existing.call_status = call_data.get("call_status")
         existing.disconnection_reason = call_data.get("disconnection_reason")
         existing.transcript = call_data.get("transcript") or existing.transcript
         existing.transcript_object = call_data.get("transcript_object") or existing.transcript_object
