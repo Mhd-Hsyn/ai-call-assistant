@@ -263,7 +263,7 @@ async def initialize_call(
 
 
 
-@calls_router.post("/webhook")
+@calls_router.post("/retell/webhook")
 async def retell_webhook(payload: dict):
     """
     Handles Retell call lifecycle webhooks.
