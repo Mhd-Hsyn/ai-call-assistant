@@ -1,5 +1,6 @@
 from math import ceil
 from uuid import UUID
+from decimal import Decimal
 from fastapi import (
     APIRouter, 
     status, 
@@ -171,5 +172,68 @@ async def retrieve_my_calls(
     )
 
 
+@calls_router.post(
+    "/sync-call-fields",
+    status_code=status.HTTP_200_OK,
+    response_model=APIBaseResponse,
+    summary="🔄 Sync call_analysis & call_cost fields into separate model fields",
+)
+async def sync_call_fields():
+    """
+    Scans all calls in DB and extracts:
+      - From call_analysis → user_sentiment, call_successful
+      - From call_cost → combined_cost, total_duration, total_duration_unit_price
+    Updates them in the database.
+    """
+
+    updated_count = 0
+    skipped_count = 0
+
+    all_calls = await CallModel.find_all().to_list()
+
+    for call in all_calls:
+        try:
+            # --- Extract from call_analysis ---
+            analysis = call.call_analysis or {}
+            user_sentiment = analysis.get("user_sentiment")
+            call_successful = analysis.get("call_successful")
+
+            # --- Extract from call_cost ---
+            cost = call.call_cost or {}
+            combined_cost = Decimal(str(cost.get("combined_cost", 0)))
+            total_duration = cost.get("total_duration_seconds", 0)
+            total_duration_unit_price = Decimal(str(cost.get("total_duration_unit_price", 0)))
+
+            # --- Only update if any field exists ---
+            if any([
+                user_sentiment,
+                call_successful is not None,
+                combined_cost != 0,
+                total_duration,
+                total_duration_unit_price != 0,
+            ]):
+                call.user_sentiment = user_sentiment
+                call.call_successful = call_successful
+                call.combined_cost = combined_cost
+                call.total_duration = total_duration
+                call.total_duration_unit_price = total_duration_unit_price
+                await call.save()
+                updated_count += 1
+            else:
+                skipped_count += 1
+
+        except Exception as e:
+            print(f"❌ Error updating call {call.call_id}: {e}")
+            skipped_count += 1
+
+    return APIBaseResponse(
+        status=True,
+        message="Call fields synced successfully",
+        data={
+            "total_calls": len(all_calls),
+            "updated": updated_count,
+            "skipped": skipped_count,
+        },
+    )
 
 

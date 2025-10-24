@@ -1,7 +1,8 @@
-from decimal import Decimal
 from datetime import datetime
-from beanie import Link, before_event, Delete
-from pydantic import Field
+from bson.decimal128 import Decimal128
+from decimal import Decimal, InvalidOperation
+from beanie import Link, before_event, after_event, Delete
+from pydantic import Field, model_validator
 from typing import Optional, List, Dict, Any
 from app.core.models.base import BaseDocument
 from app.auth.models import UserModel
@@ -18,6 +19,12 @@ from app.core.constants.choices import (
     UserSentimentChoices,
 
 )
+from decimal import Decimal
+from bson import Decimal128
+from app.config.logger import get_logger
+
+logger = get_logger("Client Models")
+
 
 
 class KnowledgeBaseModel(BaseDocument):
@@ -149,15 +156,15 @@ class CallModel(BaseDocument):
 
     # Consting
     call_cost: Optional[Dict[str, Any]] = Field(default_factory=dict)
-    combined_cost : Optional[Decimal] = Field(default=Decimal("0.0"), description="Total cost in cents")
     total_duration : Optional[int] = Field(default=None, description="Total duration in seconds")
     total_duration_unit_price : Optional[Decimal] = Field(default=Decimal("0.0"), description="Total duration in seconds")
+    combined_cost : Optional[Decimal] = Field(default=Decimal("0.0"), description="Total cost in cents")
 
     # Analysis
     call_analysis: Optional[Dict[str, Any]] = Field(default_factory=dict)
     llm_token_usage: Optional[Dict[str, Any]] = Field(default_factory=dict)
     user_sentiment : Optional[UserSentimentChoices] = Field(default=None,description="User Sentiment Enums")
-    call_successful : Optional[bool]
+    call_successful : Optional[bool] = Field(default=None,description="User Call Successful or Unsuccessful")
 
     class Settings:
         name = "calls"
@@ -166,6 +173,29 @@ class CallModel(BaseDocument):
         return f"<Call {self.call_id} ({self.call_status})>"
 
 
+    @model_validator(mode="before")
+    @classmethod
+    def convert_decimal128_to_decimal(cls, data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Convert Decimal128 fields to Decimal for Pydantic validation.
+        Logs conversion errors and skips invalid fields.
+        """
+        # Get all fields annotated as Decimal from the model
+        decimal_fields = [
+            field_name
+            for field_name, field_info in cls.model_fields.items()
+            if field_info.annotation is Decimal or field_info.annotation == Optional[Decimal]
+        ]
+
+        for field in decimal_fields:
+            if field in data and isinstance(data[field], Decimal128):
+                try:
+                    data[field] = Decimal(str(data[field]))
+                except InvalidOperation as e:
+                    logger.error(f"Failed to convert Decimal128 to Decimal for field '{field}': {data[field]}, error: {e}")
+                    data[field] = None  # Or set a default value, e.g., Decimal("0.0")
+
+        return data
 
 
 

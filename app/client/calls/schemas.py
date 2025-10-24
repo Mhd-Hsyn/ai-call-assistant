@@ -1,5 +1,6 @@
 from uuid import UUID
 from datetime import datetime
+from decimal import Decimal
 from pydantic import (
     BaseModel,
     Field, 
@@ -48,8 +49,11 @@ class CallInitializeSchema(BaseModel):
 
 class CallBaseResponseSchema(BaseModel):
     duration_ms: Optional[int]
-    call_analysis: Optional[Dict[str, Any]] = Field(default_factory=dict)
-    call_cost: Optional[Dict[str, Any]] = Field(default_factory=dict)
+    total_duration : Optional[Decimal]
+    total_duration_unit_price : Optional[Decimal]
+    combined_cost : Optional[Decimal]
+    user_sentiment : Optional[str]
+    call_successful : Optional[bool]
 
     @computed_field(return_type=str)
     def formatted_duration(self) -> Optional[str]:
@@ -65,28 +69,11 @@ class CallBaseResponseSchema(BaseModel):
             return f"{minutes}m {seconds}s"
         return f"{seconds}s"
 
-    @computed_field(return_type=str)
-    def user_sentiment(self) -> Optional[str]:
-        """Extract user sentiment from call_analysis"""
-        return self.call_analysis.get("user_sentiment") if self.call_analysis else None
-
-    @computed_field(return_type=str)
-    def call_successful(self) -> Optional[str]:
-        """Convert boolean → readable status"""
-        if not self.call_analysis:
-            return None
-        status = self.call_analysis.get("call_successful")
-        if status is True:
-            return "Successful"
-        elif status is False:
-            return "Unsuccessful"
-        return None
-
     @computed_field(return_type=float)
     def total_cost_usd(self) -> Optional[float]:
         """Convert combined_cost (in cents) → USD"""
-        if self.call_cost and "combined_cost" in self.call_cost:
-            return round(self.call_cost["combined_cost"] / 100, 3)
+        if self.combined_cost:
+            return round(self.combined_cost / 100, 3)
         return None
 
     class Config:
@@ -128,6 +115,9 @@ class CallFullResponseSchema(CallBaseResponseSchema):
     id: UUID
     call_id: str
     # agent: Optional[AgentMiniSchema]
+
+    call_analysis: Optional[Dict[str, Any]] = Field(default_factory=dict)
+    call_cost: Optional[Dict[str, Any]] = Field(default_factory=dict)
 
     agent_name: Optional[str]
     call_type: Optional[str]

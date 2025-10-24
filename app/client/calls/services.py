@@ -4,6 +4,7 @@ import pandas as pd
 from io import BytesIO
 from dateutil import parser
 from datetime import datetime
+from decimal import Decimal
 from retell import Retell
 from fastapi import UploadFile
 from app.config.settings import settings
@@ -222,6 +223,23 @@ class RetellWebhookService:
         await obj.save()
 
 
+    def _extract_call_analysis_fields(self, call_data: dict) -> dict:
+        """Extract sentiment and success fields from call_analysis safely."""
+        analysis = call_data.get("call_analysis", {}) or {}
+        return {
+            "user_sentiment": analysis.get("user_sentiment"),
+            "call_successful": analysis.get("call_successful"),
+        }
+
+    def _extract_call_cost_fields(self, call_data: dict) -> dict:
+        """Extract cost-related fields safely."""
+        cost = call_data.get("call_cost", {}) or {}
+        return {
+            "combined_cost": Decimal(str(cost.get("combined_cost", 0))),
+            "total_duration": cost.get("total_duration_seconds", 0),
+            "total_duration_unit_price": Decimal(str(cost.get("total_duration_unit_price", 0))),
+        }
+
     # Event Handlers
     async def _handle_started(self, call_data, existing, call_id):
         start_time = self._parse_time(call_data.get("start_timestamp"))
@@ -278,6 +296,13 @@ class RetellWebhookService:
             "llm_token_usage",
             "retell_llm_dynamic_variables",
         ])
+        # Extract from call_cost
+        cost_fields = self._extract_call_cost_fields(call_data)
+        existing.combined_cost = cost_fields["combined_cost"]
+        existing.total_duration = cost_fields["total_duration"]
+        existing.total_duration_unit_price = cost_fields["total_duration_unit_price"]
+        await existing.save()
+
         self.logger.info(f"Call marked as ended successfully (call_id={call_id})")
         return {"success": True, "message": "Call updated as ended"}
 
@@ -304,6 +329,18 @@ class RetellWebhookService:
             "public_log_url",
             "retell_llm_dynamic_variables",
         ])
+        # Extract from call_cost
+        cost_fields = self._extract_call_cost_fields(call_data)
+        existing.combined_cost = cost_fields["combined_cost"]
+        existing.total_duration = cost_fields["total_duration"]
+        existing.total_duration_unit_price = cost_fields["total_duration_unit_price"]
+
+        # Extract from call_analysis
+        analysis_fields = self._extract_call_analysis_fields(call_data)
+        existing.user_sentiment = analysis_fields["user_sentiment"]
+        existing.call_successful = analysis_fields["call_successful"]
+        await existing.save()
+
         self.logger.info(f"Call analyzed data saved successfully (call_id={call_id})")
         return {"success": True, "message": "Call analysis updated successfully"}
 
