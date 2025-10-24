@@ -1,16 +1,22 @@
 from uuid import UUID
 from datetime import datetime
+from decimal import Decimal
 from pydantic import (
     BaseModel,
     Field,
     computed_field,
 )
 from typing import (
+    List,
     Optional, 
     Dict,
     Any
 )
+from app.core.utils.helpers import (
+    format_milliseconds_duration,
+    convert_cents_to_usd,
 
+)
 
 class APIBaseResponse(BaseModel):
     status: bool
@@ -54,67 +60,60 @@ class CallPriceResponseSchema(BaseModel):
     call_analysis: Optional[Dict[str, Any]] = Field(default_factory=dict)
     call_cost: Optional[Dict[str, Any]] = Field(default_factory=dict)
 
+    user_sentiment : Optional[str]
+    call_successful : Optional[bool]
+    combined_cost : Optional[Decimal]
 
     @computed_field(return_type=str)
     def formatted_duration(self) -> Optional[str]:
-        """Convert duration from milliseconds → HH:MM:SS"""
         if not self.duration_ms:
             return None
-        total_seconds = int(self.duration_ms / 1000)
-        hours, remainder = divmod(total_seconds, 3600)
-        minutes, seconds = divmod(remainder, 60)
-        if hours > 0:
-            return f"{hours}h {minutes}m {seconds}s"
-        elif minutes > 0:
-            return f"{minutes}m {seconds}s"
-        return f"{seconds}s"
+        return format_milliseconds_duration(self.duration_ms)
 
+    @computed_field(return_type=Decimal)
+    def total_cost_usd(self) -> Optional[Decimal]:
+        if self.combined_cost:
+            return convert_cents_to_usd(self.combined_cost)
+        return None
 
-    @computed_field(return_type=str)
-    def user_sentiment(self) -> Optional[str]:
-        """Extract user sentiment from call_analysis"""
-        return self.call_analysis.get("user_sentiment") if self.call_analysis else None
-
-
-    @computed_field(return_type=str)
-    def call_successful(self) -> Optional[str]:
-        """Convert boolean → readable status"""
-        if not self.call_analysis:
+    @computed_field(return_type=List[Dict[str, Any]])
+    def product_costs_usd(self) -> Optional[List[Dict[str, Any]]]:
+        """
+        ✅ Convert each product cost in cents to USD and calculate per-minute USD rate.
+        Keeps structure, includes cost_usd, unit_price_usd, and per_minute_usd.
+        """
+        if not self.call_cost or "product_costs" not in self.call_cost:
             return None
-        status = self.call_analysis.get("call_successful")
-        if status is True:
-            return "Successful"
-        elif status is False:
-            return "Unsuccessful"
-        return None
 
+        total_duration_seconds = self.call_cost.get("total_duration_seconds", 0)
+        total_minutes = total_duration_seconds / 60 if total_duration_seconds else 0
 
-    @computed_field(return_type=float)
-    def total_cost_usd(self) -> Optional[float]:
-        """Convert combined_cost (in cents) → USD"""
-        if self.call_cost and "combined_cost" in self.call_cost:
-            return round(self.call_cost["combined_cost"] / 100, 3)
-        return None
+        converted_products = []
 
+        for product in self.call_cost["product_costs"]:
+            product_name = product.get("product")
+            unit_price_cents = product.get("unit_price", 0)
+            total_cost_cents = product.get("cost", 0)
 
-    # @computed_field(return_type=List[Dict[str, Any]])
-    # def product_costs_usd(self) -> Optional[List[Dict[str, Any]]]:
-    #     """
-    #     Convert each product cost in cents → USD.
-    #     Keeps structure, just replaces cost with USD value.
-    #     """
-    #     if not self.call_cost or "product_costs" not in self.call_cost:
-    #         return None
+            # Convert cents to USD
+            unit_price_usd = unit_price_cents / 100
+            total_cost_usd = total_cost_cents / 100
 
-    #     converted_products = []
-    #     for product in self.call_cost["product_costs"]:
-    #         converted_products.append({
-    #             "product": product.get("product"),
-    #             "unit_price": product.get("unit_price"),
-    #             # ✅ Convert cents → USD safely
-    #             "cost_usd": round(product.get("cost", 0) / 100, 3)
-    #         })
-    #     return converted_products
+            # Compute per-minute rate in USD
+            # (if duration > 0, distribute total cost over duration)
+            per_minute_usd = (total_cost_usd / total_minutes) if total_minutes else 0
+
+            converted_products.append({
+                "product": product_name,
+                # "unit_price_cents": round(unit_price_cents, 6),
+                # "unit_price_usd": round(unit_price_usd, 6),
+                # "cost_cents": round(total_cost_cents, 6),
+                "cost_usd": round(total_cost_usd, 6),
+                "per_minute_usd": round(per_minute_usd, 6),
+            })
+
+        return converted_products
+
 
 
     class Config:

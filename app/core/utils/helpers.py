@@ -1,8 +1,14 @@
 import uuid
 import json
 import hashlib
+from typing import Any
+from bson import Decimal128
 from datetime import datetime
 from passlib.hash import pbkdf2_sha256
+from decimal import (
+    Decimal, 
+    InvalidOperation, 
+)
 from app.core.rabbitmq_publisher.core.rabitmq_publisher import (
     get_rabbit_mq_email_send_publisher
 )
@@ -79,6 +85,33 @@ def get_day_with_suffix(day: int) -> str:
     return f"{day}th"
 
 
+def format_milliseconds_duration(milliseconds: int) -> str:
+    """
+    Converts milliseconds into a compact human-readable duration string.
+    Examples:
+        1000 -> "1s"
+        61000 -> "1m 1s"
+        3661000 -> "1h 1m 1s"
+        90061000 -> "1d 1h 1m 1s"
+    """
+    if milliseconds <= 0:
+        return "0s"
+
+    total_seconds = int(milliseconds / 1000)
+    days, remainder = divmod(total_seconds, 86400)
+    hours, remainder = divmod(remainder, 3600)
+    minutes, seconds = divmod(remainder, 60)
+
+    if days > 0:
+        return f"{days}d {hours}h {minutes}m {seconds}s"
+    elif hours > 0:
+        return f"{hours}h {minutes}m {seconds}s"
+    elif minutes > 0:
+        return f"{minutes}m {seconds}s"
+    else:
+        return f"{seconds}s"
+
+
 
 def format_seconds_duration(seconds: int) -> str:
     """
@@ -105,6 +138,28 @@ def format_seconds_duration(seconds: int) -> str:
         parts.append(f"{seconds} second{'s' if seconds != 1 else ''}")
 
     return " ".join(parts)
+
+
+
+def convert_decimal128_to_decimal(value: Any) -> Decimal:
+    if isinstance(value, Decimal128):
+        try:
+            return Decimal(str(value))
+        except InvalidOperation as e:
+            logger.error(f"Failed to convert Decimal128 to Decimal: {value}, error: {e}")
+            return Decimal("0.0")
+    return value if isinstance(value, Decimal) else Decimal("0.0")
+
+
+def convert_cents_to_usd(cents: Decimal) -> Decimal:
+    try:
+        usd = round(cents / 100, 3)
+        return usd
+    except InvalidOperation as e:
+        logger.error(f"Failed to convert cents to USD: {cents}, error: {e}")
+        return Decimal("0.0")
+
+
 
 
 

@@ -24,7 +24,10 @@ from .schemas import (
 
 )
 from app.core.utils.helpers import (
-    format_seconds_duration
+    format_seconds_duration,
+    convert_decimal128_to_decimal,
+    convert_cents_to_usd,
+
 )
 from app.config.logger import get_logger
 
@@ -90,13 +93,26 @@ async def get_call_summary(user: UserModel = Depends(ProfileActive())):
         {"$match": {"user.$id": user.id}},
         {"$group": {
             "_id": None, 
-            "total_cents": {"$sum": "$call_cost.combined_cost"},
-            "total_duration_seconds": {"$sum": "$call_cost.total_duration_seconds"}
+            "total_cents": {"$sum": "$combined_cost"},
+            "total_duration_seconds": {"$sum": "$total_duration"}
         }}
     ]
     summary = await CallModel.aggregate(pipeline).to_list()
-    total_cents = summary[0]["total_cents"] if summary else 0
-    total_usd = round(total_cents / 100, 2)
+    if not summary:
+        return APIBaseResponse(
+            status=True,
+            message="No calls found for user",
+            data={
+                "total_duration_seconds": 0,
+                "formatted_durations": format_seconds_duration(0),
+                "total_cost_usd": "0.00",
+                "total_cost_cents": "0.00"
+            }
+        )
+
+    # Convert Decimal128 to Decimal
+    total_cents = convert_decimal128_to_decimal(summary[0]["total_cents"])
+    total_usd = convert_cents_to_usd(total_cents)
 
     total_duration_seconds = summary[0]["total_duration_seconds"] if summary else 0
 
