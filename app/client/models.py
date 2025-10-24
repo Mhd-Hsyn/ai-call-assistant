@@ -1,7 +1,7 @@
 from datetime import datetime
 from bson.decimal128 import Decimal128
 from decimal import Decimal, InvalidOperation
-from beanie import Link, before_event, after_event, Delete
+from beanie import Link, before_event, Delete
 from pydantic import Field, model_validator
 from typing import Optional, List, Dict, Any
 from app.core.models.base import BaseDocument
@@ -19,8 +19,6 @@ from app.core.constants.choices import (
     UserSentimentChoices,
 
 )
-from decimal import Decimal
-from bson import Decimal128
 from app.config.logger import get_logger
 
 logger = get_logger("Client Models")
@@ -108,6 +106,40 @@ class AgentModel(BaseDocument):
 
 
 
+class CampaignModel(BaseDocument):
+
+    user : Link[UserModel]
+    agent : Link[AgentModel]
+    name : str = Field(..., description="Name of the Campaign")
+    is_deleted: bool = Field(default=False, description="Soft delete flag")
+
+    class Settings:
+        name = "campaigns"
+
+
+class CampaignContactsModel(BaseDocument):
+
+    user : Link[UserModel]
+    campaign : Link[CampaignModel]
+    phone_number : str = Field(..., description="Phone Number")
+    first_name : Optional[str] = Field(default=None, description="First Name of the Contatct")
+    last_name : Optional[str] = Field(default=None, description="Last Name of the Contatct")
+    email : Optional[str] = Field(default=None, description="Email of the Contatct")
+    no_of_calls : int = Field(default=0, description="No of calls per contact")
+    dynamic_variables: Dict[str, Any] = Field(default_factory=dict, description="Custom dynamic fields for contact")
+
+    class Settings:
+        name = "campaign_contacts"
+        indexes = [
+            [("campaign", 1), ("phone_number", 1)],  # unique per campaign
+        ]
+
+    async def increment_call_count(self):
+        """Increment number of calls for this contact."""
+        self.no_of_calls += 1
+        await self.save()
+
+
 class CallModel(BaseDocument):
     """
     Stores all Retell phone call details, synced from webhooks or Retell API.
@@ -116,6 +148,7 @@ class CallModel(BaseDocument):
     # Relations
     user: Link[UserModel]
     agent: Link[AgentModel]
+    campaign_contact: Optional[Link["CampaignContactsModel"]] = Field(default=None, description="Optional link to campaign contact")
 
     # Identifiers
     agent_name : str 
