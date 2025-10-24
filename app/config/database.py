@@ -11,6 +11,8 @@ from app.client.models import (
     ResponseEngineModel,
     AgentModel,
     CallModel,
+    CampaignModel,
+    CampaignContactsModel
 )
 from app.config.settings import settings
 
@@ -37,5 +39,7 @@ async def init_db():
             ResponseEngineModel,
             AgentModel,
             CallModel,
+            CampaignModel,
+            CampaignContactsModel
         ]
     )

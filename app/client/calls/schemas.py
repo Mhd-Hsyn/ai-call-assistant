@@ -37,6 +37,17 @@ class PaginaionResponse(BaseModel):
 
 
 
+class CampaignCreateSchema(BaseModel):
+    agent : UUID = Field(..., description="Agent UUID")
+    name : str
+
+
+# class CampaignInfoSchema(BaseModel):
+    
+#     agent : UUID = Field(..., description="Agent UUID")
+#     name : str
+
+
 
 class CallInitializeSchema(BaseModel):
     from_number: str

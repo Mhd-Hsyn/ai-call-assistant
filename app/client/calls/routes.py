@@ -11,6 +11,7 @@ from fastapi import (
 )
 from app.core.exceptions.base import (
     AppException,
+    NotFoundException
 )
 from app.core.dependencies.authorization import (
     ProfileActive
@@ -19,12 +20,15 @@ from app.auth.models import (
     UserModel
 )
 from ..models import (
-    CallModel
+    CallModel,
+    AgentModel,
+    CampaignModel
 )
 from .schemas import (
     APIBaseResponse,
     PaginationMeta,
     PaginaionResponse,
+    CampaignCreateSchema,
     CallInitializeSchema,
     CallDisplayInfoResponseSchema,
     CallFullResponseSchema,
@@ -40,6 +44,39 @@ from app.config.logger import get_logger
 logger = get_logger("Calling Routes")
 
 calls_router = APIRouter()
+
+
+@calls_router.post(
+    "/campaign/create",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_201_CREATED
+)
+async def create_campaign(
+    payload: CampaignCreateSchema,
+    user : UserModel = Depends(ProfileActive())
+):
+    # Agent verify karo
+    agent = await AgentModel.find_one(
+        AgentModel.id == payload.agent,
+        AgentModel.user.id == user.id
+    )
+    if not agent:
+        raise NotFoundException("Agent not found")
+
+    # Campaign create karo
+    campaign = CampaignModel(
+        user=user,
+        agent=agent,
+        name=payload.name
+    )
+    await campaign.insert()
+
+    return APIBaseResponse(
+        status=True,
+        message="Campaign created successfully",
+        data={"campaign_id": str(campaign.id)}
+    )
+    
 
 
 
