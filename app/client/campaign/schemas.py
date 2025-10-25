@@ -106,6 +106,7 @@ class CampaignContactResponseSchema(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     email: Optional[EmailStr] = None
+    no_of_calls : int
     created_at : datetime
     dynamic_variables: Optional[Dict[str, Any]]  = None
 
