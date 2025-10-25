@@ -9,6 +9,7 @@ from fastapi import (
     File,
     Depends, 
 )
+from beanie.operators import RegEx
 from app.core.exceptions.base import (
     AppException,
     NotFoundException
@@ -31,6 +32,7 @@ from .schemas import (
     PaginaionResponse,
     
     CampaignCreatePayloadSchema,
+    CampaignFilterParams,
     CampaignModifyPayloadSchema,
     
     CampaignContactCreatePayloadSchema,
@@ -93,21 +95,31 @@ async def create_campaign(
 )
 async def retrieve_my_campaigns(
     user: UserModel = Depends(ProfileActive()),
-    page: int = 1,
-    page_size: int = 10,
+    filters: CampaignFilterParams = Depends(),
+    page: int = Query(1, ge=1),
+    page_size: int = Query(10, ge=1, le=100),
 ):
     skip = (page - 1) * page_size
-    total_records = await CampaignModel.find(
-        CampaignModel.user.id == user.id,
-        CampaignModel.is_deleted == False
-    ).count()
+
+    filter_conditions = [
+        CampaignModel.user.id == user.id
+    ]
+
+    if filters.id:
+        filter_conditions.append(CampaignModel.id == filters.id)
+    if filters.agent_id:
+        filter_conditions.append(CampaignModel.agent.id == filters.agent_id)
+    if filters.name:
+        filter_conditions.append(RegEx(CampaignModel.name, f".*{filters.name}.*", options="i"))
+    if filters.is_deleted is not None:
+        filter_conditions.append(CampaignModel.is_deleted == filters.is_deleted)
+    else:
+        filter_conditions.append(CampaignModel.is_deleted == False)
+
+    total_records = await CampaignModel.find(*filter_conditions).count()
 
     all_campaigns = (
-        await CampaignModel.find(
-            CampaignModel.user.id == user.id,
-            CampaignModel.is_deleted == False,
-            fetch_links=True
-        )
+        await CampaignModel.find(*filter_conditions, fetch_links=True)
         .sort(-CampaignModel.created_at)
         .skip(skip)
         .limit(page_size)

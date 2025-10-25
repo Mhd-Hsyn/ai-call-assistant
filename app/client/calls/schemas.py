@@ -45,6 +45,13 @@ class CampaignCreatePayloadSchema(BaseModel):
     name : str
 
 
+class CampaignFilterParams(BaseModel):
+    id: Optional[UUID] = None
+    agent_id: Optional[UUID] = None
+    name: Optional[str] = None
+    is_deleted: Optional[bool] = None
+
+
 class AgentShortInfoSchema(BaseModel):
     id : UUID
     agent_id: str
