@@ -7,6 +7,9 @@ from .knowledge_base.routes import (
 from .agent.routes import (
     agent_router
 )
+from .campaign.routes import (
+    campaign_router
+)
 from .calls.routes import (
     calls_router
 )
@@ -25,6 +28,11 @@ client_router.include_router(
     agent_router,
     prefix="/agent",
     tags=["Agent"],
+)
+client_router.include_router(
+    campaign_router,
+    prefix="/campaign",
+    tags=['Campaign']
 )
 client_router.include_router(
     calls_router,
