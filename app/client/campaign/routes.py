@@ -4,7 +4,10 @@ from fastapi import (
     APIRouter, 
     status, 
     Query,
+    Form,
     Depends, 
+    File,
+    UploadFile
 )
 from beanie.operators import RegEx
 from app.core.exceptions.base import (
@@ -38,6 +41,10 @@ from .schemas import (
 
     CampaignInfoSchema,
 )
+from .services import (
+    CampaignContactImportService
+)
+
 from app.config.logger import get_logger
 
 
@@ -386,6 +393,26 @@ async def delete_campaign_contact(
     return APIBaseResponse(
         status=True,
         message="Campaign contact deleted successfully",
+    )
+
+
+@campaign_router.post(
+    "/contact/import",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+async def import_campaign_contacts(
+    campaign_uid: UUID = Form(..., description="Campaign UUID"),
+    file: UploadFile = File(..., description="CSV or Excel file"),
+    user: UserModel = Depends(dependency=ProfileActive())
+):
+
+    service = CampaignContactImportService(user=user, campaign_uid=campaign_uid, file=file)
+    total_imported = await service.import_contacts()
+
+    return APIBaseResponse(
+        status=True,
+        message=f"{total_imported} contacts imported successfully",
     )
 
 
