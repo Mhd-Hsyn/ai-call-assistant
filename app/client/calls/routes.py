@@ -29,8 +29,13 @@ from .schemas import (
     APIBaseResponse,
     PaginationMeta,
     PaginaionResponse,
+    
     CampaignCreatePayloadSchema,
     CampaignModifyPayloadSchema,
+    
+    CampaignContactCreatePayloadSchema,
+    CampaignContactResponseSchema,
+
     CampaignInfoSchema,
     CallInitializeSchema,
     CallDisplayInfoResponseSchema,
@@ -48,6 +53,8 @@ logger = get_logger("Calling Routes")
 
 calls_router = APIRouter()
 
+
+#### Campaign ####
 
 @calls_router.post(
     "/campaign/create",
@@ -174,7 +181,7 @@ async def modify_campaign(
 
 
 
-@calls_router.patch(
+@calls_router.delete(
     "/campaign/delete",
     response_model=APIBaseResponse,
     status_code=status.HTTP_200_OK
@@ -192,10 +199,12 @@ async def delete_campaign(
         raise NotFoundException("Campaign not found")
 
     campaign_contacts = await CampaignContactsModel.find(
-        CampaignContactsModel.campaign == campaign
+        CampaignContactsModel.campaign.id == campaign_uid
     ).count()
     if campaign_contacts > 0:
-        raise AppException("Contacts already exist in this campaign. Please delete all contacts first.")
+        raise AppException(
+            "Contacts already exist in this campaign. Please delete all contacts first."
+        )
 
     await campaign.set({"is_deleted": True})
 
@@ -204,6 +213,39 @@ async def delete_campaign(
         message="Campaign deleted successfully"
     )
 
+
+#### Campaign Contact ####
+
+@calls_router.post(
+    "/campaign-contact/create",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_201_CREATED
+)
+async def create_campaign(
+    payload: CampaignContactCreatePayloadSchema,
+    user : UserModel = Depends(ProfileActive())
+):
+    campaign = await CampaignModel.find_one(
+        CampaignModel.id == payload.campaign_uid,
+        CampaignModel.user.id == user.id
+    )
+    if not campaign:
+        raise NotFoundException("Campaign not found")
+    
+    data = payload.dict(exclude={"campaign_uid"})
+
+    campaign_contact = CampaignContactsModel(
+        user=user,
+        campaign=campaign,
+        **data
+    )
+    await campaign_contact.insert()
+
+    return APIBaseResponse(
+        status=True,
+        message="Campaign's contact created successfully",
+        data=CampaignContactResponseSchema.model_validate(campaign_contact) 
+    )
 
 
 

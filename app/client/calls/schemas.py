@@ -3,6 +3,7 @@ from datetime import datetime
 from decimal import Decimal
 from pydantic import (
     BaseModel,
+    EmailStr,
     Field, 
     computed_field,
 )
@@ -36,6 +37,8 @@ class PaginaionResponse(BaseModel):
     data: Any | None = None
 
 
+
+#### Campaign ####
 
 class CampaignCreatePayloadSchema(BaseModel):
     agent_uid : UUID = Field(..., description="Agent UUID")
@@ -80,6 +83,36 @@ class CampaignModifyPayloadSchema(BaseModel):
     name : Optional[str]
 
 
+
+#### Campaign Contact ####
+
+
+class CampaignContactCreatePayloadSchema(BaseModel):
+    campaign_uid : UUID = Field(..., description="Campaign UUID")
+    phone_number: str = Field(..., description="Valid phone number")
+    first_name: Optional[str] = None 
+    last_name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    dynamic_variables: Optional[Dict[str, Any]]  = None
+
+
+class CampaignContactResponseSchema(BaseModel):
+    id : UUID
+    phone_number: str = Field(..., description="Valid phone number")
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    created_at : datetime
+    dynamic_variables: Optional[Dict[str, Any]]  = None
+
+    class Config:
+        from_attributes = True
+        json_encoders = {
+            UUID: str,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p")
+            if isinstance(v, datetime)
+            else v,
+        }
 
 
 

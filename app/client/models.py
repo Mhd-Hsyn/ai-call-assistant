@@ -2,7 +2,7 @@ from datetime import datetime
 from bson.decimal128 import Decimal128
 from decimal import Decimal, InvalidOperation
 from beanie import Link, before_event, Delete
-from pydantic import Field, model_validator
+from pydantic import EmailStr, Field, model_validator
 from typing import Optional, List, Dict, Any
 from app.core.models.base import BaseDocument
 from app.auth.models import UserModel
@@ -124,9 +124,9 @@ class CampaignContactsModel(BaseDocument):
     phone_number : str = Field(..., description="Phone Number")
     first_name : Optional[str] = Field(default=None, description="First Name of the Contatct")
     last_name : Optional[str] = Field(default=None, description="Last Name of the Contatct")
-    email : Optional[str] = Field(default=None, description="Email of the Contatct")
+    email : Optional[EmailStr] = Field(default=None, description="Email of the Contatct")
     no_of_calls : int = Field(default=0, description="No of calls per contact")
-    dynamic_variables: Dict[str, Any] = Field(default_factory=dict, description="Custom dynamic fields for contact")
+    dynamic_variables: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Custom dynamic fields for contact")
 
     class Settings:
         name = "campaign_contacts"
