@@ -28,7 +28,8 @@ from .schemas import (
     APIBaseResponse,
     PaginationMeta,
     PaginaionResponse,
-    CampaignCreateSchema,
+    CampaignCreatePayloadSchema,
+    CampaignModifyPayloadSchema,
     CampaignInfoSchema,
     CallInitializeSchema,
     CallDisplayInfoResponseSchema,
@@ -53,18 +54,16 @@ calls_router = APIRouter()
     status_code=status.HTTP_201_CREATED
 )
 async def create_campaign(
-    payload: CampaignCreateSchema,
+    payload: CampaignCreatePayloadSchema,
     user : UserModel = Depends(ProfileActive())
 ):
-    # Agent verify karo
     agent = await AgentModel.find_one(
-        AgentModel.id == payload.agent,
+        AgentModel.id == payload.agent_uid,
         AgentModel.user.id == user.id
     )
     if not agent:
         raise NotFoundException("Agent not found")
 
-    # Campaign create karo
     campaign = CampaignModel(
         user=user,
         agent=agent,
@@ -75,7 +74,7 @@ async def create_campaign(
     return APIBaseResponse(
         status=True,
         message="Campaign created successfully",
-        data={"campaign_id": str(campaign.id)}
+        data=CampaignInfoSchema.model_validate(campaign) 
     )
 
 
@@ -129,6 +128,49 @@ async def retrieve_my_campaigns(
         ),
         data = serialized_campaigns
     )
+
+
+@calls_router.patch(
+    "/campaign/modify",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def modify_campaign(
+    payload : CampaignModifyPayloadSchema,
+    user : UserModel = Depends(dependency=ProfileActive())
+):
+    campaign = await CampaignModel.find_one(
+        CampaignModel.id == payload.campaign_uid,
+        CampaignModel.user.id == user.id,
+        fetch_links=True
+    )
+    if not campaign:
+        raise NotFoundException("Campaign not found")
+    
+    update_fields = {}
+
+    if payload.name and payload.name != campaign.name:
+        update_fields["name"] = payload.name
+    if payload.agent_uid:
+        agent = await AgentModel.find_one(
+            AgentModel.id == payload.agent_uid,
+            AgentModel.user.id == user.id
+        )
+        if not agent:
+            raise NotFoundException("Agent not found")
+        update_fields["agent"] = agent
+
+    if update_fields:
+        for key, value in update_fields.items():
+            setattr(campaign, key, value)
+        await campaign.save()
+    
+    return APIBaseResponse(
+        status=True,
+        message="Campaign updated successfully",
+        data=CampaignInfoSchema.model_validate(campaign) 
+    )
+
 
 
 

@@ -37,10 +37,9 @@ class PaginaionResponse(BaseModel):
 
 
 
-class CampaignCreateSchema(BaseModel):
-    agent : UUID = Field(..., description="Agent UUID")
+class CampaignCreatePayloadSchema(BaseModel):
+    agent_uid : UUID = Field(..., description="Agent UUID")
     name : str
-
 
 
 class AgentShortInfoSchema(BaseModel):
@@ -72,6 +71,16 @@ class CampaignInfoSchema(BaseModel):
             if isinstance(v, datetime)
             else v,
         }
+
+
+
+class CampaignModifyPayloadSchema(BaseModel):
+    campaign_uid : UUID = Field(..., description="Campaign UUID")
+    agent_uid : Optional[UUID] = Field(..., description="Agent UUID")
+    name : Optional[str]
+
+
+
 
 
 
