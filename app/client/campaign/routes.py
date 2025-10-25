@@ -338,7 +338,15 @@ async def modify_campaign_contact(
     )
     if not campaign_contact:
         raise NotFoundException("Campaign contact not found")
-    
+
+    # Validation - Prevent phone number change if calls have started
+    if (
+        campaign_contact.no_of_calls > 0
+        and payload.phone_number
+        and payload.phone_number != campaign_contact.phone_number
+    ):
+        raise AppException("Cannot change phone number because a conversation has already started")
+
     # exclude_unset=True → ignore keys not present in payload
     update_data = payload.model_dump(exclude_unset=True)
     # update_data = payload.model_dump(exclude_unset=True, exclude_none=True)
