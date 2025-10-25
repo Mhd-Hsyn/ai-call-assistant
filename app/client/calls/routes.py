@@ -22,7 +22,8 @@ from app.auth.models import (
 from ..models import (
     CallModel,
     AgentModel,
-    CampaignModel
+    CampaignModel,
+    CampaignContactsModel,
 )
 from .schemas import (
     APIBaseResponse,
@@ -171,6 +172,37 @@ async def modify_campaign(
         data=CampaignInfoSchema.model_validate(campaign) 
     )
 
+
+
+@calls_router.patch(
+    "/campaign/delete",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def delete_campaign(
+    campaign_uid: UUID = Query(..., description="Campaign UUID to delete"),
+    user : UserModel = Depends(dependency=ProfileActive())
+):
+    campaign = await CampaignModel.find_one(
+        CampaignModel.id == campaign_uid,
+        CampaignModel.user.id == user.id,
+        CampaignModel.is_deleted == False
+    )
+    if not campaign:
+        raise NotFoundException("Campaign not found")
+
+    campaign_contacts = await CampaignContactsModel.find(
+        CampaignContactsModel.campaign == campaign
+    ).count()
+    if campaign_contacts > 0:
+        raise AppException("Contacts already exist in this campaign. Please delete all contacts first.")
+
+    await campaign.set({"is_deleted": True})
+
+    return APIBaseResponse(
+        status=True,
+        message="Campaign deleted successfully"
+    )
 
 
 
