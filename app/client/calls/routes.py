@@ -90,11 +90,15 @@ async def retrieve_my_campaigns(
     page_size: int = 10,
 ):
     skip = (page - 1) * page_size
-    total_records = await CampaignModel.find(CampaignModel.user.id == user.id).count()
+    total_records = await CampaignModel.find(
+        CampaignModel.user.id == user.id,
+        CampaignModel.is_deleted == False
+    ).count()
 
     all_campaigns = (
         await CampaignModel.find(
             CampaignModel.user.id == user.id,
+            CampaignModel.is_deleted == False,
             fetch_links=True
         )
         .sort(-CampaignModel.created_at)
