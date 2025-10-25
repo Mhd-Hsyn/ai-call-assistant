@@ -123,6 +123,15 @@ class CampaignContactResponseSchema(BaseModel):
 
 
 
+class CampaignContactFilterParams(BaseModel):
+    id: Optional[UUID] = None
+    campaign_id: Optional[UUID] = None
+    phone_number: Optional[str] = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    email: Optional[str] = None
+
+   
 
 class CallInitializeSchema(BaseModel):
     from_number: str
