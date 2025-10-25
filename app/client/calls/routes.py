@@ -38,6 +38,7 @@ from .schemas import (
     CampaignContactCreatePayloadSchema,
     CampaignContactFilterParams,
     CampaignContactResponseSchema,
+    CampaignContactModifyPayloadSchema,
 
     CampaignInfoSchema,
     CallInitializeSchema,
@@ -308,7 +309,7 @@ async def retrieve_my_campaigns(
     )
 
     serialized_campaigns_contacts = [
-        CampaignContactResponseSchema.model_validate(campaign) for campaign in all_campaigns_contacts
+        CampaignContactResponseSchema.model_validate(campaign_contact) for campaign_contact in all_campaigns_contacts
     ]
 
     # Calculate pagination flags
@@ -329,6 +330,40 @@ async def retrieve_my_campaigns(
         ),
         data = serialized_campaigns_contacts
     )
+
+
+@calls_router.patch(
+    "/campaign-contact/modify",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def modify_campaign(
+    payload : CampaignContactModifyPayloadSchema,
+    user : UserModel = Depends(dependency=ProfileActive())
+):
+    campaign_contact = await CampaignContactsModel.find_one(
+        CampaignContactsModel.id == payload.campaign_contact_uid,
+        CampaignContactsModel.user.id == user.id,
+        fetch_links=True
+    )
+    if not campaign_contact:
+        raise NotFoundException("Campaign contact not found")
+    
+    # exclude_unset=True → ignore keys not present in payload
+    update_data = payload.model_dump(exclude_unset=True)
+    # update_data = payload.model_dump(exclude_unset=True, exclude_none=True)
+    update_data.pop("campaign_contact_uid", None)
+
+    # Step 3: Perform dynamic update only for provided fields
+    if update_data:
+        await campaign_contact.set(update_data)
+
+    return APIBaseResponse(
+        status=True,
+        message="Campaign contact updated successfully",
+        data=CampaignContactResponseSchema.model_validate(campaign_contact)
+    )
+
 
 
 

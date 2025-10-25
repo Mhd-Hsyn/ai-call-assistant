@@ -133,6 +133,13 @@ class CampaignContactFilterParams(BaseModel):
 
    
 
+class CampaignContactModifyPayloadSchema(BaseModel):
+    campaign_contact_uid : UUID = Field(..., description="Campaign Contact UUID")
+    phone_number: str = Field(..., description="Valid phone number")
+    first_name: Optional[str] = None 
+    last_name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    dynamic_variables: Optional[Dict[str, Any]]  = None
 
 
 #### Call ####
