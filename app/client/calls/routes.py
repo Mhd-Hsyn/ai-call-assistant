@@ -237,6 +237,7 @@ async def create_campaign(
     payload: CampaignContactCreatePayloadSchema,
     user : UserModel = Depends(ProfileActive())
 ):
+    # find and verify campaign aligns with same user
     campaign = await CampaignModel.find_one(
         CampaignModel.id == payload.campaign_uid,
         CampaignModel.user.id == user.id
@@ -244,8 +245,13 @@ async def create_campaign(
     if not campaign:
         raise NotFoundException("Campaign not found")
     
-    data = payload.dict(exclude={"campaign_uid"})
+    # check if contact already exists in same campaign
+    if await CampaignContactsModel.find(
+        CampaignContactsModel.phone_number == payload.phone_number
+    ).count() > 0:
+        raise AppException("This phone Number already exists in this campaign")
 
+    data = payload.dict(exclude={"campaign_uid"})
     campaign_contact = CampaignContactsModel(
         user=user,
         campaign=campaign,
