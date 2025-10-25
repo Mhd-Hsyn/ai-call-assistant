@@ -225,7 +225,7 @@ async def delete_campaign(
     response_model=APIBaseResponse,
     status_code=status.HTTP_201_CREATED
 )
-async def create_campaign(
+async def create_campaign_contact(
     payload: CampaignContactCreatePayloadSchema,
     user : UserModel = Depends(ProfileActive())
 ):
@@ -263,7 +263,7 @@ async def create_campaign(
     response_model=PaginaionResponse,
     status_code=status.HTTP_200_OK,
 )
-async def retrieve_my_campaigns(
+async def retrieve_my_campaigns_contacts(
     user: UserModel = Depends(ProfileActive()),
     filters: CampaignContactFilterParams = Depends(),
     page: int = Query(1, ge=1),
@@ -327,7 +327,7 @@ async def retrieve_my_campaigns(
     response_model=APIBaseResponse,
     status_code=status.HTTP_200_OK
 )
-async def modify_campaign(
+async def modify_campaign_contact(
     payload : CampaignContactModifyPayloadSchema,
     user : UserModel = Depends(dependency=ProfileActive())
 ):
@@ -354,5 +354,30 @@ async def modify_campaign(
         data=CampaignContactResponseSchema.model_validate(campaign_contact)
     )
 
+
+@campaign_router.delete(
+    "/contact/delete",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_200_OK
+)
+async def delete_campaign_contact(
+    campaign_contact_uid : UUID = Query(description= "Campaign's contact uuid"),
+    user : UserModel = Depends(dependency=ProfileActive())
+):
+    campaign_contact : CampaignContactsModel = await CampaignContactsModel.find_one(
+        CampaignContactsModel.id == campaign_contact_uid,
+        CampaignContactsModel.user.id == user.id
+    )
+    if not campaign_contact:
+        raise NotFoundException("Campaign's Contact not found")
+
+    if campaign_contact.no_of_calls > 0:
+        raise AppException("Cannot delete contact because a conversation has already started")
+
+    await campaign_contact.delete()
+    return APIBaseResponse(
+        status=True,
+        message="Campaign contact deleted successfully",
+    )
 
 
