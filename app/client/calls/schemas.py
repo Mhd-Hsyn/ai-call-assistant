@@ -133,6 +133,10 @@ class CampaignContactFilterParams(BaseModel):
 
    
 
+
+
+#### Call ####
+
 class CallInitializeSchema(BaseModel):
     from_number: str
     to_number: str
