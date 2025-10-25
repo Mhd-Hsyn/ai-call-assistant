@@ -169,10 +169,12 @@ async def modify_campaign(
     if not campaign:
         raise NotFoundException("Campaign not found")
     
-    update_fields = {}
+    update_data = {}
 
-    if payload.name and payload.name != campaign.name:
-        update_fields["name"] = payload.name
+    update_data = payload.model_dump(exclude_unset=True)
+    update_data.pop("campaign_uid", None)
+    update_data.pop("agent_uid", None)
+
     if payload.agent_uid:
         agent = await AgentModel.find_one(
             AgentModel.id == payload.agent_uid,
@@ -180,10 +182,10 @@ async def modify_campaign(
         )
         if not agent:
             raise NotFoundException("Agent not found")
-        update_fields["agent"] = agent
+        update_data["agent"] = agent
 
-    if update_fields:
-        for key, value in update_fields.items():
+    if update_data:
+        for key, value in update_data.items():
             setattr(campaign, key, value)
         await campaign.save()
     

@@ -86,8 +86,8 @@ class CampaignInfoSchema(BaseModel):
 
 class CampaignModifyPayloadSchema(BaseModel):
     campaign_uid : UUID = Field(..., description="Campaign UUID")
-    agent_uid : Optional[UUID] = Field(..., description="Agent UUID")
-    name : Optional[str]
+    agent_uid : Optional[UUID] = Field(default=None, description="Agent UUID")
+    name : Optional[str] = None
 
 
 
