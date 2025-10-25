@@ -42,10 +42,36 @@ class CampaignCreateSchema(BaseModel):
     name : str
 
 
-# class CampaignInfoSchema(BaseModel):
-    
-#     agent : UUID = Field(..., description="Agent UUID")
-#     name : str
+
+class AgentShortInfoSchema(BaseModel):
+    id : UUID
+    agent_id: str
+    agent_name: str
+
+    class Config:
+        from_attributes = True
+        json_encoders = {
+            UUID: str,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p")
+            if isinstance(v, datetime)
+            else v,
+        }
+
+
+class CampaignInfoSchema(BaseModel):
+    id: UUID
+    name: str
+    created_at : datetime
+    agent: AgentShortInfoSchema
+
+    class Config:
+        from_attributes = True
+        json_encoders = {
+            UUID: str,
+            datetime: lambda v: v.strftime("%d %b %Y, %I:%M %p")
+            if isinstance(v, datetime)
+            else v,
+        }
 
 
 

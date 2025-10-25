@@ -29,6 +29,7 @@ from .schemas import (
     PaginationMeta,
     PaginaionResponse,
     CampaignCreateSchema,
+    CampaignInfoSchema,
     CallInitializeSchema,
     CallDisplayInfoResponseSchema,
     CallFullResponseSchema,
@@ -76,7 +77,56 @@ async def create_campaign(
         message="Campaign created successfully",
         data={"campaign_id": str(campaign.id)}
     )
-    
+
+
+@calls_router.get(
+    "/campaign/list",
+    response_model=PaginaionResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def retrieve_my_campaigns(
+    user: UserModel = Depends(ProfileActive()),
+    page: int = 1,
+    page_size: int = 10,
+):
+    skip = (page - 1) * page_size
+    total_records = await CampaignModel.find(CampaignModel.user.id == user.id).count()
+
+    all_campaigns = (
+        await CampaignModel.find(
+            CampaignModel.user.id == user.id,
+            fetch_links=True
+        )
+        .sort(-CampaignModel.created_at)
+        .skip(skip)
+        .limit(page_size)
+        .to_list()
+    )
+
+    serialized_campaigns = [
+        CampaignInfoSchema.model_validate(campaign) for campaign in all_campaigns
+    ]
+
+    # Calculate pagination flags
+    total_pages = ceil(total_records / page_size)
+    is_next = page < total_pages
+    is_previous = page > 1
+
+    return PaginaionResponse(
+        status = True,
+        message = "All campaigns retrieved successfully",
+        meta = PaginationMeta(
+            page_size = page_size,
+            page = page,
+            total_records = total_records,
+            total_pages = total_pages,
+            is_next = is_next,
+            is_previous = is_previous,
+        ),
+        data = serialized_campaigns
+    )
+
+
 
 
 
