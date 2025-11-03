@@ -6,6 +6,7 @@ from dateutil import parser
 from datetime import datetime
 from decimal import Decimal
 from retell import Retell
+from retell import APIError
 from fastapi import UploadFile
 from app.config.settings import settings
 from app.client.models import (
@@ -25,6 +26,7 @@ from app.core.exceptions.base import (
 from app.core.utils.helpers import (
     parse_timestamp,
     get_day_with_suffix,
+    handle_retell_exception
 )
 from app.config.logger import get_logger
 
@@ -161,9 +163,15 @@ class RetellCallService:
             logger.info(f"Retell call created and saved | call_id={new_call.call_id}")
             return new_call
 
+        except APIError as e:
+            logger.warning(f"Retell APIError: {e}")
+            detail = handle_retell_exception(e)
+            raise AppException(f"System rejected the call: {detail}")
+
         except Exception as e:
             logger.exception(f"Failed to create Retell call: {str(e)}")
             raise
+
 
     async def create_phone_call_by_campaign_contact(self, *, user: UserModel, payload: dict) -> CallModel:
         """
@@ -255,6 +263,11 @@ class RetellCallService:
 
             logger.info(f"Retell call created and saved | call_id={new_call.call_id}")
             return new_call
+
+        except APIError as e:
+            logger.warning(f"Retell APIError: {e}")
+            detail = handle_retell_exception(e)
+            raise AppException(f"System rejected the call: {detail}")
 
         except Exception as e:
             logger.exception(f"Failed to create Retell call: {str(e)}")

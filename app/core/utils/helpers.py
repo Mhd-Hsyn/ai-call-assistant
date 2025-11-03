@@ -1,3 +1,4 @@
+import re
 import uuid
 import json
 import hashlib
@@ -9,6 +10,7 @@ from decimal import (
     Decimal, 
     InvalidOperation, 
 )
+from retell import BadRequestError, APIError
 from app.core.rabbitmq_publisher.core.rabitmq_publisher import (
     get_rabbit_mq_email_send_publisher
 )
@@ -159,6 +161,28 @@ def convert_cents_to_usd(cents: Decimal) -> Decimal:
         logger.error(f"Failed to convert cents to USD: {cents}, error: {e}")
         return Decimal("0.0")
 
+
+
+def handle_retell_exception(exc: APIError) -> None:
+    """
+    Raises an AppException with a clean message extracted from any Retell APIError.
+    Works for BadRequestError, NotFoundError, AuthenticationError, etc.
+    """
+    # Try to extract message from body if available
+    detail = None
+    if getattr(exc, "body", None):
+        body = exc.body
+        if isinstance(body, dict) and "message" in body:
+            detail = body["message"]
+        else:
+            # fallback to string conversion of body
+            detail = str(body)
+    
+    # If no body/message found, fallback to str(exc)
+    if not detail:
+        detail = str(getattr(exc, "message", exc))
+
+    return detail
 
 
 
