@@ -45,7 +45,9 @@ class CallInitializeSchema(BaseModel):
     override_agent_id: Optional[str] = Field(None, alias="override_agent_id")
     retell_llm_dynamic_variables: Optional[Dict[str, Any]] = Field(default_factory=dict)
 
-
+class CampaignContactCallInitializeSchema(BaseModel):
+    contact_uid : UUID = Field(..., description="UUID of campaign's contact ID") 
+    from_number: str
 
 
 class CallBaseResponseSchema(BaseModel):

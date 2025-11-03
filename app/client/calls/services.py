@@ -10,7 +10,8 @@ from fastapi import UploadFile
 from app.config.settings import settings
 from app.client.models import (
     CallModel, 
-    AgentModel
+    AgentModel,
+    CampaignContactsModel
 )
 from app.auth.models import (
     UserModel
@@ -19,6 +20,7 @@ from app.core.exceptions.base import (
     AppException, 
     InternalServerErrorException,
     NotFoundException,
+    ForbiddenException,
 )
 from app.core.utils.helpers import (
     parse_timestamp,
@@ -155,6 +157,101 @@ class RetellCallService:
             )
 
             await new_call.insert()
+
+            logger.info(f"Retell call created and saved | call_id={new_call.call_id}")
+            return new_call
+
+        except Exception as e:
+            logger.exception(f"Failed to create Retell call: {str(e)}")
+            raise
+
+    async def create_phone_call_by_campaign_contact(self, *, user: UserModel, payload: dict) -> CallModel:
+        """
+        Create a phone call in Retell and store it in DB.
+        """
+        logger.info("Creating Retell phone call...")
+        contact_uid = payload.get('contact_uid')
+        campaign_contact = await CampaignContactsModel.find_one(
+            CampaignContactsModel.id == contact_uid,
+            fetch_links=True
+        )
+        if not campaign_contact:
+            raise NotFoundException("Campaign's contact not found in DB")
+        
+        if campaign_contact.user.id != user.id:
+            raise ForbiddenException("contact not assiciate with your campaign")
+        
+        agent_id = getattr(
+            getattr(
+                getattr(
+                    campaign_contact, 
+                    "campaign", 
+                    None
+                ),
+                "agent",
+                None
+            ),
+            "agent_id",
+            None
+        )
+
+        phone_number= getattr(campaign_contact, 'phone_number', None)
+        if not agent_id :
+            raise AppException("contact not associate with any campaign or agent")
+        
+        if not phone_number:
+            raise AppException("contact not have a phone number")
+
+        dynamic_variables = getattr(campaign_contact, "dynamic_variables", {})
+        new_fields = {
+            "first_name": campaign_contact.first_name,
+            "last_name": campaign_contact.last_name,
+            "email": campaign_contact.email,
+        }
+        # Filter out None values
+        clean_fields = {k: v for k, v in new_fields.items() if v is not None}
+        # Merge them safely
+        dynamic_variables.update(clean_fields)
+
+        try:
+            response = self.client.call.create_phone_call(
+                from_number=payload["from_number"],
+                to_number=phone_number,
+                override_agent_id=agent_id,
+                retell_llm_dynamic_variables=dynamic_variables,
+            )
+
+            # logger.debug(f"Retell response: {json.dumps(response, indent=2)}")
+
+            # --- Extract agent details
+            agent_id = response.agent_id
+            agent = await AgentModel.find_one(AgentModel.agent_id == agent_id)
+
+            # --- Create CallModel entry
+            new_call = CallModel(
+                user=user,
+                agent=agent,
+                agent_name=response.agent_name,
+                campaign_contact=campaign_contact,
+                agent_retell_id=response.agent_id,
+                call_id=response.call_id,
+                call_type=response.call_type,
+                direction=response.direction,
+                call_status=response.call_status,
+                from_number=response.from_number,
+                to_number=response.to_number,
+                metadata=response.metadata,
+                retell_llm_dynamic_variables=response.retell_llm_dynamic_variables,
+                collected_dynamic_variables=response.collected_dynamic_variables,
+                start_timestamp=parse_timestamp(response.start_timestamp),
+                end_timestamp=parse_timestamp(response.end_timestamp),
+                duration_ms=response.duration_ms,
+            )
+
+            await new_call.insert()
+
+            # --- Increment call count for contact
+            await campaign_contact.update({"$inc": {"no_of_calls": 1}})
 
             logger.info(f"Retell call created and saved | call_id={new_call.call_id}")
             return new_call

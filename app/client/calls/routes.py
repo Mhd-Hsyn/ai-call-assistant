@@ -26,6 +26,7 @@ from .schemas import (
     PaginationMeta,
     PaginaionResponse,
     CallInitializeSchema,
+    CampaignContactCallInitializeSchema,
     CallDisplayInfoResponseSchema,
     CallFullResponseSchema,
 )
@@ -74,6 +75,31 @@ async def initialize_call(
     """
     service = RetellCallService()
     new_call = await service.create_phone_call(user=user, payload=payload.dict(by_alias=True))
+
+    return APIBaseResponse(
+        status=True,
+        message="Call initialized successfully",
+        data={
+            "call_id": new_call.call_id, 
+            "agent_id": new_call.agent_retell_id
+        }
+    )
+
+
+@calls_router.post(
+    "/initialize-call-by-campaign-contact",
+    response_model=APIBaseResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+async def initialize_call_by_campaign_contact(
+    payload: CampaignContactCallInitializeSchema,
+    user: UserModel = Depends(ProfileActive()),
+):
+    """
+    Initialize a campaign's contact phone call through Retell and store it in DB.
+    """
+    service = RetellCallService()
+    new_call = await service.create_phone_call_by_campaign_contact(user=user, payload=payload.dict(by_alias=True))
 
     return APIBaseResponse(
         status=True,
