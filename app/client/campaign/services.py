@@ -1,3 +1,4 @@
+import io
 import pandas as pd
 from uuid import UUID
 from fastapi import UploadFile
@@ -53,22 +54,23 @@ class CampaignContactImportService:
         self.campaign = campaign
 
     def _read_file(self):
-        """Read CSV, Excel, or ODS file into a pandas DataFrame."""
         filename = self.file.filename.lower()
-
         try:
+            self.file.file.seek(0)  # ensure pointer reset
+            content = self.file.file.read()
+            buffer = io.BytesIO(content)
+
             if filename.endswith(".csv"):
-                df = pd.read_csv(self.file.file)
+                df = pd.read_csv(buffer)
             elif filename.endswith((".xls", ".xlsx")):
-                df = pd.read_excel(self.file.file)
+                df = pd.read_excel(buffer)
             elif filename.endswith(".ods"):
-                df = pd.read_excel(self.file.file, engine="odf")  # requires odfpy
+                df = pd.read_excel(buffer, engine="odf")
             else:
                 raise AppException("Invalid file format. Only CSV, XLS, XLSX, or ODS are supported.")
         except Exception as e:
             raise AppException(f"Error reading file: {str(e)}")
 
-        # Normalize column names
         df.columns = [col.strip().lower() for col in df.columns]
         self.df = df
 
