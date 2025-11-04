@@ -1,6 +1,6 @@
 import os
+from typing import Optional
 from pydantic_settings import BaseSettings
-
 
 class Settings(BaseSettings):
     # MongoDB
@@ -36,6 +36,19 @@ class Settings(BaseSettings):
 
     # Retail API Key
     retell_api_key:str
+
+    # Storage settings
+    STORAGE_BACKEND: str = "local"  # Default local storage
+    LOCAL_MEDIA_PATH: str = "media/"  # Default path
+
+    # AWS S3 (optional)
+    AWS_STORAGE_BUCKET_NAME: Optional[str] = None
+    AWS_S3_REGION_NAME: Optional[str] = "us-east-1"  # Default region
+    AWS_ACCESS_KEY_ID: Optional[str] = None
+    AWS_SECRET_ACCESS_KEY: Optional[str] = None
+    AWS_CLOUDFRONT_DOMAIN: Optional[str] = None  # Optional CDN
+    S3_BASE_PATH: Optional[str] = None
+    S3_ENDPOINT: Optional[str] = None
 
     class Config:
         env_file = ".env"
