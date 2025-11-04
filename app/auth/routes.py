@@ -59,7 +59,8 @@ from app.core.redis_utils.otp_handler.helpers import (
     delete_otp_verified
 )
 from app.core.utils.save_images import (
-    save_profile_image
+    save_profile_image,
+    delete_old_image
 )
 from app.core.utils.helpers import (
     generate_fingerprint,
@@ -199,7 +200,13 @@ async def update_profile(
     update_data = {k: v for k, v in data.items() if v is not None}
 
     if "profile_image" in update_data:
-        update_data["profile_image"] = await save_profile_image(user.email, update_data["profile_image"])
+        new_image = update_data["profile_image"]
+        # Save new image first
+        new_path = await save_profile_image(user.email, new_image)
+        # Delete old image safely (non-blocking)
+        await delete_old_image(user.profile_image)
+        update_data["profile_image"] = new_path
+
 
     if not update_data:
         raise AppException("No valid fields provided for update.")
