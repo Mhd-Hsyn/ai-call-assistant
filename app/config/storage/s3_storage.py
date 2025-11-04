@@ -50,25 +50,23 @@ class S3Storage(StorageBase):
 
     async def url(self, path: str) -> str:
         key = f"{self.base_path}/{path}".lstrip("/")
-        # If CDN domain configured, serve via CDN
+        if self.cdn_domain:
+            return f"https://{self.cdn_domain}/{key}"  # CloudFront or S3 public URL
+        # fallback presigned URL
+        async with self.session.client(
+            "s3", region_name=self.region, endpoint_url=self.endpoint
+        ) as s3:
+            url = await s3.generate_presigned_url(
+                "get_object", Params={"Bucket": self.bucket, "Key": key}, ExpiresIn=3600
+            )
+        return url
+
+    def url_sync(self, path: str) -> str:
+        key = f"{self.base_path}/{path}".lstrip("/")
         if self.cdn_domain:
             return f"https://{self.cdn_domain}/{key}"
-        # Otherwise generate presigned URL (valid 1 hour)
-        try:
-            async with self.session.client(
-                "s3",
-                region_name=self.region,
-                endpoint_url=self.endpoint
-            ) as s3:
-                url = await s3.generate_presigned_url(
-                    "get_object",
-                    Params={"Bucket": self.bucket, "Key": key},
-                    ExpiresIn=3600
-                )
-            return url
-        except Exception as e:
-            logger.exception(f"S3 generate URL failed for {key}: {e}")
-            raise
+        return f"https://{self.bucket}.s3.{self.region}.amazonaws.com/{key}"
+
 
     async def delete(self, path: str) -> None:
         key = f"{self.base_path}/{path}".lstrip("/")

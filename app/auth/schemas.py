@@ -1,17 +1,15 @@
 import re
+from uuid import UUID
 from datetime import datetime
 from typing import Optional, Any
 from fastapi import (
     Form, 
     File, 
     UploadFile, 
-    status
 )
 from pydantic import (
     BaseModel, 
     EmailStr, 
-    ValidationError,
-    constr,
     Field, 
     field_validator,
     computed_field,
@@ -20,10 +18,10 @@ from pydantic import (
 from app.core.exceptions.base import (
     AppException,
 )
-from uuid import UUID
 from app.core.utils.helpers import (
     check_password_requirements
 )
+from app.config.storage.factory import storage
 
 ############  Signup  ############
 
@@ -106,7 +104,7 @@ class UserProfileResponse(BaseModel):
     class Config:
         from_attributes = True  # Allow Pydantic to read from ORM-like objects
 
-    @computed_field  # 👈 auto adds to response
+    @computed_field
     @property
     def created_at_human(self) -> str:
         return self.created_at.strftime("%b %d, %Y %I:%M %p")

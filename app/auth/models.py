@@ -9,6 +9,8 @@ from .mixins import (
     PasswordMixin, 
     UserModelMixin
 )
+from app.config.storage.factory import storage
+
 
 class UserModel(BaseDocument, PasswordMixin, UserModelMixin):
     first_name: str
@@ -26,6 +28,11 @@ class UserModel(BaseDocument, PasswordMixin, UserModelMixin):
 
     class Settings:
         name = "users"
+
+    @property
+    async def profile_image_url(self) -> str:
+        url = await storage.url(self.profile_image)
+        return url
 
 
 class UserWhitelistTokenModel(BaseDocument):

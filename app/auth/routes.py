@@ -105,6 +105,9 @@ async def register_as_client(
     token_data = await auth_service.generate_jwt_payload(user, request)
 
     user_data = UserProfileResponse.model_validate(user)
+    user_data = user_data.model_copy(update={
+        "profile_image": await user.profile_image_url
+    })
     return AuthResponseData(
         status=True,
         message="Login Successfully",
@@ -152,6 +155,9 @@ async def login(
 
     # Serialize user data
     user_data = UserProfileResponse.model_validate(user_instance)
+    user_data = user_data.model_copy(update={
+        "profile_image": await user_instance.profile_image_url
+    })
 
     return AuthResponseData(
         status=True,
@@ -169,6 +175,9 @@ async def login(
 )
 async def get_profile(user:UserModel=Depends(ProfileActive())):
     user_data = UserProfileResponse.model_validate(user)
+    user_data = user_data.model_copy(update={
+        "profile_image": await user.profile_image_url
+    })
 
     return APIBaseResponse(
         status=True,
@@ -197,6 +206,9 @@ async def update_profile(
 
     await user.set(update_data)
     updated_user = UserProfileResponse.model_validate(user)
+    updated_user = updated_user.model_copy(update={
+        "profile_image": await user.profile_image_url
+    })
 
     return APIBaseResponse(
         status=True,
