@@ -47,7 +47,7 @@ class Settings(BaseSettings):
     AWS_ACCESS_KEY_ID: Optional[str] = None
     AWS_SECRET_ACCESS_KEY: Optional[str] = None
     AWS_CLOUDFRONT_DOMAIN: Optional[str] = None  # Optional CDN
-    S3_BASE_PATH: Optional[str] = None
+    S3_BASE_PATH: Optional[str] = "ai-call-assistant-data"
     S3_ENDPOINT: Optional[str] = None
 
     class Config:

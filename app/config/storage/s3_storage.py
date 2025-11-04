@@ -27,7 +27,7 @@ class S3Storage(StorageBase):
         )
 
     async def save(self, path: str, file: UploadFile) -> str:
-        key = path.lstrip("/")
+        key = f"{self.base_path}/{path}".lstrip("/")
         try:
             async with self.session.client(
                 "s3",
@@ -49,7 +49,7 @@ class S3Storage(StorageBase):
             raise
 
     async def url(self, path: str) -> str:
-        key = path.lstrip("/")
+        key = f"{self.base_path}/{path}".lstrip("/")
         # If CDN domain configured, serve via CDN
         if self.cdn_domain:
             return f"https://{self.cdn_domain}/{key}"
@@ -71,7 +71,7 @@ class S3Storage(StorageBase):
             raise
 
     async def delete(self, path: str) -> None:
-        key = path.lstrip("/")
+        key = f"{self.base_path}/{path}".lstrip("/")
         try:
             async with self.session.client(
                 "s3",
