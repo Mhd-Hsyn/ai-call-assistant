@@ -12,7 +12,19 @@ from typing import (
     List,
     Any
 )
+from app.core.constants.choices import (
+    KnowledgeBaseStatusChoices,
+    KnowledgeBaseSourceTypeChoices,
+    VoiceModelChoices,
+    LanguageChoices,
+    EngineStartSpeakChoice,
+    CallStatusChoices,
+    CallDirectionChoices,
+    CallTypeChoices,
+    CallDisconnectionReasonChoices,
+    UserSentimentChoices,
 
+)
 
 class APIBaseResponse(BaseModel):
     status: bool
@@ -98,6 +110,21 @@ class AgentMiniSchema(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+
+
+class CallFilterParams(BaseModel):
+    id: Optional[UUID] = None
+    agent_id: Optional[UUID] = None
+    campaign_contact_id: Optional[UUID] = None
+    agent_name: Optional[str] = None
+    direction: Optional[CallDirectionChoices] = None
+    call_status: Optional[CallStatusChoices] = None
+    to_number: Optional[str] = None
+    from_number: Optional[str] = None
+    user_sentiment: Optional[UserSentimentChoices] = None
+    call_successful : Optional[bool] = None
 
 
 class CallDisplayInfoResponseSchema(CallBaseResponseSchema):

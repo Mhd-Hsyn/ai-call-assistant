@@ -9,6 +9,7 @@ from fastapi import (
     File,
     Depends, 
 )
+from beanie.operators import RegEx
 from app.core.exceptions.base import (
     AppException,
 )
@@ -25,6 +26,7 @@ from .schemas import (
     APIBaseResponse,
     PaginationMeta,
     PaginaionResponse,
+    CallFilterParams,
     CallInitializeSchema,
     CampaignContactCallInitializeSchema,
     CallDisplayInfoResponseSchema,
@@ -133,15 +135,41 @@ async def retell_webhook(payload: dict):
 )
 async def retrieve_my_calls(
     user: UserModel = Depends(ProfileActive()),
+    filters: CallFilterParams = Depends(),
     page: int = 1,
     page_size: int = 10,
 ):
     skip = (page - 1) * page_size
+    filter_conditions = [
+        CallModel.user.id == user.id
+    ]
+
+    if filters.id:
+        filter_conditions.append(CallModel.id == filters.id)
+    if filters.agent_id:
+        filter_conditions.append(CallModel.agent.id == filters.agent_id)
+    if filters.campaign_contact_id:
+        filter_conditions.append(CallModel.campaign_contact.id == filters.campaign_contact_id)
+    if filters.agent_name:
+        filter_conditions.append(RegEx(CallModel.agent_name, f".*{filters.agent_name}.*", options="i"))
+    if filters.direction:
+        filter_conditions.append(CallModel.direction == filters.direction)
+    if filters.call_status:
+        filter_conditions.append(CallModel.call_status == filters.call_status)
+    if filters.to_number:
+        filter_conditions.append(RegEx(CallModel.to_number, f".*{filters.to_number}.*", options="i"))
+    if filters.from_number:
+        filter_conditions.append(RegEx(CallModel.from_number, f".*{filters.from_number}.*", options="i"))
+    if filters.user_sentiment:
+        filter_conditions.append(CallModel.user_sentiment == filters.user_sentiment)
+    if filters.call_successful is not None:
+        filter_conditions.append(CallModel.call_successful == filters.call_successful)
+
     total_records = await CallModel.find(CallModel.user.id == user.id).count()
 
     all_calls = (
         await CallModel.find(
-            CallModel.user.id == user.id
+            *filter_conditions
         )
         .sort(-CallModel.created_at)
         .skip(skip)
@@ -152,6 +180,7 @@ async def retrieve_my_calls(
     serialized_calls = [
         CallDisplayInfoResponseSchema.model_validate(call) for call in all_calls
     ]
+
 
     # Calculate pagination flags
     total_pages = ceil(total_records / page_size)
