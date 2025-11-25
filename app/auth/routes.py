@@ -59,7 +59,8 @@ from app.core.redis_utils.otp_handler.helpers import (
     delete_otp_verified
 )
 from app.core.utils.save_images import (
-    save_profile_image
+    save_profile_image,
+    delete_old_image
 )
 from app.core.utils.helpers import (
     generate_fingerprint,
@@ -105,6 +106,9 @@ async def register_as_client(
     token_data = await auth_service.generate_jwt_payload(user, request)
 
     user_data = UserProfileResponse.model_validate(user)
+    user_data = user_data.model_copy(update={
+        "profile_image": await user.profile_image_url
+    })
     return AuthResponseData(
         status=True,
         message="Login Successfully",
@@ -152,6 +156,9 @@ async def login(
 
     # Serialize user data
     user_data = UserProfileResponse.model_validate(user_instance)
+    user_data = user_data.model_copy(update={
+        "profile_image": await user_instance.profile_image_url
+    })
 
     return AuthResponseData(
         status=True,
@@ -169,6 +176,9 @@ async def login(
 )
 async def get_profile(user:UserModel=Depends(ProfileActive())):
     user_data = UserProfileResponse.model_validate(user)
+    user_data = user_data.model_copy(update={
+        "profile_image": await user.profile_image_url
+    })
 
     return APIBaseResponse(
         status=True,
@@ -190,13 +200,22 @@ async def update_profile(
     update_data = {k: v for k, v in data.items() if v is not None}
 
     if "profile_image" in update_data:
-        update_data["profile_image"] = await save_profile_image(user.email, update_data["profile_image"])
+        new_image = update_data["profile_image"]
+        # Save new image first
+        new_path = await save_profile_image(user.email, new_image)
+        # Delete old image safely (non-blocking)
+        await delete_old_image(user.profile_image)
+        update_data["profile_image"] = new_path
+
 
     if not update_data:
         raise AppException("No valid fields provided for update.")
 
     await user.set(update_data)
     updated_user = UserProfileResponse.model_validate(user)
+    updated_user = updated_user.model_copy(update={
+        "profile_image": await user.profile_image_url
+    })
 
     return APIBaseResponse(
         status=True,
