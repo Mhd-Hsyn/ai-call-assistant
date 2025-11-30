@@ -7,24 +7,32 @@ from app.core.constants.choices import (
 )
 from .mixins import (
     PasswordMixin, 
-    UserModelMixin
+    UserModelMixin,
 )
+from app.core.models.mixins import FileHandlerMixin
 from app.config.storage.factory import storage
 
 
-class UserModel(BaseDocument, PasswordMixin, UserModelMixin):
+class UserModel(BaseDocument, PasswordMixin, UserModelMixin, FileHandlerMixin):
     first_name: str
     middle_name: str | None = None
     last_name: str
     email: EmailStr
     mobile_number: str | None = None
-    profile_image: str = "dummy/user.png"
+    profile_image: str = Field(
+        default="dummy/user.png",
+        metadata={"upload_to": "users/profile"}
+    )
     role: UserRoleChoices = UserRoleChoices.CLIENT
     account_status: UserAccountStatusChoices = UserAccountStatusChoices.PENDING
     is_active: bool = True
     is_staff: bool = False
     is_email_verified: bool = False
     password: str
+
+    __file_fields__ = {
+        "profile_image": "users/profile",
+    }
 
     class Settings:
         name = "users"

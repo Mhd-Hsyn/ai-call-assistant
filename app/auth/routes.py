@@ -58,10 +58,6 @@ from app.core.redis_utils.otp_handler.helpers import (
     is_otp_verified,
     delete_otp_verified
 )
-from app.core.utils.save_images import (
-    save_profile_image,
-    delete_old_image
-)
 from app.core.utils.helpers import (
     generate_fingerprint,
     get_email_publisher
@@ -88,9 +84,6 @@ async def register_as_client(
     if await UserModel.find_one(UserModel.email == schema.email):
         raise AppException("Email already exists", status_code=status.HTTP_400_BAD_REQUEST)
 
-    # Save profile image if provided
-    image_path = await save_profile_image(schema.email, profile_image)
-
     user = UserModel(
         first_name=schema.first_name,
         middle_name=schema.middle_name,
@@ -98,10 +91,11 @@ async def register_as_client(
         email=schema.email.lower(),
         password=schema.password,
         mobile_number=schema.mobile_number,
-        profile_image=image_path,
         account_status=UserAccountStatusChoices.ACTIVE
     )
     await user.insert()
+    if profile_image:
+        await user.save_file("profile_image", profile_image, delete_old=False)
 
     token_data = await auth_service.generate_jwt_payload(user, request)
 
@@ -197,21 +191,20 @@ async def update_profile(
     data: dict = Depends(user_profile_update_form),
     user:UserModel=Depends(ProfileActive())
 ):
-    update_data = {k: v for k, v in data.items() if v is not None}
+    fields_to_update = {
+        key: value
+        for key, value in data.items()
+        if value is not None and key != "profile_image"
+    }
 
-    if "profile_image" in update_data:
-        new_image = update_data["profile_image"]
-        # Save new image first
-        new_path = await save_profile_image(user.email, new_image)
-        # Delete old image safely (non-blocking)
-        await delete_old_image(user.profile_image)
-        update_data["profile_image"] = new_path
+    if "profile_image" in data and data["profile_image"] is not None:
+        upload = data.pop("profile_image")
+        await user.save_file("profile_image", upload, delete_old=True, background_delete=False)
 
-
-    if not update_data:
+    if not fields_to_update:
         raise AppException("No valid fields provided for update.")
 
-    await user.set(update_data)
+    await user.set(fields_to_update)
     updated_user = UserProfileResponse.model_validate(user)
     updated_user = updated_user.model_copy(update={
         "profile_image": await user.profile_image_url

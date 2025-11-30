@@ -37,7 +37,7 @@ class Settings(BaseSettings):
     # Retail API Key
     retell_api_key:str
 
-    BACKEND_API_BASE_URL: str
+    BACKEND_API_BASE_URL: str = "https://ai-call-assistant-api.devssh.xyz"
 
     # Storage settings
     STORAGE_BACKEND: str = "local"  # Default local storage
