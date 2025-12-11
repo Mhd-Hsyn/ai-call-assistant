@@ -10,6 +10,7 @@ from app.client.models import (
     KnowledgeBaseSourceModel,
     ResponseEngineModel,
     AgentModel,
+    MeetingWorkflowModel,
     CallModel,
     CampaignModel,
     CampaignContactsModel
@@ -38,6 +39,7 @@ async def init_db():
             KnowledgeBaseSourceModel,
             ResponseEngineModel,
             AgentModel,
+            MeetingWorkflowModel,
             CallModel,
             CampaignModel,
             CampaignContactsModel

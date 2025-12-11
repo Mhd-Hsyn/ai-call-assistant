@@ -105,6 +105,20 @@ class AgentModel(BaseDocument):
         name = "agents"
 
 
+class MeetingWorkflowModel(BaseDocument):
+    """
+    Stores both the original incoming payload (raw_data) and the normalized states
+    we use internally. Also store engine_id for fast lookups.
+    """
+    agent: Link[AgentModel]
+    engine_id: str  # quick reference to response_engine.engine_id
+    raw_payload: Dict[str, Any]   # save exactly the incoming payload
+    states_normalized: List[Dict[str, Any]]  # normalized internal copy (optional)
+
+    class Settings:
+        name = "meeting_workflows"
+
+
 
 class CampaignModel(BaseDocument):
 

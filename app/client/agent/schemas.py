@@ -196,3 +196,21 @@ class UpdateAgentSchema(BaseModel):
             raise ValueError(f"Field '{info.field_name}' cannot be null")
         return v
 
+
+
+class IncomingState(BaseModel):
+    name: str
+    state_prompt: str
+    description: Optional[str] = None
+    cal_api_key: Optional[str] = None
+    event_type_id: Optional[int] = None
+    timezone: Optional[str] = None
+
+
+class CreateMeetingWorkflowPayload(BaseModel):
+    agent_id: str
+    data: List[IncomingState]
+
+
+
+

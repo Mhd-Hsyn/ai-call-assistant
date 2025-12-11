@@ -1,6 +1,6 @@
 from uuid import UUID
 from retell import Retell
-from typing import List
+from typing import List, Dict, Any
 from pydantic import ValidationError
 from app.auth.models import UserModel
 from app.config.settings import settings
@@ -114,6 +114,25 @@ class RetellAgentService:
             return self.client.llm.delete(engine_id)
         except Exception as e:
             raise handle_retell_error(e)
+
+    async def update_retell_llm(self, engine_id: str, states: List[Dict[str, Any]], starting_state: str):
+        """
+        Update Retell LLM. Wrap blocking call if client is sync.
+        """
+        payload_states = states  # already sanitized by mapper
+
+        try:
+            # If client is synchronous, perform in threadpool to avoid blocking event loop
+            # assuming self.client.llm.update is sync
+            result = self.client.llm.update(
+                llm_id=engine_id, 
+                states=payload_states, 
+                starting_state=starting_state
+            )
+            return result
+        except Exception as exc:
+            # raise or wrap in custom exception
+            raise RuntimeError(f"Retell update failed: {exc}")
 
 
 class AgentService:

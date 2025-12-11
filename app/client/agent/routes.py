@@ -10,7 +10,8 @@ from fastapi import (
 from app.config.settings import settings
 from app.core.exceptions.base import (
     BadGatewayException,
-    NotFoundException
+    NotFoundException,
+    BadGatewayException,
 
 )
 from app.core.dependencies.authorization import (
@@ -22,7 +23,8 @@ from app.auth.models import (
 from ..models import (
     AgentModel,
     KnowledgeBaseModel,
-    
+    ResponseEngineModel,
+    MeetingWorkflowModel
 )
 from .schemas import (
     APIBaseResponse,
@@ -32,15 +34,16 @@ from .schemas import (
     KnowledgeBaseInfoResponse,
     UpdateEngineSchema,
     UpdateAgentSchema,
+    CreateMeetingWorkflowPayload,
 
 )
 from .service import (
     AgentService,
-    RetellVoiceService
-    
+    RetellVoiceService,
+    RetellAgentService
 )
 from app.config.logger import get_logger
-
+from .utils import map_payload_to_retell_states
 
 logger = get_logger("Agent Routes")
 
@@ -291,5 +294,93 @@ async def get_user_id_by_agent(
             "last_name": user.last_name
         }
     )
+
+
+# Calender meeting integrate
+
+
+
+
+@agent_router.post("/meeting/workflow")
+async def create_or_update_workflow(
+    payload: CreateMeetingWorkflowPayload,
+    user: UserModel = Depends(ProfileActive())
+):
+    # 1) Validate agent & fetch links to get response_engine
+    agent = await AgentModel.find_one(
+        AgentModel.agent_id == payload.agent_id,
+        AgentModel.user.id == user.id,
+        fetch_links=True
+    )
+    if not agent:
+        raise NotFoundException("Agent not found")
+
+    # get engine id from agent.response_engine
+    engine_link = agent.response_engine
+    engine = None
+    if hasattr(engine_link, "id"):
+        engine = await ResponseEngineModel.get(engine_link.id)
+    else:
+        # fallback: try query by id saved
+        engine = await ResponseEngineModel.find_one(ResponseEngineModel.id == engine_link)
+
+    if not engine:
+        raise NotFoundException("Response engine for agent not found")
+
+    engine_id = engine.engine_id
+
+    # 2) Save raw payload into DB and normalize states
+    # Convert incoming pydantic objects to plain dicts
+    raw_payload = payload.model_dump()
+    data_list = raw_payload.get("data", [])
+
+    # Build retell-compatible states list using mapper
+    retell_states = map_payload_to_retell_states(data_list)
+
+    # Determine starting state (first state's name)
+    starting_state = retell_states[0]["name"] if retell_states else "introduction"
+
+    # 3) Create or update MeetingWorkflowModel by agent
+    existing = await MeetingWorkflowModel.find_one(MeetingWorkflowModel.agent.id == agent.id)
+
+    if existing:
+        existing.raw_payload = raw_payload
+        existing.states_normalized = retell_states
+        existing.engine_id = engine_id
+        await existing.save()
+        workflow = existing
+        db_message = "Workflow updated successfully"
+    else:
+        workflow = MeetingWorkflowModel(
+            agent=agent,
+            engine_id=engine_id,
+            raw_payload=raw_payload,
+            states_normalized=retell_states
+        )
+        await workflow.insert()
+        db_message = "Workflow created successfully"
+
+    # 4) Sync to Retell (service)
+    retell_service = RetellAgentService()
+    try:
+        await retell_service.update_retell_llm(
+            engine_id=engine_id,
+            states=retell_states,
+            starting_state=starting_state
+        )
+        retell_sync = True
+    except Exception as e:
+        # optional: roll back DB change or set a "synced": False flag
+        # Here we keep DB but inform caller of failure
+        retell_sync = False
+        # log error in real app
+        raise BadGatewayException(f"Retell sync failed: {e}")
+
+    return {
+        "status": True,
+        "message": db_message,
+        "workflow_id": str(workflow.id),
+        "retell_sync": retell_sync
+    }
 
 
