@@ -384,3 +384,33 @@ async def create_or_update_workflow(
     }
 
 
+
+@agent_router.get("/meeting/workflow")
+async def get_workflow_by_agent(
+    agent_id: str = Query(...),
+    user: UserModel = Depends(ProfileActive())
+):
+    """
+    Fetch MeetingWorkflow by agent_id
+    Returns raw payload and normalized states
+    """
+
+    agent = await AgentModel.find_one(
+        AgentModel.agent_id == agent_id,
+        AgentModel.user.id == user.id
+    )
+    if not agent:
+        raise NotFoundException("Agent not found")
+
+    workflow = await MeetingWorkflowModel.find_one(MeetingWorkflowModel.agent.id == agent.id)
+    if not workflow:
+        raise NotFoundException("Workflow not found")
+
+    return {
+        "status": True,
+        "agent_id": agent_id,
+        "workflow_id": str(workflow.id),
+        "raw_payload": workflow.raw_payload,
+        "states_normalized": workflow.states_normalized
+    }
+
