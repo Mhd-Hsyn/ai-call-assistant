@@ -214,3 +214,7 @@ class CreateMeetingWorkflowPayload(BaseModel):
 
 
 
+class PhoneNumberUpdatePayload(BaseModel):
+    agent_id: str
+    phone_number: str
+    nickname: str

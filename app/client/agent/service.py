@@ -134,6 +134,17 @@ class RetellAgentService:
             # raise or wrap in custom exception
             raise RuntimeError(f"Retell update failed: {exc}")
 
+    def update_agent_inbound(self, inbound_agent_id: str, phone_number: str, nickname: str):
+        """
+        Calls Retell API to update agent's phone number
+        """
+        return self.client.phone_number.update(
+            phone_number=phone_number,
+            nickname=nickname,
+            inbound_agent_id=inbound_agent_id,
+        )
+
+
 
 class AgentService:
     def __init__(self):

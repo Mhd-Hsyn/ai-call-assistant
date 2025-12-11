@@ -12,7 +12,7 @@ from app.core.exceptions.base import (
     BadGatewayException,
     NotFoundException,
     BadGatewayException,
-
+    InternalServerErrorException,
 )
 from app.core.dependencies.authorization import (
     ProfileActive
@@ -35,6 +35,7 @@ from .schemas import (
     UpdateEngineSchema,
     UpdateAgentSchema,
     CreateMeetingWorkflowPayload,
+    PhoneNumberUpdatePayload,
 
 )
 from .service import (
@@ -413,4 +414,37 @@ async def get_workflow_by_agent(
         "raw_payload": workflow.raw_payload,
         "states_normalized": workflow.states_normalized
     }
+
+
+
+@agent_router.post("/phone-number/update")
+async def update_phone_number(
+    payload: PhoneNumberUpdatePayload,
+    user: UserModel = Depends(ProfileActive())
+):
+    agent = await AgentModel.find_one(
+        AgentModel.agent_id == payload.agent_id,
+        AgentModel.user.id == user.id,
+        fetch_links=True
+    )
+    if not agent:
+        raise NotFoundException("Agent not found")
+
+    try:
+        # Assuming you have a RetellAgentService class initialized
+        retell_service = RetellAgentService()
+        phone_number_response = retell_service.update_agent_inbound(
+            inbound_agent_id=agent.agent_id,
+            phone_number=payload.phone_number,
+            nickname=payload.nickname,
+        )
+    except Exception as e:
+        raise InternalServerErrorException(f"Retell API error: {str(e)}")
+
+    return {
+        "status": True,
+        "message": "Phone number updated successfully",
+        "data": phone_number_response
+    }
+
 
