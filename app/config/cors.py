@@ -6,6 +6,7 @@ ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://callmindai-admin.netlify.app",
+    "https://callingai-updated.netlify.app",
 ]
 
 def setup_cors(app):
